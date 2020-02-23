@@ -95,15 +95,8 @@ Die Funktion sein Workout mit anderen zu teilen und diese zum Workout einzuladen
 
 \section{Anforderungen}
 
-
-\subsection{Applikation}
-
-\subsubsection{Heimnetzwerk und Sensoren}
-Bei der Hardware ist zum einen sehr wichtig, dass das Aufsetzen des Systems, vom auspacken der Produkte, bis zur Fertigstellung des Aufbaus, sehr einfach, verständlich und gut beschrieben ist.
-\\
-Andererseits sollte nach dem Aufbau der Hardware die erforderliche Interaktion mit dem Nutzer, so gering wie möglich gehalten werdern (Verwendung von Photovoltaic bei den Sensoren, um eine Batteriewechsel zu vermeiden).
-\\
-Die Messeinheiten werden über die App mit dem WLAN des Benutzers verbunden und die Verbindung, mit Hilfe des Aufleuchtens einer grünen LED bestätigt.
+\subsubsection{App}
+Um eine gute Userexperience sicher zu stellen, muss die App sehr simpel strukturiert und einfach zu verwenden sein. Ebenso wichtig ist es, dass die App auf allen Platformen (Android, IOS, Web) verfügbar ist um die Menge an potentiellen Nutzern nicht einzuschränken.
 
 \paragraph{Kommunikationsstruktur}
 \begin{center}
@@ -115,8 +108,6 @@ Die Messeinheiten werden über die App mit dem WLAN des Benutzers verbunden und 
 
 \end{center}
 
-\subsubsection{App}
-Um eine gute Userexperience sicher zu stellen, muss die App sehr simpel strukturiert und einfach zu verwenden sein. Ebenso wichtig ist es, dass die App auf allen Platformen (Android, IOS, Web) verfügbar ist um die Menge an potentiellen Nutzern nicht einzuschränken.
 \paragraph{Graphical userinterface}
 \begin{flushleft}
 
@@ -128,34 +119,14 @@ Um eine gute Userexperience sicher zu stellen, muss die App sehr simpel struktur
 
 \subsubsection{Server}
 Der Server sollte 99\% der Zeit erreichbar sein um eine ununterbrochene Erfahrung zu bieten.\\
-\paragraph{Datenmodel der Plantastic Datenbank}
+\paragraph{Datenmodel der Fitervari Datenbank}
 \begin{center}
 
 \end{center}
 \pagebreak
 
 \subsubsection{Usecases}
-\paragraph{Hardware einrichten}
-\begin{center}
 
-\end{center}
-\begin{center}
-\begin{tabular}{| L{3cm} | C{12cm} |}
-\hline
-Hardware aufsetzen & Als erstes muss der User die Hardware konfigurieren und aufsetzen.
-Um sicherzustellen, dass alles reibungslos verläuft, sollte man die einzelnen Hardwarekomponenten auf Schäden, die möglicherweise bei der Lieferung aufgetreten sind, überprüfen. \\
-
-\hline
-Controller mit Lan verbinden & Der Controller ist zuständig dafür, die Daten die die Sensoren erzeugen sicher und identifizierbar auf den Plantastic Server zu schicken. Um diese Kommunikation zu ermöglichen, muss man den Controller mit dem Heimnetzwerk verbinden. Die einfachste Lösung wäre es den Controller, mit Hilfe eines Lan-Kabels mit dem Router zu verbinden. Die zweite Möglichkeit, eine Connection zwischen den beiden Komponenten zu erzeugen wäre, die Konfiguration mit Hilfe der Plantastic-App durchzuführen. \\
-
-\hline
-Sensor mit Controller verbinden & Die Sensoren einfach mit Hilfe des Button-Systems mit dem Controller verbinden.\\
-
-\hline
-Sensor in Topf stecken & Um die Feuchtigkeit der Topfpflanzen zu messen, muss man die Sensoren in den Topf stecken. \\
-\hline
-\end{tabular}
-\end{center}
 \newpage
 
 \paragraph{App einrichten}
@@ -165,36 +136,16 @@ Sensor in Topf stecken & Um die Feuchtigkeit der Topfpflanzen zu messen, muss ma
 \begin{center}
 \begin{tabular}{| L{3cm} | C{12cm} |}
 \hline
-App installieren & Die Plantastic-App wird sowohl im Google Play Store, als auch im App Store verfügbar sein. Um diese dann im jeweiligen Store zu finden, einfach in den Suchbereich „Plantastic“ eingeben, die App auswählen und diese dann wie gewohnt auf das Mobiltelefon installieren.\\
+App installieren & Die Fitervari: Train Together-App wird sowohl im Google Play Store, als auch im App Store verfügbar sein. Um diese dann im jeweiligen Store zu finden, einfach in den Suchbereich „Fitervari“ eingeben, die App auswählen und diese dann wie gewohnt auf das Mobiltelefon installieren.\\
 
 \hline
 Registration & Zur Identifikation wird sich der User registrieren müssen. Das ist notwendig, um den Controller richtig zuweisen zu können, damit persönliche Blumenheimnetzwerke nicht verloren gehen.\\
 
-\hline
-Benachrichtigungszeit einstellen & Um die Zeiten in denen man benachrichtigt werden will einzustellen, sucht man den Punkt "Benachrichtigungszeit" in den Einstellungen auf und passt die Zeiten individuell auf sich selbst an. \\
-
-\hline
-App konfigurieren & Zunächst einmal den Benutzernamen und das Passwort, welche man bei der Registration angegeben hat, eingeben. Wenn die Validierung erfolgreich ist, wird man zu den hinzugefügten Controllern weitergeleitet. Wenn noch keine Controller vorhanden sind, befindet sich in der Mitte ein Hinzufügen-Button. Mit dieser Funktion kann man einen QR-Code, der sich auf der Rückseite der Controllerhardwarekomponente befindet, einscannen. Wenn der QR-Code erfolgreich erkannt wird, öffnet sich ein Pop-up, in dem man die SSID und das Passwort seines Home-Netzwerks eingeben muss. Wenn der Controller dann auch erfolgreich erkannt wurde, werden dem Nutzer die verschiedenen Sensoren angezeigt, die man im vorherigen Schritt mit dem Controller verbunden hat. Diese muss man natürlich noch benennen, um die Pflanzen durch den Namen eindeutig identifizieren zu können. \\
 
 \hline
 \end{tabular}
 \end{center}
-\newpage
 
-
-\paragraph{Pflanzenzustand}
-\begin{center}
-
-\end{center}
-
-\begin{center}
-\begin{tabular}{| L{3cm} | C{12.3cm} |}
-
-\hline
-Art der Pflanze für optimale Feuchtigkeitserkennung auswählen & Nicht jede Pflanze verhält sich gleich. Um das zu berücksichtigen, gibt es ein von uns zur Verfügung gestelltes Plantwiki, um die Pflanzenart, die man besitzt, festzulegen. Mit diesen Daten, kann man nun die optimale Feuchtigkeit bestimmen, somit kann dem User, nun die genaue Spritzmenge in ml bereitgestellt werden. \\
-\hline
-\end{tabular}
-\end{center}
 \pagebreak
 \subsubsection{Aktivitätsdiagramme}
 \paragraph{Hardware über App verbinden}
@@ -209,35 +160,17 @@ Art der Pflanze für optimale Feuchtigkeitserkennung auswählen & Nicht jede Pfl
 
 \pagebreak
 \section{Entwicklung}
-Für die Frontend-Entwicklung ist unser Teamleiter Armin Hamzic verantworltich. Diese wird mit VUE js verwirklicht und GUI Prototypen mit Balsamiq.\\
-Den Server und die Backend entwicklung machen Christian Bachl und Alexander Walliser. Als Technologie für
-den Server wird Asp .NET verwendet.\\
-Für die Elektronik ist Clements Wagner zuständig, welches die Programmierung der Controller beinhaltet und das Verlöten der Elektronik.
+
 
 \section{Mengengerüst}
 
-Der Server von Plantastic sollte dazu im Stande sein, 1000 Benutzer zu betreuen.
-Pro Controller werden täglich 48 neue Datensätze erstellt.\\
-Ein Benutzer wird im Ddurchschnitt 8 Messeinheiten besitzen, welche in der Datenbank eingetragen werden müssen.\\
-Tagesmessdaten werden am ende der Woche, zu einem Durchschntitswert zusammengefasst.
+
 
 \pagebreak
 
 \section{Angebot}
 
-Plantastic versucht, mit Hilfe seiner drei verschiedenen Angebote, auf die individuellen Anforderungen und Wünsche des jeweiligen Kunden einzugehen. Die App, welche die Daten der Pflanze visualisiert, ist natürlich bei jedem Plantastic-Produkt mit dabei. Es werden folgende Angebote unterschieden:
 
-\subsection{Plantastic – PlantCheck}
-
-In diesem „Paket“ liefert Plantastic, wie der Name schon sagt ein Set von Geräten, welche den Nutzer über den Zustand seiner Pflanze informieren. Dazu gehören ein Controller, der durch das Ferrell WiFi-Modul-Board realisiert wird und ein Feuchtigkeitssensor der Marke Semaf Electronics. Der Feuchtigkeitssensor informiert den Benutzer über die App darüber, wie viel Wasser er noch gießen muss, um seiner Pflanze die optimale Feuchtigkeit zur Verfügung zu stellen.
-
-\subsection{Plantastic – PlantCare}
-
-Hierbei handelt es sich um das Upgrade vom günstigeren Modell „PlantCheck“, bei welchem zu den anderen Sachen, noch ein Wasserbehälter mit einem Schlauch mitgeliefert wird, der an Hand der Messungen vom Feuchtigkeitssensor darüber informiert wird, wenn die Pflanze Feuchtigkeit benötigt und dieser dann automatisch Wasser zukommen lässt. So wird dem Benutzer die Bürde, die richtige Menge an Wasser in die Pflanze zu gießen, abgenommen und er muss sich nur mehr darum kümmern, dass sich im Wasserbehälter genügend Wasser befindet.
-
-\subsection{Plantastic – PlantCare +}
-
-PlantCare+ bietet seinen Besitzern unter diesen drei Produkten die umfangreichste Ausstattung. Nämlich liefert es neben den ganzen vorherigen beschriebenen Features, noch einen Lichtsensor und eine LED-Pflanzenlampe mit sich. Der Lichtsensor, welcher die Lichteinstrahlung der die Pflanze ausgesetzt wird misst, schickt diese Daten dann die Lampe, welche die Helligkeit dann automatisch ideal auf die Pflanze anpasst. So ist der Pflanze perfekte Lichtzufuhr und Feuchtigkeit garantiert!
 
 
 \pagebreak
@@ -245,9 +178,7 @@ PlantCare+ bietet seinen Besitzern unter diesen drei Produkten die umfangreichst
 \section{Admistratives}
 
 \subsection{Lizenz}
-Im allgemeinem werden Plantastic alle benötigten Lizenzen zur Programmierung/Durchführung des Projektes der Höheren technischen Lehranstalt Leonding zur Verfügung gestellt. Darunter zählen unter anderem Visual Studio, welches ASP.Net miteinbindet und Vue.js, welches ohnehin schon kostenfrei ist.
 
 \subsection{Budgetrahmen}
-Der Budgetrahmen von Plantastic beschränkt sich auf maximal 100 Euro, da die Hardware die zum Einsatz kommt, aus der privaten Geldbörse der Projektbeteiligten bezahlt werden wird. Unter anderem finanziert sich das Plantastic-Team, die jeweilig benötigten „Online-Kurse“ für das Projekt auch selbst, was dann natürlich auch ins Budget miteinfließt.
 
 \end{document}
