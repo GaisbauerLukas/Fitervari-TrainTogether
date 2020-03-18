@@ -9,6 +9,8 @@ Teamleiter: Gewessler Florentin
 
 Mitglieder: Knoll Christoph, Gaisbauer Lukas
 
-# Letzer Fortschritt
+# Changelog
 
-Derzeit sind wir noch mit dem Erstellen des Mockups beschäftigt.
+## Mockup Version 6
+   * sidebar menu
+   * pause timer between sets
