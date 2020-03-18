@@ -14,3 +14,4 @@ Mitglieder: Knoll Christoph, Gaisbauer Lukas
 ## Mockup Version 6
    * sidebar menu
    * pause timer between sets
+   * Profil Edit
