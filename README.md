@@ -15,3 +15,9 @@ Mitglieder: Knoll Christoph, Gaisbauer Lukas
    * sidebar menu
    * pause timer between sets
    * Profil Edit
+   * List of Exercises
+   * trainings info rework
+   * Kachelscroll-Menü
+   * Alternative Workout Menu
+   * Workout-Finish Screen, Trainings Info
+   
