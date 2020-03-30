@@ -11,6 +11,10 @@ Mitglieder: Knoll Christoph, Gaisbauer Lukas
 
 # Changelog
 
+## Mockup Version 7
+   * Create Workout
+   * Profile-Edit Rework
+
 ## Mockup Version 6
    * sidebar menu
    * pause timer between sets
