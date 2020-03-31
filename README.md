@@ -14,6 +14,9 @@ Mitglieder: Knoll Christoph, Gaisbauer Lukas
 ## Mockup Version 7
    * Create Workout
    * Profile-Edit Rework
+   * Workout-Finish Screen Rework
+   * Trainingsinfo Rework
+   * Changing in naming of repetition
 
 ## Mockup Version 6
    * sidebar menu
