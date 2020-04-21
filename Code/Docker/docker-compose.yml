@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+        - POSTGRES_PASSWORD=sicheres123Passwort
+    ports:
+        - 5432:5432
+    volumes:
+        - ./dbscripts/initScript.sql:/docker-entrypoint-initdb.d/init.sql
+        - postgres_data:/var/lib/postgresql/data
+    networks: 
+        - fitavari_network
+
+volumes: 
+    postgres_data:
+
+networks: 
+    fitavari_network:
