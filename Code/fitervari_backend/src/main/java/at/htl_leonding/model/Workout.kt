@@ -15,7 +15,4 @@ data class Workout (
         @ManyToOne
         val creator_id: Person,
         val official: Boolean
-) : PanacheEntity() {
-        constructor(){
-        }
-}
+) : PanacheEntity()

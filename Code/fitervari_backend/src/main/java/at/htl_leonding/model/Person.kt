@@ -7,14 +7,10 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 
 @Entity
-data class Person  (
+data class Person(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: Int,
         val name: String,
         val isTrainer: Boolean
-) : PanacheEntity() {
-        constructor(){
-
-        }
-}
+) : PanacheEntity()
