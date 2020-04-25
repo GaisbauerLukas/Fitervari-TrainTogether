@@ -62,9 +62,9 @@ CREATE TABLE "Set" (
   "workout_history_id" int,
   "exercise_id" int,
   "repeditions" int,
-  "distance" int,
-  "weight" int,
-  "time" int,
+  "distance" float,
+  "weight" float,
+  "time" float,
   "set_number" int,
   "type" exercise_type
 );
@@ -77,9 +77,9 @@ CREATE TABLE "Exercise_History" (
 CREATE TABLE "Set_History" (
   "id" SERIAL PRIMARY KEY,
   "exercise_history_id" int,
-  "time" int,
-  "distance" int,
-  "weight" int,
+  "time" float,
+  "distance" float,
+  "weight" float,
   "repetitions" int,
   "set_number" int
 );
