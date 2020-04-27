@@ -18,6 +18,7 @@ class InitBean {
     fun init(@Observes event: StartupEvent?) {
         print("====================================================================")
 
-
+        val person = Person(-1,"test", false)
+        person.persist()
     }
 }
