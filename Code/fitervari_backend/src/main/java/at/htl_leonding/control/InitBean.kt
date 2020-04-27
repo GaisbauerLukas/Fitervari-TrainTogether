@@ -11,17 +11,13 @@ import javax.transaction.Transactional
 
 @ApplicationScoped
 class InitBean {
-    @Inject
-    // var personDao: PersonDao? = null
 
     //TODO Figure this out
 
-    private val LOG = Logger.getLogger(InitBean::class.java.simpleName)
-
     @Transactional
     fun init(@Observes event: StartupEvent?) {
-        LOG.info(InitBean::class.java.canonicalName + "******************")
+        print("====================================================================")
 
-       // var persist: Any = personDao.persist(chris)
+
     }
 }
