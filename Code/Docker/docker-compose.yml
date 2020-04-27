@@ -10,13 +10,10 @@ services:
     ports:
         - 5432:5432
     volumes:
-        - ./dbscripts/initScript.sql:/docker-entrypoint-initdb.d/init.sql
-        - postgres_data:/var/lib/postgresql/data
+        - ./dbscripts:/docker-entrypoint-initdb.d
+        - ./postgres_data:/var/lib/postgresql/data
     networks: 
         - fitavari_network
-
-volumes: 
-    postgres_data:
 
 networks: 
     fitavari_network:
