@@ -1,6 +1,7 @@
 package at.htl_leonding.control
 
 import at.htl_leonding.model.Person
+import at.htl_leonding.model.Trainer
 import io.quarkus.runtime.StartupEvent
 import java.time.LocalDate
 import java.util.logging.Logger
@@ -18,7 +19,7 @@ class InitBean {
     fun init(@Observes event: StartupEvent?) {
         print("====================================================================")
 
-        val person = Person(-1,"test", false)
-        person.persist()
+        val trainer = Trainer(1, LocalDate.now(), 1)
+        trainer.persist()
     }
 }
