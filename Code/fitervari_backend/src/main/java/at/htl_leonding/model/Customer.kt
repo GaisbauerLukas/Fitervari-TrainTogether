@@ -12,9 +12,8 @@ data class Customer(
         val id: Long,
         @Column(name = "joindate")
         val joinDate: Date,
-        @Column(name = "trainer_id")
         @ManyToOne
-        val trainer: Trainer,
+        val myTrainer: Trainer,
         @Column(name = "cash_costumer")
         val cashCostumer: Boolean,
         @Column(name = "member_till")

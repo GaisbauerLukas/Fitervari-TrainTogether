@@ -5,10 +5,16 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "Person")
-data class Person(
+open class Person(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Int,
+        val id: Long,
+        @Column(name = "name")
         val name: String,
+        @Column(name = "is_trainer")
         val isTrainer: Boolean
+       // @OneToOne
+       // val trainer: Trainer,
+       // @OneToOne
+       // val customer: Customer
 ) : PanacheEntity()
