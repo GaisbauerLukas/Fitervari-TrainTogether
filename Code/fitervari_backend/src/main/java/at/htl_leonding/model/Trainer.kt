@@ -9,7 +9,9 @@ import javax.persistence.*
 data class Trainer(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Int,
+        val id: Long,
+        @Column(name = "trainer_since")
         val trainerSince: LocalDate,
-        val picture_id: Int
+        @Column(name = "picture_id")
+        val pictureId: Int
 ) : PanacheEntity()
