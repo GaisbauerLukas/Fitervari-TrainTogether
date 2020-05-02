@@ -10,14 +10,11 @@ data class Customer(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: Long,
-        @Column(name = "joindate")
         val joinDate: Date,
         @ManyToOne
+        @JoinColumn(name = "trainer_id")
         val myTrainer: Trainer,
-        @Column(name = "cash_costumer")
         val cashCostumer: Boolean,
-        @Column(name = "member_till")
         val memberTill: Date,
-        @Column(name = "picture_id")
         val pictureId: Long
 ): PanacheEntity()
