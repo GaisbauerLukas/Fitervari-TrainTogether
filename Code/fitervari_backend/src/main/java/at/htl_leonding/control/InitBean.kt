@@ -5,7 +5,6 @@ import at.htl_leonding.repository.TrainerRepository
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase
 import io.quarkus.runtime.StartupEvent
 import java.time.LocalDate
-import java.time.LocalDateTime
 import javax.enterprise.context.ApplicationScoped
 import javax.enterprise.event.Observes
 import javax.inject.Inject
@@ -23,6 +22,8 @@ class InitBean {
     @Transactional
     fun init(@Observes event: StartupEvent?) {
         print(message = "====================================================================")
+
+        trainerRepository.persist(Trainer(0, LocalDate.now(), 2))
 
         val allTrainer = trainerRepository.listAll()
         for (trainer in  allTrainer){

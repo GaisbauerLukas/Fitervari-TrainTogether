@@ -32,7 +32,7 @@ CREATE TABLE Person (
 
 CREATE TABLE Customer (
    id  SERIAL PRIMARY KEY,
-   joindate  date,
+   join_date  date,
    trainer_id  int,
    cash_customer  boolean,
    member_till  date,
@@ -61,7 +61,7 @@ CREATE TABLE Set (
    id  SERIAL PRIMARY KEY,
    workout_history_id  int,
    exercise_id  int,
-   repeditions  int,
+   repetitions  int,
    distance  float,
    weight  float,
    time  float,
