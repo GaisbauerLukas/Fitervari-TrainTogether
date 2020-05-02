@@ -15,14 +15,17 @@ services:
     networks: 
         - fitavari_network
   
-  reverseproxy:
-    build:
-        context: ./reverseproxy
-        image: reverseproxy:latest
-    ports:
-        - 80:80
-    networks: 
-        - fitavari_network
+#  reverseproxy:
+#    build:
+#        context: ./reverseproxy
+#        dockerfile: Dockerfile
+#    ports:
+#        - 80:80
+#    links:
+#        - quarkus
+#    networks: 
+#        - fitavari_network
+#  quarkus:
 volumes:
     postgres_data:
 networks: 
