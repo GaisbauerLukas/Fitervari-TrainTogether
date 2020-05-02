@@ -111,3 +111,5 @@ ALTER TABLE Exercise_History ADD FOREIGN KEY ( workout_history_id ) REFERENCES W
 ALTER TABLE Set_History ADD FOREIGN KEY ( exercise_history_id ) REFERENCES Exercise_History ( id );
 
 --ALTER TABLE  Set  ADD FOREIGN KEY ( set_number ) REFERENCES  Workout2Exercise  ( workout_id );
+
+CREATE SEQUENCE hibernate_sequence START 1;
