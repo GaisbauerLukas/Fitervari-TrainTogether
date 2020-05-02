@@ -23,7 +23,7 @@ class InitBean {
     fun init(@Observes event: StartupEvent?) {
         print(message = "====================================================================")
 
-        trainerRepository.persist(Trainer(0, LocalDate.now(), 2))
+        trainerRepository.persist(Trainer(LocalDate.now(), 2))
 
         val allTrainer = trainerRepository.listAll()
         for (trainer in  allTrainer){

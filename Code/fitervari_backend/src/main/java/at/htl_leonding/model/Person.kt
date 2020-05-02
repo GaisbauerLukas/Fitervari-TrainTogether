@@ -1,5 +1,6 @@
 package at.htl_leonding.model
 
+import io.quarkus.hibernate.orm.panache.PanacheEntity
 import javax.persistence.*;
 
 
@@ -14,4 +15,4 @@ open class Person(
        // val trainer: Trainer,
        // @OneToOne
        // val customer: Customer
-)
+) : PanacheEntity()
