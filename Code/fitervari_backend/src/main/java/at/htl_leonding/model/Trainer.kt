@@ -9,7 +9,12 @@ import javax.persistence.*
 @Table(name = "trainer")
 data class Trainer(
         @Column(name = "trainer_since")
-        val trainerSince: LocalDate,
+        var trainerSince: LocalDate,
         @Column(name = "picture_id")
-        val pictureId: Int
-) : PanacheEntity()
+        var pictureId: Int
+) : PanacheEntity(){
+        fun copyValues(other: Trainer){
+                this.pictureId = other.pictureId
+                this.trainerSince = other.trainerSince
+        }
+}

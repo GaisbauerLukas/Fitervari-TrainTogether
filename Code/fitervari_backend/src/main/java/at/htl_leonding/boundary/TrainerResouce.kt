@@ -43,7 +43,21 @@ class TrainerResouce {
             newTrainer.persist()
             return Response.accepted().build()
         }catch (e: Exception){
-            return Response.ok(jsonObject).build()
+            return Response.serverError().build()
+        }
+    }
+
+    @PUT
+    @Path("/trainer/{id}")
+    @Transactional
+    fun updateTrainer(@PathParam("id") id: Long, jsonObject: JsonObject) : Response{
+        try {
+            val newTrainer = Trainer(LocalDate.parse(jsonObject.getString("trainerSince")),
+                    jsonObject.getInt("pictureId"))
+            service.updateTrainer(newTrainer, id)
+            return Response.accepted().build()
+        }catch (e: Exception){
+            return Response.serverError().build()
         }
     }
 }

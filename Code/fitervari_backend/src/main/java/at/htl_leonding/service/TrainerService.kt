@@ -9,7 +9,7 @@ import javax.inject.Inject
 class TrainerService {
 
     @Inject
-    lateinit var trainerRepository: TrainerRepository
+    private lateinit var trainerRepository: TrainerRepository
 
     fun test(): String {
         return "trainerservice test"
@@ -17,5 +17,10 @@ class TrainerService {
 
     fun getById(id: Long): Trainer {
         return trainerRepository.findById(id)
+    }
+
+    fun updateTrainer(trainer: Trainer, id: Long){
+        val forUpdate = trainerRepository.findById(id)
+        forUpdate.copyValues(trainer)
     }
 }
