@@ -14,6 +14,15 @@ services:
         - postgres_data:/var/lib/postgresql/data
     networks: 
         - fitavari_network
+  
+  reverseproxy:
+    build:
+        context: ./reverseproxy
+        image: reverseproxy:latest
+    ports:
+        - 80:80
+    networks: 
+        - fitavari_network
 volumes:
     postgres_data:
 networks: 
