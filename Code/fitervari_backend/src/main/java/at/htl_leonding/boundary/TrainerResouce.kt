@@ -1,12 +1,16 @@
 package at.htl_leonding.boundary
 
 import at.htl_leonding.model.Trainer
-import at.htl_leonding.service.GreetingService
 import at.htl_leonding.service.TrainerService
-import javax.enterprise.inject.Default
+import java.time.LocalDate
 import javax.inject.Inject
+import javax.json.JsonObject
+import javax.transaction.Transactional
 import javax.ws.rs.*
+import javax.ws.rs.core.Context
 import javax.ws.rs.core.MediaType
+import javax.ws.rs.core.Response
+import javax.ws.rs.core.UriInfo
 
 @Path("/api")
 @Produces(MediaType.APPLICATION_JSON)
@@ -14,21 +18,32 @@ import javax.ws.rs.core.MediaType
 class TrainerResouce {
 
     @Inject
-    @field: Default
     lateinit var service: TrainerService
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/trainer")
-    fun greeting(): String {
+    fun testTrainer(): String {
         return service.test()
     }
 
     @GET
-    @Produces("application/json")
     @Path("/trainer/{id}")
-    fun greeting(@PathParam("id") id: Long): Trainer {
-        return service.getById(id)
+    fun getTrainerWithId(@PathParam("id") id: Long): Response {
+        return Response.ok(service.getById(1)).build()
     }
 
+    @POST
+    @Path("/trainer")
+    @Transactional
+    fun postTrainer(jsonObject: JsonObject): Response{
+        try {
+            val newTrainer = Trainer(LocalDate.parse(jsonObject.asJsonObject().getString("trainerSince")),
+                    jsonObject.asJsonObject().getInt("pictureId"))
+            newTrainer.persist()
+            return Response.accepted().build()
+        }catch (e: Exception){
+            return Response.ok(jsonObject).build()
+        }
+    }
 }

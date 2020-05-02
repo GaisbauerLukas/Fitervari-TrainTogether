@@ -8,9 +8,6 @@ import javax.persistence.*
 @Entity
 @Table(name = "Workout")
 data class Workout (
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Int,
         val name: String,
         val creationDate: LocalDateTime,
         @ManyToOne

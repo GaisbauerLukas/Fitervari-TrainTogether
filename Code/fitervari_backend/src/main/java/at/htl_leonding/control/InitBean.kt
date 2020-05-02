@@ -4,6 +4,8 @@ import at.htl_leonding.model.Trainer
 import at.htl_leonding.repository.TrainerRepository
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase
 import io.quarkus.runtime.StartupEvent
+import java.time.LocalDate
+import java.time.LocalDateTime
 import javax.enterprise.context.ApplicationScoped
 import javax.enterprise.event.Observes
 import javax.inject.Inject
@@ -26,6 +28,8 @@ class InitBean {
         for (trainer in  allTrainer){
             println(trainer.trainerSince)
         }
+        val test = Trainer(LocalDate.now(), 2)
+        test.persist()
 
     }
 }

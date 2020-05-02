@@ -7,9 +7,6 @@ import javax.persistence.*
 @Entity
 @Table(name = "Customer")
 data class Customer(
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Long,
         @Column(name = "joindate")
         val joinDate: Date,
         @ManyToOne

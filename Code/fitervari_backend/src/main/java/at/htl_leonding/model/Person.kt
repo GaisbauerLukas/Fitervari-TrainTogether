@@ -6,9 +6,6 @@ import javax.persistence.*
 @Entity
 @Table(name = "Person")
 open class Person(
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Long,
         @Column(name = "name")
         val name: String,
         @Column(name = "is_trainer")

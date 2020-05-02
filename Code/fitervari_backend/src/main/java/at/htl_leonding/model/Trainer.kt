@@ -2,14 +2,12 @@ package at.htl_leonding.model
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity
 import java.time.LocalDate
+import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
-@Table(name = "Trainer")
+@Table(name = "trainer")
 data class Trainer(
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Long,
         @Column(name = "trainer_since")
         val trainerSince: LocalDate,
         @Column(name = "picture_id")
