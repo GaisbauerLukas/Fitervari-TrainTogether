@@ -23,4 +23,9 @@ class TrainerService {
         val forUpdate = trainerRepository.findById(id)
         forUpdate.copyValues(trainer)
     }
+
+    fun deleteTrainer(id: Long){
+        val forDeletion = trainerRepository.findById(id)
+        trainerRepository.delete(forDeletion)
+    }
 }

@@ -22,15 +22,5 @@ class InitBean {
     @Transactional
     fun init(@Observes event: StartupEvent?) {
         print(message = "====================================================================")
-
-        trainerRepository.persist(Trainer(LocalDate.now(), 2))
-
-        val allTrainer = trainerRepository.listAll()
-        for (trainer in  allTrainer){
-            println(trainer.trainerSince)
-        }
-        val test = Trainer(LocalDate.now(), 2)
-        test.persist()
-
     }
 }
