@@ -34,7 +34,6 @@ class WorkoutResource {
     @Transactional
     fun postWorkout(jsonObject: JsonObject): Response {
         try {
-            //TODO implement adding right person to Workout
             val newWorkout = Workout(jsonObject.getString("name"),
                     LocalDateTime.parse(jsonObject.getString("creation_Date")),
                     service.getPersonById(jsonObject["creator"]?.asJsonObject()?.getInt("id")?.toLong()),
@@ -51,7 +50,6 @@ class WorkoutResource {
     @Transactional
     fun updateWorkout(@PathParam("id") id: Long, jsonObject: JsonObject): Response {
         try {
-            //TODO implement adding right person to Workout
             val newWorkout = Workout(jsonObject.getString("name"),
                     LocalDateTime.parse(jsonObject.getString("creation_Date")),
                     service.getPersonById(jsonObject["creator"]?.asJsonObject()?.getInt("id")?.toLong()),
