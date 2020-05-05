@@ -32,7 +32,7 @@ CREATE TABLE Person (
 
 CREATE TABLE Customer (
    id  SERIAL PRIMARY KEY,
-   joindate  date,
+   join_date  date,
    trainer_id  int,
    cash_customer  boolean,
    member_till  date,
@@ -61,7 +61,7 @@ CREATE TABLE Set (
    id  SERIAL PRIMARY KEY,
    workout_history_id  int,
    exercise_id  int,
-   repeditions  int,
+   repetitions  int,
    distance  float,
    weight  float,
    time  float,
@@ -111,3 +111,5 @@ ALTER TABLE Exercise_History ADD FOREIGN KEY ( workout_history_id ) REFERENCES W
 ALTER TABLE Set_History ADD FOREIGN KEY ( exercise_history_id ) REFERENCES Exercise_History ( id );
 
 --ALTER TABLE  Set  ADD FOREIGN KEY ( set_number ) REFERENCES  Workout2Exercise  ( workout_id );
+
+CREATE SEQUENCE hibernate_sequence START 1;
