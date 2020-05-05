@@ -5,14 +5,19 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "Person")
+@Table(name = "person")
 open class Person(
         @Column(name = "name")
-        val name: String,
+        var name: String,
         @Column(name = "is_trainer")
-        val isTrainer: Boolean
+        var isTrainer: Boolean
        // @OneToOne
        // val trainer: Trainer,
        // @OneToOne
        // val customer: Customer
-) : PanacheEntity()
+) : PanacheEntity(){
+        fun copyValues(other: Person){
+                this.name = other.name
+                this.isTrainer = other.isTrainer
+        }
+}

@@ -5,16 +5,21 @@ import java.util.*
 import javax.persistence.*
 
 @Entity
-@Table(name = "Customer")
+@Table(name = "customer")
 data class Customer(
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Long,
-        val joinDate: Date,
+        var joinDate: Date,
         @ManyToOne
         @JoinColumn(name = "trainer_id")
-        val myTrainer: Trainer,
-        val cashCostumer: Boolean,
-        val memberTill: Date,
-        val pictureId: Long
-): PanacheEntity()
+        var myTrainer: Trainer,
+        var cashCostumer: Boolean,
+        var memberTill: Date,
+        var pictureId: Long
+): PanacheEntity(){
+        fun copyValues(other: Customer){
+                this.joinDate = other.joinDate
+                this.myTrainer = other.myTrainer
+                this.cashCostumer = other.cashCostumer
+                this.memberTill = other.memberTill
+                this.pictureId = other.pictureId
+        }
+}
