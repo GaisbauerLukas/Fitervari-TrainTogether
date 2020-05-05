@@ -10,16 +10,8 @@ data class Customer(
         var joinDate: Date,
         @ManyToOne
         @JoinColumn(name = "trainer_id")
-        var myTrainer: Trainer,
-        var cashCostumer: Boolean,
-        var memberTill: Date,
-        var pictureId: Long
-): PanacheEntity(){
-        fun copyValues(other: Customer){
-                this.joinDate = other.joinDate
-                this.myTrainer = other.myTrainer
-                this.cashCostumer = other.cashCostumer
-                this.memberTill = other.memberTill
-                this.pictureId = other.pictureId
-        }
-}
+        val myTrainer: Trainer,
+        val cashCostumer: Boolean,
+        val memberTill: Date,
+        val pictureId: Long
+): Person()

@@ -12,7 +12,7 @@ data class Trainer(
         var trainerSince: LocalDate,
         @Column(name = "picture_id")
         var pictureId: Int
-) : PanacheEntity(){
+) : Person() {
         fun copyValues(other: Trainer){
                 this.pictureId = other.pictureId
                 this.trainerSince = other.trainerSince
