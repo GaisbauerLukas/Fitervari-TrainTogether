@@ -1,9 +1,5 @@
-package generated.at.htl_leonding.model
+package at.htl_leonding.model
 
-import at.htl_leonding.model.Person
-import generated.PersonEntity
-import generated.SetEntity
-import generated.Workout2exerciseEntity
 import io.quarkus.hibernate.orm.panache.PanacheEntity
 import java.util.*
 import javax.persistence.*
