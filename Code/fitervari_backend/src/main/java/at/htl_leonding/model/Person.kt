@@ -3,18 +3,19 @@ package at.htl_leonding.model
 import io.quarkus.hibernate.orm.panache.PanacheEntity
 import javax.persistence.*;
 
-@MappedSuperclass
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name = "Person")
 open class Person(
         @Column(name = "name")
-        val name: String,
+        var name: String,
         @Column(name = "is_trainer")
-        val isTrainer: Boolean
+        var isTrainer: Boolean
        // @OneToOne
        // val trainer: Trainer,
        // @OneToOne
        // val customer: Customer
 ) : PanacheEntity() {
-        constructor(){}
+        constructor() : this("", false){
+        }
 }
