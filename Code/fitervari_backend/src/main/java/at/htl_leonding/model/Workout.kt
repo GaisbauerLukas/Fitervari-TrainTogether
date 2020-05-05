@@ -8,9 +8,16 @@ import javax.persistence.*
 @Entity
 @Table(name = "Workout")
 data class Workout (
-        val name: String,
-        val creationDate: LocalDateTime,
+        var name: String,
+        var creation_Date: LocalDateTime,
         @ManyToOne
-        val creator: Person,
-        val official: Boolean
-) : PanacheEntity()
+        var creator: Person,
+        var official_Flag: Boolean
+) : PanacheEntity(){
+        fun copyValues(other: Workout){
+                this.name = other.name
+                this.creation_Date = other.creation_Date
+                this.creator = other.creator
+                this.official_Flag = other.official_Flag
+        }
+}
