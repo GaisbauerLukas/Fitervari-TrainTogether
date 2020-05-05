@@ -17,4 +17,4 @@ data class Customer(
         val cashCostumer: Boolean,
         val memberTill: Date,
         val pictureId: Long
-): PanacheEntity()
+): Person()

@@ -11,6 +11,6 @@ data class Workout (
         val name: String,
         val creationDate: LocalDateTime,
         @ManyToOne
-        val creator_id: Person,
+        val creator: Person,
         val official: Boolean
 ) : PanacheEntity()
