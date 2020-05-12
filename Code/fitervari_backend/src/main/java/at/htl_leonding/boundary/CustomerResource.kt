@@ -1,12 +1,80 @@
 package at.htl_leonding.boundary
 
-import javax.ws.rs.Consumes
-import javax.ws.rs.Path
-import javax.ws.rs.Produces
+import at.htl_leonding.model.Customer
+import at.htl_leonding.service.CustomerService
+import java.text.SimpleDateFormat
+import javax.inject.Inject
+import javax.json.JsonObject
+import javax.transaction.Transactional
+import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
+import javax.ws.rs.core.Response
 
 @Path("/api")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 class CustomerResource {
+    @Inject
+    lateinit var service: CustomerService
+
+    @GET
+    @Path("/customer/{id}")
+    fun getCustomerById(@PathParam("id") id: Long): Response {
+        return Response.ok(service.getById(id)).build()
+    }
+
+    @POST
+    @Path("/customer")
+    @Transactional
+    fun postCustomer(jsonObject: JsonObject): Response {
+        try {
+            val newCustomer = Customer(
+                    jsonObject.getString("name"),
+                    SimpleDateFormat("dd-MM-yyyy").parse(jsonObject.getString("joinDate")),
+                    service.getTrainerPerId(jsonObject["myTrainer"]?.asJsonObject()?.getInt("id")?.toLong() ?: 0),
+                    jsonObject.getBoolean("cashCustomer"),
+                    SimpleDateFormat("dd-MM-yyyy").parse(jsonObject.getString("memberTill")),
+                    jsonObject.getString("pictureId").toLong()
+                    )
+            println(newCustomer)
+            service.addCustomer(newCustomer)
+            return Response.accepted().build()
+        }catch (e: Exception){
+            print("============================")
+            print(e.message)
+            return Response.serverError().build()
+        }
+    }
+
+
+    /*@Path("/workout/{id}")
+    @Transactional
+    fun updateWorkout(@PathParam("id") id: Long, jsonObject: JsonObject): Response {
+        try {
+            val newCustomer = Customer(
+                    jsonObject.getString("name"),
+                    SimpleDateFormat("dd-MM-yyyy").parse(jsonObject.getString("joinDate")),
+                    trainerService.getById(jsonObject["myTrainer"]?.asJsonObject()?.getInt("id")?.toLong() ?: 0),
+                    jsonObject.getBoolean("cashCustomer"),
+                    SimpleDateFormat("dd-MM-yyyy").parse(jsonObject.getString("memberTill")),
+                    jsonObject.getString("pictureId").toLong()
+            )
+            service.updateCustomer(newCustomer, id)
+            return Response.accepted().build()
+        }catch (e: Exception){
+            return Response.serverError().build()
+        }
+    }
+
+    @DELETE
+    @Path("/workout/{id}")
+    @Transactional
+    fun deleteTrainer(@PathParam("id") id: Long): Response {
+        try {
+            service.deleteCustomer(id)
+            return Response.ok().build()
+        }catch (e: Exception){
+            return Response.serverError().build()
+        }
+    }*/
 }

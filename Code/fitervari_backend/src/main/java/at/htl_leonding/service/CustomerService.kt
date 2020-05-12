@@ -11,7 +11,10 @@ import javax.inject.Inject
 class CustomerService {
 
     @Inject
-    private lateinit var repository: CustomerRepository
+    lateinit var repository: CustomerRepository
+
+    @Inject
+    lateinit var trainerRepository: TrainerRepository
 
     fun test(): String {
         return "trainerservice test"
@@ -21,7 +24,11 @@ class CustomerService {
         return repository.findById(id)
     }
 
-    fun updateTrainer(customer: Customer, id: Long){
+    fun addCustomer(newCustomer: Customer){
+        this.repository.persist(newCustomer)
+    }
+
+    fun updateCustomer(customer: Customer, id: Long){
         val forUpdate = repository.findById(id)
         forUpdate.copyValues(customer)
     }
@@ -29,5 +36,9 @@ class CustomerService {
     fun deleteCustomer(id: Long){
         val forDeletion = repository.findById(id)
         repository.delete(forDeletion)
+    }
+
+    fun getTrainerPerId(id: Long): Trainer{
+        return trainerRepository.findById(id)
     }
 }
