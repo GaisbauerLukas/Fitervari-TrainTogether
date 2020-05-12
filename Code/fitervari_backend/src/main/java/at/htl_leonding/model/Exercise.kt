@@ -10,13 +10,12 @@ data class Exercise(
         var exerciseType: Int,
         var standardSetNr: Int,
         var officialFlag: Boolean,
-        @ManyToOne
-        var creator: Person
 
-// TODO Add proper relations as soon all entities are implemented
-// ,
-//        @OneToMany(mappedBy = "exercise")
-//        var set: Set<Set>,
-//        @OneToMany(mappedBy = "exercise")
-//        var workout2exercise: Set<Workout2exercise>)
+        @ManyToOne
+        var creator: Person,
+
+        @OneToMany(mappedBy = "exercise")
+        var set: Set<ExerciseSet>,
+        @OneToMany(mappedBy = "exercise")
+        var workout2exercise: Set<Workout2Exercise>
 ) : PanacheEntity()
