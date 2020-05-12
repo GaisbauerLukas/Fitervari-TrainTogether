@@ -5,8 +5,7 @@ import javax.persistence.ManyToOne
 
 data class SetHistory (
         @ManyToOne
-        // TODO Add ExerciseHistory and relations
-        //var exerciseHistory: ExerciseHistory,
+        var exerciseHistory: ExerciseHistory,
         var time: Double,
         var distance: Double,
         var weight: Double,
