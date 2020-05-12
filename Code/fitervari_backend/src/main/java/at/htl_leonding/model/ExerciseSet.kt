@@ -14,11 +14,8 @@ data class ExerciseSet(
         var time: Double,
         var setNumber: Int,
         var type: ExerciseType,
-
-        // TODO Add proper relations as soon all entities are implemented
-        //,
-        //var refWorkoutHistoryEntity: WorkoutHistoryEntity? = null
-        //
+        @ManyToOne
+        var workoutHistory: WorkoutHistory,
         @ManyToOne
         var exercise: Exercise
 ) : PanacheEntity()

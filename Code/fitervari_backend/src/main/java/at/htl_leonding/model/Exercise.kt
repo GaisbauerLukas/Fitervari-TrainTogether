@@ -10,10 +10,8 @@ data class Exercise(
         var exerciseType: Int,
         var standardSetNr: Int,
         var officialFlag: Boolean,
-
         @ManyToOne
         var creator: Person,
-
         @OneToMany(mappedBy = "exercise")
         var set: Set<ExerciseSet>,
         @OneToMany(mappedBy = "exercise")
