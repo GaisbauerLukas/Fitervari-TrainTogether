@@ -18,12 +18,12 @@ class Customer(
         var memberTill: Date,
         @Column(name = "picture_id")
         var pictureId: Long
-): Person( name, false){
-        fun copyValues(other: Customer){
-                this.joinDate = other.joinDate
-                this.myTrainer = other.myTrainer
-                this.cashCostumer = other.cashCostumer
-                this.memberTill = other.memberTill
-                this.pictureId = other.pictureId
-        }
+) : Person(name, false) {
+    fun copyValues(other: Customer) {
+        this.joinDate = other.joinDate
+        this.myTrainer = other.myTrainer
+        this.cashCostumer = other.cashCostumer
+        this.memberTill = other.memberTill
+        this.pictureId = other.pictureId
+    }
 }
