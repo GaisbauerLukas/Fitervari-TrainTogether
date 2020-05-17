@@ -30,10 +30,10 @@ class CustomerResource {
         try {
             val newCustomer = Customer(
                     jsonObject.getString("name"),
-                    SimpleDateFormat("dd-MM-yyyy").parse(jsonObject.getString("joinDate")),
+                    SimpleDateFormat("yyyy-MM-dd").parse(jsonObject.getString("joinDate")),
                     service.getTrainerPerId(jsonObject["myTrainer"]?.asJsonObject()?.getInt("id")?.toLong() ?: 0),
-                    jsonObject.getBoolean("cashCustomer"),
-                    SimpleDateFormat("dd-MM-yyyy").parse(jsonObject.getString("memberTill")),
+                    jsonObject.getBoolean("cashCostumer"),
+                    SimpleDateFormat("yyyy-MM-dd").parse(jsonObject.getString("memberTill")),
                     jsonObject.getString("pictureId").toLong()
                     )
             println(newCustomer)
