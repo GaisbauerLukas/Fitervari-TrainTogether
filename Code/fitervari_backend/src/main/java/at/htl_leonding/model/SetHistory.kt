@@ -15,4 +15,13 @@ data class SetHistory (
         var repetitions: Int,
         @Column(name = "set_number")
         var setNumber: Int
-) : PanacheEntity()
+) : PanacheEntity(){
+        fun copyValues(other: SetHistory){
+                this.exerciseHistory = other.exerciseHistory
+                this.time = other.time
+                this.distance = other.distance
+                this.weight = other.weight
+                this.repetitions = other.repetitions
+                this.setNumber = other.setNumber
+        }
+}
