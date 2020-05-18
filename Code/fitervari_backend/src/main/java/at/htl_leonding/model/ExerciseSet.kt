@@ -8,18 +8,24 @@ import javax.persistence.*
 @Entity
 @Table(name = "set")
 data class ExerciseSet(
-        @Column(name = "workout_history_id")
-        var workoutHistoryId: Int,
-        var repetitions: Int,
-        var distance: Double,
-        var weight: Double,
-        var time: Double,
+        var repeditions: Int?,
+        var distance: Double?,
+        var weight: Double?,
+        var time: Double?,
         @Column(name = "set_number")
         var setNumber: Int,
         var type: String,
         @ManyToOne
-        var workoutHistory: WorkoutHistory,
-        @ManyToOne
         @JoinColumn(name = "exercise_id")
         var exercise: Exercise
-) : PanacheEntity()
+) : PanacheEntity(){
+        fun copyValues(other: ExerciseSet){
+                this.repeditions = other.repeditions
+                this.distance = other.distance
+                this.weight = other.weight
+                this.time = other.time
+                this.setNumber = other.setNumber
+                this.type = other.type
+                this.exercise = other.exercise
+        }
+}

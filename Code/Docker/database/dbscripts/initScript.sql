@@ -59,7 +59,6 @@ CREATE TABLE Workout_History (
 
 CREATE TABLE Set (
    id  SERIAL PRIMARY KEY,
-   workout_history_id  int,
    exercise_id  int,
    repetitions  int,
    distance  float,
