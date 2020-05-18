@@ -1,6 +1,8 @@
 package at.htl_leonding.service
 
+import at.htl_leonding.model.Person
 import at.htl_leonding.model.Trainer
+import at.htl_leonding.repository.PersonRepository
 import at.htl_leonding.repository.TrainerRepository
 import java.time.LocalDate
 import javax.enterprise.context.ApplicationScoped
@@ -11,6 +13,8 @@ class TrainerService {
 
     @Inject
     private lateinit var trainerRepository: TrainerRepository
+
+
 
     fun test(): String {
         return "trainerservice test"

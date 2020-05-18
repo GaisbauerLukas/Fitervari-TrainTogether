@@ -2,8 +2,10 @@ package at.htl_leonding.service
 
 import at.htl_leonding.model.Customer
 import at.htl_leonding.model.Exercise
+import at.htl_leonding.model.Person
 import at.htl_leonding.model.Trainer
 import at.htl_leonding.repository.ExerciseRepository
+import at.htl_leonding.repository.PersonRepository
 import io.quarkus.hibernate.orm.panache.PanacheRepository
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Inject
@@ -12,6 +14,9 @@ import javax.inject.Inject
 class ExerciseService {
     @Inject
     lateinit var repository: ExerciseRepository
+
+    @Inject
+    lateinit var personRepository: PersonRepository
 
     fun getById(id: Long): Exercise {
         return repository.findById(id)
@@ -29,5 +34,9 @@ class ExerciseService {
     fun deleteExercise(id: Long){
         val forDeletion = repository.findById(id)
         repository.delete(forDeletion)
+    }
+
+    fun getPersonById(id: Long?): Person {
+        return personRepository.findById(id)
     }
 }

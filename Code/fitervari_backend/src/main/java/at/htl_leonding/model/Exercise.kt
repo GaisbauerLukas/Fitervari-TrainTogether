@@ -1,17 +1,17 @@
 package at.htl_leonding.model
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity
-import java.util.*
+import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
 data class Exercise(
         var name: String,
         @Column(name="creation_date")
-        var creationDate: Date,
+        var creationDate: LocalDateTime,
         @Column(name = "exercise_type")
         var exerciseType: String,
-         @Column(name = "standard_set_nr")
+        @Column(name = "standard_set_nr")
         var standardSetNr: Int,
         @Column(name = "official_flag")
         var officialFlag: Boolean,
