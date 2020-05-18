@@ -1,7 +1,5 @@
 package at.htl_leonding.service
 
-import at.htl_leonding.model.Person
-import at.htl_leonding.model.Workout
 import at.htl_leonding.model.WorkoutHistory
 import at.htl_leonding.repository.WorkoutHistoryRepository
 import javax.enterprise.context.ApplicationScoped
