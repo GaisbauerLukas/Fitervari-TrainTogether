@@ -21,12 +21,12 @@ class SetHistoryService {
         return repository.findById(id)
     }
 
-    fun updateExerciseHistory(setHistory: SetHistory, id: Long){
+    fun updateSetHistory(setHistory: SetHistory, id: Long){
         val forUpdate = repository.findById(id)
         forUpdate.copyValues(setHistory)
     }
 
-    fun deleteWorkoutHistory(id: Long){
+    fun deleteSetHistory(id: Long){
         val forDeletion = repository.findById(id)
         repository.delete(forDeletion)
     }
