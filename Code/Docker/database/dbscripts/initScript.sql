@@ -17,7 +17,7 @@ CREATE TABLE Exercise (
    name  varchar,
    creator_id  int,
    creation_date  timestamp,
-   exercise_type  exercise_type,
+   exercise_type  varchar,
    standard_set_nr  int,
    official_flag  boolean
 );
@@ -59,14 +59,13 @@ CREATE TABLE Workout_History (
 
 CREATE TABLE Set (
    id  SERIAL PRIMARY KEY,
-   workout_history_id  int,
    exercise_id  int,
    repetitions  int,
    distance  float,
    weight  float,
    time  float,
    set_number  int,
-   type  exercise_type
+   type  varchar
 );
 
 CREATE TABLE Exercise_History (

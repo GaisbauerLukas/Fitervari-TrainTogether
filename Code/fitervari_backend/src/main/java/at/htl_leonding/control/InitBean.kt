@@ -21,6 +21,5 @@ class InitBean {
 
     @Transactional
     fun init(@Observes event: StartupEvent?) {
-        print(message = "====================================================================")
     }
 }

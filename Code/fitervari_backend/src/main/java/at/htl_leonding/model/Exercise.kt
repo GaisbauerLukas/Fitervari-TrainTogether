@@ -1,26 +1,29 @@
-package generated.at.htl_leonding.model
+package at.htl_leonding.model
 
-import at.htl_leonding.model.Person
-import generated.PersonEntity
-import generated.SetEntity
-import generated.Workout2exerciseEntity
 import io.quarkus.hibernate.orm.panache.PanacheEntity
-import java.util.*
+import java.time.LocalDateTime
 import javax.persistence.*
 
+@Entity
 data class Exercise(
         var name: String,
-        var creationDate: Date,
-        var exerciseType: Int,
+        @Column(name="creation_date")
+        var creationDate: LocalDateTime,
+        @Column(name = "exercise_type")
+        var exerciseType: String,
+        @Column(name = "standard_set_nr")
         var standardSetNr: Int,
+        @Column(name = "official_flag")
         var officialFlag: Boolean,
         @ManyToOne
         var creator: Person
-
-// TODO Add proper relations as soon all entities are implemented
-// ,
-//        @OneToMany(mappedBy = "exercise")
-//        var set: Set<Set>,
-//        @OneToMany(mappedBy = "exercise")
-//        var workout2exercise: Set<Workout2exercise>)
-) : PanacheEntity()
+) : PanacheEntity(){
+        fun copyValues(other: Exercise){
+                this.name = other.name
+                this.creationDate = other.creationDate
+                this.exerciseType = other.exerciseType
+                this.standardSetNr = other.standardSetNr
+                this.officialFlag = other.officialFlag
+                this.creator = other.creator
+        }
+}
