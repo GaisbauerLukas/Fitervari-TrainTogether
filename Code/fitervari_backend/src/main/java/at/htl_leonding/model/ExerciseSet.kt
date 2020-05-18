@@ -13,7 +13,7 @@ data class ExerciseSet(
         var weight: Double,
         var time: Double,
         var setNumber: Int,
-        var type: ExerciseType,
+        var type: String,
         @ManyToOne
         var workoutHistory: WorkoutHistory,
         @ManyToOne

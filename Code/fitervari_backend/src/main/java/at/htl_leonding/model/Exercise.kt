@@ -7,16 +7,16 @@ import javax.persistence.*
 @Entity
 data class Exercise(
         var name: String,
+        @Column(name="creation_date")
         var creationDate: Date,
-        var exerciseType: Int,
+        @Column(name = "exercise_type")
+        var exerciseType: String,
+         @Column(name = "standard_set_nr")
         var standardSetNr: Int,
+        @Column(name = "official_flag")
         var officialFlag: Boolean,
         @ManyToOne
-        var creator: Person,
-        @OneToMany(mappedBy = "exercise")
-        var set: Set<ExerciseSet>,
-        @OneToMany(mappedBy = "exercise")
-        var workout2exercise: Set<Workout2Exercise>
+        var creator: Person
 ) : PanacheEntity(){
         fun copyValues(other: Exercise){
                 this.name = other.name
@@ -25,7 +25,5 @@ data class Exercise(
                 this.standardSetNr = other.standardSetNr
                 this.officialFlag = other.officialFlag
                 this.creator = other.creator
-                this.set = other.set
-                this.workout2exercise = other.workout2exercise
         }
 }
