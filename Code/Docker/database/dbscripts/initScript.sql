@@ -66,7 +66,7 @@ CREATE TABLE Set (
    weight  float,
    time  float,
    set_number  int,
-   type  exercise_type
+   type  varchar
 );
 
 CREATE TABLE Exercise_History (
