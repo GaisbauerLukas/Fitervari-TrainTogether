@@ -3,6 +3,7 @@ package at.htl_leonding.service
 import at.htl_leonding.model.Customer
 import at.htl_leonding.model.Trainer
 import at.htl_leonding.repository.CustomerRepository
+import at.htl_leonding.repository.PersonRepository
 import at.htl_leonding.repository.TrainerRepository
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Inject
@@ -15,6 +16,9 @@ class CustomerService {
 
     @Inject
     lateinit var trainerRepository: TrainerRepository
+
+    @Inject
+    lateinit var personRepository: PersonRepository
 
     fun test(): String {
         return "trainerservice test"
@@ -30,6 +34,8 @@ class CustomerService {
 
     fun updateCustomer(customer: Customer, id: Long){
         val forUpdate = repository.findById(id)
+        val personForUpdate = personRepository.findById(id)
+        personForUpdate.copyValues(customer)
         forUpdate.copyValues(customer)
     }
 

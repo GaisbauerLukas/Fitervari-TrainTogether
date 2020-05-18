@@ -31,10 +31,10 @@ class CustomerResource {
             val newCustomer = Customer(
                     jsonObject.getString("name"),
                     SimpleDateFormat("yyyy-MM-dd").parse(jsonObject.getString("joinDate")),
-                    service.getTrainerPerId(jsonObject["myTrainer"]?.asJsonObject()?.getInt("id")?.toLong() ?: 0),
+                    service.getTrainerPerId(jsonObject["myTrainer"]?.asJsonObject()?.getInt("id")?.toLong() ?: throw Exception("Wrong id")),
                     jsonObject.getBoolean("cashCostumer"),
                     SimpleDateFormat("yyyy-MM-dd").parse(jsonObject.getString("memberTill")),
-                    jsonObject.getString("pictureId").toLong()
+                    jsonObject.getInt("pictureId").toLong()
                     )
             println(newCustomer)
             service.addCustomer(newCustomer)
@@ -42,27 +42,28 @@ class CustomerResource {
         }catch (e: Exception){
             print("============================")
             print(e.message)
-            return Response.serverError().build()
+            return Response.ok(e.message).build()
         }
     }
 
 
-    /*@Path("/workout/{id}")
+    @PUT
+    @Path("/customer/{id}")
     @Transactional
     fun updateWorkout(@PathParam("id") id: Long, jsonObject: JsonObject): Response {
         try {
             val newCustomer = Customer(
                     jsonObject.getString("name"),
-                    SimpleDateFormat("dd-MM-yyyy").parse(jsonObject.getString("joinDate")),
-                    trainerService.getById(jsonObject["myTrainer"]?.asJsonObject()?.getInt("id")?.toLong() ?: 0),
-                    jsonObject.getBoolean("cashCustomer"),
-                    SimpleDateFormat("dd-MM-yyyy").parse(jsonObject.getString("memberTill")),
-                    jsonObject.getString("pictureId").toLong()
+                    SimpleDateFormat("yyyy-MM-dd").parse(jsonObject.getString("joinDate")),
+                    service.getTrainerPerId(jsonObject["myTrainer"]?.asJsonObject()?.getInt("id")?.toLong() ?: throw Exception("Wrong id")),
+                    jsonObject.getBoolean("cashCostumer"),
+                    SimpleDateFormat("yyyy-MM-dd").parse(jsonObject.getString("memberTill")),
+                    jsonObject.getInt("pictureId").toLong()
             )
             service.updateCustomer(newCustomer, id)
             return Response.accepted().build()
         }catch (e: Exception){
-            return Response.serverError().build()
+            return Response.ok(e.message).build()
         }
     }
 
@@ -76,5 +77,5 @@ class CustomerResource {
         }catch (e: Exception){
             return Response.serverError().build()
         }
-    }*/
+    }
 }
