@@ -17,7 +17,7 @@ CREATE TABLE Exercise (
    name  varchar,
    creator_id  int,
    creation_date  timestamp,
-   exercise_type  exercise_type,
+   exercise_type  varchar,
    standard_set_nr  int,
    official_flag  boolean
 );

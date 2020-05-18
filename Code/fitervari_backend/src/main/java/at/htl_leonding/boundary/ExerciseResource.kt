@@ -1,7 +1,6 @@
 package at.htl_leonding.boundary
 
 import at.htl_leonding.model.Exercise
-import at.htl_leonding.model.Workout
 import at.htl_leonding.service.ExerciseService
 import java.time.LocalDateTime
 import javax.inject.Inject
