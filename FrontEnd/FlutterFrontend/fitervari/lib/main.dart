@@ -1,4 +1,4 @@
-import 'package:fitervari/views/landing_page.dart';
+import 'file:///C:/Users/User/Documents/HTL-Leonding/Syp/Hammer/Repo/Fitervari-TrainTogether/FrontEnd/FlutterFrontend/fitervari/lib/views/landing_page/landing_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {

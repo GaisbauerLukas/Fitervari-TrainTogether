@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class MainDrawer extends StatelessWidget {
+
   Widget buildListTile(String title, IconData icon, Function action) {
     return ListTile(
-      leading: Icon(icon, size: 26,),
+      leading: Icon(icon, size: 26, color: Colors.white,),
       title: Text(
         title,
         style: TextStyle(
             fontFamily: 'RobotoCondensed',
             fontSize: 24,
+            color: Colors.white,
             fontWeight: FontWeight.bold),
       ),
       onTap: action,
@@ -18,36 +20,33 @@ class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: Column(
-        children: <Widget>[
-          Container(
-            height: 200,
-            width: double.infinity,
-            padding: EdgeInsets.all(20),
-            alignment: Alignment.centerLeft,
-            color: Theme.of(context).primaryColor,
-            child: Text(
-              'Cooking Up!',
-              style: TextStyle(
-                  fontWeight: FontWeight.w900,
-                  fontSize: 30,
-                  color: Colors.white),
+      child: Container(
+        color: Colors.black,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+
+          children: <Widget>[
+            buildListTile(
+                'Options',
+                Icons.settings,
+                    () => Navigator.of(context).pushReplacementNamed('/')),
+            //TODO find a better solution for spaces
+            SizedBox(
+              height: 20,
             ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          buildListTile(
-              'Meals',
-              Icons.restaurant,
-                  () => Navigator.of(context).pushReplacementNamed('/')),
-          Divider(),
-          buildListTile(
-              'Filters',
-              Icons.settings,
-                  () => Navigator.of(context).pushReplacementNamed('/')),
-          Divider()
-        ],
+            buildListTile(
+                'About Fitervari',
+                Icons.info,
+                    () => Navigator.of(context).pushReplacementNamed('/')),
+            SizedBox(
+              height: 20,
+            ),
+            buildListTile(
+                'Logout',
+                Icons.arrow_back,
+                    () => Navigator.of(context).pushReplacementNamed('/')),
+          ],
+        ),
       ),
     );
   }

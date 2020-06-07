@@ -1,3 +1,4 @@
+import 'package:fitervari/views/landing_page/sub_widgets/info_item.dart';
 import 'package:fitervari/widgets/main_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -7,9 +8,11 @@ class LandingPage extends StatelessWidget {
     return Scaffold(
       drawer: MainDrawer(),
       appBar: AppBar(title: Text('Hi'),),
-      body: Center(
-        child: Text("Works"),
-      ),
+      body: Column(
+        children: <Widget>[
+          InfoItem()
+        ],
+      )
     );
   }
 }
