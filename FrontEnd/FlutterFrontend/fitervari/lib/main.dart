@@ -1,4 +1,5 @@
 import 'file:///C:/Users/User/Documents/HTL-Leonding/Syp/Hammer/Repo/Fitervari-TrainTogether/FrontEnd/FlutterFrontend/fitervari/lib/views/landing_page/landing_page.dart';
+import 'package:fitervari/views/tabs_screen/tabs_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: MaterialColor(mainColorCode, mainColor),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LandingPage(),
+      home: TabsScreen(),
     );
   }
 }
