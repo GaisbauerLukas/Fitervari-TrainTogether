@@ -17,6 +17,8 @@ class _TabsScreenState extends State<TabsScreen> {
     ProfilePage(),
   ];
 
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   int _selectedPageIndex = 1;
 
   void _selectPage(int index) {
@@ -28,8 +30,15 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       drawer: MainDrawer(),
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.menu,color: Colors.black),
+          onPressed: () => _scaffoldKey.currentState.openDrawer(),
+        ),
+        backgroundColor: Colors.white,
+      ),
       body: _pages[_selectedPageIndex],
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.white70,
