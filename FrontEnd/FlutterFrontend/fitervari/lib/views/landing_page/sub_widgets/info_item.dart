@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class InfoItem extends StatelessWidget {
-
   final String imageUrl;
   final String title;
 
@@ -10,6 +9,7 @@ class InfoItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      //TODO change to dynamic strategy
       width: 350,
       child: InkWell(
         onTap: () {},
