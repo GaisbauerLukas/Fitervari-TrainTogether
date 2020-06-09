@@ -6,7 +6,6 @@ import './logic/providers/news_letters_provider.dart';
 
 void main() => runApp(MyApp());
 
-
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
 
@@ -33,6 +32,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Fitervari',
         theme: ThemeData(
+          fontFamily: 'RobotoCondensed',
+          textTheme: TextTheme(
+            bodyText2: TextStyle(fontWeight: FontWeight.w300),
+          ),
           primarySwatch: MaterialColor(mainColorCode, mainColor),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
