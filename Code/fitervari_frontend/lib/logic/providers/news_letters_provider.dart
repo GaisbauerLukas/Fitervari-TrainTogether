@@ -1,8 +1,14 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import '../../contracts/news_letter.dart';
 
 class NewsLettersProvider with ChangeNotifier{
+
+  static const url = 'http://localhost:8080';
+
   List<NewsLetter> _items = [
     NewsLetter(
       id: 1,
@@ -33,6 +39,29 @@ class NewsLettersProvider with ChangeNotifier{
   List<NewsLetter> get items {
     //return a copy of the items list
     return [..._items];
+  }
+
+  Future<List<NewsLetter>> get() async {
+    try{
+      final response = await http.get(url);
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      final List<NewsLetter> loadedNewsLetter = [];
+
+      extractedData.forEach((key, value) {
+        loadedNewsLetter.add(NewsLetter(
+            id: key,
+            title: value['title'],
+            body: value['body'],
+            imageUrl: value['imageUrl']
+        ));
+      });
+
+      _items = loadedNewsLetter;
+      notifyListeners();
+
+    }catch(error){
+      throw error;
+    }
   }
 
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import './sub_widgets/info_item.dart';
 import './sub_widgets/start_workout_button.dart';
 import './sub_widgets/change_workout_button.dart';
 import './sub_widgets/info_item_scroll_view.dart';
