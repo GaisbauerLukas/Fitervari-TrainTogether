@@ -1,3 +1,4 @@
+import 'package:fitervari/logic/helper/SessionInfo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,13 +21,13 @@ class FillerPage extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 100,
-              right: 30,
-              left: 30,
+              bottom: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.12,
+              right: MediaQuery.of(context).size.width * 0.1,
+              left: MediaQuery.of(context).size.width * 0.1,
               child: ClipRRect(
                 child: Container(
-                  height: 550,
-                  width: 350,
+                  height: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.75,
+                  width: MediaQuery.of(context).size.width * 0.75,
                   padding: EdgeInsets.all(30),
                   decoration: BoxDecoration(
                     color: Colors.black54,

@@ -1,3 +1,4 @@
+import 'package:fitervari/logic/helper/SessionInfo.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/main_drawer.dart';
@@ -29,41 +30,47 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      leading: IconButton(
+        icon: Icon(Icons.menu, color: Colors.black),
+        onPressed: () => _scaffoldKey.currentState.openDrawer(),
+      ),
+      backgroundColor: Colors.white,
+    );
+
+    final bottomNavigationBar = BottomNavigationBar(
+      unselectedItemColor: Colors.white70,
+      selectedItemColor: Colors.white,
+      currentIndex: _selectedPageIndex,
+      type: BottomNavigationBarType.shifting,
+      items: [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.insert_chart),
+          title: Text('Statistics'),
+          backgroundColor: Theme.of(context).primaryColor,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          title: Text('Home'),
+          backgroundColor: Theme.of(context).primaryColor,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.account_circle),
+          title: Text('Profile'),
+          backgroundColor: Theme.of(context).primaryColor,
+        ),
+      ],
+      onTap: _selectPage,
+    );
+
+    SessionInfo().actionBarHeight = appBar.preferredSize.height;
+
     return Scaffold(
       key: _scaffoldKey,
       drawer: MainDrawer(),
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.menu,color: Colors.black),
-          onPressed: () => _scaffoldKey.currentState.openDrawer(),
-        ),
-        backgroundColor: Colors.white,
-      ),
+      appBar: appBar,
       body: _pages[_selectedPageIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        unselectedItemColor: Colors.white70,
-        selectedItemColor: Colors.white,
-        currentIndex: _selectedPageIndex,
-        type: BottomNavigationBarType.shifting,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.insert_chart),
-            title: Text('Statistics'),
-            backgroundColor: Theme.of(context).primaryColor,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home'),
-            backgroundColor: Theme.of(context).primaryColor,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            title: Text('Profile'),
-            backgroundColor: Theme.of(context).primaryColor,
-          ),
-        ],
-        onTap: _selectPage,
-      ),
+      bottomNavigationBar: bottomNavigationBar,
     );
   }
 }

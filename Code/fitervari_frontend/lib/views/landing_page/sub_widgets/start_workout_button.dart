@@ -1,3 +1,4 @@
+import 'package:fitervari/logic/helper/SessionInfo.dart';
 import 'package:fitervari/views/filler_page/filler_page.dart';
 import 'package:flutter/material.dart';
 
@@ -12,14 +13,14 @@ class StartWorkoutButton extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: Container(
           margin: EdgeInsets.all(20),
-          height: 100,
+          height: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.17,
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Text(
                 'Start',
-                style: TextStyle(fontSize: 55, color: Colors.white),
+                style: TextStyle(fontSize: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.09, color: Colors.white, fontWeight: FontWeight.w100),
               ),
               Container(
                 margin: EdgeInsets.all(10),
@@ -29,7 +30,7 @@ class StartWorkoutButton extends StatelessWidget {
               ),
               Text(
                 'TestWorkout',
-                style: TextStyle(fontSize: 20, color: Colors.white,),
+                style: TextStyle(fontSize: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.025, color: Colors.white,),
               ),
             ],
           ),
