@@ -4,9 +4,8 @@ import 'package:provider/provider.dart';
 import './views/tabs_screen/tabs_screen.dart';
 import './logic/providers/news_letters_provider.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
+
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -29,6 +28,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
+      //dated package work this out sometime later
       builder: (ctx) => NewsLettersProvider(),
       child: MaterialApp(
         title: 'Fitervari',
