@@ -25,6 +25,7 @@ services:
 #        - quarkus
 #    networks: 
 #        - fitavari_network
+
   quarkus:
     build:
         context: ../fitervari_backend
