@@ -1,5 +1,5 @@
 class Identifiable{
-  final String id;
+  final int id;
 
   const Identifiable(this.id);
 }

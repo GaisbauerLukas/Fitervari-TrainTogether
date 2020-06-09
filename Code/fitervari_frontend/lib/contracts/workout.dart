@@ -11,7 +11,7 @@ class Workout extends Identifiable{
   //final List<Exercise> listOfExercises;
 
   const Workout({
-    @required String id,
+    @required int id,
     @required this.name,
     @required this.creationDate,
     @required this.creatorId,
