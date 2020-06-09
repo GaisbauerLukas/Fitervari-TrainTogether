@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../filler_page/filler_page.dart';
+
 class InfoItem extends StatelessWidget {
   final String imageUrl;
   final String title;
@@ -12,7 +14,7 @@ class InfoItem extends StatelessWidget {
       //TODO change to dynamic strategy
       width: 350,
       child: InkWell(
-        onTap: () {},
+        onTap: () => Navigator.of(context).pushNamed(FillerPage.routeName),
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),

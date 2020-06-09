@@ -1,10 +1,11 @@
+import 'package:fitervari/views/filler_page/filler_page.dart';
 import 'package:flutter/material.dart';
 
 class StartWorkoutButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => Navigator.of(context).pushNamed(FillerPage.routeName),
       child: Card(
         color: Theme.of(context).primaryColor,
         elevation: 4,
@@ -18,7 +19,7 @@ class StartWorkoutButton extends StatelessWidget {
             children: <Widget>[
               Text(
                 'Start',
-                style: TextStyle(fontSize: 50, color: Colors.white),
+                style: TextStyle(fontSize: 55, color: Colors.white),
               ),
               Container(
                 margin: EdgeInsets.all(10),

@@ -1,3 +1,4 @@
+import 'package:fitervari/views/filler_page/filler_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +41,9 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: TabsScreen(),
-        routes: {},
+        routes: {
+          FillerPage.routeName: (ctx) => FillerPage(),
+        },
       ),
     );
   }

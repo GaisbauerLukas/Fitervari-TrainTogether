@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../filler_page/filler_page.dart';
+
 class ChangeWorkoutButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => Navigator.of(context).pushNamed(FillerPage.routeName),
       child: Card(
         color: Colors.white,
         elevation: 4,

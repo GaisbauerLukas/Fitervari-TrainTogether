@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../views/filler_page/filler_page.dart';
+
 class MainDrawer extends StatelessWidget {
   Widget buildListTile(String title, IconData icon, Function action) {
     return ListTile(
@@ -29,18 +31,18 @@ class MainDrawer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             buildListTile('Options', Icons.settings,
-                () => Navigator.of(context).pushReplacementNamed('/')),
+                () => Navigator.of(context).pushNamed(FillerPage.routeName)),
             //TODO find a better solution for spaces
             SizedBox(
               height: 20,
             ),
             buildListTile('About Fitervari', Icons.info,
-                () => Navigator.of(context).pushReplacementNamed('/')),
+                () => Navigator.of(context).pushNamed(FillerPage.routeName)),
             SizedBox(
               height: 20,
             ),
             buildListTile('Logout', Icons.arrow_back,
-                () => Navigator.of(context).pushReplacementNamed('/')),
+                () => Navigator.of(context).pushNamed(FillerPage.routeName)),
           ],
         ),
       ),
