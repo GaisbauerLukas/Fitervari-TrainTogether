@@ -10,8 +10,8 @@ data class ExerciseHistory(
         @ManyToOne
         @JoinColumn(name = "workout_history_id")
         var workoutHistory: WorkoutHistory
-) : PanacheEntity(){
-        fun copyValues(other: ExerciseHistory){
-                this.workoutHistory = other.workoutHistory
-        }
+) : PanacheEntity() {
+    fun copyValues(other: ExerciseHistory) {
+        this.workoutHistory = other.workoutHistory
+    }
 }

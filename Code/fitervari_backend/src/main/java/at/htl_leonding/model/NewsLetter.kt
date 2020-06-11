@@ -15,8 +15,8 @@ class NewsLetter(
         @Column(name = "imageUrl")
         var imageUrl: String
 
-) : PanacheEntity(){
-    fun copyValues(other: NewsLetter){
+) : PanacheEntity() {
+    fun copyValues(other: NewsLetter) {
 
     }
 }

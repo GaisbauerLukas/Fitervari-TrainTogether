@@ -24,21 +24,21 @@ class WorkoutHistoryService {
         return repository.findById(id)
     }
 
-    fun updateWorkoutHistory(workout: WorkoutHistory, id: Long){
+    fun updateWorkoutHistory(workout: WorkoutHistory, id: Long) {
         val forUpdate = repository.findById(id)
         forUpdate.copyValues(workout)
     }
 
-    fun deleteWorkoutHistory(id: Long){
+    fun deleteWorkoutHistory(id: Long) {
         val forDeletion = repository.findById(id)
         repository.delete(forDeletion)
     }
 
-    fun getCustomerById(id: Long?): Customer{
+    fun getCustomerById(id: Long?): Customer {
         return customerRepository.findById(id)
     }
 
-    fun getWorkoutById(id: Long?): Workout{
+    fun getWorkoutById(id: Long?): Workout {
         return workoutRepository.findById(id)
     }
 }

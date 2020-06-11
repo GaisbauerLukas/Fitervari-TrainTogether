@@ -21,7 +21,7 @@ class WorkoutHistoryResource {
 
     @GET
     @Path("/workoutHistory/{id}")
-    fun getWorkoutHistoryById(@PathParam("id")id: Long): Response {
+    fun getWorkoutHistoryById(@PathParam("id") id: Long): Response {
         return Response.ok(service.getById(id)).build()
     }
 
@@ -37,7 +37,7 @@ class WorkoutHistoryResource {
             )
             newWorkoutHistory.persist()
             return Response.accepted().build()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return Response.ok(e.message).build()
         }
     }
@@ -54,7 +54,7 @@ class WorkoutHistoryResource {
             )
             service.updateWorkoutHistory(newWorkoutHistory, id)
             return Response.accepted().build()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return Response.serverError().build()
         }
     }
@@ -66,7 +66,7 @@ class WorkoutHistoryResource {
         try {
             service.deleteWorkoutHistory(id)
             return Response.ok().build()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return Response.serverError().build()
         }
     }

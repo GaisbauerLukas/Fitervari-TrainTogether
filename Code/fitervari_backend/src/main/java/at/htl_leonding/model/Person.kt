@@ -14,10 +14,10 @@ open class Person(
         @Column(name = "picture_id")
         var pictureId: Int
 
-) : PanacheEntity(){
-        fun copyValues(other: Person) {
-                this.name = other.name
-                this.is_Trainer = other.is_Trainer
-                this.pictureId = other.pictureId
-        }
+) : PanacheEntity() {
+    fun copyValues(other: Person) {
+        this.name = other.name
+        this.is_Trainer = other.is_Trainer
+        this.pictureId = other.pictureId
+    }
 }
