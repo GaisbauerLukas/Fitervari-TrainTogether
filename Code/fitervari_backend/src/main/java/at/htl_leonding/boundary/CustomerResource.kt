@@ -34,7 +34,7 @@ class CustomerResource {
                     service.getTrainerPerId(jsonObject["myTrainer"]?.asJsonObject()?.getInt("id")?.toLong() ?: throw Exception("Wrong id")),
                     jsonObject.getBoolean("cashCostumer"),
                     SimpleDateFormat("yyyy-MM-dd").parse(jsonObject.getString("memberTill")),
-                    jsonObject.getInt("pictureId").toLong()
+                    jsonObject.getInt("pictureId")
                     )
             println(newCustomer)
             service.addCustomer(newCustomer)
@@ -58,7 +58,7 @@ class CustomerResource {
                     service.getTrainerPerId(jsonObject["myTrainer"]?.asJsonObject()?.getInt("id")?.toLong() ?: throw Exception("Wrong id")),
                     jsonObject.getBoolean("cashCostumer"),
                     SimpleDateFormat("yyyy-MM-dd").parse(jsonObject.getString("memberTill")),
-                    jsonObject.getInt("pictureId").toLong()
+                    jsonObject.getInt("pictureId")
             )
             service.updateCustomer(newCustomer, id)
             return Response.accepted().build()

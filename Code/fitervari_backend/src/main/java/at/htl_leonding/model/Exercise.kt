@@ -16,7 +16,9 @@ data class Exercise(
         @Column(name = "official_flag")
         var officialFlag: Boolean,
         @ManyToOne
-        var creator: Person
+        var creator: Person,
+        @ManyToMany(mappedBy = "exercises")
+        var workouts: MutableList<Workout> = mutableListOf()
 ) : PanacheEntity(){
         fun copyValues(other: Exercise){
                 this.name = other.name

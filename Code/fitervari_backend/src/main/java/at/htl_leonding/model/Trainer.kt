@@ -9,9 +9,8 @@ class Trainer(
         name: String,
         @Column(name = "trainer_since")
         var trainerSince: LocalDate,
-        @Column(name = "picture_id")
-        var pictureId: Int
-) : Person(name, true) {
+        pictureId: Int
+) : Person(name, true, pictureId) {
     fun copyValues(other: Trainer) {
         this.pictureId = other.pictureId
         this.trainerSince = other.trainerSince

@@ -8,6 +8,7 @@ import javax.persistence.*
 @Table(name = "customer")
 class Customer(
         name: String,
+        @Column(name = "join_date")
         var joinDate: Date,
         @ManyToOne
         @JoinColumn(name = "trainer_id")
@@ -16,9 +17,8 @@ class Customer(
         var cashCostumer: Boolean,
         @Column(name = "member_till")
         var memberTill: Date,
-        @Column(name = "picture_id")
-        var pictureId: Long
-) : Person(name, false) {
+        pictureId: Int
+) : Person(name, false, pictureId) {
     fun copyValues(other: Customer) {
         this.joinDate = other.joinDate
         this.myTrainer = other.myTrainer

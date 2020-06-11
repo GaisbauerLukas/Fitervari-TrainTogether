@@ -12,7 +12,14 @@ data class Workout (
         var creation_Date: LocalDateTime,
         @ManyToOne
         var creator: Person,
-        var official_Flag: Boolean
+        var official_Flag: Boolean,
+        @ManyToMany
+        @JoinTable(
+                name = "workout2exercise",
+                joinColumns = [JoinColumn("workout_id")],
+                inverseJoinColumns = [JoinColumn("exercise_id")]
+        )
+        var exercises: MutableList<Exercise> = mutableListOf()
 ) : PanacheEntity(){
         fun copyValues(other: Workout){
                 this.name = other.name
