@@ -20,4 +20,10 @@ class NewsLetterResource {
         return Response.ok(service.getById(id)).build()
     }
 
+    @GET
+    @Path("/newsletter")
+    fun getAllNewsLetters(): Response{
+        return Response.ok(service.getAllNewsLetters()).build();
+    }
+
 }

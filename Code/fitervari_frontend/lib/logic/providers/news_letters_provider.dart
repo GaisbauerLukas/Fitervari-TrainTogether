@@ -7,7 +7,7 @@ import '../../contracts/news_letter.dart';
 
 class NewsLettersProvider with ChangeNotifier{
 
-  static const url = 'http://localhost:8080';
+  static const url = 'http://10.0.2.2:8080/api/newsletter';
 
   List<NewsLetter> _items = [
     NewsLetter(
@@ -38,25 +38,23 @@ class NewsLettersProvider with ChangeNotifier{
 
   List<NewsLetter> get items {
     //return a copy of the items list
+    get();
     return [..._items];
   }
 
   Future<List<NewsLetter>> get() async {
     try{
       final response = await http.get(url);
-      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      final data = json.decode(response.body);
+      print(data[0]['id']);
+      //final extractedData = json.decode(response.body) as Map<String, dynamic>;
       final List<NewsLetter> loadedNewsLetter = [];
 
-      extractedData.forEach((key, value) {
-        loadedNewsLetter.add(NewsLetter(
-            id: key,
-            title: value['title'],
-            body: value['body'],
-            imageUrl: value['imageUrl']
-        ));
+      data.forEach((item){
+        loadedNewsLetter.add(NewsLetter(id: item['id'], title: item['title'], body: item['body'], imageUrl: item['imageUrl']));
       });
 
-      _items = loadedNewsLetter;
+      _items.addAll(loadedNewsLetter);
       notifyListeners();
 
     }catch(error){
