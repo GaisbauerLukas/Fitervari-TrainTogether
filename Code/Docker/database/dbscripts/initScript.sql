@@ -25,8 +25,7 @@ CREATE TABLE Exercise (
 CREATE TABLE Person (
    id  SERIAL PRIMARY KEY,
    name  varchar not null,
-   customer_id  int null,
-   trainer_id  int null,
+   picture_id  int not null
    is_trainer  boolean not null
 );
 
@@ -36,7 +35,7 @@ CREATE TABLE Customer (
    trainer_id  int not null,
    cash_customer  boolean not null,
    member_till  date null,
-   picture_id  int not null
+   
 );
 
 CREATE TABLE Workout2Exercise (
@@ -47,7 +46,6 @@ CREATE TABLE Workout2Exercise (
 CREATE TABLE Trainer (
    id  SERIAL PRIMARY KEY,
    trainer_since  date not null,
-   picture_id  int not null
 );
 
 CREATE TABLE Workout_History (
