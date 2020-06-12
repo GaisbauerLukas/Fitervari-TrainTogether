@@ -24,4 +24,7 @@ class NewsLetterService {
         val forDeletion = repository.findById(id)
         repository.delete(forDeletion)
     }
+    fun getAllNewsLetters(): List<NewsLetter>{
+        return repository.listAll();
+    }
 }
