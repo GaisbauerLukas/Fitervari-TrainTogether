@@ -1,10 +1,8 @@
-/*
 CREATE TYPE exercise_type AS ENUM (
   'warm_up',
   'strength',
   'cardio'
 );
-*/
 
 CREATE TABLE Workout (
    id  SERIAL PRIMARY KEY,
@@ -19,7 +17,7 @@ CREATE TABLE Exercise (
    name  varchar,
    creator_id  int,
    creation_date  timestamp,
-   exercise_type  varchar  check (exercise_type in ('Strength', 'Warmup', 'Cardio')),
+   exercise_type  varchar,
    standard_set_nr  int,
    official_flag  boolean
 );
@@ -59,17 +57,15 @@ CREATE TABLE Workout_History (
    customer_id  int
 );
 
-CREATE TABLE Set
-(
-    id          SERIAL PRIMARY KEY,
-    exercise_id int,
-    repetitions int,
-    distance    float,
-    weight      float,
-    time        float,
-    set_number  int,
--- TODO Remove if unused
-    type        varchar
+CREATE TABLE Set (
+   id  SERIAL PRIMARY KEY,
+   exercise_id  int,
+   repetitions  int,
+   distance  float,
+   weight  float,
+   time  float,
+   set_number  int,
+   type  varchar
 );
 
 CREATE TABLE Exercise_History (
@@ -105,7 +101,7 @@ ALTER TABLE Workout_History ADD FOREIGN KEY ( workout_id ) REFERENCES Workout ( 
 
 ALTER TABLE Workout_History ADD FOREIGN KEY ( customer_id ) REFERENCES Person ( id );
 
--- ALTER TABLE Set ADD FOREIGN KEY ( workout_history_id ) REFERENCES Workout_History ( id );
+--ALTER TABLE Set ADD FOREIGN KEY ( workout_history_id ) REFERENCES Workout_History ( id );
 
 ALTER TABLE Set ADD FOREIGN KEY ( exercise_id ) REFERENCES Exercise ( id );
 
@@ -113,6 +109,6 @@ ALTER TABLE Exercise_History ADD FOREIGN KEY ( workout_history_id ) REFERENCES W
 
 ALTER TABLE Set_History ADD FOREIGN KEY ( exercise_history_id ) REFERENCES Exercise_History ( id );
 
--- ALTER TABLE  Set  ADD FOREIGN KEY ( set_number ) REFERENCES  Workout2Exercise  ( workout_id );
+--ALTER TABLE  Set  ADD FOREIGN KEY ( set_number ) REFERENCES  Workout2Exercise  ( workout_id );
 
 CREATE SEQUENCE hibernate_sequence START 1;
