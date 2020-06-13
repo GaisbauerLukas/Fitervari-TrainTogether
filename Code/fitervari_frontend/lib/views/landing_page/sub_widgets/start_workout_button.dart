@@ -24,14 +24,14 @@ class StartWorkoutButton extends StatelessWidget {
                 style: TextStyle(fontSize: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.09, color: Colors.white, fontWeight: FontWeight.w100),
               ),
               Container(
-                margin: EdgeInsets.all(10),
+                margin: EdgeInsets.all(5),
                 color: Colors.white,
                 width: double.infinity,
                 height: 1,
               ),
               Text(
                 'TestWorkout',
-                style: TextStyle(fontSize: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.025, color: Colors.white,),
+                style: TextStyle(fontSize: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.019, color: Colors.white,),
               ),
             ],
           ),

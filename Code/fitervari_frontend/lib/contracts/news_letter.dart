@@ -1,5 +1,5 @@
 import 'package:fitervari/contracts/identifiable.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class NewsLetter extends Identifiable {
   final String title;

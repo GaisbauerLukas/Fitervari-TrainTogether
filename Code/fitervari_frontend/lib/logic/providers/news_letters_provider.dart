@@ -5,8 +5,7 @@ import 'package:http/http.dart' as http;
 
 import '../../contracts/news_letter.dart';
 
-class NewsLettersProvider with ChangeNotifier{
-  
+class NewsLettersProvider with ChangeNotifier {
   //when testing on a virtual device: 10.0.2.2
   static const url = 'http://192.168.0.192:8080/api/newsletter';
 
@@ -43,7 +42,7 @@ class NewsLettersProvider with ChangeNotifier{
 
   List<NewsLetter> get items {
     //return a copy of the items list
-    if(!_loaded){
+    if (!_loaded) {
       _loadNewsLetters();
       _loaded = true;
     }
@@ -51,22 +50,24 @@ class NewsLettersProvider with ChangeNotifier{
   }
 
   Future<List<NewsLetter>> _loadNewsLetters() async {
-    try{
+    try {
       final response = await http.get(url);
       final data = json.decode(response.body);
 
       final List<NewsLetter> loadedNewsLetter = [];
 
-      data.forEach((item){
-        loadedNewsLetter.add(NewsLetter(id: item['id'], title: item['title'], body: item['body'], imageUrl: item['imageUrl']));
+      data.forEach((item) {
+        loadedNewsLetter.add(NewsLetter(
+            id: item['id'],
+            title: item['title'],
+            body: item['body'],
+            imageUrl: item['imageUrl']));
       });
 
       _items.addAll(loadedNewsLetter);
       notifyListeners();
-
-    }catch(error){
+    } catch (error) {
       throw error;
     }
   }
-
 }
