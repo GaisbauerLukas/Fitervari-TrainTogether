@@ -1,4 +1,5 @@
 import 'package:fitervari/views/filler_page/filler_page.dart';
+import 'package:fitervari/views/news_letter_details_page/NewsLetterDetailsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         home: TabsScreen(),
         routes: {
           FillerPage.routeName: (ctx) => FillerPage(),
+          NewsLetterDetailsPage.routeName: (ctx) => NewsLetterDetailsPage(),
         },
       ),
     );

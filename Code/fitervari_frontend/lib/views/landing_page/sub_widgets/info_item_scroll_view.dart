@@ -16,8 +16,7 @@ class InfoItemScrollView extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (ctx, index) {
-          return InfoItem(newsLetterData.items[index].title,
-              newsLetterData.items[index].imageUrl);
+          return InfoItem(newsLetterData.items[index]);
         },
         itemCount: newsLetterData.items.length,
       ),
