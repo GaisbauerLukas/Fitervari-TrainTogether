@@ -1,3 +1,4 @@
+import 'package:fitervari/contracts/customer.dart';
 import 'package:fitervari/logic/helper/SessionInfo.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,17 @@ class _TabsScreenState extends State<TabsScreen> {
   final List<Widget> _pages = [
     ConfigureationPage(),
     LandingPage(),
-    ProfilePage(),
+    ProfilePage(
+      Customer(
+        id: -1,
+        imageUrl: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1331&q=80',
+        cashCustomer: true,
+        joinDate: DateTime.utc(2019,5,12),
+        memberTill: DateTime.utc(2021, 5,12),
+        name: 'Florian Müller',
+        trainer_id: 2
+      )
+    ),
   ];
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();

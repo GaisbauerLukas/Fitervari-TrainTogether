@@ -10,6 +10,7 @@ class ChangeWorkoutButton extends StatelessWidget {
     return InkWell(
       onTap: () => Navigator.of(context).pushNamed(FillerPage.routeName),
       child: Card(
+        margin: EdgeInsets.all(10),
         color: Colors.white,
         elevation: 4,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),

@@ -14,19 +14,26 @@ class FillerPage extends StatelessWidget {
           children: <Widget>[
             ClipRRect(
               child: Image.network(
-                'https://images.unsplash.com/photo-1576678927484-cc907957088c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80',
+                'https://images.unsplash.com/photo-1576678927484'
+                '-cc907957088c'
+                '?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto='
+                'format&fit=crop&w=2134&q=80',
                 height: double.infinity,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
             ),
             Positioned(
-              bottom: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.12,
+              bottom: (MediaQuery.of(context).size.height -
+                      SessionInfo().actionBarHeight) *
+                  0.12,
               right: MediaQuery.of(context).size.width * 0.1,
               left: MediaQuery.of(context).size.width * 0.1,
               child: ClipRRect(
                 child: Container(
-                  height: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.75,
+                  height: (MediaQuery.of(context).size.height -
+                          SessionInfo().actionBarHeight) *
+                      0.75,
                   width: MediaQuery.of(context).size.width * 0.75,
                   padding: EdgeInsets.all(30),
                   decoration: BoxDecoration(
@@ -42,10 +49,9 @@ class FillerPage extends StatelessWidget {
                       Text(
                         'This feature will soon be ready for you',
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 60,
-                          fontWeight: FontWeight.w100
-                        ),
+                            color: Colors.white,
+                            fontSize: 60,
+                            fontWeight: FontWeight.w100),
                         textAlign: TextAlign.center,
                       )
                     ],
