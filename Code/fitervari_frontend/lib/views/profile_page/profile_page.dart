@@ -1,7 +1,14 @@
+import 'package:fitervari/contracts/customer.dart';
+import 'package:fitervari/logic/helper/SessionInfo.dart';
 import 'package:fitervari/views/profile_page/sub_widgets/profile_image.dart';
+import 'package:fitervari/views/profile_page/sub_widgets/profile_information_box.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
+  final Customer currentCustomer;
+
+  ProfilePage(this.currentCustomer);
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -11,9 +18,18 @@ class ProfilePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ProfileImage(
-                'https://img.fotocommunity.com/sonnenuntergang-auf-samos-very-nice-6c68e562-a8b9-4dcd-b3dc-52667420f301.jpg?height=1080'),
-            Text('asdfaskdfjpoasdnfosajdf')
+            ProfileImage(currentCustomer.imageUrl),
+            Container(
+              margin: EdgeInsets.only(top: 20, bottom: 20),
+              child: Text(
+                currentCustomer.name,
+                style: TextStyle(
+                    fontSize: (MediaQuery.of(context).size.height -
+                            SessionInfo().actionBarHeight) *
+                        0.04),
+              ),
+            ),
+            ProfileInformationBox(currentCustomer)
           ],
         ),
       ),

@@ -22,6 +22,7 @@ class my_workouts extends StatelessWidget {
               'Meine Workouts',
               textScaleFactor: 2,
             ),
+            //TODO Listview wäre hier sinnvoller
             ListTile(
               // leading: Icon(Icons.directions_run),
               title: Text('Brustraining'),

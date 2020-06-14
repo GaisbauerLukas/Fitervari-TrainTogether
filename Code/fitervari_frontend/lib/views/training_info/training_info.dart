@@ -12,6 +12,7 @@ class TrainingInfo extends StatelessWidget {
         children: [
           general_info(),
           my_workouts()
+          //TODO workout-hinzufügen-button fehlt
         ],
       ),
     );
