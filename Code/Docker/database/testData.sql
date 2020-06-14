@@ -1,1 +1,0 @@
-/*INSERT INTO Person VALUES(3,'A Name', 3,3,TRUE)*/
