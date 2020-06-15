@@ -12,8 +12,8 @@ services:
     volumes:
         - ./database/dbscripts/:/docker-entrypoint-initdb.d
         - postgres_data:/var/lib/postgresql/data
-    networks: 
-        - fitavari_network
+    #networks: 
+    #    - fitavari_network
   
 #  reverseproxy:
 #    build:
@@ -26,15 +26,15 @@ services:
 #    networks: 
 #        - fitavari_network
 
-  #quarkus:
-    #build:
-    #    context: ../fitervari_backend
-    #    dockerfile: src/main/docker/Dockerfile.native
-    #ports:
-    #    - 8080:8080
+  quarkus:
+    build:
+        context: ../fitervari_backend
+        dockerfile: src/main/docker/Dockerfile.native
+    ports:
+        - 8080:8080
     #networks: 
     #    - fitavari_network
 volumes:
     postgres_data:
-networks: 
-    fitavari_network:
+#networks: 
+    #fitavari_network:
