@@ -1,5 +1,6 @@
 package at.htl_leonding.boundary
 
+import at.htl_leonding.model.Exercise
 import at.htl_leonding.model.Person
 import at.htl_leonding.model.Trainer
 import at.htl_leonding.model.Workout
@@ -34,10 +35,12 @@ class WorkoutResource {
     @Transactional
     fun postWorkout(jsonObject: JsonObject): Response {
         try {
+            val setOfExercises = getSetFromJsonArray(jsonObject)
             val newWorkout = Workout(jsonObject.getString("name"),
                     LocalDateTime.parse(jsonObject.getString("creation_Date")),
                     service.getPersonById(jsonObject["creator"]?.asJsonObject()?.getInt("id")?.toLong()),
-                    jsonObject.getBoolean("official_Flag"))
+                    jsonObject.getBoolean("official_Flag"),
+                    setOfExercises)
             newWorkout.persist()
             return Response.accepted().build()
         }catch (e: Exception){
@@ -45,15 +48,32 @@ class WorkoutResource {
         }
     }
 
+    private fun getSetFromJsonArray(jsonObject: JsonObject): Set<Exercise>{
+        val tmp = setOf<Exercise>()
+        for(i in 0 until jsonObject.get("myExercises")?.asJsonArray()?.size!!){
+            val item = jsonObject.get("myExercises")?.asJsonArray()?.get(i)?.asJsonObject()!!
+
+            tmp.plus(Exercise(item.getString("name"),
+                    LocalDateTime.parse(item.getString("creationDate")),
+                    item.getString("exerciseType"),
+                    item.getInt("standardSetNr"),
+                    item.getBoolean("officialFlag"),
+                    service.getPersonById(item.get("creator")?.asJsonObject()?.getInt("id")?.toLong())))
+        }
+        return tmp;
+    }
+
     @PUT
     @Path("/workout/{id}")
     @Transactional
     fun updateWorkout(@PathParam("id") id: Long, jsonObject: JsonObject): Response {
         try {
+            val setOfExercises = getSetFromJsonArray(jsonObject)
             val newWorkout = Workout(jsonObject.getString("name"),
                     LocalDateTime.parse(jsonObject.getString("creation_Date")),
                     service.getPersonById(jsonObject["creator"]?.asJsonObject()?.getInt("id")?.toLong()),
-                    jsonObject.getBoolean("official_Flag"))
+                    jsonObject.getBoolean("official_Flag"),
+                    setOfExercises)
             service.updateWorkout(newWorkout, id)
             return Response.accepted().build()
         }catch (e: Exception){

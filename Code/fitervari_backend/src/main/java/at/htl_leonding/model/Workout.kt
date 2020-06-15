@@ -12,7 +12,12 @@ data class Workout (
         var creation_Date: LocalDateTime,
         @ManyToOne
         var creator: Person,
-        var official_Flag: Boolean
+        var official_Flag: Boolean,
+        @OneToMany(
+                cascade = [CascadeType.ALL],
+                orphanRemoval = true
+        )
+        val myExercises: Set<Exercise>
 ) : PanacheEntity(){
         fun copyValues(other: Workout){
                 this.name = other.name
