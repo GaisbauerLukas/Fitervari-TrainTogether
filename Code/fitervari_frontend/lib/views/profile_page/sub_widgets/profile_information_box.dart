@@ -12,7 +12,7 @@ class ProfileInformationBox extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(10),
       child: Card(
-        elevation: 6,
+        elevation: 3,
         child: Container(
           padding: EdgeInsets.all(15),
           height: (MediaQuery.of(context).size.height -
