@@ -34,6 +34,14 @@ services:
         - 8080:8080
     networks: 
         - fitavari_network
+  webpage:
+    build:
+        context: ./webpage
+        dockerfile: Dockerfile
+    ports:
+        - 9933:80
+    networks: 
+        - fitavari_network
 volumes:
     postgres_data:
 networks: 
