@@ -7,7 +7,7 @@ import '../../contracts/news_letter.dart';
 
 class NewsLettersProvider with ChangeNotifier {
   //when testing on a virtual device: 10.0.2.2
-  static const url = 'http://10.0.0.29:8080/api/newsletter';
+  static const url = 'http://vm117.htl-leonding.ac.at:80/api/newsletter';
 
   bool _loaded = false;
 
