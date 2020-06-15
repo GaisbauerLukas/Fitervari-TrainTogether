@@ -10,13 +10,14 @@ open class Person(
         @Column(name = "name")
         var name: String,
         @Column(name = "is_trainer")
-        var is_Trainer: Boolean
-/*       @OneToOne
-       val trainer: Trainer,
-       @OneToOne
-       val customer: Customer*/
-) : PanacheEntity(){
-        fun copyValues(other: Person) {
+        var is_Trainer: Boolean,
+        @Column(name = "picture_id")
+        var pictureId: Int
 
-        }
+) : PanacheEntity() {
+    fun copyValues(other: Person) {
+        this.name = other.name
+        this.is_Trainer = other.is_Trainer
+        this.pictureId = other.pictureId
+    }
 }

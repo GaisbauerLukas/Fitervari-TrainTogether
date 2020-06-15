@@ -5,7 +5,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "set_history")
-data class SetHistory (
+data class SetHistory(
         @ManyToOne
         @JoinColumn(name = "exercise_history_id")
         var exerciseHistory: ExerciseHistory,
@@ -15,13 +15,13 @@ data class SetHistory (
         var repetitions: Int?,
         @Column(name = "set_number")
         var setNumber: Int
-) : PanacheEntity(){
-        fun copyValues(other: SetHistory){
-                this.exerciseHistory = other.exerciseHistory
-                this.time = other.time
-                this.distance = other.distance
-                this.weight = other.weight
-                this.repetitions = other.repetitions
-                this.setNumber = other.setNumber
-        }
+) : PanacheEntity() {
+    fun copyValues(other: SetHistory) {
+        this.exerciseHistory = other.exerciseHistory
+        this.time = other.time
+        this.distance = other.distance
+        this.weight = other.weight
+        this.repetitions = other.repetitions
+        this.setNumber = other.setNumber
+    }
 }

@@ -22,16 +22,16 @@ class ExerciseService {
         return repository.findById(id)
     }
 
-    fun addExercise(newExercise: Exercise){
+    fun addExercise(newExercise: Exercise) {
         this.repository.persist(newExercise)
     }
 
-    fun updateExercise(exercise: Exercise, id: Long){
+    fun updateExercise(exercise: Exercise, id: Long) {
         val forUpdate = repository.findById(id)
         forUpdate.copyValues(exercise)
     }
 
-    fun deleteExercise(id: Long){
+    fun deleteExercise(id: Long) {
         val forDeletion = repository.findById(id)
         repository.delete(forDeletion)
     }

@@ -7,7 +7,7 @@ import javax.persistence.*
 @Entity
 data class Exercise(
         var name: String,
-        @Column(name="creation_date")
+        @Column(name = "creation_date")
         var creationDate: LocalDateTime,
         @Column(name = "exercise_type")
         var exerciseType: String,
@@ -16,14 +16,16 @@ data class Exercise(
         @Column(name = "official_flag")
         var officialFlag: Boolean,
         @ManyToOne
-        var creator: Person
-) : PanacheEntity(){
-        fun copyValues(other: Exercise){
-                this.name = other.name
-                this.creationDate = other.creationDate
-                this.exerciseType = other.exerciseType
-                this.standardSetNr = other.standardSetNr
-                this.officialFlag = other.officialFlag
-                this.creator = other.creator
-        }
+        var creator: Person,
+        @ManyToMany(mappedBy = "exercises")
+        var workouts: MutableList<Workout> = mutableListOf()
+) : PanacheEntity() {
+    fun copyValues(other: Exercise) {
+        this.name = other.name
+        this.creationDate = other.creationDate
+        this.exerciseType = other.exerciseType
+        this.standardSetNr = other.standardSetNr
+        this.officialFlag = other.officialFlag
+        this.creator = other.creator
+    }
 }

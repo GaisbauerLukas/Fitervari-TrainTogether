@@ -31,15 +31,16 @@ class CustomerResource {
             val newCustomer = Customer(
                     jsonObject.getString("name"),
                     SimpleDateFormat("yyyy-MM-dd").parse(jsonObject.getString("joinDate")),
-                    service.getTrainerPerId(jsonObject["myTrainer"]?.asJsonObject()?.getInt("id")?.toLong() ?: throw Exception("Wrong id")),
+                    service.getTrainerPerId(jsonObject["myTrainer"]?.asJsonObject()?.getInt("id")?.toLong()
+                            ?: throw Exception("Wrong id")),
                     jsonObject.getBoolean("cashCostumer"),
                     SimpleDateFormat("yyyy-MM-dd").parse(jsonObject.getString("memberTill")),
-                    jsonObject.getInt("pictureId").toLong()
-                    )
+                    jsonObject.getInt("pictureId")
+            )
             println(newCustomer)
             service.addCustomer(newCustomer)
             return Response.accepted().build()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             print("============================")
             print(e.message)
             return Response.ok(e.message).build()
@@ -55,14 +56,15 @@ class CustomerResource {
             val newCustomer = Customer(
                     jsonObject.getString("name"),
                     SimpleDateFormat("yyyy-MM-dd").parse(jsonObject.getString("joinDate")),
-                    service.getTrainerPerId(jsonObject["myTrainer"]?.asJsonObject()?.getInt("id")?.toLong() ?: throw Exception("Wrong id")),
+                    service.getTrainerPerId(jsonObject["myTrainer"]?.asJsonObject()?.getInt("id")?.toLong()
+                            ?: throw Exception("Wrong id")),
                     jsonObject.getBoolean("cashCostumer"),
                     SimpleDateFormat("yyyy-MM-dd").parse(jsonObject.getString("memberTill")),
-                    jsonObject.getInt("pictureId").toLong()
+                    jsonObject.getInt("pictureId")
             )
             service.updateCustomer(newCustomer, id)
             return Response.accepted().build()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return Response.ok(e.message).build()
         }
     }
@@ -74,7 +76,7 @@ class CustomerResource {
         try {
             service.deleteCustomer(id)
             return Response.ok().build()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return Response.serverError().build()
         }
     }

@@ -1,34 +1,37 @@
+import 'package:fitervari/logic/helper/SessionInfo.dart';
+import 'package:fitervari/views/filler_page/filler_page.dart';
 import 'package:flutter/material.dart';
 
 class StartWorkoutButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => Navigator.of(context).pushNamed(FillerPage.routeName),
       child: Card(
+        margin: EdgeInsets.all(10),
         color: Theme.of(context).primaryColor,
         elevation: 4,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: Container(
           margin: EdgeInsets.all(20),
-          height: 100,
+          height: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.15,
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Text(
                 'Start',
-                style: TextStyle(fontSize: 50, color: Colors.white),
+                style: TextStyle(fontSize: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.09, color: Colors.white, fontWeight: FontWeight.w100),
               ),
               Container(
-                margin: EdgeInsets.all(10),
+                margin: EdgeInsets.all(5),
                 color: Colors.white,
                 width: double.infinity,
                 height: 1,
               ),
               Text(
                 'TestWorkout',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                style: TextStyle(fontSize: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.019, color: Colors.white,),
               ),
             ],
           ),

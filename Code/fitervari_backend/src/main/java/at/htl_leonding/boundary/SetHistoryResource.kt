@@ -21,7 +21,7 @@ class SetHistoryResource {
 
     @GET
     @Path("/setHistory/{id}")
-    fun getSetHistoryById(@PathParam("id")id: Long): Response {
+    fun getSetHistoryById(@PathParam("id") id: Long): Response {
         return Response.ok(service.getById(id)).build()
     }
 
@@ -31,8 +31,8 @@ class SetHistoryResource {
     fun postSetHistory(jsonObject: JsonObject): Response {
         try {
             val newSetHistory = SetHistory(
-                service.getExerciseHistoryById(
-                        jsonObject.get("exerciseHistory")?.asJsonObject()?.getInt("id")?.toLong()),
+                    service.getExerciseHistoryById(
+                            jsonObject.get("exerciseHistory")?.asJsonObject()?.getInt("id")?.toLong()),
                     jsonObject.getJsonNumber("time").doubleValue(),
                     jsonObject.getJsonNumber("distance").doubleValue(),
                     jsonObject.getJsonNumber("weight").doubleValue(),
@@ -41,7 +41,7 @@ class SetHistoryResource {
             )
             newSetHistory.persist()
             return Response.accepted().build()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return Response.ok(e.message).build()
         }
     }
@@ -62,7 +62,7 @@ class SetHistoryResource {
             )
             service.updateSetHistory(newSetHistory, id)
             return Response.accepted().build()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return Response.serverError().build()
         }
     }
@@ -74,7 +74,7 @@ class SetHistoryResource {
         try {
             service.deleteSetHistory(id)
             return Response.ok().build()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return Response.serverError().build()
         }
     }

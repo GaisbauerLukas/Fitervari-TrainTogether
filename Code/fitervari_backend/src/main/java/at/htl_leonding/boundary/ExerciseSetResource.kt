@@ -21,7 +21,7 @@ class ExerciseSetResource {
 
     @GET
     @Path("/exerciseSet/{id}")
-    fun getExerciseById(@PathParam("id")id: Long): Response {
+    fun getExerciseById(@PathParam("id") id: Long): Response {
         return Response.ok(service.getById(id)).build()
     }
 
@@ -31,7 +31,7 @@ class ExerciseSetResource {
     fun postWorkout(jsonObject: JsonObject): Response {
         try {
             val newExerciseSet = ExerciseSet(
-                jsonObject.getJsonNumber("repeditions").intValue(),
+                    jsonObject.getJsonNumber("repeditions").intValue(),
                     jsonObject.getJsonNumber("distance").doubleValue(),
                     jsonObject.getJsonNumber("weight").doubleValue(),
                     jsonObject.getJsonNumber("time").doubleValue(),
@@ -41,7 +41,7 @@ class ExerciseSetResource {
             )
             newExerciseSet.persist()
             return Response.accepted().build()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return Response.ok(e.message).build()
         }
     }
@@ -62,7 +62,7 @@ class ExerciseSetResource {
             )
             service.updateExerciseSet(newExerciseSet, id)
             return Response.accepted().build()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return Response.serverError().build()
         }
     }
@@ -74,7 +74,7 @@ class ExerciseSetResource {
         try {
             service.deleteExerciseSet(id)
             return Response.ok().build()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return Response.serverError().build()
         }
     }

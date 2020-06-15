@@ -28,23 +28,23 @@ class CustomerService {
         return repository.findById(id)
     }
 
-    fun addCustomer(newCustomer: Customer){
+    fun addCustomer(newCustomer: Customer) {
         this.repository.persist(newCustomer)
     }
 
-    fun updateCustomer(customer: Customer, id: Long){
+    fun updateCustomer(customer: Customer, id: Long) {
         val forUpdate = repository.findById(id)
         val personForUpdate = personRepository.findById(id)
         personForUpdate.copyValues(customer)
         forUpdate.copyValues(customer)
     }
 
-    fun deleteCustomer(id: Long){
+    fun deleteCustomer(id: Long) {
         val forDeletion = repository.findById(id)
         repository.delete(forDeletion)
     }
 
-    fun getTrainerPerId(id: Long): Trainer{
+    fun getTrainerPerId(id: Long): Trainer {
         return trainerRepository.findById(id)
     }
 }

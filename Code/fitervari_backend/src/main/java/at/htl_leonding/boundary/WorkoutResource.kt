@@ -11,6 +11,7 @@ import io.vertx.ext.web.codec.BodyCodec
 import java.time.LocalDate
 import java.time.LocalDateTime
 import javax.inject.Inject
+import javax.json.JsonArray
 import javax.json.JsonObject
 import javax.transaction.Transactional
 import javax.ws.rs.*
@@ -35,12 +36,29 @@ class WorkoutResource {
     @Transactional
     fun postWorkout(jsonObject: JsonObject): Response {
         try {
-            val setOfExercises = getSetFromJsonArray(jsonObject)
+            val exercises: MutableList<Exercise> = mutableListOf()
+            val jsonArray: JsonArray? = jsonObject["myExercises"]?.asJsonArray()
+
+            for (i in 0 until (jsonArray?.size ?: 0)) {
+                val item = jsonArray?.get(i)!!.asJsonObject()
+                val newExercise = Exercise(
+                        item.getString("name"),
+                        LocalDateTime.parse(item.getString("creationDate")),
+                        item.getString("exerciseType"),
+                        item.getInt("standardSetNr"),
+                        item.getBoolean("officialFlag"),
+                        service.getPersonById(item.get("creator")?.asJsonObject()?.getInt("id")?.toLong())
+                )
+                newExercise.persistAndFlush()
+                exercises.add(newExercise)
+                // Your code here
+            }
+
             val newWorkout = Workout(jsonObject.getString("name"),
                     LocalDateTime.parse(jsonObject.getString("creation_Date")),
                     service.getPersonById(jsonObject["creator"]?.asJsonObject()?.getInt("id")?.toLong()),
-                    jsonObject.getBoolean("official_Flag"),
-                    setOfExercises)
+                    jsonObject.getBoolean("official_Flag"))
+            newWorkout.exercises = exercises
             newWorkout.persist()
             return Response.accepted().build()
         }catch (e: Exception){
@@ -68,12 +86,29 @@ class WorkoutResource {
     @Transactional
     fun updateWorkout(@PathParam("id") id: Long, jsonObject: JsonObject): Response {
         try {
-            val setOfExercises = getSetFromJsonArray(jsonObject)
+            val exercises: MutableList<Exercise> = mutableListOf()
+            val jsonArray: JsonArray? = jsonObject["myExercises"]?.asJsonArray()
+
+            for (i in 0 until (jsonArray?.size ?: 0)) {
+                val item = jsonArray?.get(i)!!.asJsonObject()
+                val newExercise = Exercise(
+                        item.getString("name"),
+                        LocalDateTime.parse(item.getString("creationDate")),
+                        item.getString("exerciseType"),
+                        item.getInt("standardSetNr"),
+                        item.getBoolean("officialFlag"),
+                        service.getPersonById(item.get("creator")?.asJsonObject()?.getInt("id")?.toLong())
+                )
+                newExercise.persistAndFlush()
+                exercises.add(newExercise)
+                // Your code here
+            }
+
             val newWorkout = Workout(jsonObject.getString("name"),
                     LocalDateTime.parse(jsonObject.getString("creation_Date")),
                     service.getPersonById(jsonObject["creator"]?.asJsonObject()?.getInt("id")?.toLong()),
-                    jsonObject.getBoolean("official_Flag"),
-                    setOfExercises)
+                    jsonObject.getBoolean("official_Flag"))
+            newWorkout.exercises = exercises
             service.updateWorkout(newWorkout, id)
             return Response.accepted().build()
         }catch (e: Exception){

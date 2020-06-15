@@ -8,7 +8,7 @@ import javax.enterprise.context.ApplicationScoped
 import javax.inject.Inject
 
 @ApplicationScoped
-class WorkoutService{
+class WorkoutService {
     @Inject
     lateinit var repository: WorkoutRepository
 
@@ -23,17 +23,17 @@ class WorkoutService{
         return repository.findById(id)
     }
 
-    fun updateWorkout(workout: Workout, id: Long){
+    fun updateWorkout(workout: Workout, id: Long) {
         val forUpdate = repository.findById(id)
         forUpdate.copyValues(workout)
     }
 
-    fun deleteWorkout(id: Long){
+    fun deleteWorkout(id: Long) {
         val forDeletion = repository.findById(id)
         repository.delete(forDeletion)
     }
 
-    fun getPersonById(id: Long?): Person{
+    fun getPersonById(id: Long?): Person {
         return personRepository.findById(id)
     }
 }

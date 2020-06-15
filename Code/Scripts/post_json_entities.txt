@@ -1,0 +1,269 @@
+Post Set History
+
+http://localhost:8080/api/setHistory
+
+{
+  "id": 1,
+  "exerciseHistory": {
+    "id": 59,
+    "workoutHistory": {
+      "id": 1,
+      "customer": {
+        "id": 49,
+        "_Trainer": false,
+        "name": "test",
+        "cashCostumer": false,
+        "joinDate": "2020-05-18T22:00:00Z[UTC]",
+        "memberTill": "2020-05-18T22:00:00Z[UTC]",
+        "myTrainer": {
+          "id": 44,
+          "_Trainer": true,
+          "name": "test",
+          "pictureId": 3,
+          "trainerSince": "2020-04-27"
+        },
+        "pictureId": 4
+      },
+      "date": "2020-05-18T18:49:10",
+      "workout": {
+        "id": 40,
+        "creation_Date": "2020-05-05T08:48:13",
+        "creator": {
+          "id": 1,
+          "_Trainer": true,
+          "name": "test",
+          "cashCostumer": true,
+          "joinDate": "2020-05-19T22:00:00Z[UTC]",
+          "memberTill": "2020-05-19T22:00:00Z[UTC]",
+          "myTrainer": {
+            "id": 44,
+            "_Trainer": true,
+            "name": "test",
+            "pictureId": 3,
+            "trainerSince": "2020-04-27"
+          },
+          "pictureId": 1
+        },
+        "name": "PushWorkout",
+        "official_Flag": false
+      }
+    }
+  },
+  "repetitions": 12,
+  "setNumber": 1,
+  "weight": 22.0,
+	"time": -1.0,
+	"distance": -1.0
+}
+
+_____________________________________________
+
+#exerciseHistory
+
+http://localhost:8080/api/exerciseHistory
+
+{
+  "id": 1,
+  "workoutHistory": {
+    "id": 1,
+    "customer": {
+      "id": 49,
+      "_Trainer": false,
+      "name": "test",
+      "cashCostumer": false,
+      "joinDate": "2020-05-18T22:00:00Z[UTC]",
+      "memberTill": "2020-05-18T22:00:00Z[UTC]",
+      "myTrainer": {
+        "id": 44,
+        "_Trainer": true,
+        "name": "test",
+        "pictureId": 3,
+        "trainerSince": "2020-04-27"
+      },
+      "pictureId": 4
+    },
+    "date": "2020-05-18T18:49:10",
+    "workout": {
+      "id": 40,
+      "creation_Date": "2020-05-05T08:48:13",
+      "creator": {
+        "id": 1,
+        "_Trainer": true,
+        "name": "test",
+        "cashCostumer": true,
+        "joinDate": "2020-05-19T22:00:00Z[UTC]",
+        "memberTill": "2020-05-19T22:00:00Z[UTC]",
+        "myTrainer": {
+          "id": 44,
+          "_Trainer": true,
+          "name": "test",
+          "pictureId": 3,
+          "trainerSince": "2020-04-27"
+        },
+        "pictureId": 1
+      },
+      "name": "PushWorkout",
+      "official_Flag": false
+    }
+  }
+}
+
+_____________________________________________
+
+#workoutHistory
+
+http://localhost:8080/api/workoutHistory
+
+{
+  "id": 1,
+  "customer": {
+    "id": 49,
+    "_Trainer": false,
+    "name": "test",
+    "cashCostumer": false,
+    "joinDate": "2020-05-18T22:00:00Z[UTC]",
+    "memberTill": "2020-05-18T22:00:00Z[UTC]",
+    "myTrainer": {
+      "id": 44,
+      "_Trainer": true,
+      "name": "test",
+      "pictureId": 3,
+      "trainerSince": "2020-04-27"
+    },
+    "pictureId": 4
+  },
+  "date": "2020-05-10T18:49:10",
+  "workout": {
+    "id": 40,
+    "creation_Date": "2020-05-05T08:48:13",
+    "creator": {
+      "id": 1,
+      "_Trainer": true,
+      "name": "test",
+      "cashCostumer": true,
+      "joinDate": "2020-05-19T22:00:00Z[UTC]",
+      "memberTill": "2020-05-19T22:00:00Z[UTC]",
+      "myTrainer": {
+        "id": 44,
+        "_Trainer": true,
+        "name": "test",
+        "pictureId": 3,
+        "trainerSince": "2020-04-27"
+      },
+      "pictureId": 1
+    },
+    "name": "PushWorkout",
+    "official_Flag": false
+  }
+}
+
+_____________________________________________
+
+#exercise
+
+http://localhost:8080/api/exercise
+
+{
+  "id": 1,
+  "creationDate": "2020-05-18T08:38:46",
+  "creator": {
+    "id": 2,
+    "_Trainer": false,
+    "name": "flotschi",
+    "cashCostumer": true,
+    "joinDate": "2020-05-18T22:00:00Z[UTC]",
+    "memberTill": "2020-05-18T22:00:00Z[UTC]",
+    "myTrainer": {
+      "id": 44,
+      "_Trainer": true,
+      "name": "test",
+      "pictureId": 3,
+      "trainerSince": "2020-04-27"
+    },
+    "pictureId": 4
+  },
+  "exerciseType": "warm_up",
+  "name": "spass",
+  "officialFlag": true,
+  "standardSetNr": 3
+}
+
+_____________________________________________
+
+#customer
+
+http://localhost:8080/api/customer
+
+{
+  "id": 1,
+  "_Trainer": true,
+  "name": "flotschi",
+  "cashCostumer": true,
+  "joinDate": "2020-05-19",
+  "memberTill": "2020-05-19",
+  "myTrainer": {
+    "id": 2,
+    "_Trainer": true,
+    "name": "test",
+    "pictureId": 3,
+    "trainerSince": "2020-04-27"
+  },
+  "pictureId": 1
+}
+
+_____________________________________________
+
+#workout
+
+http://localhost:8080/api/workout
+
+{
+  "id": 1,
+  "creation_Date": "2020-05-05T08:48:13",
+  "creator": {
+    "id": 2,
+    "name": "test",
+    "trainer": true
+  },
+  "name": "vbcn nbv nbvm c",
+  "official_Flag": false,
+	"myExercises": [
+		{
+			"id": 7,
+			"creationDate": "2020-05-18T08:38:46",
+			"creator": {
+				"id": 2,
+				"_Trainer": false,
+				"name": "flotschi",
+				"cashCostumer": true,
+				"joinDate": "2020-05-18T22:00:00Z[UTC]",
+				"memberTill": "2020-05-18T22:00:00Z[UTC]",
+				"myTrainer": {
+					"id": 2,
+					"_Trainer": true,
+					"name": "test",
+					"pictureId": 3,
+					"trainerSince": "2020-04-27"
+				},
+				"pictureId": 4
+			},
+			"exerciseType": "warm_up",
+			"name": "testexercise",
+			"officialFlag": true,
+			"standardSetNr": 3
+		}
+	]
+}
+
+_____________________________________________
+
+#trainer
+
+http://localhost:8080/api/trainer
+
+{
+	"pictureId":3,
+	"trainerSince":"2020-04-27",
+	"is_trainer": true,
+	"name": "test"
+}

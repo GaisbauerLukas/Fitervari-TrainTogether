@@ -18,14 +18,14 @@ data class ExerciseSet(
         @ManyToOne
         @JoinColumn(name = "exercise_id")
         var exercise: Exercise
-) : PanacheEntity(){
-        fun copyValues(other: ExerciseSet){
-                this.repeditions = other.repeditions
-                this.distance = other.distance
-                this.weight = other.weight
-                this.time = other.time
-                this.setNumber = other.setNumber
-                this.type = other.type
-                this.exercise = other.exercise
-        }
+) : PanacheEntity() {
+    fun copyValues(other: ExerciseSet) {
+        this.repeditions = other.repeditions
+        this.distance = other.distance
+        this.weight = other.weight
+        this.time = other.time
+        this.setNumber = other.setNumber
+        this.type = other.type
+        this.exercise = other.exercise
+    }
 }

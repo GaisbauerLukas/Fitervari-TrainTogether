@@ -1,3 +1,5 @@
+import 'package:fitervari/views/filler_page/filler_page.dart';
+import 'package:fitervari/views/news_letter_details_page/NewsLetterDetailsPage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -5,7 +7,6 @@ import './views/tabs_screen/tabs_screen.dart';
 import './logic/providers/news_letters_provider.dart';
 
 void main() => runApp(MyApp());
-
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -33,11 +34,18 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Fitervari',
         theme: ThemeData(
+          fontFamily: 'RobotoCondensed',
+          textTheme: TextTheme(
+            bodyText2: TextStyle(fontWeight: FontWeight.w300),
+          ),
           primarySwatch: MaterialColor(mainColorCode, mainColor),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: TabsScreen(),
-        routes: {},
+        routes: {
+          FillerPage.routeName: (ctx) => FillerPage(),
+          NewsLetterDetailsPage.routeName: (ctx) => NewsLetterDetailsPage(),
+        },
       ),
     );
   }

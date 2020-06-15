@@ -13,14 +13,14 @@ import javax.ws.rs.core.Response
 @Path("/api")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-class ExerciseResource{
+class ExerciseResource {
 
     @Inject
     lateinit var service: ExerciseService
 
     @GET
     @Path("/exercise/{id}")
-    fun getExerciseById(@PathParam("id")id: Long): Response{
+    fun getExerciseById(@PathParam("id") id: Long): Response {
         return Response.ok(service.getById(id)).build()
     }
 
@@ -39,7 +39,7 @@ class ExerciseResource{
             )
             newExercise.persist()
             return Response.accepted().build()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return Response.ok(e.message).build()
         }
     }
@@ -59,7 +59,7 @@ class ExerciseResource{
             )
             service.updateExercise(newExercise, id)
             return Response.accepted().build()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return Response.serverError().build()
         }
     }
@@ -71,7 +71,7 @@ class ExerciseResource{
         try {
             service.deleteExercise(id)
             return Response.ok().build()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return Response.serverError().build()
         }
     }
