@@ -15,23 +15,23 @@ services:
     networks: 
         - fitavari_network
   
-#  reverseproxy:
-#    build:
-#        context: ./reverseproxy
-#        dockerfile: Dockerfile
-#    ports:
-#        - 80:80
-#    links:
-#        - quarkus
-#    networks: 
-#        - fitavari_network
+  reverseproxy:
+    build:
+        context: ./reverseproxy
+        dockerfile: Dockerfile
+    ports:
+        - 80:80
+    links:
+        - quarkus
+    networks: 
+        - fitavari_network
 
   quarkus:
     build:
         context: ../fitervari_backend
         dockerfile: src/main/docker/Dockerfile.native
     ports:
-        - 80:8080
+        - 8080:8080
     networks: 
         - fitavari_network
 volumes:
