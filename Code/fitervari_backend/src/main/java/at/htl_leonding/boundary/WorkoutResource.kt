@@ -1,14 +1,8 @@
 package at.htl_leonding.boundary
 
 import at.htl_leonding.model.Exercise
-import at.htl_leonding.model.Person
-import at.htl_leonding.model.Trainer
 import at.htl_leonding.model.Workout
-import at.htl_leonding.repository.WorkoutRepository
-import at.htl_leonding.service.TrainerService
 import at.htl_leonding.service.WorkoutService
-import io.vertx.ext.web.codec.BodyCodec
-import java.time.LocalDate
 import java.time.LocalDateTime
 import javax.inject.Inject
 import javax.json.JsonArray
@@ -28,7 +22,8 @@ class WorkoutResource {
     @GET
     @Path("/workout/{id}")
     fun getWorkoutById(@PathParam("id") id: Long): Response {
-        return Response.ok(service.getById(id)).build()
+        val tmp = service.getById(id)
+        return Response.ok(tmp).build()
     }
 
     @POST
@@ -47,7 +42,7 @@ class WorkoutResource {
                         item.getString("exerciseType"),
                         item.getInt("standardSetNr"),
                         item.getBoolean("officialFlag"),
-                        service.getPersonById(item.get("creator")?.asJsonObject()?.getInt("id")?.toLong())
+                        service.getPersonById(item["creator"]?.asJsonObject()?.getInt("id")?.toLong())
                 )
                 newExercise.persistAndFlush()
                 exercises.add(newExercise)
@@ -61,24 +56,24 @@ class WorkoutResource {
             newWorkout.exercises = exercises
             newWorkout.persist()
             return Response.accepted().build()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return Response.ok(e.message).build()
         }
     }
 
-    private fun getSetFromJsonArray(jsonObject: JsonObject): Set<Exercise>{
+    private fun getSetFromJsonArray(jsonObject: JsonObject): Set<Exercise> {
         val tmp = setOf<Exercise>()
-        for(i in 0 until jsonObject.get("myExercises")?.asJsonArray()?.size!!){
-            val item = jsonObject.get("myExercises")?.asJsonArray()?.get(i)?.asJsonObject()!!
+        for (i in 0 until jsonObject["myExercises"]?.asJsonArray()?.size!!) {
+            val item = jsonObject["myExercises"]?.asJsonArray()?.get(i)?.asJsonObject()!!
 
             tmp.plus(Exercise(item.getString("name"),
                     LocalDateTime.parse(item.getString("creationDate")),
                     item.getString("exerciseType"),
                     item.getInt("standardSetNr"),
                     item.getBoolean("officialFlag"),
-                    service.getPersonById(item.get("creator")?.asJsonObject()?.getInt("id")?.toLong())))
+                    service.getPersonById(item["creator"]?.asJsonObject()?.getInt("id")?.toLong())))
         }
-        return tmp;
+        return tmp
     }
 
     @PUT
@@ -97,7 +92,7 @@ class WorkoutResource {
                         item.getString("exerciseType"),
                         item.getInt("standardSetNr"),
                         item.getBoolean("officialFlag"),
-                        service.getPersonById(item.get("creator")?.asJsonObject()?.getInt("id")?.toLong())
+                        service.getPersonById(item["creator"]?.asJsonObject()?.getInt("id")?.toLong())
                 )
                 newExercise.persistAndFlush()
                 exercises.add(newExercise)
@@ -111,7 +106,7 @@ class WorkoutResource {
             newWorkout.exercises = exercises
             service.updateWorkout(newWorkout, id)
             return Response.accepted().build()
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return Response.serverError().build()
         }
     }
@@ -120,11 +115,11 @@ class WorkoutResource {
     @Path("/workout/{id}")
     @Transactional
     fun deleteTrainer(@PathParam("id") id: Long): Response {
-        try {
+        return try {
             service.deleteWorkout(id)
-            return Response.ok().build()
-        }catch (e: Exception){
-            return Response.serverError().build()
+            Response.ok().build()
+        } catch (e: Exception) {
+            Response.serverError().build()
         }
     }
 }

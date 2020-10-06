@@ -7,7 +7,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "Workout")
-data class Workout(
+class Workout(
         var name: String,
         var creation_Date: LocalDateTime,
         @ManyToOne
@@ -16,8 +16,8 @@ data class Workout(
         @ManyToMany
         @JoinTable(
                 name = "workout2exercise",
-                joinColumns = [JoinColumn("workout_id")],
-                inverseJoinColumns = [JoinColumn("exercise_id")]
+                joinColumns = [JoinColumn(name = "workout_id")],
+                inverseJoinColumns = [JoinColumn(name = "exercise_id")]
         )
         var exercises: MutableList<Exercise> = mutableListOf()
 ) : PanacheEntity() {

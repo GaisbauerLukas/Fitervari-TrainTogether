@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
-data class Exercise(
+class Exercise(
         var name: String,
         @Column(name = "creation_date")
         var creationDate: LocalDateTime,
@@ -16,9 +16,9 @@ data class Exercise(
         @Column(name = "official_flag")
         var officialFlag: Boolean,
         @ManyToOne
-        var creator: Person,
-        @ManyToMany(mappedBy = "exercises")
-        var workouts: MutableList<Workout> = mutableListOf()
+        var creator: Person
+        //  @ManyToMany(mappedBy = "exercises")
+        //  var workouts: MutableList<Workout> = mutableListOf()
 ) : PanacheEntity() {
     fun copyValues(other: Exercise) {
         this.name = other.name
