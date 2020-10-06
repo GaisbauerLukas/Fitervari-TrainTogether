@@ -8,7 +8,7 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "workout_history")
-data class WorkoutHistory(
+class WorkoutHistory(
         var date: LocalDateTime,
         @ManyToOne
         var workout: Workout,

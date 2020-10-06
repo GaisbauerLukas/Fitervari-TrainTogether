@@ -6,7 +6,7 @@ import kotlin.collections.Set
 
 @Entity
 @Table(name = "exercise_history")
-data class ExerciseHistory(
+class ExerciseHistory(
         @ManyToOne
         @JoinColumn(name = "workout_history_id")
         var workoutHistory: WorkoutHistory

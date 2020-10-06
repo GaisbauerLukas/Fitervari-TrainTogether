@@ -7,7 +7,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "set")
-data class ExerciseSet(
+class ExerciseSet(
         var repeditions: Int?,
         var distance: Double?,
         var weight: Double?,

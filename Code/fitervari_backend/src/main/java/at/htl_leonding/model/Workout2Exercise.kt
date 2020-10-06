@@ -7,7 +7,7 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "workout2exercise")
-data class Workout2Exercise(
+class Workout2Exercise(
         @ManyToOne
         var workout: Workout,
         @ManyToOne
