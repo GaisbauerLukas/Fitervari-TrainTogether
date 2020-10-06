@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class general_info extends StatelessWidget {
-  const general_info({
+class GeneralInfo extends StatelessWidget {
+  const GeneralInfo({
     Key key,
   }) : super(key: key);
 

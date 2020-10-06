@@ -2,8 +2,6 @@ import 'package:fitervari/contracts/news_letter.dart';
 import 'package:fitervari/views/news_letter_details_page/NewsLetterDetailsPage.dart';
 import 'package:flutter/material.dart';
 
-import '../../filler_page/filler_page.dart';
-
 class InfoItem extends StatelessWidget {
   final NewsLetter _myNewsLetter;
 

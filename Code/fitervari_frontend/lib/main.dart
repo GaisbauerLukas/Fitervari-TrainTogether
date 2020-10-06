@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
 
   static const mainColorCode = 0xFF170D3D;
 
-  Map<int, Color> mainColor = {
+  final Map<int, Color> mainColor = {
     50: Color.fromRGBO(23, 13, 61, .1),
     100: Color.fromRGBO(23, 13, 61, .2),
     200: Color.fromRGBO(23, 13, 61, .3),

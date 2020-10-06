@@ -19,12 +19,6 @@ class ProfilePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ProfileImage(currentCustomer.imageUrl),
-            IconButton(
-              icon: Icon(Icons.build),
-              tooltip: 'Customize Profile Picture',
-              onPressed: () {
-              },
-            ),
             Container(
               margin: EdgeInsets.only(top: 5, bottom: 5),
               child: Text(
@@ -35,6 +29,7 @@ class ProfilePage extends StatelessWidget {
                         0.04),
               ),
             ),
+            Divider(),
             ProfileInformationBox(currentCustomer)
           ],
         ),

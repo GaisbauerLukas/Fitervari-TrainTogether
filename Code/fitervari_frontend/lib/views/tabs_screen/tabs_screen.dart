@@ -24,7 +24,7 @@ class _TabsScreenState extends State<TabsScreen> {
         joinDate: DateTime.utc(2019,5,12),
         memberTill: DateTime.utc(2021, 5,12),
         name: 'Florian Müller',
-        trainer_id: 2
+        trainerId: 2
       )
     ),
   ];

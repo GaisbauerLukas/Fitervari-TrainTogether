@@ -8,7 +8,7 @@ class Customer extends Identifiable{
   final DateTime memberTill;
   final bool cashCustomer;
   final String imageUrl;
-  final int trainer_id;
+  final int trainerId;
 
   Customer({
     @required id,
@@ -17,7 +17,7 @@ class Customer extends Identifiable{
     @required this.memberTill,
     @required this.cashCustomer,
     @required this.imageUrl,
-    @required this.trainer_id
+    @required this.trainerId
   }) : super(id);
 
 }

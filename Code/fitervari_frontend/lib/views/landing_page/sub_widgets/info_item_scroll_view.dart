@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'info_item.dart';
-import '../../../contracts/news_letter.dart';
 
 class InfoItemScrollView extends StatelessWidget {
   @override
