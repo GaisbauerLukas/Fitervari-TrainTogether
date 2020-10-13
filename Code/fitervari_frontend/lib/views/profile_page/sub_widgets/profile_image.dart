@@ -46,7 +46,8 @@ class ProfileImage extends StatelessWidget {
             child: IconButton(
               icon: Icon(Icons.settings),
               tooltip: 'Customize Profile Picture',
-              onPressed: () => Navigator.of(context).pushNamed(FillerPage.routeName),
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(FillerPage.routeName),
             ),
           )
         ],
