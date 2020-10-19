@@ -1,24 +1,24 @@
-\contentsline {section}{\numberline {1}Ist-Zustand}{2}{section.1}% 
-\contentsline {section}{\numberline {2}Zielsetzung}{3}{section.2}% 
-\contentsline {subsection}{\numberline {2.1}Ziele}{3}{subsection.2.1}% 
-\contentsline {subsection}{\numberline {2.2}Erweiterungen}{3}{subsection.2.2}% 
-\contentsline {subsection}{\numberline {2.3}Nicht-Ziele}{3}{subsection.2.3}% 
-\contentsline {subsection}{\numberline {2.4}Alleinstellungsmerkmal}{3}{subsection.2.4}% 
-\contentsline {section}{\numberline {3}Anforderungen}{4}{section.3}% 
-\contentsline {subsubsection}{\numberline {3.0.1}App}{4}{subsubsection.3.0.1}% 
-\contentsline {paragraph}{\numberline {3.0.1.1}Kommunikationsstruktur}{4}{paragraph.3.0.1.1}% 
-\contentsline {paragraph}{\numberline {3.0.1.2}Sensor}{5}{paragraph.3.0.1.2}% 
-\contentsline {paragraph}{\numberline {3.0.1.3}Graphical userinterface}{5}{paragraph.3.0.1.3}% 
-\contentsline {subsubsection}{\numberline {3.0.2}Server}{5}{subsubsection.3.0.2}% 
-\contentsline {paragraph}{\numberline {3.0.2.1}Datenmodel der Fitervari Datenbank}{5}{paragraph.3.0.2.1}% 
-\contentsline {subsubsection}{\numberline {3.0.3}Usecases}{6}{subsubsection.3.0.3}% 
-\contentsline {paragraph}{\numberline {3.0.3.1}App einrichten}{7}{paragraph.3.0.3.1}% 
-\contentsline {subsubsection}{\numberline {3.0.4}Aktivitätsdiagramme}{8}{subsubsection.3.0.4}% 
-\contentsline {paragraph}{\numberline {3.0.4.1}Hardware über App verbinden}{8}{paragraph.3.0.4.1}% 
-\contentsline {paragraph}{\numberline {3.0.4.2}App instalieren}{8}{paragraph.3.0.4.2}% 
-\contentsline {section}{\numberline {4}Entwicklung}{9}{section.4}% 
-\contentsline {section}{\numberline {5}Mengengerüst}{9}{section.5}% 
-\contentsline {section}{\numberline {6}Angebot}{10}{section.6}% 
-\contentsline {section}{\numberline {7}Admistratives}{11}{section.7}% 
-\contentsline {subsection}{\numberline {7.1}Lizenz}{11}{subsection.7.1}% 
-\contentsline {subsection}{\numberline {7.2}Budgetrahmen}{11}{subsection.7.2}% 
+\contentsline {section}{\numberline {1}Ist-Zustand}{2}{section.1}%
+\contentsline {section}{\numberline {2}Zielsetzung}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Ziele}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Erweiterungen}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Nicht-Ziele}{3}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Alleinstellungsmerkmal}{3}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Anforderungen}{4}{section.3}%
+\contentsline {subsubsection}{\numberline {3.0.1}App}{4}{subsubsection.3.0.1}%
+\contentsline {paragraph}{\numberline {3.0.1.1}Kommunikationsstruktur}{4}{paragraph.3.0.1.1}%
+\contentsline {paragraph}{\numberline {3.0.1.2}Sensor}{5}{paragraph.3.0.1.2}%
+\contentsline {paragraph}{\numberline {3.0.1.3}Graphical userinterface}{5}{paragraph.3.0.1.3}%
+\contentsline {subsubsection}{\numberline {3.0.2}Server}{5}{subsubsection.3.0.2}%
+\contentsline {paragraph}{\numberline {3.0.2.1}Datenmodel der Fitervari Datenbank}{5}{paragraph.3.0.2.1}%
+\contentsline {subsubsection}{\numberline {3.0.3}Usecases}{6}{subsubsection.3.0.3}%
+\contentsline {paragraph}{\numberline {3.0.3.1}App einrichten}{7}{paragraph.3.0.3.1}%
+\contentsline {subsubsection}{\numberline {3.0.4}Aktivitätsdiagramme}{8}{subsubsection.3.0.4}%
+\contentsline {paragraph}{\numberline {3.0.4.1}Hardware über App verbinden}{8}{paragraph.3.0.4.1}%
+\contentsline {paragraph}{\numberline {3.0.4.2}App instalieren}{8}{paragraph.3.0.4.2}%
+\contentsline {section}{\numberline {4}Entwicklung}{9}{section.4}%
+\contentsline {section}{\numberline {5}Mengengerüst}{9}{section.5}%
+\contentsline {section}{\numberline {6}Angebot}{10}{section.6}%
+\contentsline {section}{\numberline {7}Admistratives}{11}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Lizenz}{11}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Budgetrahmen}{11}{subsection.7.2}%
