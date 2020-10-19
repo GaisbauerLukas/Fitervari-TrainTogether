@@ -1,6 +1,6 @@
 import 'package:fitervari/contracts/customer.dart';
 import 'package:fitervari/logic/helper/SessionInfo.dart';
-import 'package:fitervari/widgets/main_appbar.dart';
+import 'package:fitervari/views/filler_page/filler_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/main_drawer.dart';
@@ -34,6 +34,7 @@ class _TabsScreenState extends State<TabsScreen> {
   ];
 
   List<AppBar> _appBars = [];
+  AppBar _mainAppBar;
 
   int _selectedPageIndex = 1;
 
@@ -45,9 +46,17 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    this._mainAppBar = AppBar(
+      leading: IconButton(
+        icon: Icon(Icons.menu, color: Colors.black),
+        onPressed: () => _scaffoldKey.currentState.openDrawer(),
+        color: Colors.black,
+      ),
+      backgroundColor: Colors.white,
+    );
     this._appBars = [
-      MainAppbar(_scaffoldKey),
-      MainAppbar(_scaffoldKey),
+      this._mainAppBar,
+      this._mainAppBar,
       AppBar(
 
         leading: IconButton(
@@ -57,7 +66,7 @@ class _TabsScreenState extends State<TabsScreen> {
         backgroundColor: Colors.white,
         actions: <Widget>[
           IconButton(
-            onPressed: () => _scaffoldKey.currentState.openDrawer(),
+            onPressed: () => Navigator.of(context).pushNamed(FillerPage.routeName),
             icon: Icon(Icons.more_vert),
             color: Colors.black,
           )
@@ -96,7 +105,8 @@ class _TabsScreenState extends State<TabsScreen> {
       onTap: _selectPage,
     );
 
-    SessionInfo().actionBarHeight = _appBars[_selectedPageIndex].preferredSize.height;
+    SessionInfo().actionBarHeight = _appBars[_selectedPageIndex]
+                                              .preferredSize.height;
 
     return Scaffold(
       key: _scaffoldKey,

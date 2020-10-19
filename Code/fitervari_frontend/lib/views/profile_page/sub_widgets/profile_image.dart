@@ -1,5 +1,4 @@
 import 'package:fitervari/logic/helper/SessionInfo.dart';
-import 'package:fitervari/views/filler_page/filler_page.dart';
 import 'package:flutter/material.dart';
 
 class ProfileImage extends StatelessWidget {
@@ -40,16 +39,6 @@ class ProfileImage extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-            bottom: 0,
-            right: 0,
-            child: IconButton(
-              icon: Icon(Icons.settings),
-              tooltip: 'Customize Profile Picture',
-              onPressed: () =>
-                  Navigator.of(context).pushNamed(FillerPage.routeName),
-            ),
-          )
         ],
       ),
     );
