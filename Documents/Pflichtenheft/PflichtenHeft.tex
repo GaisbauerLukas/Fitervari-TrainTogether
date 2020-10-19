@@ -96,20 +96,20 @@ Die Funktion sein Workout mit anderen zu teilen und diese zum Workout einzuladen
 \section{Anforderungen}
 
 \subsubsection{App}
+
 Um eine gute Userexperience sicher zu stellen, muss die App sehr simpel strukturiert und einfach zu verwenden sein. Ebenso wichtig ist es, dass die App auf allen Platformen (Android, IOS, Web) verfügbar ist um die Menge an potentiellen Nutzern nicht einzuschränken.
 
 \paragraph{Kommunikationsstruktur}
 \begin{center}
 
+\includegraphics[width=15cm]{Kommunikationsdiagramm.jpg}
+
 \end{center}
 \pagebreak
-\paragraph{Sensor}
-\begin{center}
 
-\end{center}
-
-\paragraph{Graphical userinterface}
+\paragraph{Graphische Benutzeroberfläche}
 \begin{flushleft}
+Unsere Clientapplikation ist in Flutter geschrieben, was die Entwicklung erheblich beschleunigt. Desweiteren legen wir den Fokus auf einfache Bedienbarkeit und elegante, minimalistische Obtik.
 
 \end{flushleft}
 
@@ -122,10 +122,14 @@ Der Server sollte 99\% der Zeit erreichbar sein um eine ununterbrochene Erfahrun
 \paragraph{Datenmodel der Fitervari Datenbank}
 \begin{center}
 
+\includegraphics[width=15cm, height=12.6cm]{datenmodel.png}
+
 \end{center}
 \pagebreak
 
 \subsubsection{Usecases}
+
+\includegraphics[width=15cm, height=18.5cm]{UseCase_Diagramm.jpg}
 
 \newpage
 
@@ -139,7 +143,7 @@ Der Server sollte 99\% der Zeit erreichbar sein um eine ununterbrochene Erfahrun
 App installieren & Die Fitervari: Train Together-App wird sowohl im Google Play Store, als auch im App Store verfügbar sein. Um diese dann im jeweiligen Store zu finden, einfach in den Suchbereich „Fitervari“ eingeben, die App auswählen und diese dann wie gewohnt auf das Mobiltelefon installieren.\\
 
 \hline
-Registration & Zur Identifikation wird sich der User registrieren müssen. Das ist notwendig, um den Controller richtig zuweisen zu können, damit persönliche Blumenheimnetzwerke nicht verloren gehen.\\
+Registration & Zur Identifikation wird sich der User registrieren müssen. Der User wird sich also beim Starten der App einloggen müssen, damit die jeweiligen Daten geladen werden können.\\
 
 
 \hline
@@ -151,19 +155,20 @@ Registration & Zur Identifikation wird sich der User registrieren müssen. Das i
 \paragraph{Hardware über App verbinden}
 \begin{center}
 
-\end{center}
-
-\paragraph{App instalieren}
-\begin{center}
+\includegraphics[width=11cm, height=17cm]{Aktivitaetsdiagramm.jpg}
 
 \end{center}
 
 \pagebreak
 \section{Entwicklung}
 
+\subsection{Frontend}
 
-\section{Mengengerüst}
+Die Frontend-Entwicklung ist mit dem Crossplatform-Framework Flutter, entwickelt von Google, umgesetzt.
 
+\subsection{Backend}
+
+Die Backend-Entwicklung ist in der Sprache Kotlin umgesetzt. Desweiteren wird hier das Quarkus-Framework verwendet.
 
 
 \pagebreak
