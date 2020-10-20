@@ -58,7 +58,6 @@ class _TabsScreenState extends State<TabsScreen> {
       this._mainAppBar,
       this._mainAppBar,
       AppBar(
-
         leading: IconButton(
           icon: Icon(Icons.menu, color: Colors.black),
           onPressed: () => _scaffoldKey.currentState.openDrawer(),

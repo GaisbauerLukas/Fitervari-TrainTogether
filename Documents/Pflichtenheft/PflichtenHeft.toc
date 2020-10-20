@@ -18,6 +18,6 @@
 \contentsline {subsection}{\numberline {4.1}Frontend}{9}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Backend}{9}{subsection.4.2}%
 \contentsline {section}{\numberline {5}Angebot}{10}{section.5}%
-\contentsline {section}{\numberline {6}Admistratives}{11}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Lizenz}{11}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Budgetrahmen}{11}{subsection.6.2}%
+\contentsline {subsection}{\numberline {5.1}Angebot für Studioketten}{10}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Angebot für Freelancer-Trainer}{10}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Angebot für Privatkunden}{10}{subsection.5.3}%
