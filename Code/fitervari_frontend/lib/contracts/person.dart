@@ -1,14 +1,14 @@
-class Person {
-  int id;
+import 'package:fitervari/contracts/identifiable.dart';
+
+class Person extends Identifiable {
   String name;
 
   // later implement here a photo
   int pictureId;
 
-  Person(this.id, this.name, this.pictureId) {}
+  Person(id, this.name, this.pictureId) : super(id);
 
-  Person.fromJson(dynamic json) {
-    id = json["id"];
+  Person.fromJson(dynamic json) : super(json["id"]) {
     name = json["name"];
     pictureId = json["pictureId"];
   }
