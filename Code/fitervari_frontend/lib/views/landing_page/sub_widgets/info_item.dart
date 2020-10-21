@@ -31,6 +31,18 @@ class InfoItem extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      const Color(0x88000000),
+                      const Color(0x88000000),
+                    ],
+                  )
+                ),
+              ),
               Positioned(
                 bottom: 5,
                 right: 10,

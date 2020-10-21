@@ -8,17 +8,20 @@ import 'info_item.dart';
 class InfoItemScrollView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final newsLetterData = Provider.of<NewsLettersProvider>(context);
-
-    return Container(
-      height: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.27,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (ctx, index) {
-          return InfoItem(newsLetterData.items[index]);
-        },
-        itemCount: newsLetterData.items.length,
-      ),
-    );
+    return Consumer<NewsLettersProvider>(
+        builder: (context, newsLetterProvider, child) {
+      return Container(
+        height: (MediaQuery.of(context).size.height -
+                SessionInfo().actionBarHeight) *
+            0.27,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (ctx, index) {
+            return InfoItem(newsLetterProvider.items[index]);
+          },
+          itemCount: newsLetterProvider.items.length,
+        ),
+      );
+    });
   }
 }
