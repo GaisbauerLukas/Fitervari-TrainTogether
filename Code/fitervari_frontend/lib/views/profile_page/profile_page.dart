@@ -18,7 +18,8 @@ class ProfilePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                ProfileImage(currentCustomer.imageUrl),
+                // later the image should be from the customer class
+                ProfileImage('https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1331&q=80'),
                 Container(
                   margin: EdgeInsets.only(top: 5, bottom: 5),
                   child: Text(

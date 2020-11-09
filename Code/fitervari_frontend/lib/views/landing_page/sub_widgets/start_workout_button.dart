@@ -1,12 +1,12 @@
 import 'package:fitervari/logic/helper/SessionInfo.dart';
-import 'package:fitervari/views/filler_page/filler_page.dart';
+import 'package:fitervari/views/workout_routine/workout_routine.dart';
 import 'package:flutter/material.dart';
 
 class StartWorkoutButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.of(context).pushNamed(FillerPage.routeName),
+      onTap: () => Navigator.of(context).pushNamed(WorkoutRoutine.routeName),
       child: Card(
         margin: EdgeInsets.all(10),
         color: Theme.of(context).primaryColor,

@@ -1,4 +1,4 @@
-import 'package:fitervari/contracts/news_letter.dart';
+import 'package:fitervari/contracts/transfer/news_letter.dart';
 import 'package:fitervari/logic/helper/SessionInfo.dart';
 import 'package:flutter/material.dart';
 

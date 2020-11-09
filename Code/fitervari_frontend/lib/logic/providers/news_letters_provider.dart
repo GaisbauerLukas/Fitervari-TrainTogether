@@ -1,9 +1,8 @@
 import 'dart:convert';
 
+import 'package:fitervari/contracts/transfer/news_letter.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
-import '../../contracts/news_letter.dart';
 
 class NewsLettersProvider extends ChangeNotifier {
   //when testing on a virtual device: 10.0.2.2

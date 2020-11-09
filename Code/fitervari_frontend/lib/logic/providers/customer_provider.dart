@@ -1,4 +1,4 @@
-import 'package:fitervari/contracts/customer.dart';
+import 'package:fitervari/contracts/transfer/customer.dart';
 import 'package:flutter/material.dart';
 
 class CustomerProvider extends ChangeNotifier {

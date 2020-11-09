@@ -1,12 +1,15 @@
-import 'package:fitervari/contracts/person.dart';
+import 'package:fitervari/contracts/transfer/person.dart';
+import 'package:flutter/cupertino.dart';
 
 class Trainer extends Person {
   String trainerSince;
 
-  Trainer({int id, String name, int pictureId, String trainerSince})
-      : super(id, name, pictureId) {
-    trainerSince = trainerSince;
-  }
+  Trainer(
+      {@required int id,
+      @required String name,
+      @required int pictureId,
+      @required this.trainerSince})
+      : super(id, name, pictureId);
 
   Trainer.fromJson(dynamic json) : super.fromJson(json) {
     trainerSince = json["trainerSince"];
