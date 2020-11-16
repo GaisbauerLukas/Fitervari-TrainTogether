@@ -7,11 +7,11 @@ import kotlin.collections.Set
 @Entity
 @Table(name = "exercise_history")
 class ExerciseHistory(
-        @ManyToOne
-        @JoinColumn(name = "workout_history_id")
-        var workoutHistory: WorkoutHistory
+        @OneToMany
+        @JoinColumn(name = "exercise_history_id")
+        var setHistories: MutableList<SetHistory> = mutableListOf()
 ) : PanacheEntity() {
     fun copyValues(other: ExerciseHistory) {
-        this.workoutHistory = other.workoutHistory
+        this.setHistories = other.setHistories
     }
 }

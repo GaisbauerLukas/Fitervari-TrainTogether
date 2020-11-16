@@ -5,9 +5,9 @@ class WorkoutProvider extends ChangeNotifier {
   Workout _nextWorkout;
   List<Workout> _loadedWorkouts;
 
-  Workout get nextWorkout {
-    return _nextWorkout;
-  }
+  Workout get nextWorkout =>_nextWorkout;
+  List<Workout> get loadedWorkouts => _loadedWorkouts;
+
 
   void setNextWorkout(Workout workout) {
     _nextWorkout = workout;

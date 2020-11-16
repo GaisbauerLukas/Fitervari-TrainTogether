@@ -29,7 +29,7 @@ class ExerciseHistoryResource {
     fun postWorkout(jsonObject: JsonObject): Response {
         try {
             val newExerciseHistory = ExerciseHistory(
-                    service.getWorkoutHistoryById(jsonObject.get("workoutHistory")?.asJsonObject()?.getInt("id")?.toLong())
+                  //  service.getWorkoutHistoryById(jsonObject.get("workoutHistory")?.asJsonObject()?.getInt("id")?.toLong())
             )
             newExerciseHistory.persist()
             return Response.accepted().build()

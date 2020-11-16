@@ -16,20 +16,16 @@ class Exercise {
   String _name;
   bool _officialFlag;
   int _standardSetNr;
+  List<Set> _sets;
 
   int get id => _id;
-
   DateTime get creationDate => _creationDate;
-
   Person get creator => _creator;
-
   String get exerciseType => _exerciseType;
-
   String get name => _name;
-
   bool get officialFlag => _officialFlag;
-
   int get standardSetNr => _standardSetNr;
+  List<Set> get sets => _sets;
 
   Exercise(
       {int id,
@@ -38,7 +34,8 @@ class Exercise {
       String exerciseType,
       String name,
       bool officialFlag,
-      int standardSetNr}) {
+      int standardSetNr,
+      List<Set> sets}) {
     _id = id;
     _creationDate = creationDate;
     _creator = creator;
@@ -46,6 +43,7 @@ class Exercise {
     _name = name;
     _officialFlag = officialFlag;
     _standardSetNr = standardSetNr;
+    _sets = sets;
   }
 
   Exercise.fromJson(dynamic json) {

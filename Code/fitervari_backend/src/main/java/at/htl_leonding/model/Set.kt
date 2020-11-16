@@ -11,7 +11,7 @@ class Set(
         var weight: Double,
         var time: Double,
         @Column(name = "set_number")
-        var setNumber: Double,
+        var setNumber: Int,
         var type: String
 ) : PanacheEntity() {
     fun copyValues(other: Set) {

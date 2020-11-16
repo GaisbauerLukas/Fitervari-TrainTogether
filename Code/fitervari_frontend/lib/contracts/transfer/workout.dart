@@ -1,6 +1,7 @@
 import 'package:fitervari/contracts/identifiable.dart';
 import 'package:fitervari/contracts/transfer/exercise.dart';
 import 'package:fitervari/contracts/transfer/person.dart';
+import 'package:fitervari/contracts/transfer/workout_history.dart';
 import 'package:flutter/cupertino.dart';
 
 class Workout extends Identifiable {
@@ -9,6 +10,7 @@ class Workout extends Identifiable {
   Person creator;
   bool officialFlag;
   List<Exercise> exercises;
+  List<WorkoutHistory> workoutHistories;
 
   //final List<Exercise> listOfExercises;
 
@@ -18,7 +20,8 @@ class Workout extends Identifiable {
       @required this.creationDate,
       @required this.creator,
       @required this.officialFlag,
-      @required this.exercises})
+      @required this.exercises,
+      @required this.workoutHistories})
       : super(id);
 
   Workout.fromJson(dynamic json) : super(json["id"]) {

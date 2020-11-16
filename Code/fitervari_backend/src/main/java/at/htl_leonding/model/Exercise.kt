@@ -30,5 +30,6 @@ class Exercise(
         this.standardSetNr = other.standardSetNr
         this.officialFlag = other.officialFlag
         this.creator = other.creator
+        this.sets = other.sets
     }
 }
