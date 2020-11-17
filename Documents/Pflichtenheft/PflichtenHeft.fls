@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 PWD /home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft
 INPUT /usr/share/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
 INPUT /home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.tex
 OUTPUT /home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.log
+=======
+PWD /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft
+INPUT /usr/share/texmf-dist/web2c/texmf.cnf
+INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.tex
+OUTPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.log
+>>>>>>> fitervari_frontend
 INPUT /usr/share/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texmf-dist/tex/latex/base/size12.clo
@@ -105,9 +113,15 @@ INPUT /usr/share/texmf-dist/tex/generic/german/german.sty
 INPUT /usr/share/texmf-dist/tex/generic/german/german.sty
 INPUT /usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 INPUT /usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
+<<<<<<< HEAD
 INPUT /home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.aux
 INPUT /home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.aux
 OUTPUT /home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.aux
+=======
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.aux
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.aux
+OUTPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.aux
+>>>>>>> fitervari_frontend
 INPUT /usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -116,6 +130,7 @@ INPUT /usr/share/texmf-dist/tex/latex/refcount/refcount.sty
 INPUT /usr/share/texmf-dist/tex/latex/refcount/refcount.sty
 INPUT /usr/share/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 INPUT /usr/share/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+<<<<<<< HEAD
 INPUT /home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.out
 INPUT /home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.out
 INPUT /home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.out
@@ -127,6 +142,19 @@ OUTPUT /home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft
 INPUT /home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/htlleondinglogo.png
 INPUT /home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/htlleondinglogo.png
 INPUT /home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/htlleondinglogo.png
+=======
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.out
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.out
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.out
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.out
+OUTPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.pdf
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.out
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.out
+OUTPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.out
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/htlleondinglogo.png
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/htlleondinglogo.png
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/htlleondinglogo.png
+>>>>>>> fitervari_frontend
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
@@ -152,6 +180,7 @@ INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+<<<<<<< HEAD
 INPUT /home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.toc
 INPUT /home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.toc
 INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
@@ -162,6 +191,30 @@ INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.aux
 INPUT /home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.out
 INPUT /home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.out
+=======
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.toc
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.toc
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+OUTPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.toc
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/Kommunikationsdiagramm.jpg
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/Kommunikationsdiagramm.jpg
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/Kommunikationsdiagramm.jpg
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/datenmodel.png
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/datenmodel.png
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/datenmodel.png
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/UseCase_Diagramm.jpg
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/UseCase_Diagramm.jpg
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/UseCase_Diagramm.jpg
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/Aktivitaetsdiagramm.jpg
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/Aktivitaetsdiagramm.jpg
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/Aktivitaetsdiagramm.jpg
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.aux
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.out
+INPUT /home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.out
+>>>>>>> fitervari_frontend
 INPUT /usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb

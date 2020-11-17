@@ -1,5 +1,4 @@
 import 'package:fitervari/logic/helper/SessionInfo.dart';
-import 'package:fitervari/views/tabs_screen/tabs_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../filler_page/filler_page.dart';

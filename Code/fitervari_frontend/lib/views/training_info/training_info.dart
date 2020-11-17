@@ -10,8 +10,8 @@ class TrainingInfo extends StatelessWidget {
     return Center(
       child: ListView(
         children: [
-          general_info(),
-          my_workouts()
+          GeneralInfo(),
+          MyWorkouts()
           //TODO workout-hinzufügen-button fehlt
         ],
       ),

@@ -13,10 +13,11 @@ class MainDrawer extends StatelessWidget {
       title: Text(
         title,
         style: TextStyle(
-            fontFamily: 'RobotoCondensed',
-            fontSize: 24,
-            fontWeight: FontWeight.w300,
-            color: Colors.black,),
+          fontFamily: 'RobotoCondensed',
+          fontSize: 24,
+          fontWeight: FontWeight.w300,
+          color: Colors.black,
+        ),
       ),
       onTap: action,
     );

@@ -28,6 +28,7 @@ dependencies {
     implementation 'io.quarkus:quarkus-kotlin'
     implementation 'io.quarkus:quarkus-hibernate-orm-panache'
     implementation 'io.quarkus:quarkus-jdbc-postgresql'
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.11.+"
 
     // Libraries
     implementation "com.google.guava:guava"
@@ -38,8 +39,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-noarg:1.3.72"
 }
 
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+// sourceCompatibility = '1.8'
+// targetCompatibility = '1.8'
 
 test {
     useJUnitPlatform()

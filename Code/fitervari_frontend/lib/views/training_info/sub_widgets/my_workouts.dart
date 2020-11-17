@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 
-class my_workouts extends StatelessWidget {
-  const my_workouts({
+class MyWorkouts extends StatelessWidget {
+  const MyWorkouts({
     Key key,
   }) : super(key: key);
 

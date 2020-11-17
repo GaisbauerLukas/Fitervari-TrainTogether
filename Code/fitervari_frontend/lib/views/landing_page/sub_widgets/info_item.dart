@@ -1,8 +1,6 @@
-import 'package:fitervari/contracts/news_letter.dart';
+import 'package:fitervari/contracts/transfer/news_letter.dart';
 import 'package:fitervari/views/news_letter_details_page/NewsLetterDetailsPage.dart';
 import 'package:flutter/material.dart';
-
-import '../../filler_page/filler_page.dart';
 
 class InfoItem extends StatelessWidget {
   final NewsLetter _myNewsLetter;
@@ -31,6 +29,18 @@ class InfoItem extends StatelessWidget {
                   height: 220,
                   width: double.infinity,
                   fit: BoxFit.cover,
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      const Color(0x88000000),
+                      const Color(0x88000000),
+                    ],
+                  )
                 ),
               ),
               Positioned(

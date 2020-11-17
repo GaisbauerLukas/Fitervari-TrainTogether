@@ -1,7 +1,13 @@
 # Fdb version 3
+<<<<<<< HEAD
 ["pdflatex"] 1603140517 "/home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.tex" "/home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.pdf" "PflichtenHeft" 1603140547
   "/home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.aux" 1603140518 3573 cc10d757fa125ec8b9b466474fc00384 ""
   "/home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.tex" 1603140547 5357 135dbea5fbfdfd51d885cc6be9833322 ""
+=======
+["pdflatex"] 1603183226 "/home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.tex" "/home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.pdf" "PflichtenHeft" 1603183227
+  "/home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.aux" 1603183227 3512 e3863de43cd0747cac91949aa7519e54 ""
+  "/home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.tex" 1603183225 6393 ad7ef982700c8886ba301e69c0882a0d ""
+>>>>>>> fitervari_frontend
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1591545468 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1591545468 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1591545468 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
@@ -83,6 +89,7 @@
   "/usr/share/texmf-dist/tex/latex/url/url.sty" 1591545468 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty" 1591545468 55589 34128738f682d033422ca125f82e5d62 ""
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1591545468 33301 a3134070eacafb10b1f371612ce2650d ""
+<<<<<<< HEAD
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1601898752 334180 163417853e75f7c89e92e140d6d6e976 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1601898747 2514045 de4fe6bbf7e8784300da7e2b2c2a0714 ""
   "PflichtenHeft.aux" 1603140518 3573 cc10d757fa125ec8b9b466474fc00384 "pdflatex"
@@ -98,3 +105,24 @@
   "PflichtenHeft.aux"
   "PflichtenHeft.toc"
   "/home/chris/Documents/git/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.pdf"
+=======
+  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1601998407 4727905 1b81189106e2406a827797a37162c1c0 ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1601998402 2514051 97a4715911066232ba5ff91c0bc75bbc ""
+  "Aktivitaetsdiagramm.jpg" 1603126957 42075 68ec78caf2c1d09fa09a373bce50c7e7 ""
+  "Kommunikationsdiagramm.jpg" 1603096292 19222 889a9f6f179a1197031d246e03bb55b1 ""
+  "PflichtenHeft.aux" 1603183227 3512 e3863de43cd0747cac91949aa7519e54 "pdflatex"
+  "PflichtenHeft.out" 1603183227 1116 e20dfe439ec090df540a5adff1ce419c "pdflatex"
+  "PflichtenHeft.tex" 1603183225 6393 ad7ef982700c8886ba301e69c0882a0d ""
+  "PflichtenHeft.toc" 1603183227 1907 24e69969ceac86e890cd74790a88a567 "pdflatex"
+  "UseCase_Diagramm.jpg" 1603126732 59775 008a46e7b3443fad2c18b713a597662a ""
+  "datenmodel.png" 1603126402 115614 870bcd13a709d80be24f203bfb5853af ""
+  "htlleondinglogo.png" 1601450642 11025 d58ae0902185a77f586ef401579dd39c ""
+  (generated)
+  "/home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.pdf"
+  "PflichtenHeft.aux"
+  "PflichtenHeft.log"
+  "PflichtenHeft.out"
+  "PflichtenHeft.toc"
+  "PflichtenHeft.pdf"
+  "/home/florentin/Documents/HTL-Leonding/Syp/Fitervari-TrainTogether/Documents/Pflichtenheft/PflichtenHeft.log"
+>>>>>>> fitervari_frontend

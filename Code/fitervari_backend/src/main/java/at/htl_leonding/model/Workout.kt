@@ -19,7 +19,10 @@ class Workout(
                 joinColumns = [JoinColumn(name = "workout_id")],
                 inverseJoinColumns = [JoinColumn(name = "exercise_id")]
         )
-        var exercises: MutableList<Exercise> = mutableListOf()
+        var exercises: MutableList<Exercise> = mutableListOf(),
+        @OneToMany
+        @JoinColumn(name = "workout_id")
+        var workouthistories: MutableList<WorkoutHistory> = mutableListOf()
 ) : PanacheEntity() {
     fun copyValues(other: Workout) {
         this.name = other.name
