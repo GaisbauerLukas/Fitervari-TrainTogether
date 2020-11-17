@@ -1,4 +1,5 @@
 import 'package:fitervari/contracts/identifiable.dart';
+import 'package:flutter/cupertino.dart';
 
 class SetHistory extends Identifiable {
   double time;
@@ -8,11 +9,11 @@ class SetHistory extends Identifiable {
   int setNumber;
 
   SetHistory(
-      {int id,
-      this.time,
-      this.distance,
-      this.weight,
-      this.repetitions,
-      this.setNumber})
+      {@required int id,
+      @required this.time,
+      @required this.distance,
+      @required this.weight,
+      @required this.repetitions,
+      @required this.setNumber})
       : super(id);
 }
