@@ -3,6 +3,7 @@ import 'package:fitervari/contracts/transfer/workout_history.dart';
 import 'package:flutter/material.dart';
 
 class WorkoutProvider extends ChangeNotifier {
+
   Workout _currentWorkout;
   List<Workout> _loadedWorkouts;
 

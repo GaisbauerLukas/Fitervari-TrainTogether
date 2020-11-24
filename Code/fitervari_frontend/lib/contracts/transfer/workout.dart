@@ -12,8 +12,6 @@ class Workout extends Identifiable {
   List<Exercise> exercises;
   List<WorkoutHistory> workoutHistories;
 
-  //final List<Exercise> listOfExercises;
-
   Workout(
       {@required int id,
       @required this.name,
