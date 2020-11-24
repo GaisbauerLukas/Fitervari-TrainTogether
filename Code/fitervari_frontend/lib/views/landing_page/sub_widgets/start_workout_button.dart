@@ -14,14 +14,21 @@ class StartWorkoutButton extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: Container(
           margin: EdgeInsets.all(20),
-          height: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.15,
+          height: (MediaQuery.of(context).size.height -
+                  SessionInfo().actionBarHeight) *
+              0.15,
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Text(
                 'Start',
-                style: TextStyle(fontSize: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.09, color: Colors.white, fontWeight: FontWeight.w100),
+                style: TextStyle(
+                    fontSize: (MediaQuery.of(context).size.height -
+                            SessionInfo().actionBarHeight) *
+                        0.09,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w100),
               ),
               Container(
                 margin: EdgeInsets.all(5),
@@ -31,7 +38,12 @@ class StartWorkoutButton extends StatelessWidget {
               ),
               Text(
                 'TestWorkout',
-                style: TextStyle(fontSize: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.019, color: Colors.white,),
+                style: TextStyle(
+                  fontSize: (MediaQuery.of(context).size.height -
+                          SessionInfo().actionBarHeight) *
+                      0.019,
+                  color: Colors.white,
+                ),
               ),
             ],
           ),

@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'exercise_history.dart';
 
 class WorkoutHistory extends Identifiable {
-  int id;
   DateTime date;
   List<ExerciseHistory> exerciseHistories;
 
