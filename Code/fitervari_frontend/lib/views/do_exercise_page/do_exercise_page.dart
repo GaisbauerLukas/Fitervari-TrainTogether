@@ -59,9 +59,9 @@ class DoExercisePageState extends State<DoExercisePage> {
             child: Column(
               children: <Widget>[
                 ExerciseChart(
-                  data: workoutProvider.nextWorkout.workoutHistories,
+                  data: workoutProvider.currentWorkout.workoutHistories,
                   currentExercise: widget.currentExercise,
-                  currentSetNumber: 0,
+                  currentSetNumber: widget.currentSetNumber,
                 ),
                 Container(
                   height: deviceHeight * 0.25,
@@ -107,7 +107,8 @@ class DoExercisePageState extends State<DoExercisePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                   ),
                 ),
-                FinishedButton(widget.currentExercise, widget.currentSetNumber, this.finishSet),
+                FinishedButton(widget.currentExercise, widget.currentSetNumber,
+                    this.finishSet),
                 QuitButton(),
               ],
               mainAxisSize: MainAxisSize.max,
@@ -120,23 +121,45 @@ class DoExercisePageState extends State<DoExercisePage> {
   }
 
   void finishSet() {
-    if (widget.currentSetNumber == 1) {
-      var exerciseHistory = new ExerciseHistory(
-          id: -1,
-          exercise: widget.currentExercise,
-          setHistories: new List<SetHistory>());
-      exerciseHistory.setHistories.add(new SetHistory(
-          id: -1,
-          time: -1,
-          distance: -1,
-          weight: currentWeight,
-          repetitions: currentRep,
-          setNumber: widget.currentSetNumber));
+    var exerciseHistory =
+        getCurrentValidExerciseHistory(widget.currentSetNumber);
+
+    exerciseHistory.setHistories.add(new SetHistory(
+        id: -1,
+        time: -1,
+        distance: -1,
+        weight: currentWeight,
+        repetitions: currentRep,
+        setNumber: widget.currentSetNumber));
+
+    widget.workoutHistory.exerciseHistories.add(exerciseHistory);
+    if (widget.currentSetNumber == widget.currentExercise.standardSetNr) {
+      Navigator.pop(context);
+    } else {
+      Navigator.pop(context);
       Navigator.pushNamed(context, DoExercisePage.routeName, arguments: [
         widget.currentExercise,
         widget.currentSetNumber + 1,
         widget.workoutHistory
       ]);
     }
+  }
+
+  ExerciseHistory getCurrentValidExerciseHistory(int setNumber) {
+    ExerciseHistory result;
+    if (setNumber == 1) {
+      result = new ExerciseHistory(
+          id: -1,
+          exercise: widget.currentExercise,
+          setHistories: new List<SetHistory>());
+      widget.workoutHistory.exerciseHistories.add(result);
+    } else {
+      widget.workoutHistory.exerciseHistories.forEach((element) {
+        if(element.exercise.id == widget.currentExercise.id){
+          result = element;
+        }
+      });
+    }
+    return result;
   }
 }

@@ -7,16 +7,16 @@ import './sub_widgets/info_item_scroll_view.dart';
 class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          //TODO this should be dynamic and from called from the server
-          InfoItemScrollView(),
-          InfoItemScrollView(),
-          StartWorkoutButton(),
-          ChangeWorkoutButton()
-        ],
-      ),
+    return Column(
+      children: <Widget>[
+        //TODO this should be dynamic and from called from the server
+        InfoItemScrollView(),
+        InfoItemScrollView(),
+        StartWorkoutButton(),
+        ChangeWorkoutButton()
+      ],
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.end,
     );
   }
 }

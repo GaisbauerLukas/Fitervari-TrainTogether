@@ -76,11 +76,6 @@ class _ContentAppState extends State<ContentApp> {
       exerciseHistories: [exerciseHistory2]
     );
 
-    var workoutHistory = WorkoutHistory(
-      id: 1,
-      date: DateTime.now(),
-      exerciseHistories: [exerciseHistory]
-    );
 
     Provider.of<NewsLettersProvider>(context, listen: false).loadNewsLetters();
     Provider.of<SettingsProvider>(context, listen: false).setLightTheme();
@@ -92,7 +87,7 @@ class _ContentAppState extends State<ContentApp> {
         id: 1,
         name: 'test',
         officialFlag: false,
-        workoutHistories: [workoutHistory2, workoutHistory],
+        workoutHistories: [workoutHistory2],
         creator: null));
   }
 

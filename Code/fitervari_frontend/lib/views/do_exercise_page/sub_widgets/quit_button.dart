@@ -1,6 +1,4 @@
 import 'package:fitervari/logic/helper/SessionInfo.dart';
-import 'package:fitervari/views/filler_page/filler_page.dart';
-import 'package:fitervari/views/workout_routine/workout_routine.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,14 +15,20 @@ class QuitButton extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: Container(
           margin: EdgeInsets.all(20),
-          height: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.053,
+          height: (MediaQuery.of(context).size.height -
+                  SessionInfo().actionBarHeight) *
+              0.053,
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Text(
                 'Abbrechen',
-                style: TextStyle(fontSize: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.045, color: Theme.of(context).errorColor),
+                style: TextStyle(
+                    fontSize: (MediaQuery.of(context).size.height -
+                            SessionInfo().actionBarHeight) *
+                        0.045,
+                    color: Theme.of(context).errorColor),
               ),
             ],
           ),
@@ -32,5 +36,4 @@ class QuitButton extends StatelessWidget {
       ),
     );
   }
-
 }

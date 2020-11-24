@@ -13,7 +13,7 @@ class InfoItemScrollView extends StatelessWidget {
       return Container(
         height: (MediaQuery.of(context).size.height -
                 SessionInfo().actionBarHeight) *
-            0.27,
+            0.20,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemBuilder: (ctx, index) {

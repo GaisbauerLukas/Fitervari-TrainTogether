@@ -22,6 +22,8 @@ class WorkoutRoutineState extends State<WorkoutRoutine> {
         id: 0,
         date: DateTime.now(),
         exerciseHistories: new List<ExerciseHistory>());
+    Provider.of<WorkoutProvider>(context, listen: false)
+        .addWorkoutHistoryToCurrentWorkout(newWorkoutHistory);
   }
 
   @override
@@ -33,13 +35,14 @@ class WorkoutRoutineState extends State<WorkoutRoutine> {
   Widget build(BuildContext context) {
     return Consumer<WorkoutProvider>(
       builder: (context, provider, child) {
-        var currentWorkout = provider.nextWorkout;
+        var currentWorkout = provider.currentWorkout;
         return Scaffold(
           appBar: AppBar(),
           body: ListView.builder(
             physics: BouncingScrollPhysics(),
             itemBuilder: (context, index) {
-              return ExerciseTile(currentWorkout.exercises[index], newWorkoutHistory);
+              return ExerciseTile(
+                  currentWorkout.exercises[index], newWorkoutHistory);
             },
             itemCount: currentWorkout.exercises.length,
           ),
