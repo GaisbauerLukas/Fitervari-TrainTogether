@@ -1,46 +1,48 @@
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+import 'package:fitervari/contracts/transfer/workout.dart';
+import 'package:fitervari/contracts/transfer/person.dart';
+import 'package:fitervari/logic/providers/workout_provider.dart';
 
 class MyWorkouts extends StatelessWidget {
-  const MyWorkouts({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-      elevation: 2,
-      shape:
-      RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text(
-              'Meine Workouts',
-              textScaleFactor: 2,
-            ),
-            //TODO Listview wäre hier sinnvoller
-            ListTile(
-              // leading: Icon(Icons.directions_run),
-              title: Text('Brustraining'),
-              subtitle: Text('Trainer: Detlef D! Soost'),
-            ),
-            ListTile(
-              // leading: Icon(Icons.directions_run),
-              title: Text('Rückenworkout'),
-              subtitle: Text('Trainer: Sven Müller'),
-            ),
-            ListTile(
-              // leading: Icon(Icons.directions_run),
-              title: Text('Schulterworkout'),
-              subtitle: Text('Trainer: Sven Müller'),
-            )
-          ],
-        ),
-      ),
-    );
+    return Consumer<WorkoutProvider>(
+        builder: (context, workoutProvider, child) {
+      List<Workout> workouts = [];
+
+      workouts.add(new Workout(
+          id: 1,
+          name: 'LatTraining',
+          creationDate: new DateTime.now(),
+          creator: new Person(1, 'Sam', 1),
+          officialFlag: false,
+          exercises: null,
+          workoutHistories: null));
+
+      return Container(
+          height: (MediaQuery.of(context).size.height) * 0.27,
+          child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            itemBuilder: (ctx, index) {
+              return Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      ListTile(
+                        // leading: Icon(Icons.directions_run),
+                        title: Text(workouts[index].name),
+                        //subtitle: Text(workouts[index].creator.name),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+            itemCount: workouts.length,
+          ));
+    });
   }
 }
