@@ -14,33 +14,33 @@ services:
     networks:
       - fitavari_network
 
-  reverseproxy:
-    build:
-      context: ./reverseproxy
-      dockerfile: Dockerfile
-    ports:
-      - 80:80
-    links:
-      - quarkus
-    networks:
-      - fitavari_network
+  # reverseproxy:
+  #   build:
+  #     context: ./reverseproxy
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 80:80
+  #   links:
+  #     - quarkus
+  #   networks:
+  #     - fitavari_network
 
-  quarkus:
-    build:
-      context: ../fitervari_backend
-      dockerfile: src/main/docker/Dockerfile.native
-    ports:
-      - 8080:8080
-    networks:
-      - fitavari_network
-  webpage:
-    build:
-      context: ./webpage
-      dockerfile: Dockerfile
-    ports:
-      - 9933:80
-    networks:
-      - fitavari_network
+  # quarkus:
+  #   build:
+  #     context: ../fitervari_backend
+  #     dockerfile: src/main/docker/Dockerfile.native
+  #   ports:
+  #     - 8080:8080
+  #   networks:
+  #     - fitavari_network
+  # webpage:
+  #   build:
+  #     context: ./webpage
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 9933:80
+  #   networks:
+  #     - fitavari_network
 
   postgres-keycloak:
         image: postgres
@@ -64,13 +64,13 @@ services:
             - DB_USER=keycloak
             - DB_SCHEMA=public
             - DB_PASSWORD=password
-            # - KEYCLOAK_IMPORT=./tmp/realm.json
+            - KEYCLOAK_IMPORT=./tmp/keycloak/realm_v3.json
             - KEYCLOAK_USER=admin
             - KEYCLOAK_PASSWORD=admin
         ports:
             - 8180:8080
-        #volumes:
-            #- ./keycloak/realm.json:/tmp/realm.json
+        volumes:
+            - ./keycloak/:/tmp/keycloak
         networks:
             - fitavari_network
         depends_on:

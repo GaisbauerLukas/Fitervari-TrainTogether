@@ -2,6 +2,7 @@ package at.htl_leonding.boundary
 
 import at.htl_leonding.model.ExerciseHistory
 import at.htl_leonding.service.ExerciseHistoryService
+import javax.annotation.security.RolesAllowed
 import javax.inject.Inject
 import javax.json.JsonObject
 import javax.transaction.Transactional
@@ -10,6 +11,7 @@ import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 
 @Path("/api")
+@RolesAllowed("user")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 class ExerciseHistoryResource {
