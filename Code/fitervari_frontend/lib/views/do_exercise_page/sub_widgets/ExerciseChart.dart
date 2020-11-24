@@ -4,6 +4,7 @@ import 'package:fitervari/contracts/transfer/exercise.dart';
 import 'package:fitervari/contracts/transfer/workout_history.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ExerciseChart extends StatelessWidget {
   final List<WorkoutHistory> data;
@@ -23,7 +24,7 @@ class ExerciseChart extends StatelessWidget {
       current.exerciseHistories.forEach((element) {
         if (element.exercise.id == currentExercise.id) {
           chartDisplay.add(WeightExerciseChartDisplay(
-              date: current.date.toString(),
+              date: DateFormat('dd.MM.yy').format(current.date),
               weight: element.setHistories[currentSetNumber].weight,
               barColor: charts.ColorUtil.fromDartColor(Colors.blue)));
         }
@@ -43,7 +44,7 @@ class ExerciseChart extends StatelessWidget {
     ];
 
     return Container(
-      height: deviceHeight * 0.4,
+      height: deviceHeight * 0.35,
       padding: EdgeInsets.all(20),
       child: Card(
         child: Padding(
@@ -52,7 +53,7 @@ class ExerciseChart extends StatelessWidget {
             children: <Widget>[
               Text(
                 "ExerciseHistory",
-                style: Theme.of(context).textTheme.body2,
+                style: Theme.of(context).textTheme.bodyText1,
               ),
               Expanded(
                 child: charts.BarChart(series, animate: true),

@@ -1,12 +1,14 @@
 import 'package:fitervari/contracts/transfer/exercise.dart';
+import 'package:fitervari/contracts/transfer/workout_history.dart';
 import 'package:fitervari/views/do_exercise_page/do_exercise_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ExerciseTile extends StatelessWidget {
   final Exercise exercise;
+  final WorkoutHistory workoutHistory;
 
-  ExerciseTile(this.exercise);
+  ExerciseTile(this.exercise, this.workoutHistory);
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +17,15 @@ class ExerciseTile extends StatelessWidget {
         leading: FlutterLogo(size: 72.0),
         title: Text(exercise.name),
         subtitle: Text(exercise.exerciseType),
-        trailing: Icon(Icons.panorama_fish_eye, color: Colors.red,),
+        trailing: Icon(
+          Icons.panorama_fish_eye,
+          color: Colors.red,
+        ),
         isThreeLine: true,
         onTap: () {
-          Navigator.pushNamed(context, DoExercisePage.routeName, arguments: exercise);
+          // TODO implement here a check, what set are already done
+          Navigator.pushNamed(context, DoExercisePage.routeName,
+              arguments: [exercise, 1, workoutHistory]);
         },
       ),
     );

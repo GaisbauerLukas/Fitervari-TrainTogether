@@ -20,12 +20,12 @@ class MyWorkouts extends StatelessWidget {
           children: <Widget>[
             Text(
               'Meine Workouts',
-              textScaleFactor: 2,
+              textScaleFactor: 1,
             ),
             //TODO Listview wäre hier sinnvoller
             ListTile(
               // leading: Icon(Icons.directions_run),
-              title: Text('Brustraining'),
+              title: Text('Brustraining',),
               subtitle: Text('Trainer: Detlef D! Soost'),
             ),
             ListTile(

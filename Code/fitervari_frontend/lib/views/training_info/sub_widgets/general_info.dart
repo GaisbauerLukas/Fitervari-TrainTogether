@@ -19,7 +19,7 @@ class GeneralInfo extends StatelessWidget {
           children: <Widget>[
             Text(
               'Allgemeine Info',
-              textScaleFactor: 2,
+              textScaleFactor: 1,
             ),
             ListTile(
               leading: Icon(Icons.person),
