@@ -1,4 +1,4 @@
-import 'package:fitervari/contracts/transfer/SetHistory.dart';
+import 'package:fitervari/contracts/transfer/set_history.dart';
 import 'package:fitervari/contracts/transfer/exercise.dart';
 import 'package:fitervari/contracts/transfer/exercise_history.dart';
 import 'package:fitervari/contracts/transfer/workout.dart';

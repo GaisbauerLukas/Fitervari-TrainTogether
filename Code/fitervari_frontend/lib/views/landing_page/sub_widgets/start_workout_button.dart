@@ -1,4 +1,4 @@
-import 'package:fitervari/logic/helper/SessionInfo.dart';
+import 'package:fitervari/logic/helper/session_info.dart';
 import 'package:fitervari/views/workout_routine/workout_routine.dart';
 import 'package:flutter/material.dart';
 

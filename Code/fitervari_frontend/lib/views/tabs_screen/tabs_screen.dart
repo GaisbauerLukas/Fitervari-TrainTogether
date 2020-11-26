@@ -1,5 +1,5 @@
 import 'package:fitervari/contracts/transfer/customer.dart';
-import 'package:fitervari/logic/helper/SessionInfo.dart';
+import 'package:fitervari/logic/helper/session_info.dart';
 import 'package:fitervari/logic/providers/customer_provider.dart';
 import 'package:fitervari/views/filler_page/filler_page.dart';
 import 'package:flutter/material.dart';

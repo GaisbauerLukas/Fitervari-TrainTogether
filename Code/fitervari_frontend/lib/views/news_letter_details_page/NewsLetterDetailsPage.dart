@@ -1,5 +1,5 @@
 import 'package:fitervari/contracts/transfer/news_letter.dart';
-import 'package:fitervari/logic/helper/SessionInfo.dart';
+import 'package:fitervari/logic/helper/session_info.dart';
 import 'package:flutter/material.dart';
 
 class NewsLetterDetailsPage extends StatelessWidget {

@@ -23,10 +23,21 @@ class Workout extends Identifiable {
       : super(id);
 
   Workout.fromJson(dynamic json) : super(json["id"]) {
+    creationDate = json["creation_Date"];
+    creator = json["creator"] != null ? Person.fromJson(json["creator"]) : null;
+    if (json["exercises"] != null) {
+      exercises = [];
+      json["exercises"].forEach((v) {
+        exercises.add(Exercise.fromJson(v));
+      });
+    }
     name = json["name"];
-    creationDate = json["creationDate"];
-    // TODO place here a fromJson constructor of trainer/customer
-    creator = null;
-    officialFlag = json["officialFlag"];
+    officialFlag = json["official_Flag"];
+    if (json["workouthistories"] != null) {
+      workoutHistories = [];
+      json["workouthistories"].forEach((v) {
+        workoutHistories.add(WorkoutHistory.fromJson(v));
+      });
+    }
   }
 }

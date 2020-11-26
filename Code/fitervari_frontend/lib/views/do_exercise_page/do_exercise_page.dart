@@ -1,10 +1,10 @@
-import 'package:fitervari/contracts/transfer/SetHistory.dart';
+import 'package:fitervari/contracts/transfer/set_history.dart';
 import 'package:fitervari/contracts/transfer/exercise.dart';
 import 'package:fitervari/contracts/transfer/exercise_history.dart';
 import 'package:fitervari/contracts/transfer/workout_history.dart';
-import 'package:fitervari/logic/helper/SessionInfo.dart';
+import 'package:fitervari/logic/helper/session_info.dart';
 import 'package:fitervari/logic/providers/workout_provider.dart';
-import 'package:fitervari/views/do_exercise_page/sub_widgets/ExerciseChart.dart';
+import 'package:fitervari/views/do_exercise_page/sub_widgets/exercise_chart.dart';
 import 'package:fitervari/views/do_exercise_page/sub_widgets/finished_button.dart';
 import 'package:fitervari/views/do_exercise_page/sub_widgets/quit_button.dart';
 import 'package:flutter/cupertino.dart';
