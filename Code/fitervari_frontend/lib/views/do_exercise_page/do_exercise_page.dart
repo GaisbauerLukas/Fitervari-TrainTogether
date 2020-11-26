@@ -150,12 +150,12 @@ class DoExercisePageState extends State<DoExercisePage> {
     if (setNumber == 1) {
       result = new ExerciseHistory(
           id: -1,
-          exercise: widget.currentExercise,
+          exercise_id: widget.currentExercise.id,
           setHistories: new List<SetHistory>());
       widget.workoutHistory.exerciseHistories.add(result);
     } else {
       widget.workoutHistory.exerciseHistories.forEach((element) {
-        if(element.exercise.id == widget.currentExercise.id){
+        if(element.exercise_id == widget.currentExercise.id){
           result = element;
         }
       });

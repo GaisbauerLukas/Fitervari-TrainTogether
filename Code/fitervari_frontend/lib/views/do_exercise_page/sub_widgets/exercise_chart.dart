@@ -22,7 +22,7 @@ class ExerciseChart extends StatelessWidget {
     var deviceHeight = MediaQuery.of(context).size.height - SessionInfo().actionBarHeight;
     for (final current in data) {
       current.exerciseHistories.forEach((element) {
-        if (element.exercise.id == currentExercise.id && element.setHistories.length - 1 >= currentSetNumber - 1) {
+        if (element.exercise_id == currentExercise.id && element.setHistories.length - 1 >= currentSetNumber - 1) {
           chartDisplay.add(WeightExerciseChartDisplay(
               date: DateFormat('dd.MM.yy').format(current.date),
               weight: element.setHistories[currentSetNumber - 1].weight,

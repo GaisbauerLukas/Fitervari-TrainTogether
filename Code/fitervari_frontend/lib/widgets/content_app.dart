@@ -1,6 +1,6 @@
-import 'package:fitervari/contracts/transfer/set_history.dart';
 import 'package:fitervari/contracts/transfer/exercise.dart';
 import 'package:fitervari/contracts/transfer/exercise_history.dart';
+import 'package:fitervari/contracts/transfer/set_history.dart';
 import 'package:fitervari/contracts/transfer/workout.dart';
 import 'package:fitervari/contracts/transfer/workout_history.dart';
 import 'package:fitervari/logic/providers/news_letters_provider.dart';
@@ -40,49 +40,26 @@ class _ContentAppState extends State<ContentApp> {
         exerciseType: 'strength',
         standardSetNr: 3);
 
-    var setHistory = SetHistory(
-      id: 1,
-      distance: -1,
-      repetitions: 12,
-      setNumber: 1,
-      time: -1,
-      weight: 50
-    );
-
     var setHistory2 = SetHistory(
         id: 2,
         distance: -1,
         repetitions: 12,
         setNumber: 1,
         time: -1,
-        weight: 60
-    );
+        weight: 60);
 
-    var exerciseHistory2 = ExerciseHistory(
-      id: 2,
-      exercise: tmp,
-      setHistories: [setHistory2]
-    );
-
-    var exerciseHistory = ExerciseHistory(
-      id: 1,
-      exercise: tmp,
-      setHistories: [setHistory]
-    );
+    var exerciseHistory2 =
+        ExerciseHistory(id: 2, exercise_id: tmp.id, setHistories: [setHistory2]);
 
     var workoutHistory2 = WorkoutHistory(
-      id: 2,
-      date: DateTime.parse("2020-11-11"),
-      exerciseHistories: [exerciseHistory2]
-    );
-
+        id: 2,
+        date: DateTime.parse("2020-11-11"),
+        exerciseHistories: [exerciseHistory2]);
 
     Provider.of<NewsLettersProvider>(context, listen: false).loadNewsLetters();
     Provider.of<SettingsProvider>(context, listen: false).setLightTheme();
     Provider.of<WorkoutProvider>(context, listen: false).setNextWorkout(Workout(
-        exercises: [
-          tmp
-        ],
+        exercises: [tmp],
         creationDate: DateTime.now(),
         id: 1,
         name: 'test',

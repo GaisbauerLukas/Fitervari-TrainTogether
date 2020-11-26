@@ -2,14 +2,6 @@ import 'package:fitervari/contracts/identifiable.dart';
 import 'package:fitervari/contracts/transfer/person.dart';
 import 'package:fitervari/contracts/transfer/set.dart';
 
-/// id : 2
-/// creationDate : "2020-09-30T10:26:55"
-/// creator : {"id":2,"_Trainer":false,"name":"Jack Mickelson","pictureId":-1,"cashCostumer":true,"joinDate":"2020-09-30T00:00:00Z[UTC]","memberTill":"2020-12-30T00:00:00Z[UTC]","myTrainer":{"id":3,"_Trainer":false,"name":"Schwarzenegger","pictureId":-1,"trainerSince":"2020-09-30"}}
-/// exerciseType : "strength"
-/// name : "PushUps"
-/// officialFlag : false
-/// standardSetNr : 3
-
 class Exercise extends Identifiable {
   DateTime creationDate;
   Person creator;

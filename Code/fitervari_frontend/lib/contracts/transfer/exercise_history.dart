@@ -5,11 +5,11 @@ import 'package:flutter/cupertino.dart';
 import 'set_history.dart';
 
 class ExerciseHistory extends Identifiable {
-  Exercise exercise;
+  int exercise_id;
   List<SetHistory> setHistories;
 
   ExerciseHistory(
-      {@required int id, @required this.exercise, @required this.setHistories})
+      {@required int id, @required this.exercise_id, @required this.setHistories})
       : super(id);
 
   ExerciseHistory.fromJson(dynamic json) : super(json["id"]) {
