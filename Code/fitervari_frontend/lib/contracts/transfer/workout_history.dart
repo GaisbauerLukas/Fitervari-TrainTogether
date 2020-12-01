@@ -12,7 +12,7 @@ class WorkoutHistory extends Identifiable {
       {@required id, @required this.date, @required this.exerciseHistories})
       : super(id);
 
-  WorkoutHistory fromJson(dynamic json) {
+  WorkoutHistory.fromJson(dynamic json) : super(json["id"]) {
     date = DateTime.parse(json["date"]);
     if (json["exerciseHistories"] != null) {
       exerciseHistories = [];
@@ -20,7 +20,6 @@ class WorkoutHistory extends Identifiable {
         exerciseHistories.add(ExerciseHistory.fromJson(v));
       });
     }
-    return this;
   }
 
   Map<String, dynamic> toJson() {

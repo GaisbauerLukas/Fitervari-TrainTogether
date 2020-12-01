@@ -1,6 +1,7 @@
 import 'package:fitervari/contracts/transfer/workout.dart';
 import 'package:fitervari/contracts/transfer/workout_history.dart';
 import 'package:fitervari/logic/network/workout_endpoint.dart';
+import 'package:fitervari/logic/network/workout_history_endpoint.dart';
 import 'package:flutter/material.dart';
 
 class WorkoutProvider extends ChangeNotifier {
@@ -11,15 +12,17 @@ class WorkoutProvider extends ChangeNotifier {
 
   List<Workout> get loadedWorkouts => _loadedWorkouts;
 
-  WorkoutEndpoint endpoint;
+  WorkoutEndpoint _endpoint;
+  WorkoutHistoryEndpoint _workoutHistoryEndpoint;
 
   WorkoutProvider() {
-    endpoint = WorkoutEndpoint();
+    _endpoint = WorkoutEndpoint();
+    _workoutHistoryEndpoint = WorkoutHistoryEndpoint();
     _loadedWorkouts = [];
   }
 
   loadWorkouts() async {
-    var tmp = await endpoint.getAll();
+    var tmp = await _endpoint.getAll();
     _loadedWorkouts.addAll(tmp);
     //TODO change this later
     _currentWorkout = _loadedWorkouts[0];
@@ -27,6 +30,10 @@ class WorkoutProvider extends ChangeNotifier {
 
   void setNextWorkout(Workout workout) {
     _currentWorkout = workout;
+  }
+
+  void postWorkoutHistory(WorkoutHistory workoutHistory){
+    _workoutHistoryEndpoint.post(workoutHistory);
   }
 
   void addWorkoutHistoryToCurrentWorkout(WorkoutHistory workoutHistory) {

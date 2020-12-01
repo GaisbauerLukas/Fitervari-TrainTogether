@@ -38,14 +38,6 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   void initState() {
     super.initState();
-    Provider.of<CustomerProvider>(context, listen: false).setCurrentCustomer(
-        Customer(
-            id: -1,
-            cashCustomer: true,
-            joinDate: DateTime.utc(2019, 5, 12),
-            memberTill: DateTime.utc(2021, 5, 12),
-            name: 'Florian Geht',
-            trainerId: 2));
   }
 
   @override

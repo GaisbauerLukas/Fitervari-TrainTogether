@@ -1,8 +1,10 @@
+import 'package:fitervari/contracts/transfer/customer.dart';
 import 'package:fitervari/contracts/transfer/exercise.dart';
 import 'package:fitervari/contracts/transfer/exercise_history.dart';
 import 'package:fitervari/contracts/transfer/set_history.dart';
 import 'package:fitervari/contracts/transfer/workout.dart';
 import 'package:fitervari/contracts/transfer/workout_history.dart';
+import 'package:fitervari/logic/providers/customer_provider.dart';
 import 'package:fitervari/logic/providers/news_letters_provider.dart';
 import 'package:fitervari/logic/providers/settings_provider.dart';
 import 'package:fitervari/logic/providers/workout_provider.dart';
@@ -30,43 +32,17 @@ class _ContentAppState extends State<ContentApp> {
   }
 
   setProvider() {
-    // this data is set for develop and debug purposes
-    var tmp = Exercise(
-        creator: null,
-        officialFlag: false,
-        name: 'Pushups',
-        id: 1,
-        creationDate: DateTime.now(),
-        exerciseType: 'strength',
-        standardSetNr: 3);
-
-    var setHistory2 = SetHistory(
-        id: 2,
-        distance: -1,
-        repetitions: 12,
-        setNumber: 1,
-        time: -1,
-        weight: 60);
-
-    var exerciseHistory2 =
-        ExerciseHistory(id: 2, exercise_id: tmp.id, setHistories: [setHistory2]);
-
-    var workoutHistory2 = WorkoutHistory(
-        id: 2,
-        date: DateTime.parse("2020-11-11"),
-        exerciseHistories: [exerciseHistory2]);
-
     Provider.of<NewsLettersProvider>(context, listen: false).loadNewsLetters();
     Provider.of<SettingsProvider>(context, listen: false).setLightTheme();
     Provider.of<WorkoutProvider>(context, listen: false).loadWorkouts();
-    // Provider.of<WorkoutProvider>(context, listen: false).setNextWorkout(Workout(
-    //     exercises: [tmp],
-    //     creationDate: DateTime.now(),
-    //     id: 1,
-    //     name: 'test',
-    //     officialFlag: false,
-    //     workoutHistories: [workoutHistory2],
-    //     creator: null));
+    Provider.of<CustomerProvider>(context, listen: false).setCurrentCustomer(
+        Customer(
+            id: -1,
+            cashCustomer: true,
+            joinDate: DateTime.utc(2019, 5, 12),
+            memberTill: DateTime.utc(2021, 5, 12),
+            name: 'Florian Geht',
+            trainerId: 2));
   }
 
   @override

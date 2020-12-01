@@ -36,7 +36,7 @@ class Workout extends Identifiable {
     if (json["workouthistories"] != null) {
       workoutHistories = [];
       json["workouthistories"].forEach((v) {
-        workoutHistories.add(WorkoutHistory().fromJson(v));
+        workoutHistories.add(WorkoutHistory.fromJson(v));
       });
     }
   }
