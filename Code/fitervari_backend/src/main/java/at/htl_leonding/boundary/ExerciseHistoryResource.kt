@@ -30,10 +30,10 @@ class ExerciseHistoryResource {
     @Transactional
     fun postWorkout(jsonObject: JsonObject): Response {
         try {
-            val newExerciseHistory = ExerciseHistory(
-                    service.getWorkoutHistoryById(jsonObject.get("workoutHistory")?.asJsonObject()?.getInt("id")?.toLong())
-            )
-            newExerciseHistory.persist()
+//            val newExerciseHistory = ExerciseHistory(
+//                    service.getWorkoutHistoryById(jsonObject.get("workoutHistory")?.asJsonObject()?.getInt("id")?.toLong())
+//            )
+//            newExerciseHistory.persist()
             return Response.accepted().build()
         } catch (e: Exception) {
             return Response.ok(e.message).build()

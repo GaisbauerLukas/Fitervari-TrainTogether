@@ -32,16 +32,16 @@ class SetHistoryResource {
     @Transactional
     fun postSetHistory(jsonObject: JsonObject): Response {
         try {
-            val newSetHistory = SetHistory(
-                    service.getExerciseHistoryById(
-                            jsonObject.get("exerciseHistory")?.asJsonObject()?.getInt("id")?.toLong()),
-                    jsonObject.getJsonNumber("time").doubleValue(),
-                    jsonObject.getJsonNumber("distance").doubleValue(),
-                    jsonObject.getJsonNumber("weight").doubleValue(),
-                    jsonObject.getJsonNumber("repetitions").intValue(),
-                    jsonObject.getJsonNumber("setNumber").intValue()
-            )
-            newSetHistory.persist()
+//            val newSetHistory = SetHistory(
+//                    service.getExerciseHistoryById(
+//                            jsonObject.get("exerciseHistory")?.asJsonObject()?.getInt("id")?.toLong()),
+//                    jsonObject.getJsonNumber("time").doubleValue(),
+//                    jsonObject.getJsonNumber("distance").doubleValue(),
+//                    jsonObject.getJsonNumber("weight").doubleValue(),
+//                    jsonObject.getJsonNumber("repetitions").intValue(),
+//                    jsonObject.getJsonNumber("setNumber").intValue()
+//            )
+//            newSetHistory.persist()
             return Response.accepted().build()
         } catch (e: Exception) {
             return Response.ok(e.message).build()
@@ -53,16 +53,16 @@ class SetHistoryResource {
     @Transactional
     fun updateWorkout(@PathParam("id") id: Long, jsonObject: JsonObject): Response {
         try {
-            val newSetHistory = SetHistory(
-                    service.getExerciseHistoryById(
-                            jsonObject.get("exerciseHistory")?.asJsonObject()?.getInt("id")?.toLong()),
-                    jsonObject.getJsonNumber("time").doubleValue(),
-                    jsonObject.getJsonNumber("distance").doubleValue(),
-                    jsonObject.getJsonNumber("weight").doubleValue(),
-                    jsonObject.getJsonNumber("repetitions").intValue(),
-                    jsonObject.getJsonNumber("setNumber").intValue()
-            )
-            service.updateSetHistory(newSetHistory, id)
+//            val newSetHistory = SetHistory(
+//                    service.getExerciseHistoryById(
+//                            jsonObject.get("exerciseHistory")?.asJsonObject()?.getInt("id")?.toLong()),
+//                    jsonObject.getJsonNumber("time").doubleValue(),
+//                    jsonObject.getJsonNumber("distance").doubleValue(),
+//                    jsonObject.getJsonNumber("weight").doubleValue(),
+//                    jsonObject.getJsonNumber("repetitions").intValue(),
+//                    jsonObject.getJsonNumber("setNumber").intValue()
+//            )
+//            service.updateSetHistory(newSetHistory, id)
             return Response.accepted().build()
         } catch (e: Exception) {
             return Response.serverError().build()

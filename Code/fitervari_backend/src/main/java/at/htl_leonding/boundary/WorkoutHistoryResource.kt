@@ -1,8 +1,11 @@
 package at.htl_leonding.boundary
 
 import at.htl_leonding.model.Exercise
+import at.htl_leonding.model.Workout
 import at.htl_leonding.model.WorkoutHistory
+import at.htl_leonding.repository.WorkoutRepository
 import at.htl_leonding.service.WorkoutHistoryService
+import at.htl_leonding.service.WorkoutService
 import java.time.LocalDateTime
 import javax.annotation.security.RolesAllowed
 import javax.inject.Inject
@@ -21,6 +24,9 @@ class WorkoutHistoryResource {
     @Inject
     lateinit var service: WorkoutHistoryService
 
+    @Inject
+    lateinit var workoutService: WorkoutService
+
     @GET
     @Path("/workoutHistory/{id}")
     fun getWorkoutHistoryById(@PathParam("id") id: Long): Response {
@@ -30,14 +36,21 @@ class WorkoutHistoryResource {
     @POST
     @Path("/workoutHistory")
     @Transactional
-    fun postWorkoutHistory(jsonObject: JsonObject): Response {
+    fun postWorkoutHistory(input: WorkoutHistory): Response {
         try {
-            val newWorkoutHistory = WorkoutHistory(
-                    LocalDateTime.parse(jsonObject.getString("date")),
-                    service.getWorkoutById(jsonObject.get("workout")?.asJsonObject()?.getInt("id")?.toLong()),
-                    service.getCustomerById(jsonObject.get("customer")?.asJsonObject()?.getInt("id")?.toLong())
-            )
-            newWorkoutHistory.persist()
+//            val newWorkoutHistory = WorkoutHistory(
+//                    LocalDateTime.parse(jsonObject.getString("date")),
+//                    service.getWorkoutById(jsonObject.get("workout")?.asJsonObject()?.getInt("id")?.toLong()),
+//                    service.getCustomerById(jsonObject.get("customer")?.asJsonObject()?.getInt("id")?.toLong())
+//            )
+            var tmp = WorkoutHistory(
+                    input.date,
+                    input.customer,
+                    workoutService.repository.findById(1),
+                    input.exerciseHistories
+            );
+            tmp.persist()
+
             return Response.accepted().build()
         } catch (e: Exception) {
             return Response.ok(e.message).build()
@@ -49,12 +62,12 @@ class WorkoutHistoryResource {
     @Transactional
     fun updateWorkoutHistory(@PathParam("id") id: Long, jsonObject: JsonObject): Response {
         try {
-            val newWorkoutHistory = WorkoutHistory(
-                    LocalDateTime.parse(jsonObject.getString("date")),
-                    service.getWorkoutById(jsonObject.get("workout")?.asJsonObject()?.getInt("id")?.toLong()),
-                    service.getCustomerById(jsonObject.get("customer")?.asJsonObject()?.getInt("id")?.toLong())
-            )
-            service.updateWorkoutHistory(newWorkoutHistory, id)
+//            val newWorkoutHistory = WorkoutHistory(
+//                    LocalDateTime.parse(jsonObject.getString("date")),
+//                    service.getWorkoutById(jsonObject.get("workout")?.asJsonObject()?.getInt("id")?.toLong()),
+//                    service.getCustomerById(jsonObject.get("customer")?.asJsonObject()?.getInt("id")?.toLong())
+//            )
+//            service.updateWorkoutHistory(newWorkoutHistory, id)
             return Response.accepted().build()
         } catch (e: Exception) {
             return Response.serverError().build()

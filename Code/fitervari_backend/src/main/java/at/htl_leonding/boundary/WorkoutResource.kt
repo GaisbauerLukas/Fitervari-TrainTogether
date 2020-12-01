@@ -22,6 +22,13 @@ class WorkoutResource {
     lateinit var service: WorkoutService
 
     @GET
+    @Path("/workout")
+    fun getAll(): Response {
+        val tmp = service.getAll();
+        return Response.ok(tmp).build();
+    }
+
+    @GET
     @Path("/workout/{id}")
     fun getWorkoutById(@PathParam("id") id: Long): Response {
         val tmp = service.getById(id)

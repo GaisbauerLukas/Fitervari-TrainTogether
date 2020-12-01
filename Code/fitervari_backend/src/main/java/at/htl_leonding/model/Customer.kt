@@ -10,7 +10,7 @@ class Customer(
         name: String,
         @Column(name = "join_date")
         var joinDate: Date,
-        @ManyToOne
+        @ManyToOne(cascade = arrayOf(CascadeType.MERGE))
         @JoinColumn(name = "trainer_id")
         var myTrainer: Trainer,
         @Column(name = "cash_customer")
