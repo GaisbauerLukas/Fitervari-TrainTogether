@@ -27,6 +27,7 @@ class MyWorkouts extends StatelessWidget {
                         title: Text(workouts[index].name),
                         //subtitle: Text(workouts[index].creator.name),
                       ),
+                      RaisedButton(onPressed: null)
                     ],
                   ),
                 ),

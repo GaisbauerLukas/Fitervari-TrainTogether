@@ -4,7 +4,7 @@ import 'package:fitervari/logic/network/generic_endpoint.dart';
 class WorkoutEndpoint extends GenericEndpoint<Workout> {
 
   WorkoutEndpoint(){
-    this.baseUrl = 'http://10.0.2.2:8080/api/workout';
+    this.baseUrl = 'http://10.0.2.2:80/api/workout';
   }
 
   @override
