@@ -1,10 +1,11 @@
 import 'package:fitervari/contracts/transfer/workout.dart';
 import 'package:fitervari/logic/network/generic_endpoint.dart';
+import 'package:fitervari/contracts/applicationProperties.dart';
 
 class WorkoutEndpoint extends GenericEndpoint<Workout> {
 
   WorkoutEndpoint(){
-    this.baseUrl = 'http://10.0.2.2:80/api/workout';
+    this.baseUrl = applicationProperties.url + "workout";
   }
 
   @override
