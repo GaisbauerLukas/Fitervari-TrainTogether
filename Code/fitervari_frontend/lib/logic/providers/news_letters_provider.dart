@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class NewsLettersProvider extends ChangeNotifier {
   //when testing on a virtual device: 10.0.2.2
-  static const url = 'http://10.0.2.2:8080/api/newsletter';
+  static const url = 'http://10.0.2.2:80/api/newsletter';
 
   NewsLetterEndpoint endpoint = NewsLetterEndpoint();
 
