@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 
 @Path("/api")
-@RolesAllowed("user")
+@RolesAllowed("trainer")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 class TrainerResouce {
@@ -20,6 +20,7 @@ class TrainerResouce {
     @Inject
     lateinit var service: TrainerService
 
+    @RolesAllowed("user")
     @GET
     @Path("/trainer/{id}")
     fun getTrainerWithId(@PathParam("id") id: Long): Response {

@@ -32,6 +32,7 @@ class NewsLetterResource {
         return Response.ok(service.getAllNewsLetters()).build();
     }
 
+    @RolesAllowed("trainer")
     @POST
     @Path("/newsletter")
     @Transactional
