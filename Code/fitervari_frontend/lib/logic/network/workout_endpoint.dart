@@ -9,8 +9,7 @@ class WorkoutEndpoint extends GenericEndpoint<Workout> {
 
   @override
   Map<String, dynamic> convertObjectToJson(data) {
-    // TODO: implement convertObjectToJson
-    throw UnimplementedError();
+    return data.toJson();
   }
 
   @override
