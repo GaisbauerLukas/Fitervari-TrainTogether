@@ -23,7 +23,7 @@ class Exercise extends Identifiable {
       : super(id);
 
   Exercise.fromJson(dynamic json) : super(json["id"]) {
-    creationDate = json["creationDate"];
+    creationDate = DateTime.parse(json["creationDate"]);
     creator = json["creator"] != null ? Person.fromJson(json["creator"]) : null;
     exerciseType = json["exerciseType"];
     name = json["name"];

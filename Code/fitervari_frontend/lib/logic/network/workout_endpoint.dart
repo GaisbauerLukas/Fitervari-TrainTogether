@@ -3,6 +3,9 @@ import 'package:fitervari/logic/network/generic_endpoint.dart';
 
 class WorkoutEndpoint extends GenericEndpoint<Workout> {
 
+  WorkoutEndpoint(){
+    this.baseUrl = 'http://10.0.2.2:8080/api/workout';
+  }
 
   @override
   Map<String, dynamic> convertObjectToJson(data) {
@@ -12,8 +15,7 @@ class WorkoutEndpoint extends GenericEndpoint<Workout> {
 
   @override
   Workout convertJsonToObject(dataItem) {
-    return Workout(
-
-    );
+    var tmp = Workout.fromJson(dataItem);
+    return tmp;
   }
 }

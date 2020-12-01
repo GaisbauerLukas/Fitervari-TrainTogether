@@ -58,14 +58,15 @@ class _ContentAppState extends State<ContentApp> {
 
     Provider.of<NewsLettersProvider>(context, listen: false).loadNewsLetters();
     Provider.of<SettingsProvider>(context, listen: false).setLightTheme();
-    Provider.of<WorkoutProvider>(context, listen: false).setNextWorkout(Workout(
-        exercises: [tmp],
-        creationDate: DateTime.now(),
-        id: 1,
-        name: 'test',
-        officialFlag: false,
-        workoutHistories: [workoutHistory2],
-        creator: null));
+    Provider.of<WorkoutProvider>(context, listen: false).loadWorkouts();
+    // Provider.of<WorkoutProvider>(context, listen: false).setNextWorkout(Workout(
+    //     exercises: [tmp],
+    //     creationDate: DateTime.now(),
+    //     id: 1,
+    //     name: 'test',
+    //     officialFlag: false,
+    //     workoutHistories: [workoutHistory2],
+    //     creator: null));
   }
 
   @override

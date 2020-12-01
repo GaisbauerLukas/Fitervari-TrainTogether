@@ -11,12 +11,10 @@ class ExerciseHistory(
         @OneToMany
         @JoinColumn(name = "exercise_history_id")
         var setHistories: MutableList<SetHistory> = mutableListOf(),
-        @ManyToOne
-        @JoinColumn(name = "exercise_id")
-        @JsonbTransient
-        var exercise: Exercise
+        var exercise_id: Int
 ) : PanacheEntity() {
     fun copyValues(other: ExerciseHistory) {
         this.setHistories = other.setHistories
+        this.exercise_id = exercise_id
     }
 }

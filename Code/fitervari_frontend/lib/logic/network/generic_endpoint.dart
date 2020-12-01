@@ -17,7 +17,8 @@ abstract class GenericEndpoint<T extends Identifiable> {
     final data = json.decode(response.body);
 
     data.forEach((dataItem) {
-      result.add(this.convertJsonToObject(dataItem));
+      var tmp = this.convertJsonToObject(dataItem);
+      result.add(tmp);
     });
 
     return result;

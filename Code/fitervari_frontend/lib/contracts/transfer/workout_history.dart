@@ -1,4 +1,5 @@
 import 'package:fitervari/contracts/identifiable.dart';
+
 import 'package:flutter/cupertino.dart';
 
 import 'exercise_history.dart';
@@ -11,14 +12,15 @@ class WorkoutHistory extends Identifiable {
       {@required id, @required this.date, @required this.exerciseHistories})
       : super(id);
 
-  WorkoutHistory.fromJson(dynamic json) : super(json["id"]) {
-    date = json["date"];
+  WorkoutHistory fromJson(dynamic json) {
+    date = DateTime.parse(json["date"]);
     if (json["exerciseHistories"] != null) {
       exerciseHistories = [];
       json["exerciseHistories"].forEach((v) {
         exerciseHistories.add(ExerciseHistory.fromJson(v));
       });
     }
+    return this;
   }
 
   Map<String, dynamic> toJson() {

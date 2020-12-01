@@ -19,6 +19,10 @@ class WorkoutService {
         return "trainerservice test"
     }
 
+    fun getAll():List<Workout> {
+        return repository.findAll().list<Workout>();
+    }
+
     fun getById(id: Long): Workout {
         return repository.findById(id)
     }

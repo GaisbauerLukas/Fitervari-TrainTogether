@@ -36,16 +36,22 @@ class WorkoutRoutineState extends State<WorkoutRoutine> {
     return Consumer<WorkoutProvider>(
       builder: (context, provider, child) {
         var currentWorkout = provider.currentWorkout;
-        return Scaffold(
-          appBar: AppBar(),
-          body: ListView.builder(
+        Widget body;
+        if (currentWorkout != null) {
+          body = ListView.builder(
             physics: BouncingScrollPhysics(),
             itemBuilder: (context, index) {
               return ExerciseTile(
                   currentWorkout.exercises[index], newWorkoutHistory);
             },
             itemCount: currentWorkout.exercises.length,
-          ),
+          );
+        } else {
+          body = Text("Fehler mit der Verbindung");
+        }
+        return Scaffold(
+          appBar: AppBar(),
+          body: body,
         );
       },
     );

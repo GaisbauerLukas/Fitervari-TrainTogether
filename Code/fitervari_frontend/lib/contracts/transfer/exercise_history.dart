@@ -13,6 +13,7 @@ class ExerciseHistory extends Identifiable {
       : super(id);
 
   ExerciseHistory.fromJson(dynamic json) : super(json["id"]) {
+    exercise_id = json["exercise_id"];
     if (json["setHistories"] != null) {
       setHistories = [];
       json["setHistories"].forEach((v) {
