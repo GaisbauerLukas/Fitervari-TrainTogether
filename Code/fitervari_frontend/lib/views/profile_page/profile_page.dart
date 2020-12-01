@@ -1,4 +1,4 @@
-import 'package:fitervari/logic/helper/SessionInfo.dart';
+import 'package:fitervari/logic/helper/session_info.dart';
 import 'package:fitervari/logic/providers/customer_provider.dart';
 import 'package:fitervari/views/profile_page/sub_widgets/profile_image.dart';
 import 'package:fitervari/views/profile_page/sub_widgets/profile_information_box.dart';
@@ -18,7 +18,8 @@ class ProfilePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                ProfileImage(currentCustomer.imageUrl),
+                // later the image should be from the customer class
+                ProfileImage('https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1331&q=80'),
                 Container(
                   margin: EdgeInsets.only(top: 5, bottom: 5),
                   child: Text(

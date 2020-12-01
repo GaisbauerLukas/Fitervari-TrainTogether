@@ -37,7 +37,6 @@ class CustomerResource {
                     SimpleDateFormat("yyyy-MM-dd").parse(jsonObject.getString("memberTill")),
                     jsonObject.getInt("pictureId")
             )
-            println(newCustomer)
             service.addCustomer(newCustomer)
             return Response.accepted().build()
         } catch (e: Exception) {

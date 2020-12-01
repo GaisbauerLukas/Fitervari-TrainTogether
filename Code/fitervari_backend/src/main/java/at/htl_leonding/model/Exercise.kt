@@ -16,7 +16,10 @@ class Exercise(
         @Column(name = "official_flag")
         var officialFlag: Boolean,
         @ManyToOne
-        var creator: Person
+        var creator: Person,
+        @OneToMany
+        @JoinColumn(name = "exercise_id")
+        var sets: MutableList<Set> = mutableListOf()
         //  @ManyToMany(mappedBy = "exercises")
         //  var workouts: MutableList<Workout> = mutableListOf()
 ) : PanacheEntity() {
@@ -27,5 +30,6 @@ class Exercise(
         this.standardSetNr = other.standardSetNr
         this.officialFlag = other.officialFlag
         this.creator = other.creator
+        this.sets = other.sets
     }
 }

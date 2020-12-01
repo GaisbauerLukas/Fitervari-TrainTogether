@@ -1,10 +1,9 @@
 package at.htl_leonding.control
 
-import at.htl_leonding.model.Trainer
 import at.htl_leonding.repository.TrainerRepository
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase
+import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.quarkus.runtime.StartupEvent
-import java.time.LocalDate
+import io.vertx.core.json.Json
 import javax.enterprise.context.ApplicationScoped
 import javax.enterprise.event.Observes
 import javax.inject.Inject
@@ -21,5 +20,7 @@ class InitBean {
 
     @Transactional
     fun init(@Observes event: StartupEvent?) {
+        Json.mapper.registerModule(KotlinModule())
+        Json.prettyMapper.registerModule(KotlinModule())
     }
 }

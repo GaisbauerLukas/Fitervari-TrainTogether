@@ -29,7 +29,8 @@ class SettingsProvider extends ChangeNotifier {
     _currentTheme = ThemeData(
       fontFamily: 'RobotoCondensed',
       textTheme: TextTheme(
-        bodyText2: TextStyle(fontWeight: FontWeight.w300),
+        headline5: TextStyle(fontSize: 45),
+        bodyText2: TextStyle(fontWeight: FontWeight.w300, fontSize: 30),
       ),
       primarySwatch: MaterialColor(_mainColorCode, _mainColor),
       visualDensity: VisualDensity.adaptivePlatformDensity,
