@@ -9,16 +9,7 @@ class MyWorkouts extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<WorkoutProvider>(
         builder: (context, workoutProvider, child) {
-      List<Workout> workouts = [];
-
-      workouts.add(new Workout(
-          id: 1,
-          name: 'LatTraining',
-          creationDate: new DateTime.now(),
-          creator: new Person(1, 'Sam', 1),
-          officialFlag: false,
-          exercises: null,
-          workoutHistories: null));
+      List<Workout> workouts = workoutProvider.loadedWorkouts;
 
       return Container(
           height: (MediaQuery.of(context).size.height) * 0.27,
