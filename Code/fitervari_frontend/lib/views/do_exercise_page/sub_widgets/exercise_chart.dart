@@ -1,7 +1,7 @@
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:fitervari/logic/helper/session_info.dart';
 import 'package:fitervari/contracts/transfer/exercise.dart';
 import 'package:fitervari/contracts/transfer/workout_history.dart';
+import 'package:fitervari/logic/helper/session_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -19,10 +19,12 @@ class ExerciseChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var chartDisplay = List<WeightExerciseChartDisplay>();
-    var deviceHeight = MediaQuery.of(context).size.height - SessionInfo().actionBarHeight;
+    var deviceHeight =
+        MediaQuery.of(context).size.height - SessionInfo().actionBarHeight;
     for (final current in data) {
       current.exerciseHistories.forEach((element) {
-        if (element.exercise_id == currentExercise.id && element.setHistories.length - 1 >= currentSetNumber - 1) {
+        if (element.exerciseId == currentExercise.id &&
+            element.setHistories.length - 1 >= currentSetNumber - 1) {
           chartDisplay.add(WeightExerciseChartDisplay(
               date: DateFormat('dd.MM.yy').format(current.date),
               weight: element.setHistories[currentSetNumber - 1].weight,

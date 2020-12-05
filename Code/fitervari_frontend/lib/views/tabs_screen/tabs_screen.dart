@@ -1,9 +1,6 @@
-import 'package:fitervari/contracts/transfer/customer.dart';
 import 'package:fitervari/logic/helper/session_info.dart';
-import 'package:fitervari/logic/providers/customer_provider.dart';
 import 'package:fitervari/views/filler_page/filler_page.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../views/configuration_page/configuration_page.dart';
 import '../../views/landing_page/landing_page.dart';

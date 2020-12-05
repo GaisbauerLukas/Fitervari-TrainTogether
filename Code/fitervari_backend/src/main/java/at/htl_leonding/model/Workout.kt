@@ -10,17 +10,17 @@ import javax.persistence.*
 class Workout(
         var name: String,
         var creation_Date: LocalDateTime,
-        @ManyToOne
+        @ManyToOne(cascade = [CascadeType.MERGE])
         var creator: Person,
         var official_Flag: Boolean,
-        @ManyToMany
+        @ManyToMany(cascade = [CascadeType.MERGE])
         @JoinTable(
                 name = "workout2exercise",
                 joinColumns = [JoinColumn(name = "workout_id")],
                 inverseJoinColumns = [JoinColumn(name = "exercise_id")]
         )
         var exercises: MutableList<Exercise> = mutableListOf(),
-        @OneToMany
+        @OneToMany(cascade = [CascadeType.MERGE])
         @JoinColumn(name = "workout_id")
         var workouthistories: MutableList<WorkoutHistory> = mutableListOf()
 ) : PanacheEntity() {

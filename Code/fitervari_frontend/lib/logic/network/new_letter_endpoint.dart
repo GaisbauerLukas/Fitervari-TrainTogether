@@ -1,9 +1,10 @@
 import 'package:fitervari/contracts/transfer/news_letter.dart';
 import 'package:fitervari/logic/network/generic_endpoint.dart';
+import 'package:fitervari/contracts/application_properties.dart';
 
 class NewsLetterEndpoint extends GenericEndpoint<NewsLetter> {
   NewsLetterEndpoint() {
-    this.baseUrl = 'http://10.0.2.2:8080/api/newsletter';
+    this.baseUrl = ApplicationProperties.url + "newsletter";
   }
 
   @override

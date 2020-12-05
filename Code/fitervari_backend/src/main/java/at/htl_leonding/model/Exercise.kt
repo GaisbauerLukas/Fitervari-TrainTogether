@@ -15,9 +15,9 @@ class Exercise(
         var standardSetNr: Int,
         @Column(name = "official_flag")
         var officialFlag: Boolean,
-        @ManyToOne
+        @ManyToOne(cascade = [CascadeType.MERGE])
         var creator: Person,
-        @OneToMany
+        @OneToMany(cascade = [CascadeType.MERGE])
         @JoinColumn(name = "exercise_id")
         var sets: MutableList<Set> = mutableListOf()
         //  @ManyToMany(mappedBy = "exercises")

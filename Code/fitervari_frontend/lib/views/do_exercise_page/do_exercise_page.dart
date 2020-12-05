@@ -19,6 +19,7 @@ class DoExercisePage extends StatefulWidget {
   Exercise currentExercise;
   int currentSetNumber;
   WorkoutHistory workoutHistory;
+  void Function(ExerciseHistory exerciseHistory) setExerciseHistoryToTrue;
 
   @override
   State<StatefulWidget> createState() => DoExercisePageState();
@@ -47,6 +48,7 @@ class DoExercisePageState extends State<DoExercisePage> {
     widget.currentExercise = arguments[0];
     widget.currentSetNumber = arguments[1];
     widget.workoutHistory = arguments[2];
+    widget.setExerciseHistoryToTrue = arguments[3];
 
     return Consumer<WorkoutProvider>(
       builder: (context, workoutProvider, child) {
@@ -124,23 +126,26 @@ class DoExercisePageState extends State<DoExercisePage> {
     var exerciseHistory =
         getCurrentValidExerciseHistory(widget.currentSetNumber);
 
+    // add sethistory to current exercisehistory
     exerciseHistory.setHistories.add(new SetHistory(
-        id: -1,
+        id: null,
         time: -1,
         distance: -1,
         weight: currentWeight,
         repetitions: currentRep,
         setNumber: widget.currentSetNumber));
 
-    widget.workoutHistory.exerciseHistories.add(exerciseHistory);
+    //if this is the
     if (widget.currentSetNumber == widget.currentExercise.standardSetNr) {
       Navigator.pop(context);
+      widget.setExerciseHistoryToTrue(exerciseHistory);
     } else {
       Navigator.pop(context);
       Navigator.pushNamed(context, DoExercisePage.routeName, arguments: [
         widget.currentExercise,
         widget.currentSetNumber + 1,
-        widget.workoutHistory
+        widget.workoutHistory,
+        widget.setExerciseHistoryToTrue
       ]);
     }
   }
@@ -149,13 +154,13 @@ class DoExercisePageState extends State<DoExercisePage> {
     ExerciseHistory result;
     if (setNumber == 1) {
       result = new ExerciseHistory(
-          id: -1,
-          exercise_id: widget.currentExercise.id,
+          id: null,
+          exerciseId: widget.currentExercise.id,
           setHistories: new List<SetHistory>());
       widget.workoutHistory.exerciseHistories.add(result);
     } else {
       widget.workoutHistory.exerciseHistories.forEach((element) {
-        if(element.exercise_id == widget.currentExercise.id){
+        if(element.exerciseId == widget.currentExercise.id){
           result = element;
         }
       });

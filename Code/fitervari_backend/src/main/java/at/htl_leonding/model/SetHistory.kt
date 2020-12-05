@@ -10,6 +10,7 @@ class SetHistory(
         var distance: Double?,
         var weight: Double?,
         var repetitions: Int?,
+        var exercise_history_id: Long,
         @Column(name = "set_number")
         var setNumber: Int
 ) : PanacheEntity() {
@@ -19,5 +20,6 @@ class SetHistory(
         this.weight = other.weight
         this.repetitions = other.repetitions
         this.setNumber = other.setNumber
+        this.exercise_history_id = other.exercise_history_id
     }
 }

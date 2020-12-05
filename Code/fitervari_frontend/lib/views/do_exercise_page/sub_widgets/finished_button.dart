@@ -1,7 +1,5 @@
 import 'package:fitervari/contracts/transfer/exercise.dart';
 import 'package:fitervari/logic/helper/session_info.dart';
-import 'package:fitervari/views/do_exercise_page/do_exercise_page.dart';
-import 'package:fitervari/views/workout_routine/workout_routine.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
