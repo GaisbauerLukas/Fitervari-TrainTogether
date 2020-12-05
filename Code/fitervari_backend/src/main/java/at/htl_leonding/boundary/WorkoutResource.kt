@@ -1,9 +1,10 @@
 package at.htl_leonding.boundary
 
-import at.htl_leonding.model.Exercise
-import at.htl_leonding.model.Workout
+import at.htl_leonding.model.*
+import at.htl_leonding.service.CustomerService
 import at.htl_leonding.service.WorkoutService
 import java.time.LocalDateTime
+import java.util.function.Consumer
 import javax.inject.Inject
 import javax.json.JsonArray
 import javax.json.JsonObject
@@ -18,6 +19,9 @@ import javax.ws.rs.core.Response
 class WorkoutResource {
     @Inject
     lateinit var service: WorkoutService
+
+    @Inject
+    lateinit var customerService: CustomerService
 
     @GET
     @Path("/workout")
@@ -66,6 +70,34 @@ class WorkoutResource {
         } catch (e: Exception) {
             return Response.ok(e.message).build()
         }
+    }
+
+    @POST
+    @Transactional
+    @Path("workout/addWorkoutHistory/{id}/{customerId}")
+    fun addWorkoutHistoryToWorkout(@PathParam("id") id: Long, @PathParam("customerId") customerId: Long, input: WorkoutHistory): Response {
+        var oldExerciseHistories: MutableList<ExerciseHistory> = mutableListOf()
+        input.exerciseHistories.forEach(Consumer {
+            oldExerciseHistories.add(it)
+        })
+        input.exerciseHistories.clear()
+        oldExerciseHistories.forEach(Consumer {
+            var tmp = ExerciseHistory(mutableListOf(), it.exercise_id)
+            tmp.persistAndFlush()
+            it.setHistories.forEach(Consumer {
+                t ->
+                run {
+                    t.exercise_history_id = tmp.id
+                    t.persistAndFlush()
+                }
+            })
+            input.exerciseHistories.add(tmp)
+        })
+
+        input.customer = customerService.getById(2)
+        input.workout = service.getById(id)
+        input.persist()
+        return Response.accepted().build()
     }
 
     private fun getSetFromJsonArray(jsonObject: JsonObject): Set<Exercise> {

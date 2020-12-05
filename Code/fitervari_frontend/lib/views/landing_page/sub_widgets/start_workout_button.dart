@@ -1,8 +1,15 @@
 import 'package:fitervari/logic/helper/session_info.dart';
+import 'package:fitervari/logic/providers/workout_provider.dart';
 import 'package:fitervari/views/workout_routine/workout_routine.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class StartWorkoutButton extends StatelessWidget {
+class StartWorkoutButton extends StatefulWidget {
+  @override
+  _StartWorkoutButtonState createState() => _StartWorkoutButtonState();
+}
+
+class _StartWorkoutButtonState extends State<StartWorkoutButton> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -36,15 +43,21 @@ class StartWorkoutButton extends StatelessWidget {
                 width: double.infinity,
                 height: 1,
               ),
-              Text(
-                'TestWorkout',
-                style: TextStyle(
-                  fontSize: (MediaQuery.of(context).size.height -
-                          SessionInfo().actionBarHeight) *
-                      0.019,
-                  color: Colors.white,
-                ),
-              ),
+              Consumer<WorkoutProvider>(
+                builder: (context, provider, child) {
+                  return Text(
+                    provider.currentWorkout != null
+                        ? provider.currentWorkout.name
+                        : '',
+                    style: TextStyle(
+                      fontSize: (MediaQuery.of(context).size.height -
+                              SessionInfo().actionBarHeight) *
+                          0.019,
+                      color: Colors.white,
+                    ),
+                  );
+                },
+              )
             ],
           ),
         ),

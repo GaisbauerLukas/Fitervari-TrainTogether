@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:fitervari/contracts/identifiable.dart';
 import 'package:http/http.dart' as http;
 
@@ -14,7 +13,7 @@ abstract class GenericEndpoint<T extends Identifiable> {
     List<T> result = [];
 
     final response = await http.get(this.baseUrl);
-    final data = json.decode(response.body);
+    final data = json.decode(Utf8Decoder().convert(response.bodyBytes));
 
     data.forEach((dataItem) {
       var tmp = this.convertJsonToObject(dataItem);
@@ -27,7 +26,7 @@ abstract class GenericEndpoint<T extends Identifiable> {
   Future<bool> post(T postItem) async {
     final response = await http.post(this.baseUrl,
         headers: {"content-type": "application/json"},
-        body: this.convertObjectToJson(postItem));
+        body: json.encode(this.convertObjectToJson(postItem)));
     return response.statusCode == 201;
   }
 

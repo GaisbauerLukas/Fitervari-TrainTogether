@@ -8,8 +8,7 @@ import kotlin.collections.Set
 @Entity
 @Table(name = "exercise_history")
 class ExerciseHistory(
-        @OneToMany
-        @JoinColumn(name = "exercise_history_id")
+        @OneToMany(mappedBy = "exercise_history_id", cascade = arrayOf(CascadeType.ALL), orphanRemoval = true, fetch = FetchType.EAGER)
         var setHistories: MutableList<SetHistory> = mutableListOf(),
         var exercise_id: Int
 ) : PanacheEntity() {

@@ -40,7 +40,7 @@ class Exercise extends Identifiable {
   Map<String, dynamic> toJson() {
     var map = <String, dynamic>{};
     map["id"] = id;
-    map["creationDate"] = creationDate;
+    map["creationDate"] = creationDate.toIso8601String();
     if (creator != null) {
       map["creator"] = creator.toJson();
     }

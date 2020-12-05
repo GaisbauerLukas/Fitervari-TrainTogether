@@ -15,7 +15,7 @@ class ExerciseSet(
         @Column(name = "set_number")
         var setNumber: Int,
         var type: String,
-        @ManyToOne
+        @ManyToOne(cascade = [CascadeType.MERGE])
         @JoinColumn(name = "exercise_id")
         var exercise: Exercise
 ) : PanacheEntity() {

@@ -5,6 +5,7 @@ import 'package:fitervari/contracts/transfer/workout_history.dart';
 import 'package:flutter/cupertino.dart';
 
 class Workout extends Identifiable {
+  // from database
   String name;
   DateTime creationDate;
   Person creator;
@@ -44,7 +45,7 @@ class Workout extends Identifiable {
   Map<String, dynamic> toJson() {
     var map = <String, dynamic>{};
     map["id"] = id;
-    map["creation_Date"] = creationDate;
+    map["creation_Date"] = creationDate.toIso8601String();
     if (creator != null) {
       map["creator"] = creator.toJson();
     }

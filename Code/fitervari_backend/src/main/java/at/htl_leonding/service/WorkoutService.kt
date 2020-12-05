@@ -2,6 +2,7 @@ package at.htl_leonding.service
 
 import at.htl_leonding.model.Person
 import at.htl_leonding.model.Workout
+import at.htl_leonding.repository.CustomerRepository
 import at.htl_leonding.repository.PersonRepository
 import at.htl_leonding.repository.WorkoutRepository
 import javax.enterprise.context.ApplicationScoped
@@ -14,10 +15,6 @@ class WorkoutService {
 
     @Inject
     lateinit var personRepository: PersonRepository
-
-    fun test(): String {
-        return "trainerservice test"
-    }
 
     fun getAll():List<Workout> {
         return repository.findAll().list<Workout>();
