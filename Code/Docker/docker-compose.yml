@@ -56,6 +56,7 @@ services:
             - fitavari_network
   keycloak:
         image: jboss/keycloak
+        command: -Dkeycloak.profile.feature.upload_scripts=enabled
         environment:
             - DB_VENDOR=POSTGRES
             - DB_ADDR=postgres-keycloak
@@ -64,7 +65,7 @@ services:
             - DB_USER=keycloak
             - DB_SCHEMA=public
             - DB_PASSWORD=password
-            - KEYCLOAK_IMPORT=./tmp/keycloak/realm_v4.json
+            - KEYCLOAK_IMPORT=/tmp/keycloak/realm_v4.json
             - KEYCLOAK_USER=admin
             - KEYCLOAK_PASSWORD=admin
         ports:
