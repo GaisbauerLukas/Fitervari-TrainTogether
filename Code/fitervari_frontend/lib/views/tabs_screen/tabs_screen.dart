@@ -1,9 +1,6 @@
-import 'package:fitervari/contracts/transfer/customer.dart';
 import 'package:fitervari/logic/helper/session_info.dart';
-import 'package:fitervari/logic/providers/customer_provider.dart';
 import 'package:fitervari/views/filler_page/filler_page.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../views/configuration_page/configuration_page.dart';
 import '../../views/landing_page/landing_page.dart';
@@ -11,6 +8,8 @@ import '../../views/profile_page/profile_page.dart';
 import '../../widgets/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
+  static const routeName = '/tabs_screen';
+
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }

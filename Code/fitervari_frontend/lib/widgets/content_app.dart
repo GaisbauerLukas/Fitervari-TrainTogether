@@ -1,15 +1,11 @@
 import 'package:fitervari/contracts/transfer/customer.dart';
-import 'package:fitervari/contracts/transfer/exercise.dart';
-import 'package:fitervari/contracts/transfer/exercise_history.dart';
-import 'package:fitervari/contracts/transfer/set_history.dart';
-import 'package:fitervari/contracts/transfer/workout.dart';
-import 'package:fitervari/contracts/transfer/workout_history.dart';
 import 'package:fitervari/logic/providers/customer_provider.dart';
 import 'package:fitervari/logic/providers/news_letters_provider.dart';
 import 'package:fitervari/logic/providers/settings_provider.dart';
 import 'package:fitervari/logic/providers/workout_provider.dart';
 import 'package:fitervari/views/do_exercise_page/do_exercise_page.dart';
 import 'package:fitervari/views/filler_page/filler_page.dart';
+import 'package:fitervari/views/login_page/login_page.dart';
 import 'package:fitervari/views/news_letter_details_page/NewsLetterDetailsPage.dart';
 import 'package:fitervari/views/tabs_screen/tabs_screen.dart';
 import 'package:fitervari/views/workout_routine/workout_routine.dart';
@@ -54,12 +50,14 @@ class _ContentAppState extends State<ContentApp> {
         return MaterialApp(
           title: 'Fitervari',
           theme: _theme,
-          home: TabsScreen(),
+          home: LoginPage(),
           routes: {
             FillerPage.routeName: (ctx) => FillerPage(),
             NewsLetterDetailsPage.routeName: (ctx) => NewsLetterDetailsPage(),
             WorkoutRoutine.routeName: (ctx) => WorkoutRoutine(),
-            DoExercisePage.routeName: (ctx) => DoExercisePage()
+            DoExercisePage.routeName: (ctx) => DoExercisePage(),
+            TabsScreen.routeName: (ctx) => TabsScreen(),
+            LoginPage.routeName: (ctx) => LoginPage()
           },
         );
       },

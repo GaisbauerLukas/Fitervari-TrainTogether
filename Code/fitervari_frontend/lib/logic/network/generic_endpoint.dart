@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:fitervari/contracts/identifiable.dart';
+import 'package:fitervari/logic/providers/authentication_provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:oauth2/oauth2.dart';
 
 abstract class GenericEndpoint<T extends Identifiable> {
   String baseUrl;
@@ -13,7 +15,9 @@ abstract class GenericEndpoint<T extends Identifiable> {
   Future<List<T>> getAll() async {
     List<T> result = [];
 
-    final response = await http.get(this.baseUrl);
+    Client client = AuthenticationProvider().client;
+
+    final response = await client.get(this.baseUrl);
     final data = json.decode(response.body);
 
     data.forEach((dataItem) {
@@ -25,21 +29,30 @@ abstract class GenericEndpoint<T extends Identifiable> {
   }
 
   Future<bool> post(T postItem) async {
-    final response = await http.post(this.baseUrl,
+
+    Client client = AuthenticationProvider().client;
+
+    final response = await client.post(this.baseUrl,
         headers: {"content-type": "application/json"},
         body: this.convertObjectToJson(postItem));
     return response.statusCode == 201;
   }
 
   Future<bool> put(T putItem) async {
-    final response = await http.put(this.baseUrl + "${putItem.id})",
+
+    Client client = AuthenticationProvider().client;
+
+    final response = await client.put(this.baseUrl + "${putItem.id})",
         headers: {"content-type": "application/json"},
         body: this.convertObjectToJson(putItem));
     return response.statusCode == 201;
   }
 
   Future<bool> delete(int id) async {
-    final response = await http.put(
+
+    Client client = AuthenticationProvider().client;
+
+    final response = await client.put(
       this.baseUrl + '/$id',
       headers: {"content-type": "application/json"},
     );
