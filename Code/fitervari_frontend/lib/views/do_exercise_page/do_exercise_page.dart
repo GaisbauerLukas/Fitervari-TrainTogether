@@ -1,7 +1,10 @@
-import 'package:fitervari/contracts/transfer/set_history.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:fitervari/contracts/transfer/exercise.dart';
 import 'package:fitervari/contracts/transfer/exercise_history.dart';
+import 'package:fitervari/contracts/transfer/set_history.dart';
 import 'package:fitervari/contracts/transfer/workout_history.dart';
+import 'package:fitervari/contracts/util/chart_entity.dart';
 import 'package:fitervari/logic/helper/session_info.dart';
 import 'package:fitervari/logic/providers/workout_provider.dart';
 import 'package:fitervari/views/do_exercise_page/sub_widgets/exercise_chart.dart';
@@ -10,6 +13,7 @@ import 'package:fitervari/views/do_exercise_page/sub_widgets/quit_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:intl/intl.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:provider/provider.dart';
 
@@ -29,16 +33,38 @@ class DoExercisePageState extends State<DoExercisePage> {
   double currentWeight;
   int currentRep;
 
-  @override
-  void setState(fn) {
-    super.setState(fn);
-  }
+  int _currentIndex = 0;
+
+  List<Widget> cardList = [];
 
   @override
   void initState() {
     super.initState();
     currentWeight = 50;
     currentRep = 10;
+  }
+
+  List<T> map<T>(List list, Function handler) {
+    List<T> result = [];
+    for (var i = 0; i < list.length; i++) {
+      result.add(handler(i, list[i]));
+    }
+    return result;
+  }
+
+  List<ChartEntity> convertToChartEntity(List<WorkoutHistory> data,
+      ChartEntity Function(ExerciseHistory history, DateTime date) generator) {
+    List<ChartEntity> result = [];
+
+    for (final current in data) {
+      current.exerciseHistories.forEach((element) {
+        if (element.exerciseId == widget.currentExercise.id &&
+            element.setHistories.length - 1 >= widget.currentSetNumber - 1) {
+          result.add(generator(element, current.date));
+        }
+      });
+    }
+    return result;
   }
 
   @override
@@ -52,18 +78,89 @@ class DoExercisePageState extends State<DoExercisePage> {
 
     return Consumer<WorkoutProvider>(
       builder: (context, workoutProvider, child) {
+        var currentWorkout = workoutProvider.currentWorkout;
         var deviceHeight =
             MediaQuery.of(context).size.height - SessionInfo().actionBarHeight;
+        this.cardList.clear();
+        this.cardList.addAll([
+          ExerciseChart(
+            data: convertToChartEntity(
+                currentWorkout.workoutHistories,
+                (history, date) => ChartEntity(
+                    date: DateFormat('dd.MM.yy').format(date),
+                    yValue: history
+                        .setHistories[widget.currentSetNumber - 1].weight,
+                    barColor: charts.ColorUtil.fromDartColor(Colors.blue))),
+            name: 'Gewicht',
+          ),
+          ExerciseChart(
+            data: convertToChartEntity(
+                currentWorkout.workoutHistories,
+                (history, date) => ChartEntity(
+                    date: DateFormat('dd.MM.yy').format(date),
+                    yValue: history
+                        .setHistories[widget.currentSetNumber - 1].repetitions
+                        .toDouble(),
+                    barColor: charts.ColorUtil.fromDartColor(Colors.blue))),
+            name: 'Wiederholungen',
+          ),
+          ExerciseChart(
+            data: convertToChartEntity(
+                currentWorkout.workoutHistories,
+                (history, date) => ChartEntity(
+                    date: DateFormat('dd.MM.yy').format(date),
+                    yValue: history.setHistories[widget.currentSetNumber - 1]
+                            .repetitions *
+                        history
+                            .setHistories[widget.currentSetNumber - 1].weight,
+                    barColor: charts.ColorUtil.fromDartColor(Colors.blue))),
+            name: 'Gesamt Fortschritt',
+          )
+        ]);
+
         return Scaffold(
           appBar: AppBar(),
           body: Container(
             height: double.maxFinite,
             child: Column(
               children: <Widget>[
-                ExerciseChart(
-                  data: workoutProvider.currentWorkout.workoutHistories,
-                  currentExercise: widget.currentExercise,
-                  currentSetNumber: widget.currentSetNumber,
+                CarouselSlider(
+                  options: CarouselOptions(
+                    height: deviceHeight * 0.3,
+                    autoPlay: false,
+                    autoPlayInterval: Duration(seconds: 3),
+                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    pauseAutoPlayOnTouch: true,
+                    aspectRatio: 16.9,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _currentIndex = index;
+                      });
+                    },
+                  ),
+                  items: cardList.map((card) {
+                    return Builder(builder: (BuildContext context) {
+                      return card;
+                    });
+                  }).toList(),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: map<Widget>(cardList, (index, url) {
+                    return Container(
+                      width: 10.0,
+                      height: 10.0,
+                      margin:
+                          EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: _currentIndex == index
+                            ? Colors.blueAccent
+                            : Colors.grey,
+                      ),
+                    );
+                  }),
                 ),
                 Container(
                   height: deviceHeight * 0.25,
@@ -81,8 +178,10 @@ class DoExercisePageState extends State<DoExercisePage> {
                               onChanged: (value) =>
                                   setState(() => this.currentWeight = value),
                             ),
-                            Text('kg',
-                                style: TextStyle(fontWeight: FontWeight.bold))
+                            Text(
+                              'kg',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            )
                           ],
                         ),
                       ),
@@ -160,7 +259,7 @@ class DoExercisePageState extends State<DoExercisePage> {
       widget.workoutHistory.exerciseHistories.add(result);
     } else {
       widget.workoutHistory.exerciseHistories.forEach((element) {
-        if(element.exerciseId == widget.currentExercise.id){
+        if (element.exerciseId == widget.currentExercise.id) {
           result = element;
         }
       });
