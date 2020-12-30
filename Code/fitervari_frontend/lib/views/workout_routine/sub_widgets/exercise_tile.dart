@@ -17,20 +17,27 @@ class ExerciseTile extends StatelessWidget {
   Widget build(BuildContext context) {
     Icon doneIcon;
 
-    if (workoutHistory.exerciseHistories.length == 0 ||
-        !workoutHistory.exerciseHistories
-            .firstWhere((element) => element.exerciseId == this.exercise.id)
-            .isFinished) {
-      doneIcon = Icon(
-        Icons.cancel,
-        size: 30,
-        color: Colors.red,
-      );
-    } else {
+    ExerciseHistory currentExerciseHistory;
+
+    workoutHistory.exerciseHistories.forEach((element) {
+      if (element.exerciseId == this.exercise.id)
+        currentExerciseHistory = element;
+    });
+
+    if (workoutHistory.exerciseHistories.length != 0
+        && currentExerciseHistory != null
+        && currentExerciseHistory.isFinished
+        ) {
       doneIcon = Icon(
         Icons.check,
         size: 30,
         color: Colors.green,
+      );
+    } else {
+      doneIcon = Icon(
+        Icons.cancel,
+        size: 30,
+        color: Colors.red,
       );
     }
     return Card(

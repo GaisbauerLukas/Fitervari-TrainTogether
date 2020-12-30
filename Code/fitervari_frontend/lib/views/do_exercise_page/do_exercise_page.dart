@@ -138,7 +138,7 @@ class DoExercisePageState extends State<DoExercisePage> {
                         _currentIndex = index;
                       });
                     },
-                  ),
+                  ),    //if this is the
                   items: cardList.map((card) {
                     return Builder(builder: (BuildContext context) {
                       return card;
@@ -234,7 +234,6 @@ class DoExercisePageState extends State<DoExercisePage> {
         repetitions: currentRep,
         setNumber: widget.currentSetNumber));
 
-    //if this is the
     if (widget.currentSetNumber == widget.currentExercise.standardSetNr) {
       Navigator.pop(context);
       widget.setExerciseHistoryToTrue(exerciseHistory);
