@@ -11,8 +11,7 @@ class ProfilePage extends StatelessWidget {
     return Consumer<CustomerProvider>(
       builder: (context, customerProvider, child) {
         var currentCustomer = customerProvider.getCurrentCustomer();
-        return SingleChildScrollView(
-          child: Container(
+        return Container(
             width: double.infinity,
             margin: EdgeInsets.all(10),
             child: Column(
@@ -34,7 +33,6 @@ class ProfilePage extends StatelessWidget {
                 ProfileInformationBox(currentCustomer)
               ],
             ),
-          ),
         );
       },
     );

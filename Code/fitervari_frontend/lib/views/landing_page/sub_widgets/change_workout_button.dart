@@ -12,7 +12,6 @@ class ChangeWorkoutButton extends StatelessWidget {
         margin: EdgeInsets.all(10),
         color: Colors.white,
         elevation: 4,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: Container(
           margin: EdgeInsets.all(20),
           height: (MediaQuery.of(context).size.height - SessionInfo().actionBarHeight) * 0.053,

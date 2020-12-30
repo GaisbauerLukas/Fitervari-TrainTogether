@@ -61,7 +61,7 @@ class WorkoutRoutineState extends State<WorkoutRoutine> {
                   children: <Widget>[
                     Lottie.asset('lib/assets/animations/GrowthAnimation.zip'),
                     Text(
-                      'Fertig',
+                      'Geschafft!!',
                       style: TextStyle(fontSize: 30),
                     ),
                   ],

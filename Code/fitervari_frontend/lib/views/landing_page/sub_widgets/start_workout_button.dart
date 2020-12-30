@@ -17,8 +17,8 @@ class _StartWorkoutButtonState extends State<StartWorkoutButton> {
       child: Card(
         margin: EdgeInsets.all(10),
         color: Theme.of(context).primaryColor,
-        elevation: 4,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        elevation: 4,
         child: Container(
           margin: EdgeInsets.all(20),
           height: (MediaQuery.of(context).size.height -

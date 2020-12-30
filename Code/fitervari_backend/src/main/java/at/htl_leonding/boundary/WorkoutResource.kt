@@ -84,8 +84,7 @@ class WorkoutResource {
         oldExerciseHistories.forEach(Consumer {
             var tmp = ExerciseHistory(mutableListOf(), it.exercise_id)
             tmp.persistAndFlush()
-            it.setHistories.forEach(Consumer {
-                t ->
+            it.setHistories.forEach(Consumer { t ->
                 run {
                     t.exercise_history_id = tmp.id
                     t.persistAndFlush()

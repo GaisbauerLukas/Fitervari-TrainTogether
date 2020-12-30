@@ -17,7 +17,7 @@ class ProfileInformationBox extends StatelessWidget {
           padding: EdgeInsets.all(15),
           height: (MediaQuery.of(context).size.height -
                   SessionInfo().actionBarHeight) *
-              0.4,
+              0.35,
           width: double.infinity,
           child: Column(
             children: <Widget>[
