@@ -41,8 +41,10 @@ class WorkoutRoutineState extends State<WorkoutRoutine> {
 
   @override
   Widget build(BuildContext context) {
+
     return Consumer<WorkoutProvider>(
       builder: (context, provider, child) {
+
         var currentWorkout = provider.currentWorkout;
         Widget body;
 
@@ -50,11 +52,13 @@ class WorkoutRoutineState extends State<WorkoutRoutine> {
                 currentWorkout.exercises.length &&
             this._checkIfWorkoutIsFinished(
                 newWorkoutHistory.exerciseHistories)) {
+
           body = Consumer<CustomerProvider>(
             builder: (context, value, child) {
               Provider.of<WorkoutProvider>(context, listen: false)
                   .postWorkoutHistoryToCurrentWorkout(
                       newWorkoutHistory, value.getCurrentCustomer().id);
+
               return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -69,8 +73,11 @@ class WorkoutRoutineState extends State<WorkoutRoutine> {
               );
             },
           );
+
         } else {
+
           if (currentWorkout != null) {
+
             body = ListView.builder(
               physics: BouncingScrollPhysics(),
               itemBuilder: (context, index) {
@@ -79,6 +86,7 @@ class WorkoutRoutineState extends State<WorkoutRoutine> {
               },
               itemCount: currentWorkout.exercises.length,
             );
+
           } else {
             body = Text("Fehler mit der Verbindung");
           }
