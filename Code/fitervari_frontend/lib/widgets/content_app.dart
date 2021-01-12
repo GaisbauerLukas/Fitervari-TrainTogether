@@ -8,6 +8,7 @@ import 'package:fitervari/logic/providers/customer_provider.dart';
 import 'package:fitervari/logic/providers/news_letters_provider.dart';
 import 'package:fitervari/logic/providers/settings_provider.dart';
 import 'package:fitervari/logic/providers/workout_provider.dart';
+import 'package:fitervari/views/create_workout_page/create_workout_page.dart';
 import 'package:fitervari/views/do_exercise_page/do_exercise_page.dart';
 import 'package:fitervari/views/filler_page/filler_page.dart';
 import 'package:fitervari/views/news_letter_details_page/NewsLetterDetailsPage.dart';
@@ -59,7 +60,8 @@ class _ContentAppState extends State<ContentApp> {
             FillerPage.routeName: (ctx) => FillerPage(),
             NewsLetterDetailsPage.routeName: (ctx) => NewsLetterDetailsPage(),
             WorkoutRoutine.routeName: (ctx) => WorkoutRoutine(),
-            DoExercisePage.routeName: (ctx) => DoExercisePage()
+            DoExercisePage.routeName: (ctx) => DoExercisePage(),
+            CreateWorkoutPage.routeName: (ctx) => CreateWorkoutPage(),
           },
         );
       },
