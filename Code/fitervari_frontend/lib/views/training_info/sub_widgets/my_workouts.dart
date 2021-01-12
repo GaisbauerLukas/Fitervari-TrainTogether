@@ -11,8 +11,10 @@ class MyWorkouts extends StatelessWidget {
         builder: (context, workoutProvider, child) {
       List<Workout> workouts = workoutProvider.loadedWorkouts;
 
+
       return Container(
-          height: (MediaQuery.of(context).size.height) * 0.27,
+          margin: EdgeInsets.only(top: 10),
+          height: (MediaQuery.of(context).size.height) * 0.40,
           child: ListView.builder(
             scrollDirection: Axis.vertical,
             itemBuilder: (ctx, index) {
@@ -27,6 +29,7 @@ class MyWorkouts extends StatelessWidget {
                         title: Text(workouts[index].name),
                         //subtitle: Text(workouts[index].creator.name),
                       ),
+
                     ],
                   ),
                 ),
