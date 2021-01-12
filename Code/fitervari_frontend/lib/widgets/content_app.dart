@@ -24,26 +24,10 @@ class _ContentAppState extends State<ContentApp> {
   @override
   void initState() {
     super.initState();
-    setProvider();
-  }
-
-  setProvider() {
-    Provider.of<NewsLettersProvider>(context, listen: false).loadNewsLetters();
-    Provider.of<SettingsProvider>(context, listen: false).setLightTheme();
-    Provider.of<WorkoutProvider>(context, listen: false).loadWorkouts();
-    Provider.of<CustomerProvider>(context, listen: false).setCurrentCustomer(
-        Customer(
-            id: -1,
-            cashCustomer: true,
-            joinDate: DateTime.utc(2019, 5, 12),
-            memberTill: DateTime.utc(2021, 5, 12),
-            name: 'Florian Geht',
-            trainerId: 2));
   }
 
   @override
   Widget build(BuildContext context) {
-    setProvider();
     return Consumer<SettingsProvider>(
       builder: (context, provider, child) {
         _theme = provider.currentTheme;

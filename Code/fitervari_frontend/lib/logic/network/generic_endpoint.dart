@@ -4,6 +4,7 @@ import 'package:fitervari/contracts/identifiable.dart';
 import 'package:fitervari/logic/providers/authentication_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:oauth2/oauth2.dart';
+import 'package:provider/provider.dart';
 
 abstract class GenericEndpoint<T extends Identifiable> {
   String baseUrl;

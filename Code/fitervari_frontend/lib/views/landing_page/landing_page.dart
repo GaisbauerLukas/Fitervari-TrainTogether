@@ -29,7 +29,6 @@ class LandingPageState extends State<LandingPage> {
             memberTill: DateTime.utc(2021, 5, 12),
             name: 'Florian Geht',
             trainerId: 2));
-    // test komentar
   }
 
   @override

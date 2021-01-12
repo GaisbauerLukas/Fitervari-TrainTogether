@@ -1,3 +1,4 @@
+import 'package:fitervari/logic/providers/authentication_provider.dart';
 import 'package:fitervari/logic/providers/settings_provider.dart';
 import 'package:fitervari/views/tabs_screen/tabs_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<SettingsProvider>(context, listen: false).setLightTheme();
     return Consumer<SettingsProvider>(
       builder: (context, provider, child) {
         return Scaffold(
@@ -66,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: FlatButton(
                       color: provider.currentTheme.primaryColor,
                       onPressed: () {
-                        // AuthenticationProvider().login(username, password);
+                        AuthenticationProvider().login(username, password);
                         Navigator.pushNamed(context, TabsScreen.routeName);
                       },
                       child: Text(
