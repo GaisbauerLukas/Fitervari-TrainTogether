@@ -11,13 +11,13 @@ import javax.persistence.*
 @Table(name = "workout_history")
 class WorkoutHistory(
         var date: LocalDateTime,
-        @ManyToOne
+        @ManyToOne(cascade = arrayOf(CascadeType.MERGE))
         var customer: Customer,
-        @ManyToOne
+        @ManyToOne(cascade = arrayOf(CascadeType.MERGE))
         @JoinColumn(name = "workout_id")
         @JsonbTransient
         var workout: Workout,
-        @OneToMany
+        @OneToMany(cascade = arrayOf(CascadeType.ALL))
         @JoinColumn(name = "workout_history_id")
         var exerciseHistories: MutableList<ExerciseHistory> = mutableListOf()
 ) : PanacheEntity() {

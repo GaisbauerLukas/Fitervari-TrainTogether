@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:fitervari/contracts/transfer/workout.dart';
 import 'package:fitervari/contracts/transfer/workout_history.dart';
 import 'package:fitervari/logic/network/workout_endpoint.dart';
@@ -32,8 +34,10 @@ class WorkoutProvider extends ChangeNotifier {
     _currentWorkout = workout;
   }
 
-  void postWorkoutHistory(WorkoutHistory workoutHistory){
-    _workoutHistoryEndpoint.post(workoutHistory);
+  void postWorkoutHistoryToCurrentWorkout(WorkoutHistory workoutHistory, int customerId) {
+    _endpoint
+        .addWorkoutHistoryToWorkout(currentWorkout.id, workoutHistory, customerId)
+        .then((value) => log(value.toString()));
   }
 
   void addWorkoutHistoryToCurrentWorkout(WorkoutHistory workoutHistory) {
