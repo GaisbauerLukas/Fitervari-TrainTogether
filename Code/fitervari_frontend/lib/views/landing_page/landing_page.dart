@@ -17,30 +17,8 @@ class LandingPage extends StatefulWidget {
 
 class LandingPageState extends State<LandingPage> {
 
-  setProvider() {
-    Provider.of<NewsLettersProvider>(context, listen: false).loadNewsLetters();
-    Provider.of<SettingsProvider>(context, listen: false).setLightTheme();
-    Provider.of<WorkoutProvider>(context, listen: false).loadWorkouts();
-    Provider.of<CustomerProvider>(context, listen: false).setCurrentCustomer(
-        Customer(
-            id: -1,
-            cashCustomer: true,
-            joinDate: DateTime.utc(2019, 5, 12),
-            memberTill: DateTime.utc(2021, 5, 12),
-            name: 'Florian Geht',
-            trainerId: 2));
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    setProvider();
-  }
-
-
   @override
   Widget build(BuildContext context) {
-    setProvider();
     return Column(
       children: <Widget>[
         //TODO this should be dynamic and from called from the server

@@ -18,15 +18,21 @@ abstract class GenericEndpoint<T extends Identifiable> {
 
     Client client = AuthenticationProvider().client;
 
-    final response = await client.get(this.baseUrl);
-    final data = json.decode(response.body);
+    if(client != null){
+      final response = await client.get(this.baseUrl).then((value) {
+        print(value);
+      });
+      final data = json.decode(response.body);
 
-    data.forEach((dataItem) {
-      var tmp = this.convertJsonToObject(dataItem);
-      result.add(tmp);
-    });
+      data.forEach((dataItem) {
+        var tmp = this.convertJsonToObject(dataItem);
+        result.add(tmp);
+      });
 
-    return result;
+      return result;
+    }
+
+
   }
 
   Future<bool> post(T postItem) async {

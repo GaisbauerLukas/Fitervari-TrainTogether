@@ -13,17 +13,22 @@ class AuthenticationProvider {
   }
 
   final authorizationEndpoint =
-      Uri.parse('http://10.0.2.2:8180/auth/realms/Fitervari/.well-known/openid-configuration');
+      Uri.parse('http://10.0.2.2:8180/auth/realms/Fitervari/protocol/openid-connect/token');
 
   final identifier = 'frontend';
-  final secret = 'dec90166-409e-4839-a75d-339cea447e2c';
+  final secret = '33a7e74f-37cd-444a-b485-dcdad166c059';
 
   Client client;
 
-  void login(String username, String password) async {
-    this.client = await oauth2.resourceOwnerPasswordGrant(
-        authorizationEndpoint, username, password,
-        identifier: identifier, secret: secret);
-    print("adsjflajfda" + this.client.toString());
+  Future login(String username, String password) async {
+
+    try {
+      return this.client = await oauth2.resourceOwnerPasswordGrant(
+          authorizationEndpoint, username, password,
+          identifier: identifier, secret: secret);
+    } catch(e){
+      print(e);
+    }
+
   }
 }

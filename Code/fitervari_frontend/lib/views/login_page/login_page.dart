@@ -1,5 +1,9 @@
+import 'package:fitervari/contracts/transfer/customer.dart';
 import 'package:fitervari/logic/providers/authentication_provider.dart';
+import 'package:fitervari/logic/providers/customer_provider.dart';
+import 'package:fitervari/logic/providers/news_letters_provider.dart';
 import 'package:fitervari/logic/providers/settings_provider.dart';
+import 'package:fitervari/logic/providers/workout_provider.dart';
 import 'package:fitervari/views/tabs_screen/tabs_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +25,20 @@ class _LoginPageState extends State<LoginPage> {
 // The user should supply their own username and password.
   String username = '';
   String password = '';
+
+  setProvider() {
+    Provider.of<NewsLettersProvider>(context, listen: false).loadNewsLetters();
+    Provider.of<SettingsProvider>(context, listen: false).setLightTheme();
+    Provider.of<WorkoutProvider>(context, listen: false).loadWorkouts();
+    Provider.of<CustomerProvider>(context, listen: false).setCurrentCustomer(
+        Customer(
+            id: -1,
+            cashCustomer: true,
+            joinDate: DateTime.utc(2019, 5, 12),
+            memberTill: DateTime.utc(2021, 5, 12),
+            name: 'Florian Geht',
+            trainerId: 2));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +86,10 @@ class _LoginPageState extends State<LoginPage> {
                     child: FlatButton(
                       color: provider.currentTheme.primaryColor,
                       onPressed: () {
-                        AuthenticationProvider().login(username, password);
+                        AuthenticationProvider()
+                            .login(username, password)
+                            .then((value) => new AuthenticationProvider().client = value)
+                            .then((value) => setProvider());
                         Navigator.pushNamed(context, TabsScreen.routeName);
                       },
                       child: Text(
