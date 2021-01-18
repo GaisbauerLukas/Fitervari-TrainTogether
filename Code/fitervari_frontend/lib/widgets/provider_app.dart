@@ -1,3 +1,4 @@
+import 'package:fitervari/logic/providers/authentication_provider.dart';
 import 'package:fitervari/logic/providers/customer_provider.dart';
 import 'package:fitervari/logic/providers/news_letters_provider.dart';
 import 'package:fitervari/logic/providers/settings_provider.dart';
@@ -15,7 +16,8 @@ class ProviderApp extends StatelessWidget {
       ChangeNotifierProvider.value(value: SettingsProvider()),
       ChangeNotifierProvider.value(value: CustomerProvider()),
       ChangeNotifierProvider.value(value: NewsLettersProvider()),
-      ChangeNotifierProvider.value(value: WorkoutProvider())
+      ChangeNotifierProvider.value(value: WorkoutProvider()),
+      ChangeNotifierProvider.value(value: AuthenticationProvider())
     ], child: ContentApp());
   }
 }

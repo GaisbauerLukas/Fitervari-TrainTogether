@@ -1,10 +1,7 @@
 import 'dart:convert';
 
 import 'package:fitervari/contracts/identifiable.dart';
-import 'package:fitervari/logic/providers/authentication_provider.dart';
 import 'package:http/http.dart' as http;
-import 'package:oauth2/oauth2.dart';
-import 'package:provider/provider.dart';
 
 abstract class GenericEndpoint<T extends Identifiable> {
   String baseUrl;
@@ -13,53 +10,40 @@ abstract class GenericEndpoint<T extends Identifiable> {
 
   Map<String, dynamic> convertObjectToJson(T item);
 
-  Future<List<T>> getAll() async {
+  Future<List<T>> getAll(String token) async {
     List<T> result = [];
 
-    Client client = AuthenticationProvider().client;
+    final response = await http.get(this.baseUrl, headers: {
+      'Authorization': 'Bearer $token',
+      'Content-Type': 'application/json; charset=UTF-8'
+    });
+    
+    final data = json.decode(response.body);
 
-    if(client != null){
-      final response = await client.get(this.baseUrl).then((value) {
-        print(value);
-      });
-      final data = json.decode(response.body);
+    data.forEach((dataItem) {
+      var tmp = this.convertJsonToObject(dataItem);
+      result.add(tmp);
+    });
 
-      data.forEach((dataItem) {
-        var tmp = this.convertJsonToObject(dataItem);
-        result.add(tmp);
-      });
-
-      return result;
-    }
-
-
+    return result;
   }
 
   Future<bool> post(T postItem) async {
-
-    Client client = AuthenticationProvider().client;
-
-    final response = await client.post(this.baseUrl,
+    final response = await http.post(this.baseUrl,
         headers: {"content-type": "application/json"},
         body: this.convertObjectToJson(postItem));
     return response.statusCode == 201;
   }
 
   Future<bool> put(T putItem) async {
-
-    Client client = AuthenticationProvider().client;
-
-    final response = await client.put(this.baseUrl + "${putItem.id})",
+    final response = await http.put(this.baseUrl + "${putItem.id})",
         headers: {"content-type": "application/json"},
         body: this.convertObjectToJson(putItem));
     return response.statusCode == 201;
   }
 
   Future<bool> delete(int id) async {
-
-    Client client = AuthenticationProvider().client;
-
-    final response = await client.put(
+    final response = await http.put(
       this.baseUrl + '/$id',
       headers: {"content-type": "application/json"},
     );

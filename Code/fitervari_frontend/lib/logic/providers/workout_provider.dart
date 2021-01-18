@@ -21,8 +21,8 @@ class WorkoutProvider extends ChangeNotifier {
     _loadedWorkouts = [];
   }
 
-  loadWorkouts() async {
-    var tmp = await _endpoint.getAll();
+  loadWorkouts(String token) async {
+    var tmp = await _endpoint.getAll(token);
     _loadedWorkouts.addAll(tmp);
     //TODO change this later
     _currentWorkout = _loadedWorkouts[0];
