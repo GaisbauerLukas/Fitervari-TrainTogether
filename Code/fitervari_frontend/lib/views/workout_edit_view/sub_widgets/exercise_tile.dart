@@ -2,6 +2,7 @@ import 'package:fitervari/contracts/transfer/exercise.dart';
 import 'package:fitervari/contracts/transfer/exercise_history.dart';
 import 'package:fitervari/contracts/transfer/workout_history.dart';
 import 'package:fitervari/views/do_exercise_page/do_exercise_page.dart';
+import 'package:fitervari/views/filler_page/filler_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,13 @@ class ExerciseTile extends StatelessWidget {
           exercise.exerciseType,
           style: TextStyle(fontSize: 15),
         ),
-        trailing: Icon(Icons.delete, color: Colors.red),
+        trailing: IconButton(
+          icon: Icon(Icons.delete, color: Colors.red),
+          onPressed: () {
+            print('Delete tapped.');
+            Navigator.of(context).pushNamed(FillerPage.routeName);
+          },
+        ),
         isThreeLine: true,
       ),
     );
