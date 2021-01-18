@@ -24,7 +24,7 @@ class MyWorkouts extends StatelessWidget {
                   splashColor: Colors.blue.withAlpha(30),
                   onTap: () {
                     print('Card tapped.');
-                    Navigator.of(context).pushNamed(WorkoutEditView.routeName);
+                    Navigator.pushNamed(context,WorkoutEditView.routeName,arguments: workouts[index]);
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(10),
