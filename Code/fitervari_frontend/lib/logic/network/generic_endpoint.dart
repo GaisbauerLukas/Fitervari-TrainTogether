@@ -35,9 +35,9 @@ abstract class GenericEndpoint<T extends Identifiable> {
   }
 
   Future<bool> put(T putItem) async {
-    final response = await http.put(this.baseUrl + "${putItem.id})",
+    final response = await http.put(this.baseUrl,
         headers: {"content-type": "application/json"},
-        body: this.convertObjectToJson(putItem));
+        body: json.encode(this.convertObjectToJson(putItem)));
     return response.statusCode == 201;
   }
 

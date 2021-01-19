@@ -20,7 +20,7 @@ class WorkoutProvider extends ChangeNotifier {
   WorkoutProvider() {
     _endpoint = WorkoutEndpoint();
     _workoutHistoryEndpoint = WorkoutHistoryEndpoint();
-    _loadedWorkouts = [];
+    _loadedWorkouts = new List<Workout>();
   }
 
   loadWorkouts() {
@@ -35,9 +35,11 @@ class WorkoutProvider extends ChangeNotifier {
     _currentWorkout = workout;
   }
 
-  void postWorkoutHistoryToCurrentWorkout(WorkoutHistory workoutHistory, int customerId) {
+  void postWorkoutHistoryToCurrentWorkout(
+      WorkoutHistory workoutHistory, int customerId) {
     _endpoint
-        .addWorkoutHistoryToWorkout(currentWorkout.id, workoutHistory, customerId)
+        .addWorkoutHistoryToWorkout(
+            currentWorkout.id, workoutHistory, customerId)
         .then((value) => log(value.toString()));
   }
 
@@ -55,9 +57,22 @@ class WorkoutProvider extends ChangeNotifier {
     });
   }
 
+  updateWorkout(Workout workout) {
+    _endpoint.put(workout).then((value) {
+      if(value){
+        for (var element in loadedWorkouts) {
+          if(element.id == workout.id){
+            element = workout;
+          }
+          notifyListeners();
+        }
+      }
+    });
+  }
+
   deleteWorkout(Workout workout) {
     _endpoint.delete(workout.id).then((value) {
-      if(value != false) {
+      if (value != false) {
         loadedWorkouts.remove(workout);
         notifyListeners();
       }

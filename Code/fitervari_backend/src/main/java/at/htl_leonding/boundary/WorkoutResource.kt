@@ -121,9 +121,9 @@ class WorkoutResource {
     }
 
     @PUT
-    @Path("/workout/{id}")
+    @Path("/workout")
     @Transactional
-    fun updateWorkout(@PathParam("id") id: Long, jsonObject: JsonObject): Response {
+    fun updateWorkout(jsonObject: JsonObject): Response {
         try {
             val exercises: MutableList<Exercise> = mutableListOf()
             val jsonArray: JsonArray? = jsonObject["myExercises"]?.asJsonArray()
@@ -136,19 +136,18 @@ class WorkoutResource {
                         item.getString("exerciseType"),
                         item.getInt("standardSetNr"),
                         item.getBoolean("officialFlag"),
-                        service.getPersonById(item["creator"]?.asJsonObject()?.getInt("id")?.toLong())
+                        service.getPersonById(3)
                 )
                 newExercise.persistAndFlush()
                 exercises.add(newExercise)
                 // Your code here
             }
-
             val newWorkout = Workout(jsonObject.getString("name"),
                     LocalDateTime.parse(jsonObject.getString("creation_Date")),
                     service.getPersonById(jsonObject["creator"]?.asJsonObject()?.getInt("id")?.toLong()),
                     jsonObject.getBoolean("official_Flag"))
             newWorkout.exercises = exercises
-            service.updateWorkout(newWorkout, id)
+            service.updateWorkout(newWorkout, jsonObject.getInt("id")?.toLong())
             return Response.accepted().build()
         } catch (e: Exception) {
             return Response.serverError().build()

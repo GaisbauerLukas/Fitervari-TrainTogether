@@ -8,7 +8,7 @@ class NewsLettersProvider extends ChangeNotifier {
 
   NewsLetterEndpoint endpoint = NewsLetterEndpoint();
 
-  List<NewsLetter> _items = [];
+  List<NewsLetter> _items = new List<NewsLetter>();
 
   List<NewsLetter> get items {
     return [..._items];

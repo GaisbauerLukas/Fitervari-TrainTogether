@@ -17,7 +17,7 @@ class WorkoutEditView extends StatelessWidget {
           actions: <Widget>[
             IconButton(
               onPressed: () =>
-                  Navigator.of(context).pushNamed(ExerciseList.routeName),
+                  Navigator.pushNamed(context, ExerciseList.routeName, arguments: workout),
               icon: Icon(Icons.add),
               color: Colors.white,
             )
@@ -26,7 +26,7 @@ class WorkoutEditView extends StatelessWidget {
         body: ListView.builder(
           scrollDirection: Axis.vertical,
           itemBuilder: (ctx, index) {
-            return ExerciseTile(workout.exercises[index]);
+            return ExerciseTile(workout.exercises[index], workout);
           },
           itemCount: workout.exercises.length,
         ),

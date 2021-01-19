@@ -1,4 +1,5 @@
 import 'package:fitervari/contracts/transfer/exercise.dart';
+import 'package:fitervari/contracts/transfer/workout.dart';
 import 'package:fitervari/logic/providers/exercise_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +18,7 @@ class ExerciseList extends StatefulWidget {
 
 class ExerciseRoutineState extends State<ExerciseList> {
   List<Exercise> exercises;
+  Workout workout;
 
   @override
   void initState() {
@@ -31,6 +33,7 @@ class ExerciseRoutineState extends State<ExerciseList> {
 
   @override
   Widget build(BuildContext context) {
+    this.workout = ModalRoute.of(context).settings.arguments;
     return Consumer<ExerciseProvider>(
       builder: (context, provider, child) {
         exercises = provider.exercises;
@@ -39,7 +42,7 @@ class ExerciseRoutineState extends State<ExerciseList> {
           body: ListView.builder(
             scrollDirection: Axis.vertical,
             itemBuilder: (ctx, index) {
-              return AddExerciseTile(exercises[index]);
+              return AddExerciseTile(exercises[index], workout);
             },
             itemCount: exercises.length,
           ),

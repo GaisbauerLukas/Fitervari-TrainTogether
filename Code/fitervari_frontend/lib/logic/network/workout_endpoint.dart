@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 
 class WorkoutEndpoint extends GenericEndpoint<Workout> {
   WorkoutEndpoint() {
-    this.baseUrl = ApplicationProperties.url + 'workout/';
+    this.baseUrl = ApplicationProperties.url + 'workout';
   }
 
   @override
