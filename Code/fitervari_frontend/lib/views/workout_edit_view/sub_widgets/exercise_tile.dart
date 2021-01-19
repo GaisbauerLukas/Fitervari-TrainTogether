@@ -34,6 +34,7 @@ class ExerciseTile extends StatelessWidget {
             workout.exercises.remove(exercise);
             Provider.of<WorkoutProvider>(context, listen: false)
                 .updateWorkout(workout);
+            Navigator.of(context).pop();
           },
         ),
         isThreeLine: true,
