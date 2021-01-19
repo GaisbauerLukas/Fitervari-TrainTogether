@@ -17,11 +17,9 @@ dependencies:
   provider: ^3.0.0
   numberpicker: ^1.2.1
   charts_flutter: ^0.9.0
-
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
+  carousel_slider: ^2.2.1
   cupertino_icons: ^0.1.3
+  lottie: ^0.7.0+1
 
 dev_dependencies:
   flutter_test:
@@ -31,8 +29,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-assets:
-    - images/maxresdefault.jpg
+  assets:
+      - lib/assets/animations/GrowthAnimation.zip
+      - lib/assets/filler.jpeg
 
 fonts:
 - family: Schyler

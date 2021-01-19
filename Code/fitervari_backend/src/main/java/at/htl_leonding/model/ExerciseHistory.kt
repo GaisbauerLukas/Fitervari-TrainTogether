@@ -8,15 +8,12 @@ import kotlin.collections.Set
 @Entity
 @Table(name = "exercise_history")
 class ExerciseHistory(
-        @OneToMany
-        @JoinColumn(name = "exercise_history_id")
+        @OneToMany(mappedBy = "exercise_history_id", cascade = arrayOf(CascadeType.ALL), orphanRemoval = true, fetch = FetchType.EAGER)
         var setHistories: MutableList<SetHistory> = mutableListOf(),
-        @ManyToOne
-        @JoinColumn(name = "exercise_id")
-        @JsonbTransient
-        var exercise: Exercise
+        var exercise_id: Int
 ) : PanacheEntity() {
     fun copyValues(other: ExerciseHistory) {
         this.setHistories = other.setHistories
+        this.exercise_id = exercise_id
     }
 }

@@ -1,4 +1,4 @@
-import 'package:fitervari/logic/helper/SessionInfo.dart';
+import 'package:fitervari/logic/helper/session_info.dart';
 import 'package:fitervari/logic/providers/customer_provider.dart';
 import 'package:fitervari/views/profile_page/sub_widgets/profile_image.dart';
 import 'package:fitervari/views/profile_page/sub_widgets/profile_information_box.dart';
@@ -11,8 +11,7 @@ class ProfilePage extends StatelessWidget {
     return Consumer<CustomerProvider>(
       builder: (context, customerProvider, child) {
         var currentCustomer = customerProvider.getCurrentCustomer();
-        return SingleChildScrollView(
-          child: Container(
+        return Container(
             width: double.infinity,
             margin: EdgeInsets.all(10),
             child: Column(
@@ -34,7 +33,6 @@ class ProfilePage extends StatelessWidget {
                 ProfileInformationBox(currentCustomer)
               ],
             ),
-          ),
         );
       },
     );

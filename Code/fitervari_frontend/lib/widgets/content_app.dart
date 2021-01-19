@@ -1,8 +1,5 @@
-import 'package:fitervari/contracts/transfer/SetHistory.dart';
-import 'package:fitervari/contracts/transfer/exercise.dart';
-import 'package:fitervari/contracts/transfer/exercise_history.dart';
-import 'package:fitervari/contracts/transfer/workout.dart';
-import 'package:fitervari/contracts/transfer/workout_history.dart';
+import 'package:fitervari/contracts/transfer/customer.dart';
+import 'package:fitervari/logic/providers/customer_provider.dart';
 import 'package:fitervari/logic/providers/news_letters_provider.dart';
 import 'package:fitervari/logic/providers/settings_provider.dart';
 import 'package:fitervari/logic/providers/workout_provider.dart';
@@ -10,6 +7,8 @@ import 'package:fitervari/views/do_exercise_page/do_exercise_page.dart';
 import 'package:fitervari/views/filler_page/filler_page.dart';
 import 'package:fitervari/views/news_letter_details_page/NewsLetterDetailsPage.dart';
 import 'package:fitervari/views/tabs_screen/tabs_screen.dart';
+import 'package:fitervari/views/workout_edit_view/sub_widgets/exercise_list.dart';
+import 'package:fitervari/views/workout_edit_view/workout_edit_view.dart';
 import 'package:fitervari/views/workout_routine/workout_routine.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,50 +29,17 @@ class _ContentAppState extends State<ContentApp> {
   }
 
   setProvider() {
-    // this data is set for develop and debug purposes
-    var tmp = Exercise(
-        creator: null,
-        officialFlag: false,
-        name: 'Pushups',
-        id: 1,
-        creationDate: DateTime.now(),
-        exerciseType: 'strength',
-        standardSetNr: 3);
-
-    var setHistory = SetHistory(
-      id: 1,
-      distance: -1,
-      repetitions: 12,
-      setNumber: 1,
-      time: -1,
-      weight: 50
-    );
-
-    var exerciseHistory = ExerciseHistory(
-      id: 1,
-      exercise: tmp,
-      setHistories: [setHistory]
-    );
-
-    var workoutHistory = WorkoutHistory(
-      id: 1,
-      date: DateTime.now(),
-      exerciseHistories: [exerciseHistory]
-    );
-
     Provider.of<NewsLettersProvider>(context, listen: false).loadNewsLetters();
     Provider.of<SettingsProvider>(context, listen: false).setLightTheme();
-    Provider.of<WorkoutProvider>(context, listen: false).setNextWorkout(Workout(
-        exercises: [
-          tmp,
-          tmp
-        ],
-        creationDate: DateTime.now(),
-        id: 1,
-        name: 'test',
-        officialFlag: false,
-        workoutHistories: [workoutHistory],
-        creator: null));
+    Provider.of<WorkoutProvider>(context, listen: false).loadWorkouts();
+    Provider.of<CustomerProvider>(context, listen: false).setCurrentCustomer(
+        Customer(
+            id: -1,
+            cashCustomer: true,
+            joinDate: DateTime.utc(2019, 5, 12),
+            memberTill: DateTime.utc(2021, 5, 12),
+            name: 'Florian Geht',
+            trainerId: 2));
   }
 
   @override
@@ -90,7 +56,9 @@ class _ContentAppState extends State<ContentApp> {
             FillerPage.routeName: (ctx) => FillerPage(),
             NewsLetterDetailsPage.routeName: (ctx) => NewsLetterDetailsPage(),
             WorkoutRoutine.routeName: (ctx) => WorkoutRoutine(),
-            DoExercisePage.routeName: (ctx) => DoExercisePage()
+            DoExercisePage.routeName: (ctx) => DoExercisePage(),
+            WorkoutEditView.routeName: (ctx) => WorkoutEditView(),
+            ExerciseList.routeName: (ctx) => ExerciseList(),
           },
         );
       },

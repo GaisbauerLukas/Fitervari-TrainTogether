@@ -1,9 +1,14 @@
 package at.htl_leonding.boundary
 
-import at.htl_leonding.model.Exercise
-import at.htl_leonding.model.Workout
+import at.htl_leonding.model.*
+import at.htl_leonding.repository.ExerciseHistoryRepository
+import at.htl_leonding.repository.SetHistoryRepository
+import at.htl_leonding.repository.WorkoutHistoryRepository
+import at.htl_leonding.repository.WorkoutRepository
+import at.htl_leonding.service.CustomerService
 import at.htl_leonding.service.WorkoutService
 import java.time.LocalDateTime
+import java.util.function.Consumer
 import javax.inject.Inject
 import javax.json.JsonArray
 import javax.json.JsonObject
@@ -18,6 +23,18 @@ import javax.ws.rs.core.Response
 class WorkoutResource {
     @Inject
     lateinit var service: WorkoutService
+
+
+
+    @Inject
+    lateinit var customerService: CustomerService
+
+    @GET
+    @Path("/workout")
+    fun getAll(): Response {
+        val tmp = service.getAll();
+        return Response.ok(tmp).build();
+    }
 
     @GET
     @Path("/workout/{id}")
@@ -61,6 +78,33 @@ class WorkoutResource {
         }
     }
 
+    @POST
+    @Transactional
+    @Path("workout/addWorkoutHistory/{id}/{customerId}")
+    fun addWorkoutHistoryToWorkout(@PathParam("id") id: Long, @PathParam("customerId") customerId: Long, input: WorkoutHistory): Response {
+        var oldExerciseHistories: MutableList<ExerciseHistory> = mutableListOf()
+        input.exerciseHistories.forEach(Consumer {
+            oldExerciseHistories.add(it)
+        })
+        input.exerciseHistories.clear()
+        oldExerciseHistories.forEach(Consumer {
+            var tmp = ExerciseHistory(mutableListOf(), it.exercise_id)
+            tmp.persistAndFlush()
+            it.setHistories.forEach(Consumer { t ->
+                run {
+                    t.exercise_history_id = tmp.id
+                    t.persistAndFlush()
+                }
+            })
+            input.exerciseHistories.add(tmp)
+        })
+
+        input.customer = customerService.getById(2)
+        input.workout = service.getById(id)
+        input.persist()
+        return Response.accepted().build()
+    }
+
     private fun getSetFromJsonArray(jsonObject: JsonObject): Set<Exercise> {
         val tmp = setOf<Exercise>()
         for (i in 0 until jsonObject["myExercises"]?.asJsonArray()?.size!!) {
@@ -77,9 +121,9 @@ class WorkoutResource {
     }
 
     @PUT
-    @Path("/workout/{id}")
+    @Path("/workout")
     @Transactional
-    fun updateWorkout(@PathParam("id") id: Long, jsonObject: JsonObject): Response {
+    fun updateWorkout(jsonObject: JsonObject): Response {
         try {
             val exercises: MutableList<Exercise> = mutableListOf()
             val jsonArray: JsonArray? = jsonObject["myExercises"]?.asJsonArray()
@@ -92,19 +136,18 @@ class WorkoutResource {
                         item.getString("exerciseType"),
                         item.getInt("standardSetNr"),
                         item.getBoolean("officialFlag"),
-                        service.getPersonById(item["creator"]?.asJsonObject()?.getInt("id")?.toLong())
+                        service.getPersonById(3)
                 )
                 newExercise.persistAndFlush()
                 exercises.add(newExercise)
                 // Your code here
             }
-
             val newWorkout = Workout(jsonObject.getString("name"),
                     LocalDateTime.parse(jsonObject.getString("creation_Date")),
                     service.getPersonById(jsonObject["creator"]?.asJsonObject()?.getInt("id")?.toLong()),
                     jsonObject.getBoolean("official_Flag"))
             newWorkout.exercises = exercises
-            service.updateWorkout(newWorkout, id)
+            service.updateWorkout(newWorkout, jsonObject.getInt("id")?.toLong())
             return Response.accepted().build()
         } catch (e: Exception) {
             return Response.serverError().build()
@@ -114,12 +157,12 @@ class WorkoutResource {
     @DELETE
     @Path("/workout/{id}")
     @Transactional
-    fun deleteTrainer(@PathParam("id") id: Long): Response {
-        return try {
-            service.deleteWorkout(id)
-            Response.ok().build()
+    fun deleteWorkout(@PathParam("id") id: Long): Response {
+        try {
+            service.deleteWorkout(id);
+            return Response.ok().build()
         } catch (e: Exception) {
-            Response.serverError().build()
+            return Response.ok(e.message).build()
         }
     }
 }

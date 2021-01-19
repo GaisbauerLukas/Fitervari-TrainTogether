@@ -1,5 +1,5 @@
 import 'package:fitervari/contracts/transfer/customer.dart';
-import 'package:fitervari/logic/helper/SessionInfo.dart';
+import 'package:fitervari/logic/helper/session_info.dart';
 import 'package:flutter/material.dart';
 
 class ProfileInformationBox extends StatelessWidget {
@@ -17,7 +17,7 @@ class ProfileInformationBox extends StatelessWidget {
           padding: EdgeInsets.all(15),
           height: (MediaQuery.of(context).size.height -
                   SessionInfo().actionBarHeight) *
-              0.4,
+              0.35,
           width: double.infinity,
           child: Column(
             children: <Widget>[

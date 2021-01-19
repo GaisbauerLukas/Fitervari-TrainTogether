@@ -1,9 +1,6 @@
-import 'package:fitervari/contracts/transfer/customer.dart';
-import 'package:fitervari/logic/helper/SessionInfo.dart';
-import 'package:fitervari/logic/providers/customer_provider.dart';
+import 'package:fitervari/logic/helper/session_info.dart';
 import 'package:fitervari/views/filler_page/filler_page.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../views/configuration_page/configuration_page.dart';
 import '../../views/landing_page/landing_page.dart';
@@ -38,14 +35,6 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   void initState() {
     super.initState();
-    Provider.of<CustomerProvider>(context, listen: false).setCurrentCustomer(
-        Customer(
-            id: -1,
-            cashCustomer: true,
-            joinDate: DateTime.utc(2019, 5, 12),
-            memberTill: DateTime.utc(2021, 5, 12),
-            name: 'Florian Geht',
-            trainerId: 2));
   }
 
   @override
