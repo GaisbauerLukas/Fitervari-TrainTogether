@@ -13,6 +13,7 @@ import 'package:fitervari/views/do_exercise_page/do_exercise_page.dart';
 import 'package:fitervari/views/filler_page/filler_page.dart';
 import 'package:fitervari/views/news_letter_details_page/NewsLetterDetailsPage.dart';
 import 'package:fitervari/views/tabs_screen/tabs_screen.dart';
+import 'package:fitervari/views/workout_edit_view/workout_edit_view.dart';
 import 'package:fitervari/views/workout_routine/workout_routine.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,7 @@ class _ContentAppState extends State<ContentApp> {
             NewsLetterDetailsPage.routeName: (ctx) => NewsLetterDetailsPage(),
             WorkoutRoutine.routeName: (ctx) => WorkoutRoutine(),
             DoExercisePage.routeName: (ctx) => DoExercisePage(),
-            CreateWorkoutPage.routeName: (ctx) => CreateWorkoutPage(),
+            WorkoutEditView.routeName: (ctx) => WorkoutEditView(),
           },
         );
       },
