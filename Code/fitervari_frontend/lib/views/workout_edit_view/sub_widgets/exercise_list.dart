@@ -13,17 +13,21 @@ class ExerciseList extends StatefulWidget {
     return ExerciseRoutineState();
   }
 }
-class ExerciseRoutineState extends State<ExerciseList>{
+
+class ExerciseRoutineState extends State<ExerciseList> {
   List<Exercise> exercises;
+
   @override
-  void initState(){
-    exercises = [];
+  void initState() {
+    super.initState();
     Provider.of<ExerciseProvider>(context, listen: false).loadExercises();
   }
+
   @override
   void setState(fn) {
     super.setState(fn);
   }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<ExerciseProvider>(

@@ -24,17 +24,7 @@ class WorkoutResource {
     @Inject
     lateinit var service: WorkoutService
 
-    @Inject
-    lateinit var repository: WorkoutRepository
 
-    @Inject
-    lateinit var historyRepository: WorkoutHistoryRepository
-
-    @Inject
-    lateinit var exerchiseHistoryRepository: ExerciseHistoryRepository
-
-    @Inject
-    lateinit var setHistoryRepository: SetHistoryRepository
 
     @Inject
     lateinit var customerService: CustomerService
@@ -170,22 +160,7 @@ class WorkoutResource {
     @Transactional
     fun deleteWorkout(@PathParam("id") id: Long): Response {
         try {
-            val forDeletion = repository.findById(id) ?: throw Exception("entity not found")
-            var histories = historyRepository.find("workout_id = ?1", id).list<WorkoutHistory>()
-
-            for (item in histories) {
-                var exerciseHs = exerchiseHistoryRepository.find("workout_history_id = ?1", item.id).list<ExerciseHistory>()
-                for (element in exerciseHs) {
-                    var setHs = setHistoryRepository.find("exercise_history_id = ?1", element.id).list<SetHistory>()
-                    for(set in setHs) {
-                        setHistoryRepository.delete(set)
-                    }
-                    exerchiseHistoryRepository.delete(element)
-                }
-                historyRepository.delete(item)
-            }
-
-            repository.delete(forDeletion)
+            service.deleteWorkout(id);
             return Response.ok().build()
         } catch (e: Exception) {
             return Response.ok(e.message).build()

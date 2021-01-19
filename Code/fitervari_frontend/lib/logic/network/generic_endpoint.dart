@@ -10,17 +10,21 @@ abstract class GenericEndpoint<T extends Identifiable> {
   Map<String, dynamic> convertObjectToJson(T item);
 
   Future<List<T>> getAll() async {
-    List<T> result = [];
+    try{
+      List<T> result = [];
 
-    final response = await http.get(this.baseUrl);
-    final data = json.decode(Utf8Decoder().convert(response.bodyBytes));
+      final response = await http.get(this.baseUrl);
+      final data = json.decode(Utf8Decoder().convert(response.bodyBytes));
 
-    data.forEach((dataItem) {
-      var tmp = this.convertJsonToObject(dataItem);
-      result.add(tmp);
-    });
+      data.forEach((dataItem) {
+        var tmp = this.convertJsonToObject(dataItem);
+        result.add(tmp);
+      });
 
-    return result;
+      return result;
+    }catch(e){
+
+    }
   }
 
   Future<bool> post(T postItem) async {
@@ -42,6 +46,6 @@ abstract class GenericEndpoint<T extends Identifiable> {
       this.baseUrl + '$id',
       headers: {"content-type": "application/json"},
     );
-    return response.statusCode == 201;
+    return response.statusCode == 200;
   }
 }
