@@ -11,7 +11,6 @@ class WorkoutEditView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Workout workout = ModalRoute.of(context).settings.arguments;
-    print(workout.name);
     return Scaffold(
         appBar: AppBar(
           actions: <Widget>[
