@@ -3,6 +3,7 @@ import 'package:fitervari/logic/providers/exercise_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'add_exercise_tile.dart';
 import 'exercise_tile.dart';
 
 class ExerciseList extends StatefulWidget {
@@ -38,7 +39,7 @@ class ExerciseRoutineState extends State<ExerciseList> {
           body: ListView.builder(
             scrollDirection: Axis.vertical,
             itemBuilder: (ctx, index) {
-              return ExerciseTile(exercises[index]);
+              return AddExerciseTile(exercises[index]);
             },
             itemCount: exercises.length,
           ),
