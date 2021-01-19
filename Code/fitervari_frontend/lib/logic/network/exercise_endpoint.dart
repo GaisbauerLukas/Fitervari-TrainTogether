@@ -4,14 +4,12 @@ import 'package:fitervari/logic/network/generic_endpoint.dart';
 class ExerciseEndpoint extends GenericEndpoint<Exercise>{
   @override
   Exercise convertJsonToObject(dataItem) {
-    // TODO: implement convertJsonToObject
-    throw UnimplementedError();
+    return Exercise.fromJson(dataItem);
   }
 
   @override
   Map<String, dynamic> convertObjectToJson(Exercise item) {
-    // TODO: implement convertObjectToJson
-    throw UnimplementedError();
+    return item.toJson();
   }
 
 }
