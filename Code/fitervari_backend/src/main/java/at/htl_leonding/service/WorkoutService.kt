@@ -30,7 +30,7 @@ class WorkoutService {
     }
 
     fun deleteWorkout(id: Long) {
-        val forDeletion = repository.findById(id)
+        val forDeletion = repository.findById(id) ?: throw Exception("entity not found")
         repository.delete(forDeletion)
     }
 

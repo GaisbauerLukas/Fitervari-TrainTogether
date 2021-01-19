@@ -38,8 +38,8 @@ abstract class GenericEndpoint<T extends Identifiable> {
   }
 
   Future<bool> delete(int id) async {
-    final response = await http.put(
-      this.baseUrl + '/$id',
+    final response = await http.delete(
+      this.baseUrl + '$id',
       headers: {"content-type": "application/json"},
     );
     return response.statusCode == 201;
