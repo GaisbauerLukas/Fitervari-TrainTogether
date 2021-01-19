@@ -1,6 +1,7 @@
 import 'package:fitervari/contracts/transfer/workout.dart';
 import 'package:fitervari/logic/providers/workout_provider.dart';
 import 'package:fitervari/views/filler_page/filler_page.dart';
+import 'package:fitervari/views/workout_edit_view/sub_widgets/exercise_list.dart';
 import 'package:fitervari/views/workout_edit_view/sub_widgets/exercise_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +17,7 @@ class WorkoutEditView extends StatelessWidget {
           actions: <Widget>[
             IconButton(
               onPressed: () =>
-                  Navigator.of(context).pushNamed(FillerPage.routeName),
+                  Navigator.of(context).pushNamed(ExerciseList.routeName),
               icon: Icon(Icons.add),
               color: Colors.white,
             )
