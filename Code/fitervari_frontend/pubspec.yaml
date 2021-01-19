@@ -31,6 +31,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
       - lib/assets/animations/GrowthAnimation.zip
+      - lib/assets/filler.jpeg
 
 fonts:
 - family: Schyler

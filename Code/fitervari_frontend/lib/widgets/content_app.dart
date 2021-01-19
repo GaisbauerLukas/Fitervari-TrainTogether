@@ -1,9 +1,4 @@
 import 'package:fitervari/contracts/transfer/customer.dart';
-import 'package:fitervari/contracts/transfer/exercise.dart';
-import 'package:fitervari/contracts/transfer/exercise_history.dart';
-import 'package:fitervari/contracts/transfer/set_history.dart';
-import 'package:fitervari/contracts/transfer/workout.dart';
-import 'package:fitervari/contracts/transfer/workout_history.dart';
 import 'package:fitervari/logic/providers/customer_provider.dart';
 import 'package:fitervari/logic/providers/news_letters_provider.dart';
 import 'package:fitervari/logic/providers/settings_provider.dart';

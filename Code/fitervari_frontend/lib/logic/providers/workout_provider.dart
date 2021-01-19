@@ -23,11 +23,12 @@ class WorkoutProvider extends ChangeNotifier {
     _loadedWorkouts = [];
   }
 
-  loadWorkouts() async {
-    var tmp = await _endpoint.getAll();
-    _loadedWorkouts.addAll(tmp);
-    //TODO change this later
-    _currentWorkout = _loadedWorkouts[0];
+  loadWorkouts() {
+    _endpoint.getAll().then((value) {
+      _loadedWorkouts.clear();
+      _loadedWorkouts.addAll(value);
+      _currentWorkout = _loadedWorkouts[0];
+    });
   }
 
   void setNextWorkout(Workout workout) {
@@ -50,6 +51,15 @@ class WorkoutProvider extends ChangeNotifier {
     _loadedWorkouts.forEach((element) {
       if (element.workoutHistories != null && element.id == workoutId) {
         element.workoutHistories.add(workoutHistory);
+      }
+    });
+  }
+
+  deleteWorkout(Workout workout) {
+    _endpoint.delete(workout.id).then((value) {
+      if(value != false) {
+        loadedWorkouts.remove(workout);
+        notifyListeners();
       }
     });
   }

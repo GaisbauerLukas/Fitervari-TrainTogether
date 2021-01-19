@@ -13,11 +13,8 @@ class FillerPage extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             ClipRRect(
-              child: Image.network(
-                'https://images.unsplash.com/photo-1576678927484'
-                '-cc907957088c'
-                '?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto='
-                'format&fit=crop&w=2134&q=80',
+              child: Image.asset(
+                'lib/assets/filler.jpeg',
                 height: double.infinity,
                 width: double.infinity,
                 fit: BoxFit.cover,

@@ -1,6 +1,10 @@
 package at.htl_leonding.boundary
 
 import at.htl_leonding.model.*
+import at.htl_leonding.repository.ExerciseHistoryRepository
+import at.htl_leonding.repository.SetHistoryRepository
+import at.htl_leonding.repository.WorkoutHistoryRepository
+import at.htl_leonding.repository.WorkoutRepository
 import at.htl_leonding.service.CustomerService
 import at.htl_leonding.service.WorkoutService
 import java.time.LocalDateTime
@@ -19,6 +23,8 @@ import javax.ws.rs.core.Response
 class WorkoutResource {
     @Inject
     lateinit var service: WorkoutService
+
+
 
     @Inject
     lateinit var customerService: CustomerService
@@ -152,12 +158,12 @@ class WorkoutResource {
     @DELETE
     @Path("/workout/{id}")
     @Transactional
-    fun deleteTrainer(@PathParam("id") id: Long): Response {
-        return try {
-            service.deleteWorkout(id)
-            Response.ok().build()
+    fun deleteWorkout(@PathParam("id") id: Long): Response {
+        try {
+            service.deleteWorkout(id);
+            return Response.ok().build()
         } catch (e: Exception) {
-            Response.serverError().build()
+            return Response.ok(e.message).build()
         }
     }
 }

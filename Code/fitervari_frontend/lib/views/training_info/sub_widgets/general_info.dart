@@ -10,8 +10,6 @@ class GeneralInfo extends StatelessWidget {
     return Card(
       margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
       elevation: 2,
-      shape:
-      RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(

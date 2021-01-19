@@ -17,6 +17,7 @@ class ExerciseProvider extends ChangeNotifier{
   loadExercises() async{
     var tmp = await _endpoint.getAll();
     _exercises.addAll(tmp);
+    notifyListeners();
   }
 
 }
