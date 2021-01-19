@@ -24,6 +24,12 @@ class ExerciseResource {
         return Response.ok(service.getById(id)).build()
     }
 
+    @GET
+    @Path("/exercise")
+    fun getAllExercises(): Response{
+        return Response.ok(service.getAllExercises()).build();
+    }
+
     @POST
     @Path("/exercise")
     @Transactional

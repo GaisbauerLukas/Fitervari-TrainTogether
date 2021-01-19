@@ -39,4 +39,8 @@ class ExerciseService {
     fun getPersonById(id: Long?): Person {
         return personRepository.findById(id)
     }
+
+    fun getAllExercises(): List<Exercise>{
+        return repository.listAll();
+    }
 }
