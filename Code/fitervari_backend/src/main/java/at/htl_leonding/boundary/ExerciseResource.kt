@@ -26,7 +26,7 @@ class ExerciseResource {
 
     @GET
     @Path("/exercise")
-    fun getAllExercises(): Response{
+    fun getAllExercises(): Response {
         return Response.ok(service.getAllExercises()).build();
     }
 
@@ -36,14 +36,14 @@ class ExerciseResource {
     fun postWorkout(jsonObject: JsonObject): Response {
         try {
             val newExercise = Exercise(
-                    jsonObject.getString("name"),
-                    LocalDateTime.parse(jsonObject.getString("creationDate")),
-                    jsonObject.getString("exerciseType"),
-                    jsonObject.getInt("standardSetNr"),
-                    jsonObject.getBoolean("officialFlag"),
-                    service.getPersonById(jsonObject.get("creator")?.asJsonObject()?.getInt("id")?.toLong())
+                null,
+                jsonObject.getString("name"),
+                LocalDateTime.parse(jsonObject.getString("creationDate")),
+                jsonObject.getString("exerciseType"),
+                jsonObject.getInt("standardSetNr"),
+                jsonObject.getBoolean("officialFlag"),
+                service.getPersonById(jsonObject.get("creator")?.asJsonObject()?.getInt("id")?.toLong())
             )
-            newExercise.persist()
             return Response.accepted().build()
         } catch (e: Exception) {
             return Response.ok(e.message).build()
@@ -56,12 +56,13 @@ class ExerciseResource {
     fun updateWorkout(@PathParam("id") id: Long, jsonObject: JsonObject): Response {
         try {
             val newExercise = Exercise(
-                    jsonObject.getString("name"),
-                    LocalDateTime.parse(jsonObject.getString("creationDate")),
-                    jsonObject.getString("exerciseType"),
-                    jsonObject.getInt("standardSetNr"),
-                    jsonObject.getBoolean("officialFlag"),
-                    service.getPersonById(jsonObject.get("creator")?.asJsonObject()?.getInt("id")?.toLong())
+                null,
+                jsonObject.getString("name"),
+                LocalDateTime.parse(jsonObject.getString("creationDate")),
+                jsonObject.getString("exerciseType"),
+                jsonObject.getInt("standardSetNr"),
+                jsonObject.getBoolean("officialFlag"),
+                service.getPersonById(jsonObject.get("creator")?.asJsonObject()?.getInt("id")?.toLong())
             )
             service.updateExercise(newExercise, id)
             return Response.accepted().build()

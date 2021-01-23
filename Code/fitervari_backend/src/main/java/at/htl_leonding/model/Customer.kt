@@ -1,6 +1,5 @@
 package at.htl_leonding.model
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity
 import java.util.*
 import javax.persistence.*
 

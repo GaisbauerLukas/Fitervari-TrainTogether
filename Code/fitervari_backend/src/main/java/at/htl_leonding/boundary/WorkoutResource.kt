@@ -25,7 +25,6 @@ class WorkoutResource {
     lateinit var service: WorkoutService
 
 
-
     @Inject
     lateinit var customerService: CustomerService
 
@@ -54,22 +53,24 @@ class WorkoutResource {
             for (i in 0 until (jsonArray?.size ?: 0)) {
                 val item = jsonArray?.get(i)!!.asJsonObject()
                 val newExercise = Exercise(
-                        item.getString("name"),
-                        LocalDateTime.parse(item.getString("creationDate")),
-                        item.getString("exerciseType"),
-                        item.getInt("standardSetNr"),
-                        item.getBoolean("officialFlag"),
-                        service.getPersonById(item["creator"]?.asJsonObject()?.getInt("id")?.toLong())
+                    null,
+                    item.getString("name"),
+                    LocalDateTime.parse(item.getString("creationDate")),
+                    item.getString("exerciseType"),
+                    item.getInt("standardSetNr"),
+                    item.getBoolean("officialFlag"),
+                    service.getPersonById(item["creator"]?.asJsonObject()?.getInt("id")?.toLong())
                 )
-                newExercise.persistAndFlush()
                 exercises.add(newExercise)
                 // Your code here
             }
 
-            val newWorkout = Workout(jsonObject.getString("name"),
-                    LocalDateTime.parse(jsonObject.getString("creation_Date")),
-                    service.getPersonById(jsonObject["creator"]?.asJsonObject()?.getInt("id")?.toLong()),
-                    jsonObject.getBoolean("official_Flag"))
+            val newWorkout = Workout(
+                jsonObject.getString("name"),
+                LocalDateTime.parse(jsonObject.getString("creation_Date")),
+                service.getPersonById(jsonObject["creator"]?.asJsonObject()?.getInt("id")?.toLong()),
+                jsonObject.getBoolean("official_Flag")
+            )
             newWorkout.exercises = exercises
             newWorkout.persist()
             return Response.accepted().build()
@@ -81,7 +82,11 @@ class WorkoutResource {
     @POST
     @Transactional
     @Path("workout/addWorkoutHistory/{id}/{customerId}")
-    fun addWorkoutHistoryToWorkout(@PathParam("id") id: Long, @PathParam("customerId") customerId: Long, input: WorkoutHistory): Response {
+    fun addWorkoutHistoryToWorkout(
+        @PathParam("id") id: Long,
+        @PathParam("customerId") customerId: Long,
+        input: WorkoutHistory
+    ): Response {
         var oldExerciseHistories: MutableList<ExerciseHistory> = mutableListOf()
         input.exerciseHistories.forEach(Consumer {
             oldExerciseHistories.add(it)
@@ -110,12 +115,16 @@ class WorkoutResource {
         for (i in 0 until jsonObject["myExercises"]?.asJsonArray()?.size!!) {
             val item = jsonObject["myExercises"]?.asJsonArray()?.get(i)?.asJsonObject()!!
 
-            tmp.plus(Exercise(item.getString("name"),
+            tmp.plus(
+                Exercise(
+                    null, item.getString("name"),
                     LocalDateTime.parse(item.getString("creationDate")),
                     item.getString("exerciseType"),
                     item.getInt("standardSetNr"),
                     item.getBoolean("officialFlag"),
-                    service.getPersonById(item["creator"]?.asJsonObject()?.getInt("id")?.toLong())))
+                    service.getPersonById(item["creator"]?.asJsonObject()?.getInt("id")?.toLong())
+                )
+            )
         }
         return tmp
     }
@@ -131,21 +140,23 @@ class WorkoutResource {
             for (i in 0 until (jsonArray?.size ?: 0)) {
                 val item = jsonArray?.get(i)!!.asJsonObject()
                 val newExercise = Exercise(
-                        item.getString("name"),
-                        LocalDateTime.parse(item.getString("creationDate")),
-                        item.getString("exerciseType"),
-                        item.getInt("standardSetNr"),
-                        item.getBoolean("officialFlag"),
-                        service.getPersonById(3)
+                    null,
+                    item.getString("name"),
+                    LocalDateTime.parse(item.getString("creationDate")),
+                    item.getString("exerciseType"),
+                    item.getInt("standardSetNr"),
+                    item.getBoolean("officialFlag"),
+                    service.getPersonById(3)
                 )
-                newExercise.persistAndFlush()
                 exercises.add(newExercise)
                 // Your code here
             }
-            val newWorkout = Workout(jsonObject.getString("name"),
-                    LocalDateTime.parse(jsonObject.getString("creation_Date")),
-                    service.getPersonById(jsonObject["creator"]?.asJsonObject()?.getInt("id")?.toLong()),
-                    jsonObject.getBoolean("official_Flag"))
+            val newWorkout = Workout(
+                jsonObject.getString("name"),
+                LocalDateTime.parse(jsonObject.getString("creation_Date")),
+                service.getPersonById(jsonObject["creator"]?.asJsonObject()?.getInt("id")?.toLong()),
+                jsonObject.getBoolean("official_Flag")
+            )
             newWorkout.exercises = exercises
             service.updateWorkout(newWorkout, jsonObject.getInt("id")?.toLong())
             return Response.accepted().build()
