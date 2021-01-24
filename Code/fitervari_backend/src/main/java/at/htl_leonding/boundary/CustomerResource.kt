@@ -1,7 +1,7 @@
 package at.htl_leonding.boundary
 
 import at.htl_leonding.model.Customer
-import at.htl_leonding.service.CustomerService
+import at.htl_leonding.repository.CustomerRepository
 import java.text.SimpleDateFormat
 import javax.inject.Inject
 import javax.json.JsonObject
@@ -10,35 +10,24 @@ import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 
-@Path("/api")
+@Path("/api/customer/")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 class CustomerResource {
     @Inject
-    lateinit var service: CustomerService
+    lateinit var repository: CustomerRepository
 
     @GET
-    @Path("/customer/{id}")
+    @Path("{id}")
     fun getCustomerById(@PathParam("id") id: Long): Response {
-        return Response.ok(service.getById(id)).build()
+        return Response.ok(repository.findById(id)).build()
     }
 
     @POST
-    @Path("/customer")
     @Transactional
-    fun postCustomer(jsonObject: JsonObject): Response {
+    fun postCustomer(customer: Customer): Response {
         try {
-            val newCustomer = Customer(
-                    jsonObject.getString("name"),
-                    SimpleDateFormat("yyyy-MM-dd").parse(jsonObject.getString("joinDate")),
-                    service.getTrainerPerId(jsonObject["myTrainer"]?.asJsonObject()?.getInt("id")?.toLong()
-                            ?: throw Exception("Wrong id")),
-                    jsonObject.getBoolean("cashCostumer"),
-                    SimpleDateFormat("yyyy-MM-dd").parse(jsonObject.getString("memberTill")),
-                    jsonObject.getInt("pictureId")
-            )
-            service.addCustomer(newCustomer)
-            return Response.accepted().build()
+            return Response.accepted(repository.save(customer)).build()
         } catch (e: Exception) {
             print("============================")
             print(e.message)
@@ -48,32 +37,21 @@ class CustomerResource {
 
 
     @PUT
-    @Path("/customer/{id}")
     @Transactional
-    fun updateWorkout(@PathParam("id") id: Long, jsonObject: JsonObject): Response {
+    fun updateWorkout(customer: Customer): Response {
         try {
-            val newCustomer = Customer(
-                    jsonObject.getString("name"),
-                    SimpleDateFormat("yyyy-MM-dd").parse(jsonObject.getString("joinDate")),
-                    service.getTrainerPerId(jsonObject["myTrainer"]?.asJsonObject()?.getInt("id")?.toLong()
-                            ?: throw Exception("Wrong id")),
-                    jsonObject.getBoolean("cashCostumer"),
-                    SimpleDateFormat("yyyy-MM-dd").parse(jsonObject.getString("memberTill")),
-                    jsonObject.getInt("pictureId")
-            )
-            service.updateCustomer(newCustomer, id)
-            return Response.accepted().build()
+            return Response.accepted(repository.save(customer)).build()
         } catch (e: Exception) {
             return Response.ok(e.message).build()
         }
     }
 
     @DELETE
-    @Path("/workout/{id}")
+    @Path("{id}")
     @Transactional
     fun deleteTrainer(@PathParam("id") id: Long): Response {
         try {
-            service.deleteCustomer(id)
+            repository.delete(repository.findById(id))
             return Response.ok().build()
         } catch (e: Exception) {
             return Response.serverError().build()

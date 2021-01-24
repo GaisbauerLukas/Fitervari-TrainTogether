@@ -5,12 +5,11 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "trainer")
-class Trainer(
-        name: String,
-        @Column(name = "trainer_since")
-        var trainerSince: LocalDate,
-        pictureId: Int
-) : Person(name, true, pictureId) {
+class Trainer : Person() {
+
+    @Column(name = "trainer_since")
+    lateinit var trainerSince: LocalDate
+
     fun copyValues(other: Trainer) {
         this.pictureId = other.pictureId
         this.trainerSince = other.trainerSince

@@ -4,25 +4,26 @@ import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
-class Exercise(
+class Exercise{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null,
-    var name: String,
+    @GeneratedValue
+    var id: Long? = null
+    lateinit var name: String
     @Column(name = "creation_date")
-    var creationDate: LocalDateTime,
+    lateinit var creationDate: LocalDateTime
     @Column(name = "exercise_type")
-    var exerciseType: String,
+    lateinit var exerciseType: String
     @Column(name = "standard_set_nr")
-    var standardSetNr: Int,
+    var standardSetNr: Int = 0
     @Column(name = "official_flag")
-    var officialFlag: Boolean,
+    var officialFlag: Boolean = false
     @ManyToOne(cascade = [CascadeType.MERGE])
-    var creator: Person,
+    lateinit var creator: Person
+
     @OneToMany(cascade = [CascadeType.MERGE])
     @JoinColumn(name = "exercise_id")
     var sets: MutableList<Set> = mutableListOf()
-) {
+
     fun copyValues(other: Exercise) {
         this.name = other.name
         this.creationDate = other.creationDate

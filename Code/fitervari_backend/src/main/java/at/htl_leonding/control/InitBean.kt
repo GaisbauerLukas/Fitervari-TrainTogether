@@ -13,11 +13,6 @@ import javax.transaction.Transactional
 @ApplicationScoped
 class InitBean {
 
-    @Inject
-    lateinit var trainerRepository: TrainerRepository
-
-    //TODO Figure this out
-
     @Transactional
     fun init(@Observes event: StartupEvent?) {
         Json.mapper.registerModule(KotlinModule())

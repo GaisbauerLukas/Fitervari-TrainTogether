@@ -6,14 +6,18 @@ import javax.persistence.*
 @Entity
 @Table(name = "set_history")
 class SetHistory(
-        var time: Double?,
-        var distance: Double?,
-        var weight: Double?,
-        var repetitions: Int?,
-        var exercise_history_id: Long,
-        @Column(name = "set_number")
-        var setNumber: Int
-) : PanacheEntity() {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null,
+    var time: Double?,
+    var distance: Double?,
+    var weight: Double?,
+    var repetitions: Int?,
+    var exercise_history_id: Long,
+    @Column(name = "set_number")
+    var setNumber: Int
+) {
     fun copyValues(other: SetHistory) {
         this.time = other.time
         this.distance = other.distance

@@ -1,5 +1,5 @@
 package at.htl_leonding.boundary
-
+/*
 import at.htl_leonding.service.GreetingService
 import javax.inject.Inject
 import javax.enterprise.inject.Default
@@ -33,3 +33,4 @@ class GreetingResource {
     }
 
 }
+ */

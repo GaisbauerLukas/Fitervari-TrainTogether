@@ -1,19 +1,21 @@
 package at.htl_leonding.model
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity
-import javax.persistence.Column
-import javax.persistence.Entity
+import javax.persistence.*
 
 @Entity
 class Set(
-        var repetitions: Int,
-        var distance: Double,
-        var weight: Double,
-        var time: Double,
-        @Column(name = "set_number")
-        var setNumber: Int,
-        var type: String
-) : PanacheEntity() {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null,
+    var repetitions: Int,
+    var distance: Double,
+    var weight: Double,
+    var time: Double,
+    @Column(name = "set_number")
+    var setNumber: Int,
+    var type: String
+) {
     fun copyValues(other: Set) {
         this.repetitions = other.repetitions;
         this.distance = other.distance;

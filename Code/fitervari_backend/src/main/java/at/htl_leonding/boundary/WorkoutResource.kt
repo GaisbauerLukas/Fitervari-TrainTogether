@@ -1,5 +1,5 @@
 package at.htl_leonding.boundary
-
+/*
 import at.htl_leonding.model.*
 import at.htl_leonding.repository.ExerciseHistoryRepository
 import at.htl_leonding.repository.SetHistoryRepository
@@ -177,3 +177,5 @@ class WorkoutResource {
         }
     }
 }
+
+ */

@@ -10,17 +10,21 @@ import javax.persistence.*
 @Entity
 @Table(name = "workout_history")
 class WorkoutHistory(
-        var date: LocalDateTime,
-        @ManyToOne(cascade = arrayOf(CascadeType.MERGE))
-        var customer: Customer,
-        @ManyToOne(cascade = arrayOf(CascadeType.MERGE))
-        @JoinColumn(name = "workout_id")
-        @JsonbTransient
-        var workout: Workout,
-        @OneToMany(cascade = arrayOf(CascadeType.ALL))
-        @JoinColumn(name = "workout_history_id")
-        var exerciseHistories: MutableList<ExerciseHistory> = mutableListOf()
-) : PanacheEntity() {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null,
+    var date: LocalDateTime,
+    @ManyToOne(cascade = arrayOf(CascadeType.MERGE))
+    var customer: Customer,
+    @ManyToOne(cascade = arrayOf(CascadeType.MERGE))
+    @JoinColumn(name = "workout_id")
+    @JsonbTransient
+    var workout: Workout,
+    @OneToMany(cascade = arrayOf(CascadeType.ALL))
+    @JoinColumn(name = "workout_history_id")
+    var exerciseHistories: MutableList<ExerciseHistory> = mutableListOf()
+) {
     fun copyValues(other: WorkoutHistory) {
         this.date = other.date
         this.workout = other.workout

@@ -1,4 +1,5 @@
 package at.htl_leonding.boundary
+/*
 
 import at.htl_leonding.model.NewsLetter
 import at.htl_leonding.service.NewsLetterService
@@ -47,3 +48,5 @@ class NewsLetterResource {
         }
     }
 }
+
+ */

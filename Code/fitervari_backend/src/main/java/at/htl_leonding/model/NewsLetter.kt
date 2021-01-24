@@ -1,22 +1,25 @@
 package at.htl_leonding.model
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity
 @Table(name = "news_letter")
 class NewsLetter(
-        @Column(name = "title")
-        var title: String,
-        @Column(name = "body")
-        var body: String,
-        @Column(name = "imageUrl")
-        var imageUrl: String
 
-) : PanacheEntity() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null,
+    @Column(name = "title")
+    var title: String,
+    @Column(name = "body")
+    var body: String,
+    @Column(name = "imageUrl")
+    var imageUrl: String
+
+) {
     fun copyValues(other: NewsLetter) {
-
+        this.title = other.title
+        this.body = other.body
+        this.imageUrl = other.imageUrl
     }
 }

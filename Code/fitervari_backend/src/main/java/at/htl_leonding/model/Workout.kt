@@ -1,6 +1,5 @@
 package at.htl_leonding.model
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity
 import java.time.LocalDateTime
 import javax.persistence.*
 
@@ -8,22 +7,26 @@ import javax.persistence.*
 @Entity
 @Table(name = "Workout")
 class Workout(
-        var name: String,
-        var creation_Date: LocalDateTime,
-        @ManyToOne(cascade = [CascadeType.MERGE])
-        var creator: Person,
-        var official_Flag: Boolean,
-        @ManyToMany(cascade = [CascadeType.MERGE])
-        @JoinTable(
-                name = "workout2exercise",
-                joinColumns = [JoinColumn(name = "workout_id")],
-                inverseJoinColumns = [JoinColumn(name = "exercise_id")]
-        )
-        var exercises: MutableList<Exercise> = mutableListOf(),
-        @OneToMany(cascade = [CascadeType.MERGE])
-        @JoinColumn(name = "workout_id")
-        var workouthistories: MutableList<WorkoutHistory> = mutableListOf()
-) : PanacheEntity() {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null,
+    var name: String,
+    var creation_Date: LocalDateTime,
+    @ManyToOne(cascade = [CascadeType.MERGE])
+    var creator: Person,
+    var official_Flag: Boolean,
+    @ManyToMany(cascade = [CascadeType.MERGE])
+    @JoinTable(
+        name = "workout2exercise",
+        joinColumns = [JoinColumn(name = "workout_id")],
+        inverseJoinColumns = [JoinColumn(name = "exercise_id")]
+    )
+    var exercises: MutableList<Exercise> = mutableListOf(),
+    @OneToMany(cascade = [CascadeType.MERGE])
+    @JoinColumn(name = "workout_id")
+    var workouthistories: MutableList<WorkoutHistory> = mutableListOf()
+) {
     fun copyValues(other: Workout) {
         this.name = other.name
         this.creation_Date = other.creation_Date

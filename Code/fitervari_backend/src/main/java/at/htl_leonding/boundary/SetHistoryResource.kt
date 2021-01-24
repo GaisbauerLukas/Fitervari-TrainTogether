@@ -1,5 +1,5 @@
 package at.htl_leonding.boundary
-
+/*
 import at.htl_leonding.model.Exercise
 import at.htl_leonding.model.SetHistory
 import at.htl_leonding.service.SetHistoryService
@@ -79,3 +79,4 @@ class SetHistoryResource {
         }
     }
 }
+ */

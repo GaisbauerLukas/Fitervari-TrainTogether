@@ -1,7 +1,7 @@
 package at.htl_leonding.boundary
 
 import at.htl_leonding.model.Exercise
-import at.htl_leonding.service.ExerciseService
+import at.htl_leonding.repository.ExerciseRepository
 import java.time.LocalDateTime
 import javax.inject.Inject
 import javax.json.JsonObject
@@ -10,73 +10,51 @@ import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 
-@Path("/api")
+@Path("/api/exercise/")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 class ExerciseResource {
 
     @Inject
-    lateinit var service: ExerciseService
+    lateinit var repository: ExerciseRepository
 
     @GET
-    @Path("/exercise/{id}")
+    @Path("/{id}")
     fun getExerciseById(@PathParam("id") id: Long): Response {
-        return Response.ok(service.getById(id)).build()
+        return Response.ok(repository.findById(id)).build()
     }
 
     @GET
-    @Path("/exercise")
     fun getAllExercises(): Response {
-        return Response.ok(service.getAllExercises()).build();
+        return Response.ok(repository.findAll().list<Exercise>()).build();
     }
 
     @POST
-    @Path("/exercise")
     @Transactional
-    fun postWorkout(jsonObject: JsonObject): Response {
+    fun postWorkout(exercise: Exercise): Response {
         try {
-            val newExercise = Exercise(
-                null,
-                jsonObject.getString("name"),
-                LocalDateTime.parse(jsonObject.getString("creationDate")),
-                jsonObject.getString("exerciseType"),
-                jsonObject.getInt("standardSetNr"),
-                jsonObject.getBoolean("officialFlag"),
-                service.getPersonById(jsonObject.get("creator")?.asJsonObject()?.getInt("id")?.toLong())
-            )
-            return Response.accepted().build()
+            return Response.accepted(repository.save(exercise)).build()
         } catch (e: Exception) {
             return Response.ok(e.message).build()
         }
     }
 
     @PUT
-    @Path("/exercise/{id}")
     @Transactional
-    fun updateWorkout(@PathParam("id") id: Long, jsonObject: JsonObject): Response {
+    fun updateWorkout(exercise: Exercise): Response {
         try {
-            val newExercise = Exercise(
-                null,
-                jsonObject.getString("name"),
-                LocalDateTime.parse(jsonObject.getString("creationDate")),
-                jsonObject.getString("exerciseType"),
-                jsonObject.getInt("standardSetNr"),
-                jsonObject.getBoolean("officialFlag"),
-                service.getPersonById(jsonObject.get("creator")?.asJsonObject()?.getInt("id")?.toLong())
-            )
-            service.updateExercise(newExercise, id)
-            return Response.accepted().build()
+            return Response.accepted(repository.save(exercise)).build()
         } catch (e: Exception) {
             return Response.serverError().build()
         }
     }
 
     @DELETE
-    @Path("/exercise/{id}")
+    @Path("{id}")
     @Transactional
     fun deleteTrainer(@PathParam("id") id: Long): Response {
         try {
-            service.deleteExercise(id)
+            repository.delete(repository.findById(id))
             return Response.ok().build()
         } catch (e: Exception) {
             return Response.serverError().build()

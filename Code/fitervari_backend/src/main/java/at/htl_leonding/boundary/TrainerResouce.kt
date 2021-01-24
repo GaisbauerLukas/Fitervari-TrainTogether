@@ -1,5 +1,5 @@
 package at.htl_leonding.boundary
-
+/*
 import at.htl_leonding.model.Trainer
 import at.htl_leonding.service.TrainerService
 import java.time.LocalDate
@@ -66,3 +66,4 @@ class TrainerResouce {
         }
     }
 }
+ */

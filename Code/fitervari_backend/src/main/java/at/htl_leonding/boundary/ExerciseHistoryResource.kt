@@ -1,7 +1,7 @@
 package at.htl_leonding.boundary
 
 import at.htl_leonding.model.ExerciseHistory
-import at.htl_leonding.service.ExerciseHistoryService
+import at.htl_leonding.repository.ExerciseHistoryRepository
 import javax.inject.Inject
 import javax.json.JsonObject
 import javax.transaction.Transactional
@@ -9,30 +9,25 @@ import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 
-@Path("/api")
+@Path("/api/exerciseHistory/")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 class ExerciseHistoryResource {
 
     @Inject
-    lateinit var service: ExerciseHistoryService
+    lateinit var repository: ExerciseHistoryRepository
 
     @GET
-    @Path("/exerciseHistory/{id}")
+    @Path("{id}")
     fun getExerciseById(@PathParam("id") id: Long): Response {
-        return Response.ok(service.getById(id)).build()
+        return Response.ok(repository.findById(id)).build()
     }
 
     @POST
-    @Path("/exerciseHistory")
     @Transactional
-    fun postWorkout(jsonObject: JsonObject): Response {
+    fun postWorkout(exerciseHistory: ExerciseHistory): Response {
         try {
-//            val newExerciseHistory = ExerciseHistory(
-//                    service.getWorkoutHistoryById(jsonObject.get("workoutHistory")?.asJsonObject()?.getInt("id")?.toLong())
-//            )
-//            newExerciseHistory.persist()
-            return Response.accepted().build()
+            return Response.accepted(repository.save(exerciseHistory)).build()
         } catch (e: Exception) {
             return Response.ok(e.message).build()
         }
@@ -43,7 +38,7 @@ class ExerciseHistoryResource {
     @Transactional
     fun deleteTrainer(@PathParam("id") id: Long): Response {
         try {
-            service.deleteWorkoutHistory(id)
+            repository.delete(repository.findById(id))
             return Response.ok().build()
         } catch (e: Exception) {
             return Response.serverError().build()
