@@ -18,3 +18,22 @@ doc/api/
 *.js_
 *.js.deps
 *.js.map
+
+
+# Created by https://www.toptal.com/developers/gitignore/api/maven
+# Edit at https://www.toptal.com/developers/gitignore?templates=maven
+
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+/Code/new_fitervari_backend/.mvn/timing.properties
+# https://github.com/takari/maven-wrapper#usage-without-binary-jar
+/Code/new_fitervari_backend/.mvn/wrapper/maven-wrapper.jar
+
+# End of https://www.toptal.com/developers/gitignore/api/maven
