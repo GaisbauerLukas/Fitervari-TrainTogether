@@ -15,11 +15,6 @@ class GeneralInfo extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text(
-              'Allgemeine Info',
-              textScaleFactor: 1,
-              style: TextStyle(fontSize: 25),
-            ),
             ListTile(
               leading: Icon(Icons.person),
               title: Text('Letztes Workout'),
