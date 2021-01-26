@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:fitervari/contracts/identifiable.dart';
 import 'package:http/http.dart' as http;
 
@@ -23,7 +24,7 @@ abstract class GenericEndpoint<T extends Identifiable> {
 
       return result;
     }catch(e){
-
+      print(e.toString());
     }
   }
 

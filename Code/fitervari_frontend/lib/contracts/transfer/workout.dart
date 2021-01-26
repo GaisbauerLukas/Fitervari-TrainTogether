@@ -24,7 +24,7 @@ class Workout extends Identifiable {
       : super(id);
 
   Workout.fromJson(dynamic json) : super(json["id"]) {
-    creationDate = DateTime.parse(json["creation_Date"]);
+    creationDate = DateTime.parse(json["creationDate"]);
     // creator = json["creator"] != null ? Person.fromJson(json["creator"]) : null;
     if (json["exercises"] != null) {
       exercises = [];
@@ -33,10 +33,10 @@ class Workout extends Identifiable {
       });
     }
     name = json["name"];
-    officialFlag = json["official_Flag"];
-    if (json["workouthistories"] != null) {
+    officialFlag = json["officialFlag"];
+    if (json["workoutHistories"] != null) {
       workoutHistories = [];
-      json["workouthistories"].forEach((v) {
+      json["workoutHistories"].forEach((v) {
         workoutHistories.add(WorkoutHistory.fromJson(v));
       });
     }

@@ -18,21 +18,28 @@ class GeneralInfo extends StatelessWidget {
             Text(
               'Allgemeine Info',
               textScaleFactor: 1,
+              style: TextStyle(fontSize: 25),
             ),
             ListTile(
               leading: Icon(Icons.person),
               title: Text('Letztes Workout'),
-              subtitle: Text('Rückenworkout'),
+              subtitle: Text(
+                'Rückenworkout',
+                style: TextStyle(fontSize: 15),
+              ),
+              dense: true,
             ),
             ListTile(
               leading: Icon(Icons.calendar_today),
               title: Text('Letzter Termin'),
-              subtitle: Text('13.03.2020'),
+              subtitle: Text('13.03.2020', style: TextStyle(fontSize: 15)),
+              dense: true,
             ),
             ListTile(
               leading: Icon(Icons.contact_mail),
               title: Text('Sven Müller'),
-              subtitle: Text('13.03.2020'),
+              subtitle: Text('13.03.2020', style: TextStyle(fontSize: 15)),
+              dense: true,
             )
           ],
         ),
