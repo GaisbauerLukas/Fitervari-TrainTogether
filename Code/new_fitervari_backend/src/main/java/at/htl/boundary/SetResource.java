@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 @Path("/api/set")
 public class SetResource {
     @Inject
-    private SetRepository repository;
+    SetRepository repository;
 
     @GET
     @Path("/{id}")

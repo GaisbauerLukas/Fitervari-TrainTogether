@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 @Path("/api/newsletter")
 public class NewsLetterResource {
     @Inject
-    private NewsLetterRepository repository;
+    NewsLetterRepository repository;
 
     @GET
     @Path("/{id}")

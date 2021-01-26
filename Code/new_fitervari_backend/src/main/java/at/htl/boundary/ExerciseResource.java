@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 @Path("/api/exercise")
 public class ExerciseResource {
     @Inject
-    private ExerciseRepository repository;
+    ExerciseRepository repository;
 
     @GET
     @Path("/{id}")

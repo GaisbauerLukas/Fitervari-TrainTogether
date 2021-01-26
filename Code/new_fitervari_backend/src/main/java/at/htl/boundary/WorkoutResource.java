@@ -14,13 +14,13 @@ import javax.ws.rs.core.Response;
 @Path("/api/workout")
 public class WorkoutResource {
     @Inject
-    private WorkoutRepository repository;
+    WorkoutRepository repository;
 
     @Inject
-    private TrainerRepository trainerRepository;
+    TrainerRepository trainerRepository;
 
     @Inject
-    private CustomerRepository customerRepository;
+    CustomerRepository customerRepository;
 
     @GET
     @Path("/{id}")

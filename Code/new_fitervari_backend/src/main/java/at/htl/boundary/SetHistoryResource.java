@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 @Path("/api/setHistory")
 public class SetHistoryResource {
     @Inject
-    private SetHistoryRepository repository;
+    SetHistoryRepository repository;
 
     @GET
     @Path("/{id}")

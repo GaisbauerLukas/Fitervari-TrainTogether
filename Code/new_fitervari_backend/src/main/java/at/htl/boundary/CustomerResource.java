@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 public class CustomerResource {
 
     @Inject
-    private CustomerRepository repository;
+    CustomerRepository repository;
 
     @GET
     @Path("/{id}")

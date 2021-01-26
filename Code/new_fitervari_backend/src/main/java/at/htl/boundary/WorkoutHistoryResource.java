@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 @Path("/api/workoutHistory")
 public class WorkoutHistoryResource {
     @Inject
-    private WorkoutHistoryRepository repository;
+    WorkoutHistoryRepository repository;
 
     @GET
     @Path("/{id}")
