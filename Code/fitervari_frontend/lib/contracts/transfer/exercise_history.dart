@@ -18,7 +18,7 @@ class ExerciseHistory extends Identifiable {
       : super(id);
 
   ExerciseHistory.fromJson(dynamic json) : super(json["id"]) {
-    exerciseId = json["exercise_id"];
+    exerciseId = json["exerciseId"];
     if (json["setHistories"] != null) {
       setHistories = [];
       json["setHistories"].forEach((v) {
@@ -33,7 +33,7 @@ class ExerciseHistory extends Identifiable {
   Map<String, dynamic> toJson() {
     var map = <String, dynamic>{};
     map["id"] = id;
-    map["exercise_id"] = exerciseId;
+    map["exerciseId"] = exerciseId;
     if (setHistories != null) {
       map["setHistories"] = setHistories.map((v) => v.toJson()).toList();
     }
