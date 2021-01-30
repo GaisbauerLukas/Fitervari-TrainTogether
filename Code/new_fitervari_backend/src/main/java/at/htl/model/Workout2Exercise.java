@@ -13,5 +13,5 @@ public class Workout2Exercise {
     private Workout workout;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    private Exercise exerciseId;
+    private Exercise exercise;
 }
