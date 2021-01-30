@@ -28,7 +28,7 @@ public class Exercise {
     @ManyToOne(cascade = CascadeType.MERGE)
     private Person creator;
 
-    @OneToMany(cascade = CascadeType.MERGE)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "exercise_id")
     private List<Set> sets;
 

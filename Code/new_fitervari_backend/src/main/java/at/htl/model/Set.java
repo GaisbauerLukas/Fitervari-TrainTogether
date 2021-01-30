@@ -1,5 +1,6 @@
 package at.htl.model;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +15,10 @@ public class Set {
     @Column(name = "set_number")
     private int setNumber;
     private String type;
+    @JsonbTransient
+    @ManyToOne
+    @JoinColumn(name = "exercise_id")
+    private Exercise exercise;
 
     //region GetterSetter
     public long getId() {
@@ -70,6 +75,14 @@ public class Set {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Exercise getExercise() {
+        return exercise;
+    }
+
+    public void setExercise(Exercise exercise) {
+        this.exercise = exercise;
     }
     //endregion
 }
