@@ -19,7 +19,7 @@ class MyWorkoutsState extends State<MyWorkouts> {
       workouts = workoutProvider.loadedWorkouts;
       return Container(
           margin: EdgeInsets.only(top: 10),
-          height: (MediaQuery.of(context).size.height) * 0.32,
+          height: (MediaQuery.of(context).size.height) * 0.36,
           child: ListView.builder(
             scrollDirection: Axis.vertical,
             itemBuilder: (ctx, index) {
@@ -27,7 +27,6 @@ class MyWorkoutsState extends State<MyWorkouts> {
                 child: InkWell(
                   splashColor: Colors.blue.withAlpha(30),
                   onTap: () {
-                    print('Card tapped.');
                     Navigator.pushNamed(context, WorkoutEditView.routeName,
                         arguments: workouts[index]);
                   },
