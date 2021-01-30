@@ -8,8 +8,9 @@ class Trainer extends Person {
       {@required int id,
       @required String name,
       @required int pictureId,
+        @required bool trainer,
       @required this.trainerSince})
-      : super(id, name, pictureId);
+      : super(id, name, pictureId, trainer);
 
   Trainer.fromJson(dynamic json) : super.fromJson(json) {
     trainerSince = json["trainerSince"];
