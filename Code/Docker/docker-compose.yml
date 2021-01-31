@@ -25,22 +25,22 @@ services:
   #   networks:
   #     - fitavari_network
 
-  # quarkus:
-  #   build:
-  #     context: ../fitervari_backend
-  #     dockerfile: src/main/docker/Dockerfile.native
-  #   ports:
-  #     - 8080:8080
-  #   networks:
-  #     - fitavari_network
-  # webpage:
-  #   build:
-  #     context: ./webpage
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - 9933:80
-  #   networks:
-  #     - fitavari_network
+  quarkus:
+    build:
+      context: ../new_fitervari_backend
+      dockerfile: src/main/docker/Dockerfile.native
+    ports:
+      - 8080:8080
+    networks:
+      - fitavari_network
+  webpage:
+    build:
+      context: ./webpage
+      dockerfile: Dockerfile
+    ports:
+      - 9933:80
+    networks:
+      - fitavari_network
 
   postgres-keycloak:
         image: postgres

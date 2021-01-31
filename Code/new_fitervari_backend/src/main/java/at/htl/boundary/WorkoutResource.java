@@ -5,6 +5,7 @@ import at.htl.control.TrainerRepository;
 import at.htl.control.WorkoutHistoryRepository;
 import at.htl.control.WorkoutRepository;
 import at.htl.model.Workout;
+import io.quarkus.security.Authenticated;
 import org.hibernate.annotations.common.util.impl.Log;
 import org.jboss.logging.Logger;
 
@@ -15,6 +16,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+@Authenticated
 @Path("/api/workout")
 public class WorkoutResource {
     @Inject

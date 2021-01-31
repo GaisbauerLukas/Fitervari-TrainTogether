@@ -78,8 +78,11 @@
         <!-- https://mvnrepository.com/artifact/io.quarkus/quarkus-keycloak-authorization -->
         <dependency>
             <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-oidc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
             <artifactId>quarkus-keycloak-authorization</artifactId>
-            <version>1.3.2.Final</version>
         </dependency>
     </dependencies>
     <build>

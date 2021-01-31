@@ -2,6 +2,7 @@ package at.htl.boundary;
 
 import at.htl.control.TrainerRepository;
 import at.htl.model.Trainer;
+import io.quarkus.security.Authenticated;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -10,6 +11,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+@Authenticated
 @Path("/api/trainer")
 public class TrainerResource {
     @Inject
