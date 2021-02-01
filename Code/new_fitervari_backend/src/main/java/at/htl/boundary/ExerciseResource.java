@@ -1,6 +1,8 @@
 package at.htl.boundary;
 
+import at.htl.control.CustomerRepository;
 import at.htl.control.ExerciseRepository;
+import at.htl.control.TrainerRepository;
 import at.htl.model.Exercise;
 
 import javax.inject.Inject;
@@ -13,6 +15,12 @@ import javax.ws.rs.core.Response;
 public class ExerciseResource {
     @Inject
     ExerciseRepository repository;
+
+    @Inject
+    CustomerRepository customerRepository;
+
+    @Inject
+    TrainerRepository trainerRepository;
 
     @GET
     @Path("/{id}")
@@ -33,6 +41,13 @@ public class ExerciseResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response post(Exercise entity) {
         try{
+            // set entities for creator of project
+            if (entity.getCreator() != null && entity.getCreator().isTrainer()) {
+                entity.setCreator(trainerRepository.findById(entity.getCreator().getId()));
+            } else {
+                entity.setCreator(customerRepository.findById(entity.getCreator().getId()));
+            }
+
             return Response.ok(repository.save(entity)).build();
         }catch (Exception e){
             return Response.serverError().build();
@@ -45,6 +60,13 @@ public class ExerciseResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response put(Exercise entity) {
         try{
+            // set entities for creator of project
+            if (entity.getCreator() != null && entity.getCreator().isTrainer()) {
+                entity.setCreator(trainerRepository.findById(entity.getCreator().getId()));
+            } else {
+                entity.setCreator(customerRepository.findById(entity.getCreator().getId()));
+            }
+
             return Response.ok(repository.save(entity)).build();
         }catch (Exception e){
             return Response.serverError().build();
