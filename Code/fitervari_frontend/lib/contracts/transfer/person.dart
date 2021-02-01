@@ -7,7 +7,8 @@ class Person extends Identifiable {
   int pictureId;
   bool trainer;
 
-  Person(id, this.name, this.pictureId, this.trainer) : super(id);
+  Person.named({id, this.name, this.pictureId}) : super(id);
+  Person(id, this.name, this.pictureId) : super(id);
 
   Person.fromJson(dynamic json) : super(json["id"]) {
     name = json["name"];

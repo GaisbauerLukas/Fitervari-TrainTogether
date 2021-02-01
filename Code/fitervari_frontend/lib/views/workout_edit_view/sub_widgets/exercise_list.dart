@@ -55,7 +55,16 @@ class ExerciseRoutineState extends State<ExerciseList> {
         });
 
         return Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            actions: <Widget>[
+              IconButton(
+                onPressed: () =>
+                    {print("right"),Navigator.of(context).pushNamed(CreateExercise.routeName),},
+                icon: Icon(Icons.add),
+                color: Colors.white,
+              )
+            ],
+          ),
           body: ListView.builder(
             scrollDirection: Axis.vertical,
             itemBuilder: (ctx, index) {

@@ -62,7 +62,7 @@ class _ContentAppState extends State<ContentApp> {
             DoExercisePage.routeName: (ctx) => DoExercisePage(),
             WorkoutEditView.routeName: (ctx) => WorkoutEditView(),
             ExerciseList.routeName: (ctx) => ExerciseList(),
-            CreateExercise.routeName: (ctx) => CreateExercise()
+            CreateExercise.routeName: (ctx) => CreateExercise(),
           },
         );
       },
