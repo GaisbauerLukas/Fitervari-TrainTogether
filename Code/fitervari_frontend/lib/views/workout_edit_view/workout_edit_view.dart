@@ -55,14 +55,16 @@ class WorkoutEditViewState extends State<WorkoutEditView> {
                 if (workoutProvider.creationWorkout == null || workoutProvider.creationWorkout.exercises.isEmpty)
                   Text("No exercises Added")
                 else
-                  Container(
-                    height: 500,
-                    child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        itemBuilder: (ctx, index) {
-                          return ExerciseTile(workoutProvider.creationWorkout.exercises[index], workoutProvider.creationWorkout);
-                        },
-                        itemCount: workoutProvider.creationWorkout.exercises.length),
+                  Expanded(
+                    child: Container(
+                      height: 500,
+                      child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemBuilder: (ctx, index) {
+                            return ExerciseTile(workoutProvider.creationWorkout.exercises[index], workoutProvider.creationWorkout);
+                          },
+                          itemCount: workoutProvider.creationWorkout.exercises.length),
+                    ),
                   ),
               ],
             ),
