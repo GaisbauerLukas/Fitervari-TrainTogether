@@ -24,7 +24,6 @@ class ExerciseRoutineState extends State<ExerciseList> {
   @override
   void initState() {
     super.initState();
-    Provider.of<ExerciseProvider>(context, listen: false).loadExercises();
   }
 
   @override
