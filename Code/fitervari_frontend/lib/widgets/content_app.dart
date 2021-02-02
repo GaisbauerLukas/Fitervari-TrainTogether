@@ -1,9 +1,12 @@
 import 'package:fitervari/contracts/transfer/customer.dart';
 import 'package:fitervari/logic/providers/customer_provider.dart';
+import 'package:fitervari/logic/providers/exercise_provider.dart';
 import 'package:fitervari/logic/providers/news_letters_provider.dart';
 import 'package:fitervari/logic/providers/settings_provider.dart';
 import 'package:fitervari/logic/providers/workout_provider.dart';
+import 'package:fitervari/views/create_workout_page/create_workout_page.dart';
 import 'package:fitervari/views/do_exercise_page/do_exercise_page.dart';
+import 'package:fitervari/views/exercise_view/create_exercise.dart';
 import 'package:fitervari/views/filler_page/filler_page.dart';
 import 'package:fitervari/views/news_letter_details_page/NewsLetterDetailsPage.dart';
 import 'package:fitervari/views/tabs_screen/tabs_screen.dart';
@@ -32,12 +35,15 @@ class _ContentAppState extends State<ContentApp> {
     Provider.of<NewsLettersProvider>(context, listen: false).loadNewsLetters();
     Provider.of<SettingsProvider>(context, listen: false).setLightTheme();
     Provider.of<WorkoutProvider>(context, listen: false).loadWorkouts();
+    Provider.of<ExerciseProvider>(context, listen: false).loadExercises();
     Provider.of<CustomerProvider>(context, listen: false).setCurrentCustomer(
         Customer(
             id: -1,
             cashCustomer: true,
             joinDate: DateTime.utc(2019, 5, 12),
             memberTill: DateTime.utc(2021, 5, 12),
+            pictureId: -1,
+            trainer: false,
             name: 'Florian Geht',
             trainerId: 2));
   }
@@ -59,6 +65,8 @@ class _ContentAppState extends State<ContentApp> {
             DoExercisePage.routeName: (ctx) => DoExercisePage(),
             WorkoutEditView.routeName: (ctx) => WorkoutEditView(),
             ExerciseList.routeName: (ctx) => ExerciseList(),
+            CreateExercise.routeName: (ctx) => CreateExercise(),
+            CreateWorkoutPage.routeName: (ctx) => CreateWorkoutPage(),
           },
         );
       },

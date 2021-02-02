@@ -1,3 +1,5 @@
+import 'package:fitervari/contracts/transfer/workout.dart';
+import 'package:fitervari/views/workout_edit_view/workout_edit_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,12 +19,22 @@ class CreateWorkoutPageState extends State<CreateWorkoutPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Workout erstellen',
-              style: TextStyle(
-                fontSize: 30,
-              ),
-            )
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Text("Workout Erstellen"),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Name',
+                    hintText: 'Name',
+                    // helperText: 'Helper Text',
+                    // counterText: '0 characters',
+                    border: const OutlineInputBorder(),
+                  )),
+            ),
+            Expanded(child: WorkoutEditView())
           ],
         ),
       ),

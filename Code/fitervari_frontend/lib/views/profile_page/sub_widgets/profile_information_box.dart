@@ -9,6 +9,8 @@ class ProfileInformationBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var textSize = 15.0;
+
     return Padding(
       padding: EdgeInsets.all(10),
       child: Card(
@@ -22,25 +24,36 @@ class ProfileInformationBox extends StatelessWidget {
           child: Column(
             children: <Widget>[
               ListTile(
+                dense: true,
                 leading: Icon(Icons.calendar_today),
                 title: Text('Mitglied seit:'),
-                trailing: Text('${currentCustomer.joinDate.day}'
-                    '.${currentCustomer.joinDate.month}'
-                    '.${currentCustomer.joinDate.year}'),
+                trailing: Text(
+                  '${currentCustomer.joinDate.day}'
+                  '.${currentCustomer.joinDate.month}'
+                  '.${currentCustomer.joinDate.year}',
+                  style: TextStyle(fontSize: textSize),
+                ),
               ),
               ListTile(
+                dense: true,
                 leading: Icon(Icons.exit_to_app),
                 title: Text('Mitglied bis:'),
-                trailing: Text('${currentCustomer.memberTill.day}'
-                    '.${currentCustomer.memberTill.month}'
-                    '.${currentCustomer.memberTill.year}'),
+                trailing: Text(
+                  '${currentCustomer.memberTill.day}'
+                  '.${currentCustomer.memberTill.month}'
+                  '.${currentCustomer.memberTill.year}',
+                  style: TextStyle(fontSize: textSize),
+                ),
               ),
               ListTile(
-                  leading: Icon(Icons.monetization_on),
-                  title: Text('Bezahlungsart'),
-                  trailing: currentCustomer.cashCustomer
-                      ? Text('Bar')
-                      : Text('Bankverbindung')),
+                dense: true,
+                leading: Icon(Icons.monetization_on),
+                title: Text('Bezahlungsart'),
+                trailing: Text(
+                  currentCustomer.cashCustomer ? 'Bar' : 'Bankverbindung',
+                  style: TextStyle(fontSize: textSize),
+                ),
+              ),
             ],
           ),
         ),

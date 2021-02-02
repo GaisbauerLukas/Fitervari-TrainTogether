@@ -17,10 +17,9 @@ class AddExerciseTile extends StatelessWidget {
       child: InkWell(
         splashColor: Colors.blue.withAlpha(30),
         onTap: () {
-          workout.exercises.add(exercise);
+          this.workout.exercises.add(this.exercise);
           Provider.of<WorkoutProvider>(context, listen: false)
               .updateWorkout(workout);
-          Navigator.of(context).pop();
           Navigator.of(context).pop();
         },
         child: ListTile(
