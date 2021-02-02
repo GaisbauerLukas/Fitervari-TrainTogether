@@ -39,7 +39,9 @@ class Exercise extends Identifiable {
 
   Map<String, dynamic> toJson() {
     var map = <String, dynamic>{};
-    map["id"] = id;
+    if (id != null) {
+      map["id"] = id;
+    }
     map["name"] = name;
     map["exerciseType"] = exerciseType;
     map["officialFlag"] = officialFlag;

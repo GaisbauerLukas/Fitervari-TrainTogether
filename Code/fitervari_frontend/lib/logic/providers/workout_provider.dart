@@ -10,6 +10,14 @@ class WorkoutProvider extends ChangeNotifier {
   Workout _currentWorkout;
   List<Workout> _loadedWorkouts;
 
+  Workout _creationWorkout;
+
+  Workout get creationWorkout => _creationWorkout;
+
+  set creationWorkout(Workout value) {
+    _creationWorkout = value;
+  }
+
   Workout get currentWorkout => _currentWorkout;
 
   List<Workout> get loadedWorkouts => _loadedWorkouts;
@@ -39,7 +47,7 @@ class WorkoutProvider extends ChangeNotifier {
       WorkoutHistory workoutHistory, int customerId) {
     _endpoint
         .addWorkoutHistoryToWorkout(
-            currentWorkout.id, workoutHistory, customerId)
+        currentWorkout.id, workoutHistory, customerId)
         .then((value) => log(value.toString()));
   }
 

@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 public class Exercise {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -28,8 +28,7 @@ public class Exercise {
     @ManyToOne(cascade = CascadeType.MERGE)
     private Person creator;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "exercise_id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "exercise", fetch = FetchType.EAGER)
     private List<Set> sets;
 
     //region GetterSetter

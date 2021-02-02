@@ -59,7 +59,7 @@ class ExerciseRoutineState extends State<ExerciseList> {
             actions: <Widget>[
               IconButton(
                 onPressed: () =>
-                    {print("right"),Navigator.of(context).pushNamed(CreateExercise.routeName),},
+                {print("right"),Navigator.of(context).pushNamed(CreateExercise.routeName),},
                 icon: Icon(Icons.add),
                 color: Colors.white,
               )
@@ -68,9 +68,9 @@ class ExerciseRoutineState extends State<ExerciseList> {
           body: ListView.builder(
             scrollDirection: Axis.vertical,
             itemBuilder: (ctx, index) {
-              return AddExerciseTile(displayList[index], workout);
+              return AddExerciseTile(provider.exercises[index], workout);
             },
-            itemCount: displayList.length,
+            itemCount: exercises.length,
           ),
           floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add),

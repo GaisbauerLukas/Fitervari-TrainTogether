@@ -28,9 +28,12 @@ abstract class GenericEndpoint<T extends Identifiable> {
   }
 
   Future<bool> post(T postItem) async {
+    final jsonBeforeEncoding = this.convertObjectToJson(postItem);
+    final encoded =json.encode(jsonBeforeEncoding);
+
     final response = await http.post(this.baseUrl,
         headers: {"content-type": "application/json"},
-        body: json.encode(this.convertObjectToJson(postItem)));
+        body: encoded);
     return response.statusCode == 201;
   }
 

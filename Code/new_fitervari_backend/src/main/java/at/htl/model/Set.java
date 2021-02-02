@@ -15,9 +15,10 @@ public class Set {
     @Column(name = "set_number")
     private int setNumber;
     private String type;
+
     @JsonbTransient
     @ManyToOne
-    @JoinColumn(name = "exercise_id")
+    @JoinColumn(name = "exercise_id", referencedColumnName = "id")
     private Exercise exercise;
 
     //region GetterSetter

@@ -1,5 +1,6 @@
 import 'package:fitervari/contracts/transfer/exercise.dart';
 import 'package:fitervari/contracts/transfer/person.dart';
+import 'package:fitervari/contracts/transfer/set.dart';
 import 'package:fitervari/logic/providers/exercise_provider.dart';
 import 'package:fitervari/views/workout_edit_view/sub_widgets/exercise_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -65,6 +66,7 @@ class CreateExercise extends StatelessWidget {
                       name: nameController.text,
                       exerciseType: exerciseTypController.text,
                       standardSetNr: int.parse(numberOfSetController.text),
+                      sets: List<Set>()
                     ),
                   ),
                   Navigator.of(context).pushNamed(ExerciseList.routeName),
