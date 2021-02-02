@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'add_exercise_tile.dart';
-import 'exercise_tile.dart';
 
 class ExerciseList extends StatefulWidget {
   static const routeName = "/Exercise_List";
@@ -34,9 +33,26 @@ class ExerciseRoutineState extends State<ExerciseList> {
   @override
   Widget build(BuildContext context) {
     this.workout = ModalRoute.of(context).settings.arguments;
+
     return Consumer<ExerciseProvider>(
       builder: (context, provider, child) {
         exercises = provider.exercises;
+        var displayList = List<Exercise>();
+
+        exercises.forEach((exercise) {
+          var isInWorkout = false;
+
+          workout.exercises.forEach((inWorkout) {
+            if (exercise.id == inWorkout.id) {
+              isInWorkout = true;
+            }
+          });
+
+          if (!isInWorkout) {
+            displayList.add(exercise);
+          }
+        });
+
         return Scaffold(
           appBar: AppBar(
             actions: <Widget>[
@@ -51,9 +67,14 @@ class ExerciseRoutineState extends State<ExerciseList> {
           body: ListView.builder(
             scrollDirection: Axis.vertical,
             itemBuilder: (ctx, index) {
-              return AddExerciseTile(exercises[index], workout);
+              return AddExerciseTile(provider.exercises[index], workout);
             },
             itemCount: exercises.length,
+          ),
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () =>
+                Navigator.of(context).pushNamed(CreateExercise.routeName),
           ),
         );
       },

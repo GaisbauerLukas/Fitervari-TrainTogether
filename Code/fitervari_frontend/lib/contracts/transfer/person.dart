@@ -5,20 +5,23 @@ class Person extends Identifiable {
 
   // later implement here a photo
   int pictureId;
+  bool trainer;
 
-  Person.named({id, this.name, this.pictureId}) : super(id);
-  Person(id, this.name, this.pictureId) : super(id);
+  Person.named({id, this.name, this.pictureId, this.trainer}) : super(id);
+  Person(id, this.name, this.pictureId, this.trainer) : super(id);
 
   Person.fromJson(dynamic json) : super(json["id"]) {
     name = json["name"];
     pictureId = json["pictureId"];
+    trainer = json["trainer"];
   }
 
   Map<String, dynamic> toJson() {
     var map = <String, dynamic>{};
-    map["id"] = this.id;
-    map["name"] = this.name;
-    map["pictureId"] = this.pictureId;
+    map["id"] = id;
+    map["name"] = name;
+    map["pictureId"] = pictureId;
+    map["trainer"] = trainer;
     return map;
   }
 }

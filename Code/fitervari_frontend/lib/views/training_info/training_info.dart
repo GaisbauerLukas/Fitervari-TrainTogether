@@ -10,7 +10,7 @@ class TrainingInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: ListView(
+      child: Column(
         children: [
           GeneralInfo(),
           MyWorkouts(),

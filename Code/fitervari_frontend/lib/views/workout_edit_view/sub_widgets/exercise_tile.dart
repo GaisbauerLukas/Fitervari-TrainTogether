@@ -5,6 +5,7 @@ import 'package:fitervari/contracts/transfer/workout_history.dart';
 import 'package:fitervari/logic/providers/workout_provider.dart';
 import 'package:fitervari/views/do_exercise_page/do_exercise_page.dart';
 import 'package:fitervari/views/filler_page/filler_page.dart';
+import 'package:fitervari/views/workout_edit_view/workout_edit_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -32,9 +33,12 @@ class ExerciseTile extends StatelessWidget {
           icon: Icon(Icons.delete, color: Colors.red),
           onPressed: () {
             workout.exercises.remove(exercise);
-            Provider.of<WorkoutProvider>(context, listen: false)
-                .updateWorkout(workout);
-            Navigator.of(context).pop();
+            context.findAncestorStateOfType<WorkoutEditViewState>().setState(() {
+
+            });;
+            //Provider.of<WorkoutProvider>(context, listen: false)
+            //    .updateWorkout(workout);
+            //Navigator.of(context).pop();
           },
         ),
         isThreeLine: true,
