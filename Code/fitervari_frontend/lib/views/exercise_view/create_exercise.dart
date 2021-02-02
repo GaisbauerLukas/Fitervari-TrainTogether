@@ -1,3 +1,4 @@
+import 'package:fitervari/contracts/transfer/customer.dart';
 import 'package:fitervari/contracts/transfer/exercise.dart';
 import 'package:fitervari/contracts/transfer/person.dart';
 import 'package:fitervari/contracts/transfer/set.dart';
@@ -16,7 +17,7 @@ class CreateExercise extends StatelessWidget {
       final nameController = TextEditingController();
       final exerciseTypController = TextEditingController();
       final numberOfSetController = TextEditingController();
-      Person person;
+      Customer person;
 
       return Scaffold(
         appBar: AppBar(),
@@ -57,7 +58,7 @@ class CreateExercise extends StatelessWidget {
             Container(
               child: InkWell(
                 onTap: () => {
-                  person = Person.named(name: "Test"),
+                  person = Customer(name: "Günther", cashCustomer: true, joinDate: DateTime.now(), memberTill: DateTime.now(), trainerId: 1),
                   provider.addExercises(
                     Exercise(
                       creationDate: DateTime.now(),
@@ -69,6 +70,8 @@ class CreateExercise extends StatelessWidget {
                       sets: List<Set>()
                     ),
                   ),
+                  Navigator.pop(context),
+                  Navigator.pop(context),
                   Navigator.of(context).pushNamed(ExerciseList.routeName),
                 },
                 child: Card(

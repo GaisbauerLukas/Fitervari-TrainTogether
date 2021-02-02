@@ -1,5 +1,6 @@
 import 'package:fitervari/contracts/transfer/customer.dart';
 import 'package:fitervari/logic/providers/customer_provider.dart';
+import 'package:fitervari/logic/providers/exercise_provider.dart';
 import 'package:fitervari/logic/providers/news_letters_provider.dart';
 import 'package:fitervari/logic/providers/settings_provider.dart';
 import 'package:fitervari/logic/providers/workout_provider.dart';
@@ -34,6 +35,7 @@ class _ContentAppState extends State<ContentApp> {
     Provider.of<NewsLettersProvider>(context, listen: false).loadNewsLetters();
     Provider.of<SettingsProvider>(context, listen: false).setLightTheme();
     Provider.of<WorkoutProvider>(context, listen: false).loadWorkouts();
+    Provider.of<ExerciseProvider>(context, listen: false).loadExercises();
     Provider.of<CustomerProvider>(context, listen: false).setCurrentCustomer(
         Customer(
             id: -1,

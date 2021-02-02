@@ -19,7 +19,7 @@ class MyWorkoutsState extends State<MyWorkouts> {
       workouts = workoutProvider.loadedWorkouts;
       return Container(
           margin: EdgeInsets.only(top: 10),
-          height: (MediaQuery.of(context).size.height) * 0.36,
+          height: (MediaQuery.of(context).size.height) * 0.33,
           child: ListView.builder(
             scrollDirection: Axis.vertical,
             itemBuilder: (ctx, index) {
