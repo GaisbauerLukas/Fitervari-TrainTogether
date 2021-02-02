@@ -21,7 +21,6 @@ class AddExerciseTile extends StatelessWidget {
           Provider.of<WorkoutProvider>(context, listen: false)
               .updateWorkout(workout);
           Navigator.of(context).pop();
-          Navigator.of(context).pop();
         },
         child: ListTile(
           leading: FlutterLogo(size: 72.0),
