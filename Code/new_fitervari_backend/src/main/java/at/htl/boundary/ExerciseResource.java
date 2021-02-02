@@ -40,7 +40,7 @@ public class ExerciseResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response post(Exercise entity) {
-        try{
+        try {
             // set entities for creator of project
             if (entity.getCreator() != null && entity.getCreator().isTrainer()) {
                 entity.setCreator(trainerRepository.findById(entity.getCreator().getId()));
@@ -49,7 +49,7 @@ public class ExerciseResource {
             }
 
             return Response.ok(repository.save(entity)).build();
-        }catch (Exception e){
+        } catch (Exception e) {
             return Response.serverError().build();
         }
     }
@@ -59,7 +59,7 @@ public class ExerciseResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response put(Exercise entity) {
-        try{
+        try {
             // set entities for creator of project
             if (entity.getCreator() != null && entity.getCreator().isTrainer()) {
                 entity.setCreator(trainerRepository.findById(entity.getCreator().getId()));
@@ -68,7 +68,7 @@ public class ExerciseResource {
             }
 
             return Response.ok(repository.save(entity)).build();
-        }catch (Exception e){
+        } catch (Exception e) {
             return Response.serverError().build();
         }
     }
@@ -77,10 +77,10 @@ public class ExerciseResource {
     @Transactional
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
-        try{
+        try {
             repository.delete(repository.findById(id));
             return Response.ok().build();
-        }catch (Exception e){
+        } catch (Exception e) {
             return Response.serverError().build();
         }
     }
