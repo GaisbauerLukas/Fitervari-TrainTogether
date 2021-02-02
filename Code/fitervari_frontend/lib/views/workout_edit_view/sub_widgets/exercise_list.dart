@@ -65,7 +65,7 @@ class ExerciseRoutineState extends State<ExerciseList> {
           floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add),
             onPressed: () =>
-                Navigator.of(context).pushNamed(CreateExercise.routeName),
+                Navigator.of(context).pushNamed(CreateExercise.routeName, arguments: this.workout),
           ),
         );
       },
