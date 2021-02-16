@@ -1,8 +1,8 @@
 import 'package:fitervari/logic/helper/session_info.dart';
 import 'package:fitervari/views/filler_page/filler_page.dart';
+import 'package:fitervari/views/training_info/training_info.dart';
 import 'package:flutter/material.dart';
 
-import '../../views/configuration_page/configuration_page.dart';
 import '../../views/landing_page/landing_page.dart';
 import '../../views/profile_page/profile_page.dart';
 import '../../widgets/main_drawer.dart';
@@ -16,7 +16,7 @@ class _TabsScreenState extends State<TabsScreen> {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final List<Widget> _pages = [
-    ConfigureationPage(),
+    TrainingInfo(),
     LandingPage(),
     ProfilePage(),
   ];

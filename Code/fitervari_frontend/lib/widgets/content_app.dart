@@ -38,14 +38,14 @@ class _ContentAppState extends State<ContentApp> {
     Provider.of<ExerciseProvider>(context, listen: false).loadExercises();
     Provider.of<CustomerProvider>(context, listen: false).setCurrentCustomer(
         Customer(
-            id: -1,
+            id: 2,
             cashCustomer: true,
             joinDate: DateTime.utc(2019, 5, 12),
             memberTill: DateTime.utc(2021, 5, 12),
             pictureId: -1,
             trainer: false,
-            name: 'Florian Geht',
-            trainerId: 2));
+            name: 'Angelo Merte',
+            trainerId: 3));
   }
 
   @override

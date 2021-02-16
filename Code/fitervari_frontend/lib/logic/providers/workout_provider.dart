@@ -65,6 +65,14 @@ class WorkoutProvider extends ChangeNotifier {
     });
   }
 
+  postWorkout(Workout workout) {
+    _endpoint.post(workout).then((value) {
+      if(value){
+        loadedWorkouts.add(workout);
+      }
+    });
+  }
+
   updateWorkout(Workout workout) {
     _endpoint.put(workout).then((value) {
       if(value){

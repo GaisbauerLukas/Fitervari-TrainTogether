@@ -31,8 +31,8 @@ class Customer extends Person {
     map["Trainer"] = true;
     map["name"] = super.name;
     map["pictureId"] = super.pictureId;
-    map["joinDate"] = joinDate;
-    map["memberTill"] = memberTill;
+    map["joinDate"] = joinDate.toIso8601String();
+    map["memberTill"] = memberTill.toIso8601String();
     map["cashCustomer"] = cashCustomer;
     map["trainerId"] = trainerId;
     return map;
