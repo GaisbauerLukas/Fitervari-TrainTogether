@@ -23,7 +23,6 @@ class ExerciseRoutineState extends State<ExerciseList> {
   @override
   void initState() {
     super.initState();
-    Provider.of<ExerciseProvider>(context, listen: false).loadExercises();
   }
 
   @override
@@ -55,27 +54,18 @@ class ExerciseRoutineState extends State<ExerciseList> {
         });
 
         return Scaffold(
-          appBar: AppBar(
-            actions: <Widget>[
-              IconButton(
-                onPressed: () =>
-                {print("right"),Navigator.of(context).pushNamed(CreateExercise.routeName),},
-                icon: Icon(Icons.add),
-                color: Colors.white,
-              )
-            ],
-          ),
+          appBar: AppBar(),
           body: ListView.builder(
             scrollDirection: Axis.vertical,
             itemBuilder: (ctx, index) {
-              return AddExerciseTile(provider.exercises[index], workout);
+              return AddExerciseTile(exercises[index], workout);
             },
             itemCount: exercises.length,
           ),
           floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add),
             onPressed: () =>
-                Navigator.of(context).pushNamed(CreateExercise.routeName),
+                Navigator.of(context).pushNamed(CreateExercise.routeName, arguments: this.workout),
           ),
         );
       },

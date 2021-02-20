@@ -2,6 +2,7 @@ import 'package:fitervari/contracts/transfer/customer.dart';
 import 'package:fitervari/contracts/transfer/exercise.dart';
 import 'package:fitervari/contracts/transfer/person.dart';
 import 'package:fitervari/contracts/transfer/set.dart';
+import 'package:fitervari/contracts/transfer/workout.dart';
 import 'package:fitervari/logic/providers/exercise_provider.dart';
 import 'package:fitervari/views/workout_edit_view/sub_widgets/exercise_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,6 +11,7 @@ import 'package:provider/provider.dart';
 
 class CreateExercise extends StatelessWidget {
   static const routeName = "/Create_Exercise";
+  Workout workout;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +20,7 @@ class CreateExercise extends StatelessWidget {
       final exerciseTypController = TextEditingController();
       final numberOfSetController = TextEditingController();
       Customer person;
+      workout = ModalRoute.of(context).settings.arguments;
 
       return Scaffold(
         appBar: AppBar(),
@@ -72,7 +75,7 @@ class CreateExercise extends StatelessWidget {
                   ),
                   Navigator.pop(context),
                   Navigator.pop(context),
-                  Navigator.of(context).pushNamed(ExerciseList.routeName),
+                  Navigator.of(context).pushNamed(ExerciseList.routeName, arguments: this.workout),
                 },
                 child: Card(
                   margin: EdgeInsets.all(10),
