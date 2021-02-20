@@ -24,7 +24,9 @@ class Workout extends Identifiable {
       : super(id);
 
   Workout.fromJson(dynamic json) : super(json["id"]) {
-    creationDate = DateTime.parse(json["creationDate"]);
+    if (json["creation_Date"] != null){
+      creationDate = DateTime.parse(json["creation_Date"]);
+    }
     // creator = json["creator"] != null ? Person.fromJson(json["creator"]) : null;
     if (json["exercises"] != null) {
       exercises = [];

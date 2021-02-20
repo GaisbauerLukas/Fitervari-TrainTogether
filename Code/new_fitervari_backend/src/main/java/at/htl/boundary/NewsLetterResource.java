@@ -3,6 +3,7 @@ package at.htl.boundary;
 import at.htl.control.NewsLetterRepository;
 import at.htl.model.NewsLetter;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
@@ -16,12 +17,14 @@ public class NewsLetterResource {
 
     @GET
     @Path("/{id}")
+    @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getById(@PathParam("id") Long id) {
         return Response.ok(repository.findById(id)).build();
     }
 
     @GET
+    @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll() {
         return Response.ok(repository.findAll().list()).build();
@@ -29,6 +32,7 @@ public class NewsLetterResource {
 
     @POST
     @Transactional
+    @RolesAllowed("user")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response post(NewsLetter entity) {
@@ -41,6 +45,7 @@ public class NewsLetterResource {
 
     @PUT
     @Transactional
+    @RolesAllowed("user")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response put(NewsLetter entity) {
@@ -54,6 +59,7 @@ public class NewsLetterResource {
     @DELETE
     @Transactional
     @Path("/{id}")
+    @RolesAllowed("user")
     public Response delete(@PathParam("id") Long id) {
         try{
             repository.delete(repository.findById(id));

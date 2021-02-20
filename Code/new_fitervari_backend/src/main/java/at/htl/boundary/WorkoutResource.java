@@ -5,15 +5,18 @@ import at.htl.control.TrainerRepository;
 import at.htl.control.WorkoutHistoryRepository;
 import at.htl.control.WorkoutRepository;
 import at.htl.model.Workout;
+import io.quarkus.security.Authenticated;
 import org.hibernate.annotations.common.util.impl.Log;
 import org.jboss.logging.Logger;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+@Authenticated
 @Path("/api/workout")
 public class WorkoutResource {
     @Inject
@@ -32,12 +35,14 @@ public class WorkoutResource {
 
     @GET
     @Path("/{id}")
+    @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getById(@PathParam("id") Long id) {
         return Response.ok(repository.findById(id)).build();
     }
 
     @GET
+    @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll() {
         return Response.ok(repository.findAll().list()).build();
@@ -45,6 +50,7 @@ public class WorkoutResource {
 
     @POST
     @Transactional
+    @RolesAllowed("user")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response post(Workout entity) {
@@ -74,6 +80,7 @@ public class WorkoutResource {
 
     @PUT
     @Transactional
+    @RolesAllowed("user")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response put(Workout entity) {
@@ -114,6 +121,7 @@ public class WorkoutResource {
     @DELETE
     @Transactional
     @Path("/{id}")
+    @RolesAllowed("user")
     public Response delete(@PathParam("id") Long id) {
         try {
             repository.delete(repository.findById(id));

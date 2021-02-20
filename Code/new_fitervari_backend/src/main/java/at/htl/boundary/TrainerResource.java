@@ -2,13 +2,16 @@ package at.htl.boundary;
 
 import at.htl.control.TrainerRepository;
 import at.htl.model.Trainer;
+import io.quarkus.security.Authenticated;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+@Authenticated
 @Path("/api/trainer")
 public class TrainerResource {
     @Inject
@@ -16,12 +19,14 @@ public class TrainerResource {
 
     @GET
     @Path("/{id}")
+    @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getById(@PathParam("id") Long id) {
         return Response.ok(repository.findById(id)).build();
     }
 
     @GET
+    @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll() {
         return Response.ok(repository.findAll().list()).build();
@@ -29,6 +34,7 @@ public class TrainerResource {
 
     @POST
     @Transactional
+    @RolesAllowed("user")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response post(Trainer entity) {
@@ -41,6 +47,7 @@ public class TrainerResource {
 
     @PUT
     @Transactional
+    @RolesAllowed("user")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response put(Trainer entity) {
@@ -54,6 +61,7 @@ public class TrainerResource {
     @DELETE
     @Transactional
     @Path("/{id}")
+    @RolesAllowed("user")
     public Response delete(@PathParam("id") Long id) {
         try{
             repository.delete(repository.findById(id));

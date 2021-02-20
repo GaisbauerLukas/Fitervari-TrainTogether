@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class NewsLettersProvider extends ChangeNotifier {
   //when testing on a virtual device: 10.0.2.2
-  static const url = 'http://10.0.2.2:80/api/newsletter';
+  static const url = 'http://10.0.2.2:8080/api/newsletter';
 
   NewsLetterEndpoint endpoint = NewsLetterEndpoint();
 
@@ -14,10 +14,10 @@ class NewsLettersProvider extends ChangeNotifier {
     return [..._items];
   }
 
-  Future<List<NewsLetter>> loadNewsLetters() async {
+  Future<List<NewsLetter>> loadNewsLetters(String token) async {
     try {
       if (_items.length == 0) {
-        _items.addAll(await endpoint.getAll());
+        _items.addAll(await endpoint.getAll(token));
         notifyListeners();
       }
     } catch (error) {

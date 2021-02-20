@@ -31,12 +31,11 @@ class WorkoutProvider extends ChangeNotifier {
     _loadedWorkouts = new List<Workout>();
   }
 
-  loadWorkouts() {
-    _endpoint.getAll().then((value) {
-      _loadedWorkouts.clear();
-      _loadedWorkouts.addAll(value);
-      _currentWorkout = _loadedWorkouts[0];
-    });
+  loadWorkouts(String token) async {
+    var tmp = await _endpoint.getAll(token);
+    _loadedWorkouts.addAll(tmp);
+    //TODO change this later
+    _currentWorkout = _loadedWorkouts[0];
   }
 
   void setNextWorkout(Workout workout) {

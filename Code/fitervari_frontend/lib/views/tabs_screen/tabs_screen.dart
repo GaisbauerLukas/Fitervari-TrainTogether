@@ -8,6 +8,8 @@ import '../../views/profile_page/profile_page.dart';
 import '../../widgets/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
+  static const routeName = '/tabs_screen';
+
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }

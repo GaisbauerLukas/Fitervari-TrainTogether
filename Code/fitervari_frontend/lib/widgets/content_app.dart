@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'package:fitervari/contracts/transfer/customer.dart';
 import 'package:fitervari/logic/providers/customer_provider.dart';
 import 'package:fitervari/logic/providers/exercise_provider.dart';
@@ -5,9 +6,13 @@ import 'package:fitervari/logic/providers/news_letters_provider.dart';
 import 'package:fitervari/logic/providers/settings_provider.dart';
 import 'package:fitervari/logic/providers/workout_provider.dart';
 import 'package:fitervari/views/create_workout_page/create_workout_page.dart';
+=======
+import 'package:fitervari/logic/providers/settings_provider.dart';
+>>>>>>> authentication_with_new_backend
 import 'package:fitervari/views/do_exercise_page/do_exercise_page.dart';
 import 'package:fitervari/views/exercise_view/create_exercise.dart';
 import 'package:fitervari/views/filler_page/filler_page.dart';
+import 'package:fitervari/views/login_page/login_page.dart';
 import 'package:fitervari/views/news_letter_details_page/NewsLetterDetailsPage.dart';
 import 'package:fitervari/views/tabs_screen/tabs_screen.dart';
 import 'package:fitervari/views/workout_edit_view/sub_widgets/exercise_list.dart';
@@ -28,6 +33,7 @@ class _ContentAppState extends State<ContentApp> {
   @override
   void initState() {
     super.initState();
+<<<<<<< HEAD
     setProvider();
   }
 
@@ -46,30 +52,41 @@ class _ContentAppState extends State<ContentApp> {
             trainer: false,
             name: 'Angelo Merte',
             trainerId: 3));
+=======
+>>>>>>> authentication_with_new_backend
   }
 
   @override
   Widget build(BuildContext context) {
-    setProvider();
+
     return Consumer<SettingsProvider>(
       builder: (context, provider, child) {
+
+        provider.setLightTheme();
         _theme = provider.currentTheme;
+
         return MaterialApp(
           title: 'Fitervari',
           theme: _theme,
-          home: TabsScreen(),
+          home: LoginPage(),
           routes: {
             FillerPage.routeName: (ctx) => FillerPage(),
             NewsLetterDetailsPage.routeName: (ctx) => NewsLetterDetailsPage(),
             WorkoutRoutine.routeName: (ctx) => WorkoutRoutine(),
             DoExercisePage.routeName: (ctx) => DoExercisePage(),
+<<<<<<< HEAD
             WorkoutEditView.routeName: (ctx) => WorkoutEditView(),
             ExerciseList.routeName: (ctx) => ExerciseList(),
             CreateExercise.routeName: (ctx) => CreateExercise(),
             CreateWorkoutPage.routeName: (ctx) => CreateWorkoutPage(),
+=======
+            TabsScreen.routeName: (ctx) => TabsScreen(),
+            LoginPage.routeName: (ctx) => LoginPage()
+>>>>>>> authentication_with_new_backend
           },
         );
       },
     );
   }
+
 }
