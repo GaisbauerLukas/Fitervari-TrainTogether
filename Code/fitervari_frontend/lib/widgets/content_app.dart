@@ -1,8 +1,4 @@
-import 'package:fitervari/contracts/transfer/customer.dart';
-import 'package:fitervari/logic/providers/customer_provider.dart';
-import 'package:fitervari/logic/providers/news_letters_provider.dart';
 import 'package:fitervari/logic/providers/settings_provider.dart';
-import 'package:fitervari/logic/providers/workout_provider.dart';
 import 'package:fitervari/views/do_exercise_page/do_exercise_page.dart';
 import 'package:fitervari/views/filler_page/filler_page.dart';
 import 'package:fitervari/views/login_page/login_page.dart';
@@ -28,9 +24,13 @@ class _ContentAppState extends State<ContentApp> {
 
   @override
   Widget build(BuildContext context) {
+
     return Consumer<SettingsProvider>(
       builder: (context, provider, child) {
+
+        provider.setLightTheme();
         _theme = provider.currentTheme;
+
         return MaterialApp(
           title: 'Fitervari',
           theme: _theme,

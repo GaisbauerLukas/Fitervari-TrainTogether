@@ -15,8 +15,7 @@
 #
 ###
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.3
-COPY delay.sh sh/delay.sh
-RUN sh/delay.sh
+
 WORKDIR /work/
 RUN chown 1001 /work \
     && chmod "g+rwX" /work \

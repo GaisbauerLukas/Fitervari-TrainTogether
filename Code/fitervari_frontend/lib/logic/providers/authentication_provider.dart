@@ -5,7 +5,7 @@ import 'package:openid_client/openid_client.dart';
 import 'package:openid_client/openid_client_io.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-const AUTH0_DOMAIN = '10.0.2.2:8180/auth/realms/Fitervari';
+const AUTH0_DOMAIN = 'fitervari.me:8180/auth/realms/Fitervari';
 const AUTH0_CLIENT_ID = 'frontend';
 
 const AUTH0_REDIRECT_URI = 'localhost:4200';

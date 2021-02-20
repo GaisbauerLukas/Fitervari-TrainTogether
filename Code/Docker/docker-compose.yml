@@ -1,6 +1,7 @@
 version: "3.1"
 
 services:
+
   postgres:
     image: postgres:12
     restart: always
@@ -24,20 +25,8 @@ services:
   #     - quarkus
   #   networks:
   #     - fitavari_network
-
-  quarkus:
-    build:
-      context: ../new_fitervari_backend
-      dockerfile: src/main/docker/Dockerfile.native
-    ports:
-      - 8080:8080
-    networks:
-      - fitavari_network
-    depends_on:
-      - keycloak
-      - postgres
       
-  #webpage:
+  # webpage:
   #  build:
   #    context: ./webpage
   #    dockerfile: Dockerfile
@@ -48,41 +37,52 @@ services:
   #  depends_on:
   #    - postgres
 
-  postgres-keycloak:
-      image: postgres
-      volumes:
-          - postgres-keycloak_data:/var/lib/postgresql/data
-      ports: 
-          - 5435:5432
-      environment:
-          - POSTGRES_DB=keycloak
-          - POSTGRES_USER=keycloak
-          - POSTGRES_PASSWORD=password
-      networks:
-          - fitavari_network
+  # postgres-keycloak:
+  #     image: postgres
+  #     volumes:
+  #         - postgres-keycloak_data:/var/lib/postgresql/data
+  #     ports: 
+  #         - 5435:5432
+  #     environment:
+  #         - POSTGRES_DB=keycloak
+  #         - POSTGRES_USER=keycloak
+  #         - POSTGRES_PASSWORD=password
+  #     networks:
+  #         - fitavari_network
 
-  keycloak:
-      image: jboss/keycloak
-      command: -Dkeycloak.profile.feature.upload_scripts=enabled
-      environment:
-          - DB_VENDOR=POSTGRES
-          - DB_ADDR=postgres-keycloak
-          - DB_PORT=5432
-          - DB_DATABASE=keycloak
-          - DB_USER=keycloak
-          - DB_SCHEMA=public
-          - DB_PASSWORD=password
-          - KEYCLOAK_IMPORT=/tmp/keycloak/realm_v4.json
-          - KEYCLOAK_USER=admin
-          - KEYCLOAK_PASSWORD=admin
-      ports:
-          - 8180:8080
-      volumes:
-          - ./keycloak/:/tmp/keycloak
-      networks:
-          - fitavari_network
-      depends_on:
-          - postgres-keycloak
+  # keycloak:
+  #     image: jboss/keycloak
+  #     command: -Dkeycloak.profile.feature.upload_scripts=enabled
+  #     environment:
+  #         - DB_VENDOR=POSTGRES
+  #         - DB_ADDR=postgres-keycloak
+  #         - DB_PORT=5432
+  #         - DB_DATABASE=keycloak
+  #         - DB_USER=keycloak
+  #         - DB_SCHEMA=public
+  #         - DB_PASSWORD=password
+  #         - KEYCLOAK_IMPORT=/tmp/keycloak/realm_v4.json
+  #         - KEYCLOAK_USER=admin
+  #         - KEYCLOAK_PASSWORD=admin
+  #     ports:
+  #         - 8180:8080
+  #     volumes:
+  #         - ./keycloak/:/tmp/keycloak
+  #     networks:
+  #         - fitavari_network
+  #     depends_on:
+  #         - postgres-keycloak
+  
+  quarkus:
+    build:
+      context: ../new_fitervari_backend
+      dockerfile: src/main/docker/Dockerfile.native
+    ports:
+      - 8080:8080
+    networks:
+      - fitavari_network
+    depends_on:
+      - postgres
 
 volumes:
   postgres_data:

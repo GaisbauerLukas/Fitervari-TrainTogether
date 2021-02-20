@@ -42,6 +42,7 @@ public class WorkoutResource {
     }
 
     @GET
+    @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll() {
         return Response.ok(repository.findAll().list()).build();
