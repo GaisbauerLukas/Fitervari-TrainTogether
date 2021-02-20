@@ -1,14 +1,5 @@
-<<<<<<< HEAD
-import 'package:fitervari/contracts/transfer/customer.dart';
-import 'package:fitervari/logic/providers/customer_provider.dart';
-import 'package:fitervari/logic/providers/exercise_provider.dart';
-import 'package:fitervari/logic/providers/news_letters_provider.dart';
 import 'package:fitervari/logic/providers/settings_provider.dart';
-import 'package:fitervari/logic/providers/workout_provider.dart';
 import 'package:fitervari/views/create_workout_page/create_workout_page.dart';
-=======
-import 'package:fitervari/logic/providers/settings_provider.dart';
->>>>>>> authentication_with_new_backend
 import 'package:fitervari/views/do_exercise_page/do_exercise_page.dart';
 import 'package:fitervari/views/exercise_view/create_exercise.dart';
 import 'package:fitervari/views/filler_page/filler_page.dart';
@@ -33,27 +24,6 @@ class _ContentAppState extends State<ContentApp> {
   @override
   void initState() {
     super.initState();
-<<<<<<< HEAD
-    setProvider();
-  }
-
-  setProvider() {
-    Provider.of<NewsLettersProvider>(context, listen: false).loadNewsLetters();
-    Provider.of<SettingsProvider>(context, listen: false).setLightTheme();
-    Provider.of<WorkoutProvider>(context, listen: false).loadWorkouts();
-    Provider.of<ExerciseProvider>(context, listen: false).loadExercises();
-    Provider.of<CustomerProvider>(context, listen: false).setCurrentCustomer(
-        Customer(
-            id: 2,
-            cashCustomer: true,
-            joinDate: DateTime.utc(2019, 5, 12),
-            memberTill: DateTime.utc(2021, 5, 12),
-            pictureId: -1,
-            trainer: false,
-            name: 'Angelo Merte',
-            trainerId: 3));
-=======
->>>>>>> authentication_with_new_backend
   }
 
   @override
@@ -74,15 +44,12 @@ class _ContentAppState extends State<ContentApp> {
             NewsLetterDetailsPage.routeName: (ctx) => NewsLetterDetailsPage(),
             WorkoutRoutine.routeName: (ctx) => WorkoutRoutine(),
             DoExercisePage.routeName: (ctx) => DoExercisePage(),
-<<<<<<< HEAD
             WorkoutEditView.routeName: (ctx) => WorkoutEditView(),
             ExerciseList.routeName: (ctx) => ExerciseList(),
             CreateExercise.routeName: (ctx) => CreateExercise(),
             CreateWorkoutPage.routeName: (ctx) => CreateWorkoutPage(),
-=======
             TabsScreen.routeName: (ctx) => TabsScreen(),
             LoginPage.routeName: (ctx) => LoginPage()
->>>>>>> authentication_with_new_backend
           },
         );
       },
