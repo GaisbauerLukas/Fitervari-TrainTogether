@@ -11,4 +11,8 @@ public class PersonRepository implements PanacheRepository<Person> {
     public Person save(Person entity) {
         return getEntityManager().merge(entity);
     }
+
+    public boolean checkIfCustomerAlreadyExists(String name) {
+        return streamAll().anyMatch(person -> person.getKeycloakName() == name);
+    }
 }

@@ -2,6 +2,7 @@ package at.htl.boundary;
 
 import at.htl.control.SetHistoryRepository;
 import at.htl.model.SetHistory;
+import io.quarkus.security.Authenticated;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -9,6 +10,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+@Authenticated
 @Path("/api/setHistory")
 public class SetHistoryResource {
     @Inject

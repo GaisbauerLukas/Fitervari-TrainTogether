@@ -1,4 +1,7 @@
+import 'package:fitervari/logic/providers/authentication_provider.dart';
+import 'package:fitervari/views/login_page/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../views/filler_page/filler_page.dart';
 
@@ -42,8 +45,14 @@ class MainDrawer extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            buildListTile('Logout', Icons.arrow_back,
-                () => Navigator.of(context).pushNamed(FillerPage.routeName)),
+            Consumer<AuthenticationProvider>(
+              builder: (context, provider, child) {
+                return buildListTile('Logout', Icons.arrow_back, () {
+                  provider.logoutAction();
+                  Navigator.of(context).pushNamed(LoginPage.routeName);
+                });
+              },
+            )
           ],
         ),
       ),

@@ -10,49 +10,43 @@ abstract class GenericEndpoint<T extends Identifiable> {
 
   Map<String, dynamic> convertObjectToJson(T item);
 
-  Future<List<T>> getAll() async {
-    try {
-      List<T> result = [];
+  Future<List<T>> getAll(String token) async {
+    List<T> result = [];
 
-      final response = await http.get(this.baseUrl);
-      final data = json.decode(Utf8Decoder().convert(response.bodyBytes));
+    final response = await http.get(this.baseUrl, headers: {
+      'Authorization': 'Bearer $token',
+      'Content-Type': 'application/json; charset=UTF-8'
+    });
 
-      data.forEach((dataItem) {
-        var tmp = this.convertJsonToObject(dataItem);
-        result.add(tmp);
-      });
+    final data = json.decode(response.body);
 
-      return result;
-    } catch (e) {
-      print(e.toString());
-    }
+    data.forEach((dataItem) {
+      var tmp = this.convertJsonToObject(dataItem);
+      result.add(tmp);
+    });
+
+    return result;
   }
 
   Future<bool> post(T postItem) async {
-    final jsonBeforeEncoding = this.convertObjectToJson(postItem);
-    final encoded = json.encode(jsonBeforeEncoding);
-
     final response = await http.post(this.baseUrl,
-        headers: {"content-type": "application/json"}, body: encoded);
+        headers: {"content-type": "application/json"},
+        body: this.convertObjectToJson(postItem));
     return response.statusCode == 201;
   }
 
   Future<bool> put(T putItem) async {
-    try {
-      final response = await http.put(this.baseUrl,
-          headers: {"content-type": "application/json"},
-          body: json.encode(this.convertObjectToJson(putItem)));
-      return response.statusCode == 201;
-    } catch (e) {
-      print(e);
-    }
+    final response = await http.put(this.baseUrl + "${putItem.id})",
+        headers: {"content-type": "application/json"},
+        body: this.convertObjectToJson(putItem));
+    return response.statusCode == 201;
   }
 
   Future<bool> delete(int id) async {
-    final response = await http.delete(
-      this.baseUrl + '$id',
+    final response = await http.put(
+      this.baseUrl + '/$id',
       headers: {"content-type": "application/json"},
     );
-    return response.statusCode == 200;
+    return response.statusCode == 201;
   }
 }
