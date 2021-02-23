@@ -28,7 +28,7 @@ public class Exercise {
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Person creator;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "exercise_id")
     private List<Set> sets;
 

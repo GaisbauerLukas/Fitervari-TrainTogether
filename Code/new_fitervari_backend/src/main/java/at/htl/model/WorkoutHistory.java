@@ -24,7 +24,7 @@ public class WorkoutHistory {
     private Workout workout;
 
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "workout_history_id")
     private List<ExerciseHistory> exerciseHistories;
 

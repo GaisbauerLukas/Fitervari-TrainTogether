@@ -31,7 +31,7 @@ public class Workout {
     )
     private List<Exercise> exercises;
 
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(name = "workout_id")
     private List<WorkoutHistory> workoutHistories;
 
