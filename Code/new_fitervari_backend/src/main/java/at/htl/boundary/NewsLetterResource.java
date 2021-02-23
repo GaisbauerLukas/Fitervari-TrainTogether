@@ -2,6 +2,7 @@ package at.htl.boundary;
 
 import at.htl.control.NewsLetterRepository;
 import at.htl.model.NewsLetter;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -12,8 +13,12 @@ import javax.ws.rs.core.Response;
 
 @Path("/api/newsletter")
 public class NewsLetterResource {
+
     @Inject
     NewsLetterRepository repository;
+
+    @Inject
+    JsonWebToken idToken;
 
     @GET
     @Path("/{id}")

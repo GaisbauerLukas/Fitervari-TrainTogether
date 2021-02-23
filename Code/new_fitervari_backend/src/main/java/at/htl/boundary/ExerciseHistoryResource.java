@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 @Authenticated
 @Path("/api/exerciseHistory")
 public class ExerciseHistoryResource {
+
     @Inject
     ExerciseHistoryRepository repository;
 

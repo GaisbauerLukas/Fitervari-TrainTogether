@@ -3,6 +3,7 @@ package at.htl.boundary;
 import at.htl.control.ExerciseRepository;
 import at.htl.model.Exercise;
 import io.quarkus.security.Authenticated;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -17,6 +18,9 @@ public class ExerciseResource {
 
     @Inject
     ExerciseRepository repository;
+
+    @Inject
+    JsonWebToken idToken;
 
     @GET
     @Path("/{id}")

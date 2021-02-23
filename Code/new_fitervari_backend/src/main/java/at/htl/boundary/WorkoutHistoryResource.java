@@ -3,6 +3,7 @@ package at.htl.boundary;
 import at.htl.control.WorkoutHistoryRepository;
 import at.htl.model.WorkoutHistory;
 import io.quarkus.security.Authenticated;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -14,8 +15,12 @@ import javax.ws.rs.core.Response;
 @Authenticated
 @Path("/api/workoutHistory")
 public class WorkoutHistoryResource {
+
     @Inject
     WorkoutHistoryRepository repository;
+
+    @Inject
+    JsonWebToken idToken;
 
     @GET
     @Path("/{id}")

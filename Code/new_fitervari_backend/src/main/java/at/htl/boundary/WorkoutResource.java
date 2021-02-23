@@ -1,7 +1,9 @@
 package at.htl.boundary;
 
+import at.htl.control.PersonRepository;
 import at.htl.control.WorkoutHistoryRepository;
 import at.htl.control.WorkoutRepository;
+import at.htl.model.Person;
 import at.htl.model.Workout;
 import io.quarkus.security.Authenticated;
 import org.eclipse.microprofile.jwt.JsonWebToken;
@@ -13,15 +15,21 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.time.LocalDate;
+import java.util.stream.Collectors;
 
 @Authenticated
 @Path("/api/workout")
 public class WorkoutResource {
+
     @Inject
     WorkoutRepository repository;
 
     @Inject
     WorkoutHistoryRepository workoutHistoryRepository;
+
+    @Inject
+    PersonRepository personRepository;
 
     @Inject
     JsonWebToken idToken;
@@ -39,9 +47,22 @@ public class WorkoutResource {
     @GET
     @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response getAll() {
-        System.out.println(idToken.getName());
-        return Response.ok(repository.findAll().list()).build();
+
+        if (!personRepository.checkIfCustomerAlreadyExists(idToken.getName())) {
+            personRepository.getEntityManager().merge(new Person(idToken.getName(),
+                    idToken.getName(),
+                    LocalDate.now(),
+                    null,
+                    false,
+                    false));
+        }
+
+        return Response.ok(repository.streamAll()
+                .filter(workout -> workout.getCreator().getKeycloakName().equals(idToken.getName()))
+                .collect(Collectors.toList()))
+                .build();
     }
 
     @POST

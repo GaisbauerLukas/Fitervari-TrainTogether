@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "Person")
 public class Person {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,7 +29,25 @@ public class Person {
     private boolean isTrainer;
 
     @Column(name = "cash_customer")
-    private boolean CashCustomer;
+    private boolean cashCustomer;
+
+    public Person() {
+
+    }
+
+    public Person(String name,
+                  String keycloakName,
+                  LocalDate joinDate,
+                  LocalDate memberTill,
+                  boolean isTrainer,
+                  boolean cashCustomer) {
+        this.name = name;
+        this.keycloakName = keycloakName;
+        this.joinDate = joinDate;
+        this.memberTill = memberTill;
+        this.isTrainer = isTrainer;
+        this.cashCustomer = cashCustomer;
+    }
 
     //region GetterSetter
 
@@ -73,11 +92,11 @@ public class Person {
     }
 
     public boolean isCashCustomer() {
-        return CashCustomer;
+        return cashCustomer;
     }
 
     public void setCashCustomer(boolean cashCustomer) {
-        CashCustomer = cashCustomer;
+        cashCustomer = cashCustomer;
     }
 
     public String getKeycloakName() {

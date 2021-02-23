@@ -27,7 +27,7 @@ class AuthenticationProvider extends ChangeNotifier {
 
   var uri = Uri.parse('http://' + AUTH0_DOMAIN);
   var clientId = AUTH0_CLIENT_ID;
-  var scopes = List<String>.of(['openid', 'profile']);
+    var scopes = List<String>.of(['openid', 'profile']);
   var port = 4200;
 
   Future<Issuer> get issuer async => await Issuer.discover(uri);

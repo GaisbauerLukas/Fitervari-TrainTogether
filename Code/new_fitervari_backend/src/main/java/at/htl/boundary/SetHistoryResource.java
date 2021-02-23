@@ -3,6 +3,7 @@ package at.htl.boundary;
 import at.htl.control.SetHistoryRepository;
 import at.htl.model.SetHistory;
 import io.quarkus.security.Authenticated;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -13,8 +14,12 @@ import javax.ws.rs.core.Response;
 @Authenticated
 @Path("/api/setHistory")
 public class SetHistoryResource {
+
     @Inject
     SetHistoryRepository repository;
+
+    @Inject
+    JsonWebToken idToken;
 
     @GET
     @Path("/{id}")

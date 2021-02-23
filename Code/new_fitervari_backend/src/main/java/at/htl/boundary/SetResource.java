@@ -3,6 +3,7 @@ package at.htl.boundary;
 import at.htl.control.SetRepository;
 import at.htl.model.Set;
 import io.quarkus.security.Authenticated;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -14,8 +15,12 @@ import javax.ws.rs.core.Response;
 @Authenticated
 @Path("/api/set")
 public class SetResource {
+
     @Inject
     SetRepository repository;
+
+    @Inject
+    JsonWebToken idToken;
 
     @GET
     @Path("/{id}")

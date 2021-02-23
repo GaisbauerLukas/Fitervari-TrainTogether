@@ -30,7 +30,7 @@ class ExerciseRoutineState extends State<ExerciseList> {
     super.setState(fn);
   }
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     this.workout = ModalRoute.of(context).settings.arguments;
 
