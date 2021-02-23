@@ -17,45 +17,36 @@ abstract class GenericEndpoint<T extends Identifiable> {
       'Authorization': 'Bearer $token',
       'Content-Type': 'application/json; charset=UTF-8'
     });
-    
+
     final data = json.decode(response.body);
 
-      data.forEach((dataItem) {
-        var tmp = this.convertJsonToObject(dataItem);
-        result.add(tmp);
-      });
+    data.forEach((dataItem) {
+      var tmp = this.convertJsonToObject(dataItem);
+      result.add(tmp);
+    });
 
-      return result;
-    } catch (e) {
-      print(e.toString());
-    }
+    return result;
   }
 
   Future<bool> post(T postItem) async {
-    final jsonBeforeEncoding = this.convertObjectToJson(postItem);
-    final encoded = json.encode(jsonBeforeEncoding);
-
     final response = await http.post(this.baseUrl,
-        headers: {"content-type": "application/json"}, body: encoded);
+        headers: {"content-type": "application/json"},
+        body: this.convertObjectToJson(postItem));
     return response.statusCode == 201;
   }
 
   Future<bool> put(T putItem) async {
-    try {
-      final response = await http.put(this.baseUrl,
-          headers: {"content-type": "application/json"},
-          body: json.encode(this.convertObjectToJson(putItem)));
-      return response.statusCode == 201;
-    } catch (e) {
-      print(e);
-    }
+    final response = await http.put(this.baseUrl + "${putItem.id})",
+        headers: {"content-type": "application/json"},
+        body: this.convertObjectToJson(putItem));
+    return response.statusCode == 201;
   }
 
   Future<bool> delete(int id) async {
-    final response = await http.delete(
-      this.baseUrl + '$id',
+    final response = await http.put(
+      this.baseUrl + '/$id',
       headers: {"content-type": "application/json"},
     );
-    return response.statusCode == 200;
+    return response.statusCode == 201;
   }
 }

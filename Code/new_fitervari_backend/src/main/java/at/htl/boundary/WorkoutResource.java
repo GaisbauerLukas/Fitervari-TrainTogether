@@ -5,7 +5,9 @@ import at.htl.control.TrainerRepository;
 import at.htl.control.WorkoutHistoryRepository;
 import at.htl.control.WorkoutRepository;
 import at.htl.model.Workout;
+import io.quarkus.oidc.IdToken;
 import io.quarkus.security.Authenticated;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.hibernate.annotations.common.util.impl.Log;
 import org.jboss.logging.Logger;
 
@@ -31,6 +33,9 @@ public class WorkoutResource {
     @Inject
     WorkoutHistoryRepository workoutHistoryRepository;
 
+    @Inject
+    JsonWebToken idToken;
+
     private static final Logger LOG = Logger.getLogger(WorkoutResource.class);
 
     @GET
@@ -45,6 +50,7 @@ public class WorkoutResource {
     @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll() {
+        System.out.println(idToken.getName());
         return Response.ok(repository.findAll().list()).build();
     }
 

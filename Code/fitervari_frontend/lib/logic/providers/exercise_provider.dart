@@ -14,9 +14,9 @@ class ExerciseProvider extends ChangeNotifier{
     _exercises = [];
   }
 
-  loadExercises() async{
+  loadExercises(String token) async{
     _exercises = [];
-    var tmp = await _endpoint.getAll();
+    var tmp = await _endpoint.getAll(token);
     _exercises.clear();
     _exercises.addAll(tmp);
     notifyListeners();

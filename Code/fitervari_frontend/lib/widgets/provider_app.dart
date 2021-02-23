@@ -18,7 +18,8 @@ class ProviderApp extends StatelessWidget {
       ChangeNotifierProvider.value(value: CustomerProvider()),
       ChangeNotifierProvider.value(value: NewsLettersProvider()),
       ChangeNotifierProvider.value(value: WorkoutProvider()),
-      ChangeNotifierProvider.value(value: AuthenticationProvider())
+      ChangeNotifierProvider.value(value: AuthenticationProvider()),
+      ChangeNotifierProvider.value(value: ExerciseProvider())
     ], child: ContentApp());
   }
 }

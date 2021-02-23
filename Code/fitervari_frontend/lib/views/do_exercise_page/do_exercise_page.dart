@@ -77,11 +77,15 @@ class DoExercisePageState extends State<DoExercisePage> {
     widget.setExerciseHistoryToTrue = arguments[3];
 
     return Consumer<WorkoutProvider>(
+
       builder: (context, workoutProvider, child) {
+
         var currentWorkout = workoutProvider.currentWorkout;
+
         var deviceHeight =
             MediaQuery.of(context).size.height - SessionInfo().actionBarHeight;
         this.cardList.clear();
+
         this.cardList.addAll([
           ExerciseChart(
             data: convertToChartEntity(
