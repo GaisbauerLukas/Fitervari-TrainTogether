@@ -25,10 +25,10 @@ public class Exercise {
     @Column(name = "official_flag")
     private boolean officialFlag;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Person creator;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "exercise_id")
     private List<Set> sets;
 

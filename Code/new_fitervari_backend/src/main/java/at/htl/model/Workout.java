@@ -17,13 +17,13 @@ public class Workout {
     @Column(name = "creation_Date")
     private LocalDateTime creationDate;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Person creator;
 
     @Column(name = "official_flag")
     private boolean officialFlag;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(
             name = "workout2exercise",
             joinColumns = @JoinColumn(name = "workout_id"),
@@ -31,7 +31,7 @@ public class Workout {
     )
     private List<Exercise> exercises;
 
-    @OneToMany(cascade = CascadeType.MERGE)
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "workout_id")
     private List<WorkoutHistory> workoutHistories;
 
