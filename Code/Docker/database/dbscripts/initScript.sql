@@ -23,7 +23,8 @@ CREATE TABLE Person
     id         SERIAL PRIMARY KEY,
     name       varchar not null,
     picture_id int     not null,
-    is_trainer boolean not null
+    is_trainer boolean not null,
+    keycloakname varchar not null
 );
 
 CREATE TABLE Customer

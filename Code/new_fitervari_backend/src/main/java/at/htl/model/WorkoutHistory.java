@@ -16,7 +16,7 @@ public class WorkoutHistory {
     private LocalDateTime date;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    private Customer customer;
+    private Person person;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "workout_id")
@@ -45,12 +45,12 @@ public class WorkoutHistory {
         this.date = date;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public Workout getWorkout() {

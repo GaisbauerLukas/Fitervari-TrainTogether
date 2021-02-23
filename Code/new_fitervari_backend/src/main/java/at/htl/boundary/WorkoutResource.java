@@ -1,14 +1,10 @@
 package at.htl.boundary;
 
-import at.htl.control.CustomerRepository;
-import at.htl.control.TrainerRepository;
 import at.htl.control.WorkoutHistoryRepository;
 import at.htl.control.WorkoutRepository;
 import at.htl.model.Workout;
-import io.quarkus.oidc.IdToken;
 import io.quarkus.security.Authenticated;
 import org.eclipse.microprofile.jwt.JsonWebToken;
-import org.hibernate.annotations.common.util.impl.Log;
 import org.jboss.logging.Logger;
 
 import javax.annotation.security.RolesAllowed;
@@ -23,12 +19,6 @@ import javax.ws.rs.core.Response;
 public class WorkoutResource {
     @Inject
     WorkoutRepository repository;
-
-    @Inject
-    TrainerRepository trainerRepository;
-
-    @Inject
-    CustomerRepository customerRepository;
 
     @Inject
     WorkoutHistoryRepository workoutHistoryRepository;
@@ -61,23 +51,6 @@ public class WorkoutResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response post(Workout entity) {
         try {
-
-            // set entities for creator of project
-            if (entity.getCreator() != null && entity.getCreator().isTrainer()) {
-                entity.setCreator(trainerRepository.findById(entity.getCreator().getId()));
-            } else {
-                entity.setCreator(customerRepository.findById(entity.getCreator().getId()));
-            }
-
-            // set creators for all exercises
-            for (var exercise :
-                    entity.getExercises()) {
-                if (exercise.getCreator() != null && exercise.getCreator().isTrainer()) {
-                    exercise.setCreator(trainerRepository.findById(exercise.getCreator().getId()));
-                } else {
-                    exercise.setCreator(customerRepository.findById(exercise.getCreator().getId()));
-                }
-            }
             return Response.ok(repository.save(entity)).build();
         } catch (Exception e) {
             return Response.serverError().build();
@@ -92,23 +65,8 @@ public class WorkoutResource {
     public Response put(Workout entity) {
         try {
             // set entities for creator of project
-            if (entity.getCreator() != null && entity.getCreator().isTrainer()) {
-                entity.setCreator(trainerRepository.findById(entity.getCreator().getId()));
-            } else {
-                entity.setCreator(customerRepository.findById(entity.getCreator().getId()));
-            }
 
             // set creators for all exercises
-            for (var exercise :
-                    entity.getExercises()) {
-                // because the person entity has two sub-classes it is necessary to fetch from the server,
-                // which of the sub-class is the creator for that workout
-                if (exercise.getCreator() != null && exercise.getCreator().isTrainer()) {
-                    exercise.setCreator(trainerRepository.findById(exercise.getCreator().getId()));
-                } else {
-                    exercise.setCreator(customerRepository.findById(exercise.getCreator().getId()));
-                }
-            }
 
             if (entity.getCreator() != null) {
                 // get Histories from database, because it is not ment, that they are updated here
