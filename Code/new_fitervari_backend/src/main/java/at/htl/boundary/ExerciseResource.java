@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.stream.Collectors;
 
 @Authenticated
 @Path("/api/exercise")
@@ -34,7 +35,11 @@ public class ExerciseResource {
     @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll() {
-        return Response.ok(repository.findAll().list()).build();
+        return Response.ok(repository.streamAll()
+                .filter(exercise -> exercise.getCreator().getKeycloakName().equals(idToken.getName()) ||
+                        exercise.isOfficialFlag())
+                .collect(Collectors.toList()))
+                .build();
     }
 
     @POST

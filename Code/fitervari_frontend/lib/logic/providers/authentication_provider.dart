@@ -39,22 +39,6 @@ class AuthenticationProvider extends ChangeNotifier {
   Authenticator _authenticatorVariable;
   Credential _credentialVariable;
 
-  // Future<Credential> get _credential async {
-  //   if (_credentialVariable != null) return _credentialVariable;
-  //   _credentialVariable = await (await _authenticator).authorize();
-  //   return _credentialVariable;
-  // }
-  //
-  // Future<Authenticator> get _authenticator async {
-  //   if (_authenticatorVariable != null) return _authenticatorVariable;
-  //   return new Authenticator(
-  //     await client,
-  //     scopes: scopes,
-  //     port: port,
-  //     urlLancher: urlLauncher,
-  //   );
-  // }
-
   Future urlLauncher(String url) async {
     if (await canLaunch(url)) {
       await launch(url, forceWebView: true);

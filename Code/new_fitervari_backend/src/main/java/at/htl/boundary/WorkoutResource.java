@@ -41,23 +41,20 @@ public class WorkoutResource {
     @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getById(@PathParam("id") Long id) {
-        return Response.ok(repository.findById(id)).build();
+
+        var workout = repository.findById(id);
+
+        if (workout != null && workout.getCreator().getKeycloakName().equals(idToken.getName())) {
+            return Response.ok(workout).build();
+        } else {
+            return Response.serverError().entity("Not found").build();
+        }
     }
 
     @GET
     @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
     public Response getAll() {
-
-        if (!personRepository.checkIfCustomerAlreadyExists(idToken.getName())) {
-            personRepository.getEntityManager().merge(new Person(idToken.getName(),
-                    idToken.getName(),
-                    LocalDate.now(),
-                    null,
-                    false,
-                    false));
-        }
 
         return Response.ok(repository.streamAll()
                 .filter(workout -> workout.getCreator().getKeycloakName().equals(idToken.getName()))
@@ -72,6 +69,7 @@ public class WorkoutResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response post(Workout entity) {
         try {
+            entity.setCreator(getCurrentCreator(idToken.getName()));
             return Response.ok(repository.save(entity)).build();
         } catch (Exception e) {
             return Response.serverError().build();
@@ -85,9 +83,8 @@ public class WorkoutResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response put(Workout entity) {
         try {
-            // set entities for creator of project
 
-            // set creators for all exercises
+            entity.setCreator(getCurrentCreator(idToken.getName()));
 
             if (entity.getCreator() != null) {
                 // get Histories from database, because it is not ment, that they are updated here
@@ -114,5 +111,11 @@ public class WorkoutResource {
         } catch (Exception e) {
             return Response.serverError().build();
         }
+    }
+
+    private Person getCurrentCreator(String name) {
+        return personRepository.streamAll()
+                .filter(person -> person.getKeycloakName().equals(idToken.getName()))
+                .findFirst().get();
     }
 }
