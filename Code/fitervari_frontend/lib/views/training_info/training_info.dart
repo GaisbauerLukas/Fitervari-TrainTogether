@@ -12,7 +12,10 @@ class TrainingInfo extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          GeneralInfo(),
+          // GeneralInfo(),
+          Spacer(flex: 10,),
+          Text('Deine Workouts'),
+          Divider(),
           MyWorkouts(),
           CreateWorkoutButton()
         ],

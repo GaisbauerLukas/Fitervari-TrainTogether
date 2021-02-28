@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 class WorkoutProvider extends ChangeNotifier {
   Workout _currentWorkout;
+
   List<Workout> _loadedWorkouts;
 
   Workout _creationWorkout;
@@ -31,12 +32,16 @@ class WorkoutProvider extends ChangeNotifier {
     _loadedWorkouts = new List<Workout>();
   }
 
-  loadWorkouts() {
-    _endpoint.getAll().then((value) {
-      _loadedWorkouts.clear();
-      _loadedWorkouts.addAll(value);
-      _currentWorkout = _loadedWorkouts[0];
-    });
+  loadWorkouts(String token) {
+    try {
+      _endpoint.getAll(token).then((value) {
+        _loadedWorkouts.addAll(value);
+        _currentWorkout = _loadedWorkouts[0];
+        notifyListeners();
+      });
+    } catch (error) {
+      loadWorkouts(token);
+    }
   }
 
   void setNextWorkout(Workout workout) {
@@ -44,10 +49,10 @@ class WorkoutProvider extends ChangeNotifier {
   }
 
   void postWorkoutHistoryToCurrentWorkout(
-      WorkoutHistory workoutHistory, int customerId) {
-    _endpoint
-        .addWorkoutHistoryToWorkout(
-        currentWorkout.id, workoutHistory, customerId)
+      WorkoutHistory workoutHistory, Future<String> token) async {
+
+    currentWorkout.workoutHistories.add(workoutHistory);
+    _endpoint.put(currentWorkout, await token)
         .then((value) => log(value.toString()));
   }
 
@@ -65,11 +70,19 @@ class WorkoutProvider extends ChangeNotifier {
     });
   }
 
-  updateWorkout(Workout workout) {
-    _endpoint.put(workout).then((value) {
-      if(value){
+  postWorkout(Workout workout, String token) {
+    _endpoint.post(workout, token).then((value) {
+      if (value) {
+        loadedWorkouts.add(workout);
+      }
+    });
+  }
+
+  updateWorkout(Workout workout, String token) {
+    _endpoint.put(workout, token).then((value) {
+      if (value) {
         for (var element in loadedWorkouts) {
-          if(element.id == workout.id){
+          if (element.id == workout.id) {
             element = workout;
           }
           notifyListeners();
@@ -78,12 +91,17 @@ class WorkoutProvider extends ChangeNotifier {
     });
   }
 
-  deleteWorkout(Workout workout) {
-    _endpoint.delete(workout.id).then((value) {
+  deleteWorkout(Workout workout, String token) {
+    _endpoint.delete(workout.id, token).then((value) {
       if (value != false) {
         loadedWorkouts.remove(workout);
         notifyListeners();
       }
     });
+  }
+
+  clearData() {
+    _currentWorkout = null;
+    _loadedWorkouts.clear();
   }
 }

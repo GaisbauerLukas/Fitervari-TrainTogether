@@ -4,13 +4,18 @@ import 'package:flutter/material.dart';
 import 'choose_workout_bottom_sheet.dart';
 
 class ChangeWorkoutButton extends StatelessWidget {
+
+  Function updateParent;
+
+  ChangeWorkoutButton(this.updateParent);
+
   @override
   Widget build(BuildContext context) {
 
     return InkWell(
       onTap: () => showModalBottomSheet(
         context: context,
-        builder: (context) => ChooseWorkoutBottonSheet(),
+        builder: (context) => ChooseWorkoutButtonSheet(updateParent),
       ),
       child: Card(
         margin: EdgeInsets.all(10),

@@ -2,26 +2,39 @@ package at.htl.boundary;
 
 import at.htl.control.WorkoutHistoryRepository;
 import at.htl.model.WorkoutHistory;
+import io.quarkus.security.Authenticated;
+import io.quarkus.security.identity.SecurityIdentity;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 
+import javax.annotation.security.RolesAllowed;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+
 @Path("/api/workoutHistory")
+@RequestScoped
 public class WorkoutHistoryResource {
+
     @Inject
     WorkoutHistoryRepository repository;
 
+    @Inject
+    SecurityIdentity identity;
+
     @GET
     @Path("/{id}")
+    @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getById(@PathParam("id") Long id) {
         return Response.ok(repository.findById(id)).build();
     }
 
     @GET
+    @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll() {
         return Response.ok(repository.findAll().list()).build();
@@ -29,6 +42,7 @@ public class WorkoutHistoryResource {
 
     @POST
     @Transactional
+    @RolesAllowed("user")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response post(WorkoutHistory entity) {
@@ -41,6 +55,7 @@ public class WorkoutHistoryResource {
 
     @PUT
     @Transactional
+    @RolesAllowed("user")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response put(WorkoutHistory entity) {
@@ -54,6 +69,7 @@ public class WorkoutHistoryResource {
     @DELETE
     @Transactional
     @Path("/{id}")
+    @RolesAllowed("user")
     public Response delete(@PathParam("id") Long id) {
         try{
             repository.delete(repository.findById(id));

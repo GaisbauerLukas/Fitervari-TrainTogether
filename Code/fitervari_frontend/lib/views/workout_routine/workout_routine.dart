@@ -1,5 +1,6 @@
 import 'package:fitervari/contracts/transfer/exercise_history.dart';
 import 'package:fitervari/contracts/transfer/workout_history.dart';
+import 'package:fitervari/logic/providers/authentication_provider.dart';
 import 'package:fitervari/logic/providers/customer_provider.dart';
 import 'package:fitervari/logic/providers/workout_provider.dart';
 import 'package:fitervari/views/workout_routine/sub_widgets/exercise_tile.dart';
@@ -53,11 +54,11 @@ class WorkoutRoutineState extends State<WorkoutRoutine> {
             this._checkIfWorkoutIsFinished(
                 newWorkoutHistory.exerciseHistories)) {
 
-          body = Consumer<CustomerProvider>(
+          body = Consumer<AuthenticationProvider>(
             builder: (context, value, child) {
               Provider.of<WorkoutProvider>(context, listen: false)
                   .postWorkoutHistoryToCurrentWorkout(
-                      newWorkoutHistory, value.getCurrentCustomer().id);
+                      newWorkoutHistory, value.token);
 
               return Center(
                 child: Column(

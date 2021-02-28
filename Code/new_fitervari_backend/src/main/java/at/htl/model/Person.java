@@ -2,11 +2,12 @@ package at.htl.model;
 
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "Person")
 public class Person {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,18 +15,46 @@ public class Person {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "keycloak_name")
+    private String keycloakName;
+
+    @Column(name = "join_date")
+    private LocalDate joinDate;
+
+    @Column(name = "member_till")
+    private LocalDate memberTill;
+
     @Column(name = "is_trainer")
     private boolean isTrainer;
 
-    @Column(name = "picture_id")
-    private long pictureId;
+    @Column(name = "cash_customer")
+    private boolean cashCustomer;
+
+    public Person() {
+
+    }
+
+    public Person(String name,
+                  String keycloakName,
+                  LocalDate joinDate,
+                  LocalDate memberTill,
+                  boolean isTrainer,
+                  boolean cashCustomer) {
+        this.name = name;
+        this.keycloakName = keycloakName;
+        this.joinDate = joinDate;
+        this.memberTill = memberTill;
+        this.isTrainer = isTrainer;
+        this.cashCustomer = cashCustomer;
+    }
 
     //region GetterSetter
-    public long getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -37,6 +66,22 @@ public class Person {
         this.name = name;
     }
 
+    public LocalDate getJoinDate() {
+        return joinDate;
+    }
+
+    public void setJoinDate(LocalDate joinDate) {
+        this.joinDate = joinDate;
+    }
+
+    public LocalDate getMemberTill() {
+        return memberTill;
+    }
+
+    public void setMemberTill(LocalDate memberTill) {
+        this.memberTill = memberTill;
+    }
+
     public boolean isTrainer() {
         return isTrainer;
     }
@@ -45,12 +90,21 @@ public class Person {
         isTrainer = trainer;
     }
 
-    public long getPictureId() {
-        return pictureId;
+    public boolean isCashCustomer() {
+        return cashCustomer;
     }
 
-    public void setPictureId(long pictureId) {
-        this.pictureId = pictureId;
+    public void setCashCustomer(boolean cashCustomer) {
+        cashCustomer = cashCustomer;
     }
+
+    public String getKeycloakName() {
+        return keycloakName;
+    }
+
+    public void setKeycloakName(String keycloakName) {
+        this.keycloakName = keycloakName;
+    }
+
     //endregion
 }

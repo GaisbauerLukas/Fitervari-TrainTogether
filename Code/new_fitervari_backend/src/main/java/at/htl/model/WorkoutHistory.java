@@ -15,16 +15,16 @@ public class WorkoutHistory {
 
     private LocalDateTime date;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    private Customer customer;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Person person;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "workout_id")
     @JsonbTransient
     private Workout workout;
 
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(name = "workout_history_id")
     private List<ExerciseHistory> exerciseHistories;
 
@@ -45,12 +45,12 @@ public class WorkoutHistory {
         this.date = date;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public Workout getWorkout() {

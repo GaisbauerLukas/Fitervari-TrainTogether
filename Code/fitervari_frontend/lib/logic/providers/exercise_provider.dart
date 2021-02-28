@@ -14,15 +14,15 @@ class ExerciseProvider extends ChangeNotifier{
     _exercises = [];
   }
 
-  loadExercises() async{
+  loadExercises(String token) async{
     _exercises = [];
-    var tmp = await _endpoint.getAll();
+    var tmp = await _endpoint.getAll(token);
     _exercises.clear();
     _exercises.addAll(tmp);
     notifyListeners();
   }
-  addExercises(Exercise exercise) {
+  addExercises(Exercise exercise, String token) {
     _exercises.add(exercise);
-    _endpoint.post(exercise);
+    _endpoint.post(exercise, token);
   }
 }

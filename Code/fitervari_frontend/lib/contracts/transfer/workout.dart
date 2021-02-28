@@ -24,7 +24,9 @@ class Workout extends Identifiable {
       : super(id);
 
   Workout.fromJson(dynamic json) : super(json["id"]) {
-    creationDate = DateTime.parse(json["creationDate"]);
+    if (json["creation_Date"] != null) {
+      creationDate = DateTime.parse(json["creation_Date"]);
+    }
     // creator = json["creator"] != null ? Person.fromJson(json["creator"]) : null;
     if (json["exercises"] != null) {
       exercises = [];
@@ -34,7 +36,7 @@ class Workout extends Identifiable {
     }
     name = json["name"];
     officialFlag = json["officialFlag"];
-    if(json["creator"] != null) {
+    if (json["creator"] != null) {
       creator = Person.fromJson(json["creator"]);
     }
     if (json["workoutHistories"] != null) {
@@ -48,7 +50,9 @@ class Workout extends Identifiable {
   Map<String, dynamic> toJson() {
     var map = <String, dynamic>{};
     map["id"] = id;
-    map["creationDate"] = creationDate.toIso8601String();
+    if (creationDate != null) {
+      map["creationDate"] = creationDate.toIso8601String();
+    }
     if (creator != null) {
       map["creator"] = creator.toJson();
     }
@@ -58,9 +62,9 @@ class Workout extends Identifiable {
     map["name"] = name;
     map["officialFlag"] = officialFlag;
     if (workoutHistories != null) {
-      map["workoutHistories"] = workoutHistories.map((v) => v.toJson()).toList();
+      map["workoutHistories"] =
+          workoutHistories.map((v) => v.toJson()).toList();
     }
     return map;
   }
-
 }

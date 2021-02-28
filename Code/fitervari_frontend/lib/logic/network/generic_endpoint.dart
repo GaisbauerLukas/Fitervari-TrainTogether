@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:fitervari/contracts/identifiable.dart';
 import 'package:http/http.dart' as http;
 
@@ -9,12 +10,16 @@ abstract class GenericEndpoint<T extends Identifiable> {
 
   Map<String, dynamic> convertObjectToJson(T item);
 
-  Future<List<T>> getAll() async {
-    try{
+  Future<List<T>> getAll(String token) async {
+    try {
       List<T> result = [];
 
-      final response = await http.get(this.baseUrl);
-      final data = json.decode(Utf8Decoder().convert(response.bodyBytes));
+      final response = await http.get(this.baseUrl, headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json; charset=UTF-8'
+      });
+
+      final data = json.decode(response.body);
 
       data.forEach((dataItem) {
         var tmp = this.convertJsonToObject(dataItem);
@@ -22,33 +27,57 @@ abstract class GenericEndpoint<T extends Identifiable> {
       });
 
       return result;
-    }catch(e){
-      print(e.toString());
+    } catch (error) {
+      return getAll(token);
     }
   }
 
-  Future<bool> post(T postItem) async {
-    final jsonBeforeEncoding = this.convertObjectToJson(postItem);
-    final encoded =json.encode(jsonBeforeEncoding);
-
-    final response = await http.post(this.baseUrl,
-        headers: {"content-type": "application/json"},
-        body: encoded);
-    return response.statusCode == 201;
+  Future<bool> post(T postItem, String token) async {
+    try {
+      final msg = this.convertObjectToJson(postItem);
+      final msgString = json.encode(msg);
+      final response = await http.post(this.baseUrl,
+          headers: {
+            'Authorization': 'Bearer $token',
+            'Content-Type': 'application/json; charset=UTF-8'
+          },
+          body: msgString);
+      if (response.statusCode == 403) {
+        return post(postItem, token);
+      } else {
+        return response.statusCode == 200;
+      }
+    } catch (error) {
+      print(error);
+    }
   }
 
-  Future<bool> put(T putItem) async {
-    final response = await http.put(this.baseUrl,
-        headers: {"content-type": "application/json"},
-        body: json.encode(this.convertObjectToJson(putItem)));
-    return response.statusCode == 201;
+  Future<bool> put(T putItem, String token) async {
+    try {
+      final response = await http.put(this.baseUrl,
+          headers: {
+            "content-type": "application/json",
+            'Authorization': 'Bearer $token'
+          },
+          body: json.encode(this.convertObjectToJson(putItem)));
+    } catch (error) {}
   }
 
-  Future<bool> delete(int id) async {
-    final response = await http.delete(
-      this.baseUrl + '$id',
-      headers: {"content-type": "application/json"},
-    );
-    return response.statusCode == 200;
+  Future<bool> delete(int id, String token) async {
+    try {
+      final response = await http.delete(
+        this.baseUrl + '/$id',
+        headers: {
+          'Authorization': 'Bearer $token'
+          },
+      );
+      if (response.statusCode == 403) {
+        return delete(id, token);
+      } else {
+        return response.statusCode == 200;
+      }
+    } catch (error) {
+      print(error);
+    }
   }
 }

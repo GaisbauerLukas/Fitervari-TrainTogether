@@ -6,12 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
-class ChooseWorkoutBottonSheet extends StatefulWidget {
+class ChooseWorkoutButtonSheet extends StatefulWidget {
+
+  Function updateParent;
+
+  ChooseWorkoutButtonSheet(this.updateParent);
+
   @override
-  State<StatefulWidget> createState() => ChooseWorkoutBottonSheetState();
+  State<StatefulWidget> createState() => ChooseWorkoutButtonSheetState();
 }
 
-class ChooseWorkoutBottonSheetState extends State<ChooseWorkoutBottonSheet> {
+class ChooseWorkoutButtonSheetState extends State<ChooseWorkoutButtonSheet> {
   @override
   Widget build(BuildContext context) {
 
@@ -35,6 +40,7 @@ class ChooseWorkoutBottonSheetState extends State<ChooseWorkoutBottonSheet> {
                     child: ListTile(
                       onTap: () {
                         provider.setNextWorkout(workout);
+                        widget.updateParent();
                         Navigator.pop(context);
                       },
                       title: Text(

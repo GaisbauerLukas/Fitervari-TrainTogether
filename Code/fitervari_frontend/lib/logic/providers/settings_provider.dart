@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class SettingsProvider extends ChangeNotifier {
 
-  static const _mainColorCode = 0xFF170D3D;
+  static const _mainColorCode = Color.fromARGB(255, 120, 0, 0);
 
   static Map<int, Color> _mainColor = {
     50: Color.fromRGBO(23, 13, 61, .1),
@@ -32,7 +32,7 @@ class SettingsProvider extends ChangeNotifier {
         headline5: TextStyle(fontSize: 45),
         bodyText2: TextStyle(fontWeight: FontWeight.w300, fontSize: 30),
       ),
-      primarySwatch: MaterialColor(_mainColorCode, _mainColor),
+      primarySwatch: MaterialColor(_mainColorCode.value, _mainColor),
       visualDensity: VisualDensity.adaptivePlatformDensity,
     );
   }
