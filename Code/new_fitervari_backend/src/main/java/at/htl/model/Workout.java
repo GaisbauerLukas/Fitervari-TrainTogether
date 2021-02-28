@@ -17,7 +17,7 @@ public class Workout {
     @Column(name = "creation_Date")
     private LocalDateTime creationDate;
 
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Person creator;
 
     @Column(name = "official_flag")

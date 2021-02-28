@@ -10,7 +10,7 @@ class Trainer extends Person {
       @required int pictureId,
         @required bool trainer,
       @required this.trainerSince})
-      : super(id, name, pictureId, trainer);
+      : super(id, name, trainer);
 
   Trainer.fromJson(dynamic json) : super.fromJson(json) {
     trainerSince = json["trainerSince"];
@@ -21,7 +21,6 @@ class Trainer extends Person {
     map["id"] = super.id;
     map["Trainer"] = true;
     map["name"] = super.name;
-    map["pictureId"] = super.pictureId;
     map["trainerSince"] = trainerSince;
     return map;
   }

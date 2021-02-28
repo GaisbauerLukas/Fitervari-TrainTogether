@@ -21,18 +21,4 @@ class WorkoutEndpoint extends GenericEndpoint<Workout> {
     var tmp = Workout.fromJson(dataItem);
     return tmp;
   }
-
-  Future<bool> addWorkoutHistoryToWorkout(
-      int id, WorkoutHistory workoutHistory, int customerId) async {
-    var tmp = json.encode(workoutHistory.toJson());
-    final response = await http.post(
-        this.baseUrl +
-            'addWorkoutHistory/' +
-            id.toString() +
-            '/' +
-            customerId.toString(),
-        headers: {"content-type": "application/json"},
-        body: tmp);
-    return response.statusCode == 201;
-  }
 }

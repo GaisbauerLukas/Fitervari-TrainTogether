@@ -7,7 +7,6 @@ import 'package:fitervari/logic/network/workout_history_endpoint.dart';
 import 'package:flutter/material.dart';
 
 class WorkoutProvider extends ChangeNotifier {
-
   Workout _currentWorkout;
 
   List<Workout> _loadedWorkouts;
@@ -34,13 +33,13 @@ class WorkoutProvider extends ChangeNotifier {
   }
 
   loadWorkouts(String token) {
-    try{
+    try {
       _endpoint.getAll(token).then((value) {
         _loadedWorkouts.addAll(value);
         _currentWorkout = _loadedWorkouts[0];
         notifyListeners();
       });
-    }catch(error){
+    } catch (error) {
       loadWorkouts(token);
     }
   }
@@ -50,10 +49,10 @@ class WorkoutProvider extends ChangeNotifier {
   }
 
   void postWorkoutHistoryToCurrentWorkout(
-      WorkoutHistory workoutHistory, int customerId) {
-    _endpoint
-        .addWorkoutHistoryToWorkout(
-            currentWorkout.id, workoutHistory, customerId)
+      WorkoutHistory workoutHistory, Future<String> token) async {
+
+    currentWorkout.workoutHistories.add(workoutHistory);
+    _endpoint.put(currentWorkout, await token)
         .then((value) => log(value.toString()));
   }
 
@@ -71,16 +70,16 @@ class WorkoutProvider extends ChangeNotifier {
     });
   }
 
-  postWorkout(Workout workout) {
-    _endpoint.post(workout).then((value) {
+  postWorkout(Workout workout, String token) {
+    _endpoint.post(workout, token).then((value) {
       if (value) {
         loadedWorkouts.add(workout);
       }
     });
   }
 
-  updateWorkout(Workout workout) {
-    _endpoint.put(workout).then((value) {
+  updateWorkout(Workout workout, String token) {
+    _endpoint.put(workout, token).then((value) {
       if (value) {
         for (var element in loadedWorkouts) {
           if (element.id == workout.id) {

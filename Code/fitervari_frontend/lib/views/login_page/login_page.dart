@@ -1,4 +1,3 @@
-import 'package:fitervari/contracts/transfer/customer.dart';
 import 'package:fitervari/logic/providers/authentication_provider.dart';
 import 'package:fitervari/logic/providers/customer_provider.dart';
 import 'package:fitervari/logic/providers/exercise_provider.dart';
@@ -20,22 +19,16 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   setProvider(Future<String> token) {
     token.then((value) {
       Provider.of<NewsLettersProvider>(context, listen: false)
           .loadNewsLetters(value);
       Provider.of<SettingsProvider>(context, listen: false).setLightTheme();
       Provider.of<WorkoutProvider>(context, listen: false).loadWorkouts(value);
-      Provider.of<ExerciseProvider>(context, listen: false).loadExercises(value);
-      Provider.of<CustomerProvider>(context, listen: false).setCurrentCustomer(
-          Customer(
-              id: -1,
-              cashCustomer: true,
-              joinDate: DateTime.utc(2019, 5, 12),
-              memberTill: DateTime.utc(2021, 5, 12),
-              name: 'Florian Geht',
-              trainerId: 2));
+      Provider.of<ExerciseProvider>(context, listen: false)
+          .loadExercises(value);
+      Provider.of<CustomerProvider>(context, listen: false)
+          .loadCurrentCustomer(value);
     });
   }
 

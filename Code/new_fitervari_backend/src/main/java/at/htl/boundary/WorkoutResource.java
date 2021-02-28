@@ -5,6 +5,7 @@ import at.htl.control.WorkoutHistoryRepository;
 import at.htl.control.WorkoutRepository;
 import at.htl.model.Person;
 import at.htl.model.Workout;
+import at.htl.model.WorkoutHistory;
 import io.quarkus.security.Authenticated;
 import io.quarkus.security.identity.SecurityIdentity;
 import org.eclipse.microprofile.jwt.JsonWebToken;
@@ -72,7 +73,14 @@ public class WorkoutResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response post(Workout entity) {
         try {
+
             entity.setCreator(personRepository.getPersonByName(identity.getPrincipal().getName()));
+
+            for (var exercise:
+            entity.getExercises()){
+                exercise.setCreator(personRepository.getPersonByName(identity.getPrincipal().getName()));
+            }
+
             return Response.ok(repository.save(entity)).build();
         } catch (Exception e) {
             return Response.serverError().build();
@@ -90,8 +98,20 @@ public class WorkoutResource {
             entity.setCreator(personRepository.getPersonByName(identity.getPrincipal().getName()));
 
             if (entity.getCreator() != null) {
-                // get Histories from database, because it is not ment, that they are updated here
-                entity.setWorkoutHistories(workoutHistoryRepository.getWorkoutHistoriesByWorkoutId(entity.getId()));
+
+                for (var history:
+                     entity.getWorkoutHistories()) {
+                    history.setWorkout(entity);
+
+                    for (var exerciseHistory:
+                            history.getExerciseHistories()) {
+
+                        for (var setHistory:
+                             exerciseHistory.getSetHistories()) {
+                        }
+                    }
+                }
+
                 return Response.ok(repository.save(entity)).build();
             } else {
                 return Response.serverError().entity("Creator was null").build();
@@ -115,4 +135,5 @@ public class WorkoutResource {
             return Response.serverError().build();
         }
     }
+
 }

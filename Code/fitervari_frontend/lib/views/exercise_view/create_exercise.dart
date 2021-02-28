@@ -3,6 +3,7 @@ import 'package:fitervari/contracts/transfer/exercise.dart';
 import 'package:fitervari/contracts/transfer/person.dart';
 import 'package:fitervari/contracts/transfer/set.dart';
 import 'package:fitervari/contracts/transfer/workout.dart';
+import 'package:fitervari/logic/providers/authentication_provider.dart';
 import 'package:fitervari/logic/providers/exercise_provider.dart';
 import 'package:fitervari/views/workout_edit_view/sub_widgets/exercise_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -59,41 +60,46 @@ class CreateExercise extends StatelessWidget {
               ),
             ),
             Container(
-              child: InkWell(
-                onTap: () => {
-                  person = Customer(name: "Günther", cashCustomer: true, joinDate: DateTime.now(), memberTill: DateTime.now(), trainerId: 1),
-                  provider.addExercises(
-                    Exercise(
-                      creationDate: DateTime.now(),
-                      creator: person,
-                      officialFlag: false,
-                      name: nameController.text,
-                      exerciseType: exerciseTypController.text,
-                      standardSetNr: int.parse(numberOfSetController.text),
-                      sets: List<Set>()
-                    ),
-                  ),
-                  Navigator.pop(context),
-                  Navigator.pop(context),
-                  Navigator.of(context).pushNamed(ExerciseList.routeName, arguments: this.workout),
-                },
-                child: Card(
-                  margin: EdgeInsets.all(10),
-                  color: Theme.of(context).primaryColor,
-                  elevation: 4,
-                  child: Container(
-                    margin: EdgeInsets.all(20),
-                    width: double.infinity,
-                    child: Center(
-                      child: Text(
-                        'Neue Exercise erstellen',
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w100),
+              child: Consumer<AuthenticationProvider>(
+                builder: (context, authProvider, child) {
+                  return InkWell(
+                    onTap: () async => {
+                      person = Customer(name: "Günther", cashCustomer: true, joinDate: DateTime.now(), memberTill: DateTime.now(), trainerId: 1),
+                      provider.addExercises(
+                        Exercise(
+                            creationDate: DateTime.now(),
+                            creator: person,
+                            officialFlag: false,
+                            name: nameController.text,
+                            exerciseType: exerciseTypController.text,
+                            standardSetNr: int.parse(numberOfSetController.text),
+                            sets: List<Set>()
+                        ),
+                        await authProvider.token
+                      ),
+                      Navigator.pop(context),
+                      Navigator.pop(context),
+                      Navigator.of(context).pushNamed(ExerciseList.routeName, arguments: this.workout),
+                    },
+                    child: Card(
+                      margin: EdgeInsets.all(10),
+                      color: Theme.of(context).primaryColor,
+                      elevation: 4,
+                      child: Container(
+                        margin: EdgeInsets.all(20),
+                        width: double.infinity,
+                        child: Center(
+                          child: Text(
+                            'Neue Exercise erstellen',
+                            style: TextStyle(
+                                color: Colors.white, fontWeight: FontWeight.w100),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ),
+                  );
+                },
+              )
             ),
           ]),
         ),

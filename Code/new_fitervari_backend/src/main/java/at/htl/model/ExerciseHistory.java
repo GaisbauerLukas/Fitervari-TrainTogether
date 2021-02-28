@@ -15,7 +15,6 @@ public class ExerciseHistory {
     private int exerciseId;
 
     @OneToMany(
-            mappedBy = "exerciseHistoryId",
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.EAGER

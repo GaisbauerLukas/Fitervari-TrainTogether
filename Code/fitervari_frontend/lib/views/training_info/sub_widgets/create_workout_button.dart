@@ -26,7 +26,7 @@ class CreateWorkoutButtonState extends State<CreateWorkoutButton> {
                   id: -1,
                   name: "",
                   creationDate: DateTime.now(),
-                  creator: customer,
+                  creator: null,
                   officialFlag: false,
                   exercises: [],
                   workoutHistories: [])),

@@ -25,7 +25,7 @@ public class Exercise {
     @Column(name = "official_flag")
     private boolean officialFlag;
 
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Person creator;
 
     @OneToMany(cascade = CascadeType.ALL)

@@ -1,9 +1,9 @@
-import 'package:fitervari/contracts/transfer/customer.dart';
+import 'package:fitervari/contracts/transfer/person.dart';
 import 'package:fitervari/logic/helper/session_info.dart';
 import 'package:flutter/material.dart';
 
 class ProfileInformationBox extends StatelessWidget {
-  final Customer currentCustomer;
+  final Person currentCustomer;
 
   ProfileInformationBox(this.currentCustomer);
 
@@ -19,7 +19,7 @@ class ProfileInformationBox extends StatelessWidget {
           padding: EdgeInsets.all(15),
           height: (MediaQuery.of(context).size.height -
                   SessionInfo().actionBarHeight) *
-              0.35,
+              0.25,
           width: double.infinity,
           child: Column(
             children: <Widget>[
@@ -39,9 +39,11 @@ class ProfileInformationBox extends StatelessWidget {
                 leading: Icon(Icons.exit_to_app),
                 title: Text('Mitglied bis:'),
                 trailing: Text(
-                  '${currentCustomer.memberTill.day}'
-                  '.${currentCustomer.memberTill.month}'
-                  '.${currentCustomer.memberTill.year}',
+                  currentCustomer.memberTill == null
+                      ? 'unbegrenzt'
+                      : '${currentCustomer.memberTill.day}'
+                          '.${currentCustomer.memberTill.month}'
+                          '.${currentCustomer.memberTill.year}',
                   style: TextStyle(fontSize: textSize),
                 ),
               ),

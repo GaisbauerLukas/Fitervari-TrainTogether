@@ -21,8 +21,8 @@ class ExerciseProvider extends ChangeNotifier{
     _exercises.addAll(tmp);
     notifyListeners();
   }
-  addExercises(Exercise exercise) {
+  addExercises(Exercise exercise, String token) {
     _exercises.add(exercise);
-    _endpoint.post(exercise);
+    _endpoint.post(exercise, token);
   }
 }

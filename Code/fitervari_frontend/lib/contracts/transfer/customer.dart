@@ -16,7 +16,7 @@ class Customer extends Person {
       @required this.memberTill,
       @required this.cashCustomer,
       @required this.trainerId})
-      : super(id, name, pictureId, trainer);
+      : super(id, name, trainer);
 
   Customer.fromJson(dynamic json) : super.fromJson(json) {
     joinDate = json["joinDate"];
@@ -30,7 +30,6 @@ class Customer extends Person {
     map["id"] = super.id;
     map["Trainer"] = true;
     map["name"] = super.name;
-    map["pictureId"] = super.pictureId;
     map["joinDate"] = joinDate.toIso8601String();
     map["memberTill"] = memberTill.toIso8601String();
     map["cashCustomer"] = cashCustomer;

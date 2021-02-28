@@ -2,26 +2,31 @@ import 'package:fitervari/contracts/identifiable.dart';
 
 class Person extends Identifiable {
   String name;
-
-  // later implement here a photo
-  int pictureId;
+  String keycloakName;
+  DateTime joinDate;
+  DateTime memberTill;
   bool trainer;
+  bool cashCustomer;
 
-  Person.named({id, this.name, this.pictureId, this.trainer}) : super(id);
-  Person(id, this.name, this.pictureId, this.trainer) : super(id);
+  Person.named({id, this.name, this.trainer}) : super(id);
+  Person(id, this.name, this.trainer) : super(id);
 
   Person.fromJson(dynamic json) : super(json["id"]) {
     name = json["name"];
-    pictureId = json["pictureId"];
+    keycloakName = json["keycloakName"];
     trainer = json["trainer"];
+    cashCustomer = json["cashCustomer"];
+    joinDate = DateTime.parse(json["joinDate"]);
+
   }
 
   Map<String, dynamic> toJson() {
     var map = <String, dynamic>{};
     map["id"] = id;
     map["name"] = name;
-    map["pictureId"] = pictureId;
     map["trainer"] = trainer;
+    map["joinDate"] = joinDate.toIso8601String();
+    map["cashCustomer"] = cashCustomer;
     return map;
   }
 }

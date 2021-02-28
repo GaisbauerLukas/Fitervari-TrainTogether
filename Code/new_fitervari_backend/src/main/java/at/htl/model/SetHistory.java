@@ -15,8 +15,7 @@ public class SetHistory {
 
     private double weight;
 
-    @Column(name = "exercise_history_id")
-    private long exerciseHistoryId;
+    private int repetitions;
 
     @Column(name = "set_number")
     private int setNumber;
@@ -28,6 +27,14 @@ public class SetHistory {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getRepetitions() {
+        return repetitions;
+    }
+
+    public void setRepetitions(int repetitions) {
+        this.repetitions = repetitions;
     }
 
     public double getTime() {
@@ -52,14 +59,6 @@ public class SetHistory {
 
     public void setWeight(double weight) {
         this.weight = weight;
-    }
-
-    public long getExerciseHistoryId() {
-        return exerciseHistoryId;
-    }
-
-    public void setExerciseHistoryId(long exerciseHistoryId) {
-        this.exerciseHistoryId = exerciseHistoryId;
     }
 
     public int getSetNumber() {

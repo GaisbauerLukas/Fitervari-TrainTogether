@@ -15,7 +15,7 @@ public class WorkoutHistory {
 
     private LocalDateTime date;
 
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Person person;
 
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
@@ -24,7 +24,7 @@ public class WorkoutHistory {
     private Workout workout;
 
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(name = "workout_history_id")
     private List<ExerciseHistory> exerciseHistories;
 
