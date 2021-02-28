@@ -35,7 +35,7 @@ class ExerciseTile extends StatelessWidget {
             workout.exercises.remove(exercise);
             context.findAncestorStateOfType<WorkoutEditViewState>().setState(() {
 
-            });;
+            });
             //Provider.of<WorkoutProvider>(context, listen: false)
             //    .updateWorkout(workout);
             //Navigator.of(context).pop();

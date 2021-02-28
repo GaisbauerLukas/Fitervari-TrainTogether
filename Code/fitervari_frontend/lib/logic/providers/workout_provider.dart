@@ -91,8 +91,8 @@ class WorkoutProvider extends ChangeNotifier {
     });
   }
 
-  deleteWorkout(Workout workout) {
-    _endpoint.delete(workout.id).then((value) {
+  deleteWorkout(Workout workout, String token) {
+    _endpoint.delete(workout.id, token).then((value) {
       if (value != false) {
         loadedWorkouts.remove(workout);
         notifyListeners();

@@ -1,4 +1,5 @@
 import 'package:fitervari/contracts/transfer/workout.dart';
+import 'package:fitervari/logic/providers/authentication_provider.dart';
 import 'package:fitervari/logic/providers/workout_provider.dart';
 import 'package:fitervari/views/workout_edit_view/workout_edit_view.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class MyWorkoutsState extends State<MyWorkouts> {
       workouts = workoutProvider.loadedWorkouts;
       return Container(
           margin: EdgeInsets.only(top: 10),
-          height: (MediaQuery.of(context).size.height) * 0.33,
+          height: (MediaQuery.of(context).size.height) * 0.58,
           child: ListView.builder(
             scrollDirection: Axis.vertical,
             itemBuilder: (ctx, index) {
@@ -40,14 +41,17 @@ class MyWorkoutsState extends State<MyWorkouts> {
                           // leading: Icon(Icons.directions_run),
                           title: Text(workouts[index].name),
                           //subtitle: Text(workouts[index].creator.name),
-                          trailing: IconButton(
-                            icon: Icon(Icons.delete, color: Colors.red),
-                            onPressed: () {
-                              Provider.of<WorkoutProvider>(context,
-                                      listen: false)
-                                  .deleteWorkout(workouts[index]);
-                            },
-                          ),
+                          trailing: Consumer<AuthenticationProvider>(
+                              builder: (context, value, child) {
+                            return IconButton(
+                                icon: Icon(Icons.delete, color: Colors.red),
+                                onPressed: () async {
+                                  Provider.of<WorkoutProvider>(context,
+                                          listen: false)
+                                      .deleteWorkout(
+                                          workouts[index], await value.token);
+                                });
+                          }),
                         ),
                       ],
                     ),

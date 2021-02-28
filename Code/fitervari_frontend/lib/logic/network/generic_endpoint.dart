@@ -60,21 +60,24 @@ abstract class GenericEndpoint<T extends Identifiable> {
             'Authorization': 'Bearer $token'
           },
           body: json.encode(this.convertObjectToJson(putItem)));
-
-      if (response.statusCode == 403) {
-        return put(putItem, token);
-      } else {
-        return response.statusCode == 200;
-      }
-
     } catch (error) {}
   }
 
-  Future<bool> delete(int id) async {
-    final response = await http.put(
-      this.baseUrl + '/$id',
-      headers: {"content-type": "application/json"},
-    );
-    return response.statusCode == 200;
+  Future<bool> delete(int id, String token) async {
+    try {
+      final response = await http.delete(
+        this.baseUrl + '/$id',
+        headers: {
+          'Authorization': 'Bearer $token'
+          },
+      );
+      if (response.statusCode == 403) {
+        return delete(id, token);
+      } else {
+        return response.statusCode == 200;
+      }
+    } catch (error) {
+      print(error);
+    }
   }
 }

@@ -1,7 +1,7 @@
 import 'package:fitervari/logic/providers/settings_provider.dart';
 import 'package:fitervari/views/create_workout_page/create_workout_page.dart';
 import 'package:fitervari/views/do_exercise_page/do_exercise_page.dart';
-import 'package:fitervari/views/exercise_view/create_exercise.dart';
+import 'package:fitervari/views/create_exercise/create_exercise.dart';
 import 'package:fitervari/views/filler_page/filler_page.dart';
 import 'package:fitervari/views/login_page/login_page.dart';
 import 'package:fitervari/views/news_letter_details_page/NewsLetterDetailsPage.dart';

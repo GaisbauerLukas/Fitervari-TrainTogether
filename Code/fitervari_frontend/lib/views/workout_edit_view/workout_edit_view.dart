@@ -36,6 +36,9 @@ class WorkoutEditViewState extends State<WorkoutEditView> {
                       workoutProvider.postWorkout(workoutProvider.creationWorkout,
                           await authProvider.token);
                       Navigator.pop(context);
+                      setState(() {
+
+                      });
                 },
               ),
               appBar: AppBar(

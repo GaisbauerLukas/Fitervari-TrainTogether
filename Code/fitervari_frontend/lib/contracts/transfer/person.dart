@@ -25,7 +25,6 @@ class Person extends Identifiable {
     map["id"] = id;
     map["name"] = name;
     map["trainer"] = trainer;
-    map["joinDate"] = joinDate.toIso8601String();
     map["cashCustomer"] = cashCustomer;
     return map;
   }
