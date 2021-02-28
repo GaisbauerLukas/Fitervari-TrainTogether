@@ -16,4 +16,10 @@ public class PersonRepository implements PanacheRepository<Person> {
     public boolean checkIfCustomerAlreadyExists(String name) {
         return streamAll().anyMatch(person -> person.getKeycloakName().equals(name));
     }
+
+    public Person getPersonByName(String name) {
+        return streamAll()
+                .filter(person -> person.getKeycloakName().equals(name))
+                .findFirst().get();
+    }
 }

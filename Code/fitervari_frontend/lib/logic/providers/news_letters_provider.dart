@@ -17,10 +17,10 @@ class NewsLettersProvider extends ChangeNotifier {
   Future<List<NewsLetter>> loadNewsLetters(String token) {
     try {
       if (_items.length == 0) {
-        endpoint
-            .getAll(token)
-            .then((value) => _items.addAll(value));
-        notifyListeners();
+        endpoint.getAll(token).then((value) {
+          _items.addAll(value);
+          notifyListeners();
+        });
       }
     } catch (error) {
       loadNewsLetters(token);

@@ -72,7 +72,7 @@ public class WorkoutResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response post(Workout entity) {
         try {
-            entity.setCreator(getCurrentCreator(identity.getPrincipal().getName()));
+            entity.setCreator(personRepository.getPersonByName(identity.getPrincipal().getName()));
             return Response.ok(repository.save(entity)).build();
         } catch (Exception e) {
             return Response.serverError().build();
@@ -87,7 +87,7 @@ public class WorkoutResource {
     public Response put(Workout entity) {
         try {
 
-            entity.setCreator(getCurrentCreator(identity.getPrincipal().getName()));
+            entity.setCreator(personRepository.getPersonByName(identity.getPrincipal().getName()));
 
             if (entity.getCreator() != null) {
                 // get Histories from database, because it is not ment, that they are updated here
@@ -114,11 +114,5 @@ public class WorkoutResource {
         } catch (Exception e) {
             return Response.serverError().build();
         }
-    }
-
-    private Person getCurrentCreator(String name) {
-        return personRepository.streamAll()
-                .filter(person -> person.getKeycloakName().equals(identity.getPrincipal().getName()))
-                .findFirst().get();
     }
 }

@@ -1,6 +1,7 @@
 package at.htl.boundary;
 
 import at.htl.control.ExerciseRepository;
+import at.htl.control.PersonRepository;
 import at.htl.model.Exercise;
 import io.quarkus.security.Authenticated;
 import io.quarkus.security.identity.SecurityIdentity;
@@ -21,6 +22,9 @@ public class ExerciseResource {
 
     @Inject
     ExerciseRepository repository;
+
+    @Inject
+    PersonRepository personRepository;
 
     @Inject
     SecurityIdentity identity;
@@ -50,9 +54,10 @@ public class ExerciseResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response post(Exercise entity) {
-        try{
+        try {
+            entity.setCreator(personRepository.getPersonByName(identity.getPrincipal().getName()));
             return Response.ok(repository.save(entity)).build();
-        }catch (Exception e){
+        } catch (Exception e) {
             return Response.serverError().build();
         }
     }
@@ -63,9 +68,9 @@ public class ExerciseResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response put(Exercise entity) {
-        try{
+        try {
             return Response.ok(repository.save(entity)).build();
-        }catch (Exception e){
+        } catch (Exception e) {
             return Response.serverError().build();
         }
     }
@@ -75,10 +80,10 @@ public class ExerciseResource {
     @Path("/{id}")
     @RolesAllowed("user")
     public Response delete(@PathParam("id") Long id) {
-        try{
+        try {
             repository.delete(repository.findById(id));
             return Response.ok().build();
-        }catch (Exception e){
+        } catch (Exception e) {
             return Response.serverError().build();
         }
     }
