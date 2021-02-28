@@ -28,7 +28,7 @@ class LandingPageState extends State<LandingPage> {
               InfoItemScrollView(newsLetterProvider.items),
               InfoItemScrollView(newsLetterProvider.items.reversed),
               StartWorkoutButton(),
-              ChangeWorkoutButton()
+              ChangeWorkoutButton(updateState)
             ],
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.end,
@@ -36,5 +36,11 @@ class LandingPageState extends State<LandingPage> {
         }
     );
 
+  }
+
+  updateState(){
+    setState(() {
+
+    });
   }
 }
