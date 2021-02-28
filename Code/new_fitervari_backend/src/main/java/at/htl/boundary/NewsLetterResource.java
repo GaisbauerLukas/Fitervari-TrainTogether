@@ -4,9 +4,9 @@ import at.htl.control.NewsLetterRepository;
 import at.htl.control.PersonRepository;
 import at.htl.model.NewsLetter;
 import at.htl.model.Person;
-import org.eclipse.microprofile.jwt.JsonWebToken;
+import io.quarkus.security.identity.SecurityIdentity;
 
-import javax.annotation.security.RolesAllowed;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 import java.time.LocalDate;
 
 @Path("/api/newsletter")
+@RequestScoped
 public class NewsLetterResource {
 
     @Inject
@@ -24,7 +25,7 @@ public class NewsLetterResource {
     PersonRepository personRepository;
 
     @Inject
-    JsonWebToken idToken;
+    SecurityIdentity identity;
 
     @GET
     @Path("/{id}")
@@ -37,12 +38,12 @@ public class NewsLetterResource {
     @Transactional
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll() {
-        var name = idToken.getName();
+        var name = identity.getPrincipal().getName();
         System.out.println(name);
-        if (!personRepository.checkIfCustomerAlreadyExists(idToken.getName())) {
+        if (!personRepository.checkIfCustomerAlreadyExists(name)) {
             personRepository.persistAndFlush(new Person(
-                    idToken.getName(),
-                    idToken.getName(),
+                    name,
+                    name,
                     LocalDate.now(),
                     null,
                     false,

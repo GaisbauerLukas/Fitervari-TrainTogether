@@ -5,14 +5,15 @@ import at.htl.model.ExerciseHistory;
 import io.quarkus.security.Authenticated;
 
 import javax.annotation.security.RolesAllowed;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Authenticated
 @Path("/api/exerciseHistory")
+@RequestScoped
 public class ExerciseHistoryResource {
 
     @Inject

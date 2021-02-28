@@ -3,9 +3,11 @@ package at.htl.boundary;
 import at.htl.control.ExerciseRepository;
 import at.htl.model.Exercise;
 import io.quarkus.security.Authenticated;
+import io.quarkus.security.identity.SecurityIdentity;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import javax.annotation.security.RolesAllowed;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
@@ -13,15 +15,15 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.stream.Collectors;
 
-@Authenticated
 @Path("/api/exercise")
+@RequestScoped
 public class ExerciseResource {
 
     @Inject
     ExerciseRepository repository;
 
     @Inject
-    JsonWebToken idToken;
+    SecurityIdentity identity;
 
     @GET
     @Path("/{id}")
@@ -36,7 +38,7 @@ public class ExerciseResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll() {
         return Response.ok(repository.streamAll()
-                .filter(exercise -> exercise.getCreator().getKeycloakName().equals(idToken.getName()) ||
+                .filter(exercise -> exercise.getCreator().getKeycloakName().equals(identity.getPrincipal().getName()) ||
                         exercise.isOfficialFlag())
                 .collect(Collectors.toList()))
                 .build();

@@ -7,7 +7,9 @@ import 'package:fitervari/logic/network/workout_history_endpoint.dart';
 import 'package:flutter/material.dart';
 
 class WorkoutProvider extends ChangeNotifier {
+
   Workout _currentWorkout;
+
   List<Workout> _loadedWorkouts;
 
   Workout _creationWorkout;
@@ -31,11 +33,15 @@ class WorkoutProvider extends ChangeNotifier {
     _loadedWorkouts = new List<Workout>();
   }
 
-  loadWorkouts(String token) async {
-    var tmp = await _endpoint.getAll(token);
-    _loadedWorkouts.addAll(tmp);
-    //TODO change this later
-    _currentWorkout = _loadedWorkouts[0];
+  loadWorkouts(String token) {
+    try{
+      _endpoint.getAll(token).then((value) {
+        _loadedWorkouts.addAll(value);
+        _currentWorkout = _loadedWorkouts[0];
+      });
+    }catch(error){
+      loadWorkouts(token);
+    }
   }
 
   void setNextWorkout(Workout workout) {
@@ -46,7 +52,7 @@ class WorkoutProvider extends ChangeNotifier {
       WorkoutHistory workoutHistory, int customerId) {
     _endpoint
         .addWorkoutHistoryToWorkout(
-        currentWorkout.id, workoutHistory, customerId)
+            currentWorkout.id, workoutHistory, customerId)
         .then((value) => log(value.toString()));
   }
 
@@ -66,7 +72,7 @@ class WorkoutProvider extends ChangeNotifier {
 
   postWorkout(Workout workout) {
     _endpoint.post(workout).then((value) {
-      if(value){
+      if (value) {
         loadedWorkouts.add(workout);
       }
     });
@@ -74,9 +80,9 @@ class WorkoutProvider extends ChangeNotifier {
 
   updateWorkout(Workout workout) {
     _endpoint.put(workout).then((value) {
-      if(value){
+      if (value) {
         for (var element in loadedWorkouts) {
-          if(element.id == workout.id){
+          if (element.id == workout.id) {
             element = workout;
           }
           notifyListeners();
@@ -92,5 +98,10 @@ class WorkoutProvider extends ChangeNotifier {
         notifyListeners();
       }
     });
+  }
+
+  clearData() {
+    _currentWorkout = null;
+    _loadedWorkouts.clear();
   }
 }

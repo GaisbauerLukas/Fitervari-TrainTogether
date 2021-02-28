@@ -6,10 +6,12 @@ import at.htl.control.WorkoutRepository;
 import at.htl.model.Person;
 import at.htl.model.Workout;
 import io.quarkus.security.Authenticated;
+import io.quarkus.security.identity.SecurityIdentity;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
 import javax.annotation.security.RolesAllowed;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
@@ -18,8 +20,9 @@ import javax.ws.rs.core.Response;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 
-@Authenticated
+
 @Path("/api/workout")
+@RequestScoped
 public class WorkoutResource {
 
     @Inject
@@ -32,7 +35,7 @@ public class WorkoutResource {
     PersonRepository personRepository;
 
     @Inject
-    JsonWebToken idToken;
+    SecurityIdentity identity;
 
     private static final Logger LOG = Logger.getLogger(WorkoutResource.class);
 
@@ -44,7 +47,7 @@ public class WorkoutResource {
 
         var workout = repository.findById(id);
 
-        if (workout != null && workout.getCreator().getKeycloakName().equals(idToken.getName())) {
+        if (workout != null && workout.getCreator().getKeycloakName().equals(identity.getPrincipal().getName())) {
             return Response.ok(workout).build();
         } else {
             return Response.serverError().entity("Not found").build();
@@ -57,7 +60,7 @@ public class WorkoutResource {
     public Response getAll() {
 
         return Response.ok(repository.streamAll()
-                .filter(workout -> workout.getCreator().getKeycloakName().equals(idToken.getName()))
+                .filter(workout -> workout.getCreator().getKeycloakName().equals(identity.getPrincipal().getName()))
                 .collect(Collectors.toList()))
                 .build();
     }
@@ -69,7 +72,7 @@ public class WorkoutResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response post(Workout entity) {
         try {
-            entity.setCreator(getCurrentCreator(idToken.getName()));
+            entity.setCreator(getCurrentCreator(identity.getPrincipal().getName()));
             return Response.ok(repository.save(entity)).build();
         } catch (Exception e) {
             return Response.serverError().build();
@@ -84,7 +87,7 @@ public class WorkoutResource {
     public Response put(Workout entity) {
         try {
 
-            entity.setCreator(getCurrentCreator(idToken.getName()));
+            entity.setCreator(getCurrentCreator(identity.getPrincipal().getName()));
 
             if (entity.getCreator() != null) {
                 // get Histories from database, because it is not ment, that they are updated here
@@ -115,7 +118,7 @@ public class WorkoutResource {
 
     private Person getCurrentCreator(String name) {
         return personRepository.streamAll()
-                .filter(person -> person.getKeycloakName().equals(idToken.getName()))
+                .filter(person -> person.getKeycloakName().equals(identity.getPrincipal().getName()))
                 .findFirst().get();
     }
 }

@@ -11,21 +11,25 @@ abstract class GenericEndpoint<T extends Identifiable> {
   Map<String, dynamic> convertObjectToJson(T item);
 
   Future<List<T>> getAll(String token) async {
-    List<T> result = [];
+    try {
+      List<T> result = [];
 
-    final response = await http.get(this.baseUrl, headers: {
-      'Authorization': 'Bearer $token',
-      'Content-Type': 'application/json; charset=UTF-8'
-    });
+      final response = await http.get(this.baseUrl, headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json; charset=UTF-8'
+      });
 
-    final data = json.decode(response.body);
+      final data = json.decode(response.body);
 
-    data.forEach((dataItem) {
-      var tmp = this.convertJsonToObject(dataItem);
-      result.add(tmp);
-    });
+      data.forEach((dataItem) {
+        var tmp = this.convertJsonToObject(dataItem);
+        result.add(tmp);
+      });
 
-    return result;
+      return result;
+    } catch(error) {
+      return getAll(token);
+    }
   }
 
   Future<bool> post(T postItem) async {

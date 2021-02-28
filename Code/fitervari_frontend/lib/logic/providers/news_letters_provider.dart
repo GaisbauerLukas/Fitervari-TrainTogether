@@ -14,14 +14,16 @@ class NewsLettersProvider extends ChangeNotifier {
     return [..._items];
   }
 
-  Future<List<NewsLetter>> loadNewsLetters(String token) async {
+  Future<List<NewsLetter>> loadNewsLetters(String token) {
     try {
       if (_items.length == 0) {
-        _items.addAll(await endpoint.getAll(token));
+        endpoint
+            .getAll(token)
+            .then((value) => _items.addAll(value));
         notifyListeners();
       }
     } catch (error) {
-      throw error;
+      loadNewsLetters(token);
     }
   }
 }
