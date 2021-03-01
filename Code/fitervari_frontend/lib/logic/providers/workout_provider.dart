@@ -35,6 +35,7 @@ class WorkoutProvider extends ChangeNotifier {
   loadWorkouts(String token) {
     try {
       _endpoint.getAll(token).then((value) {
+        _loadedWorkouts.clear();
         _loadedWorkouts.addAll(value);
         _currentWorkout = _loadedWorkouts[0];
         notifyListeners();
@@ -46,6 +47,7 @@ class WorkoutProvider extends ChangeNotifier {
 
   void setNextWorkout(Workout workout) {
     _currentWorkout = workout;
+    notifyListeners();
   }
 
   void postWorkoutHistoryToCurrentWorkout(
@@ -66,14 +68,22 @@ class WorkoutProvider extends ChangeNotifier {
     _loadedWorkouts.forEach((element) {
       if (element.workoutHistories != null && element.id == workoutId) {
         element.workoutHistories.add(workoutHistory);
+        notifyListeners();
       }
     });
   }
 
   postWorkout(Workout workout, String token) {
     _endpoint.post(workout, token).then((value) {
-      if (value) {
-        loadedWorkouts.add(workout);
+      if (value != null) {
+
+        if(_loadedWorkouts.contains(workout)){
+          _loadedWorkouts[_loadedWorkouts.indexOf(workout)] = value;
+        } else {
+          _loadedWorkouts.add(value);
+        }
+
+        notifyListeners();
       }
     });
   }

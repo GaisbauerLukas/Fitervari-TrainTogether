@@ -32,7 +32,7 @@ abstract class GenericEndpoint<T extends Identifiable> {
     }
   }
 
-  Future<bool> post(T postItem, String token) async {
+  Future<Object> post(T postItem, String token) async {
     try {
       final msg = this.convertObjectToJson(postItem);
       final msgString = json.encode(msg);
@@ -45,14 +45,14 @@ abstract class GenericEndpoint<T extends Identifiable> {
       if (response.statusCode == 403) {
         return post(postItem, token);
       } else {
-        return response.statusCode == 200;
+        return convertJsonToObject(json.decode(response.body));
       }
     } catch (error) {
       print(error);
     }
   }
 
-  Future<bool> put(T putItem, String token) async {
+  Future<Object> put(T putItem, String token) async {
     try {
       final response = await http.put(this.baseUrl,
           headers: {
@@ -60,6 +60,8 @@ abstract class GenericEndpoint<T extends Identifiable> {
             'Authorization': 'Bearer $token'
           },
           body: json.encode(this.convertObjectToJson(putItem)));
+
+      return response.body;
     } catch (error) {}
   }
 

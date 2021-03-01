@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CreateWorkoutButton extends StatefulWidget {
+
   @override
   State<StatefulWidget> createState() => CreateWorkoutButtonState();
 }
