@@ -19,7 +19,7 @@ abstract class GenericEndpoint<T extends Identifiable> {
         'Content-Type': 'application/json; charset=UTF-8'
       });
 
-      final data = json.decode(response.body);
+      final data = json.decode(utf8.decode(response.bodyBytes));
 
       data.forEach((dataItem) {
         var tmp = this.convertJsonToObject(dataItem);
@@ -45,7 +45,7 @@ abstract class GenericEndpoint<T extends Identifiable> {
       if (response.statusCode == 403) {
         return post(postItem, token);
       } else {
-        return convertJsonToObject(json.decode(response.body));
+        return convertJsonToObject(json.decode(utf8.decode(response.bodyBytes)));
       }
     } catch (error) {
       print(error);
@@ -61,7 +61,7 @@ abstract class GenericEndpoint<T extends Identifiable> {
           },
           body: json.encode(this.convertObjectToJson(putItem)));
 
-      return response.body;
+      return convertJsonToObject(json.decode(utf8.decode(response.bodyBytes)));
     } catch (error) {}
   }
 
@@ -70,8 +70,9 @@ abstract class GenericEndpoint<T extends Identifiable> {
       final response = await http.delete(
         this.baseUrl + '/$id',
         headers: {
-          'Authorization': 'Bearer $token'
-          },
+          'Authorization': 'Bearer $token',
+          "content-type": "application/json; charset=UTF-8"
+        },
       );
       if (response.statusCode == 403) {
         return delete(id, token);
