@@ -21,6 +21,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 80:80
+    volumes:
+      - ./webpage:/usr/share/nginx/html
     links:
       - quarkus
     networks:
