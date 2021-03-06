@@ -3,11 +3,8 @@ package at.htl.boundary;
 import at.htl.control.ExerciseRepository;
 import at.htl.control.PersonRepository;
 import at.htl.model.Exercise;
-import io.quarkus.security.Authenticated;
 import io.quarkus.security.identity.SecurityIdentity;
-import org.eclipse.microprofile.jwt.JsonWebToken;
 
-import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -37,7 +34,6 @@ public class ExerciseResource {
     }
 
     @GET
-    @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll() {
         var username = identity.getPrincipal().getName();

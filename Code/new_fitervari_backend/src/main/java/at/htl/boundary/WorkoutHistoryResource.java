@@ -2,11 +2,8 @@ package at.htl.boundary;
 
 import at.htl.control.WorkoutHistoryRepository;
 import at.htl.model.WorkoutHistory;
-import io.quarkus.security.Authenticated;
 import io.quarkus.security.identity.SecurityIdentity;
-import org.eclipse.microprofile.jwt.JsonWebToken;
 
-import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;

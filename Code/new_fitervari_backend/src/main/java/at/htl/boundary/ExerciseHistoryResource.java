@@ -2,9 +2,7 @@ package at.htl.boundary;
 
 import at.htl.control.ExerciseHistoryRepository;
 import at.htl.model.ExerciseHistory;
-import io.quarkus.security.Authenticated;
 
-import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;

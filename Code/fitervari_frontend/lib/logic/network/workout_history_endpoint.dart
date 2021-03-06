@@ -1,4 +1,3 @@
-
 import 'package:fitervari/contracts/application_properties.dart';
 import 'package:fitervari/contracts/transfer/workout_history.dart';
 import 'package:fitervari/logic/network/generic_endpoint.dart';

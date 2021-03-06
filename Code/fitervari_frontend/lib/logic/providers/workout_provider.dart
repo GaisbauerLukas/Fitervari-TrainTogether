@@ -37,7 +37,11 @@ class WorkoutProvider extends ChangeNotifier {
       _endpoint.getAll(token).then((value) {
         _loadedWorkouts.clear();
         _loadedWorkouts.addAll(value);
-        _currentWorkout = _loadedWorkouts[0];
+
+        if(value.length != 0) {
+          _currentWorkout = _loadedWorkouts[0];
+        }
+
         notifyListeners();
       });
     } catch (error) {

@@ -24,9 +24,6 @@ public class WorkoutResource {
     WorkoutRepository repository;
 
     @Inject
-    WorkoutHistoryRepository workoutHistoryRepository;
-
-    @Inject
     PersonRepository personRepository;
 
     @Inject
