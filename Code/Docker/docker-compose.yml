@@ -15,27 +15,27 @@ services:
     networks:
       - fitavari_network
 
-  # reverseproxy:
-  #   build:
-  #     context: ./reverseproxy
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - 80:80
-  #   links:
-  #     - quarkus
-  #   networks:
-  #     - fitavari_network
+  reverseproxy:
+    build:
+      context: ./reverseproxy
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    links:
+      - quarkus
+    networks:
+      - fitavari_network
       
-  # webpage:
-  #  build:
-  #    context: ./webpage
-  #    dockerfile: Dockerfile
-  #  ports:
-  #    - 9933:80
-  #  networks:
-  #    - fitavari_network
-  #  depends_on:
-  #    - postgres
+  webpage:
+   build:
+     context: ./webpage
+     dockerfile: Dockerfile
+   ports:
+     - 9933:80
+   networks:
+     - fitavari_network
+   depends_on:
+     - postgres
 
   # postgres-keycloak:
   #     image: postgres
