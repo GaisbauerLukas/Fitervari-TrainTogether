@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class SettingsProvider extends ChangeNotifier {
 
-  static const _mainColorCode = Color.fromARGB(255, 120, 0, 0);
+  static const _mainColorCode = Color.fromARGB(255, 0, 100, 255);
 
   static Map<int, Color> _mainColor = {
     50: Color.fromRGBO(23, 13, 61, .1),
